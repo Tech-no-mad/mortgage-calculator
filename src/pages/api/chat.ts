@@ -128,10 +128,15 @@ export const POST: APIRoute = async ({ request }) => {
     let stateFound = false;
 
     // Parse states first
+    const commonWords = ['me', 'in', 'or', 'as', 'do', 'hi', 'la', 'ma', 'md', 'ok', 'pa', 'sc', 'va', 'wa'];
     for (const state of statesData) {
-      if (text.includes(state.name.toLowerCase()) || text.match(new RegExp(`\\b${state.abbr.toLowerCase()}\\b`, 'i'))) {
-        if (text.includes('take me to') || text.includes('go to') || text.includes('navigate') || text.includes('section')) {
+      const explicitAbbr = text.match(new RegExp(`\\b${state.abbr.toLowerCase()}\\b`, 'i')) 
+                            && (query.includes(state.abbr) || !commonWords.includes(state.abbr.toLowerCase()));
+                            
+      if (text.includes(state.name.toLowerCase()) || explicitAbbr) {
+        if (text.includes('take me to') || text.includes('go to') || text.includes('navigate') || text.includes('section') || text.includes('to ' + state.name.toLowerCase()) || text.includes('no to')) {
            targetStatePath = `/states/${state.slug}`;
+           stateFound = true;
         }
         if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update') || text.includes('switch')) {
           fills.push({ id: ['state-selector'], value: state.abbr });

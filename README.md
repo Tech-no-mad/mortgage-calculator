@@ -19,7 +19,7 @@ A comprehensive, high-performance Mortgage Calculator suite built with [Astro](h
   - **Fuzzy Semantic Memory:** Uses Levenshtein Distance and an extensive global dictionary to instinctively map typos and synonyms (like `cost`, `value`, or `hoem pryce`) directly to their correct inputs.
   - **Conversational Memory:** Uses compressed lightweight context history so you can have natural multi-turn conversations (e.g. pointing out a missing field and answering the follow-up question).
   - **Global RLHF Dictionary:** Features a Reinforcement Learning from Human Feedback (RLHF) loop. If it doesn't recognize an abbreviation (e.g. "dp"), it will ask for clarification. Once answered, it securely saves this to global memory for all future users.
-  - **Responsive UI:** Features a gorgeous full-screen vertical drawer on desktop and mobile for an unhindered chatting experience.
+  - **Responsive UI & Controls:** Features a gorgeous full-screen vertical drawer on desktop and mobile. You can now freely minimize the chat to a sleek header, or maximize it to overtake the full screen!
   - **Secure Server-Side API:** The Chatbot's logic and data are hidden safely on the server behind an `/api/chat` endpoint, preventing client-side tampering.
 - **Technical SEO & Edge Deployment:** 
   - Deployed seamlessly to Cloudflare Pages via `@astrojs/cloudflare`

@@ -34,11 +34,23 @@
         <p class="text-xs text-white/90">Assistant</p>
       </div>
     </div>
-    <button id="chatbot-close" class="text-white/80 hover:text-white transition-colors focus:outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+    <div class="flex gap-1">
+      <button id="chatbot-minimize" class="p-1 text-white/80 hover:text-white transition-colors focus:outline-none" aria-label="Minimize">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+        </svg>
+      </button>
+      <button id="chatbot-maximize" class="p-1 text-white/80 hover:text-white transition-colors focus:outline-none hidden sm:block" aria-label="Maximize">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+        </svg>
+      </button>
+      <button id="chatbot-close" class="p-1 text-white/80 hover:text-white transition-colors focus:outline-none" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Chat History -->
@@ -87,6 +99,9 @@
   const input = document.getElementById('chatbot-input') as HTMLTextAreaElement;
   const messagesContainer = document.getElementById('chatbot-messages');
 
+  const minimizeBtn = document.getElementById('chatbot-minimize');
+  const maximizeBtn = document.getElementById('chatbot-maximize');
+
   if (input) {
     input.addEventListener('input', function() {
       this.style.height = 'auto';
@@ -103,6 +118,22 @@
   let isOpen = sessionStorage.getItem('chatbotOpen') === 'true';
   let chatHistory: Array<{text: string, isUser: boolean}> = [];
   let chatContext: any = null; // Lightweight conversational memory state
+
+  minimizeBtn?.addEventListener('click', () => {
+    if (windowEl?.classList.contains('h-auto')) {
+      windowEl.classList.remove('h-auto', 'max-h-16');
+    } else {
+      windowEl?.classList.add('h-auto', 'max-h-16');
+      if (windowEl?.classList.contains('maximized-view')) {
+         windowEl.classList.remove('maximized-view');
+      }
+    }
+  });
+
+  maximizeBtn?.addEventListener('click', () => {
+    windowEl?.classList.toggle('maximized-view');
+    windowEl?.classList.remove('h-auto', 'max-h-16');
+  });
 
   function toggleChat(forceState?: boolean) {
     isOpen = forceState !== undefined ? forceState : !isOpen;
