@@ -1,4 +1,5 @@
 ---
+import statesData from '../data/states.json';
 ---
 
 <!-- Chatbot Toggle Button -->
@@ -214,6 +215,115 @@
     return "I searched our knowledge base but couldn't find a direct answer to that. Try asking about our data sources, PMI, amortization, or how accurate the calculations are!";
   }
 
+  // Inject states data from server-side Astro
+  const STATES_DATA = ${JSON.stringify(statesData)};
+
+  // Handle Action Commands (Virtual Assistant)
+  function handleCommand(query: string): string | null {
+    const text = query.toLowerCase();
+
+    // 1. State Queries
+    for (const state of STATES_DATA) {
+      if (text.includes(state.name.toLowerCase())) {
+        if (text.includes('tax') || text.includes('property') || text.includes('rate')) {
+          return `The average property tax rate in **${state.name}** is **${state.taxRate}%**.`;
+        }
+        if (text.includes('insurance')) {
+          return `The average annual home insurance cost in **${state.name}** is around **$${state.insurance.toLocaleString()}**.`;
+        }
+        if (text.includes('price') || text.includes('cost') || text.includes('home')) {
+          return `The median home price in **${state.name}** is **$${state.medianPrice.toLocaleString()}**.`;
+        }
+        // General state info
+        return `**${state.name}** has a median home price of **$${state.medianPrice.toLocaleString()}**, an average property tax rate of **${state.taxRate}%**, and annual home insurance around **$${state.insurance.toLocaleString()}**. We have a [${state.name} Mortgage Calculator](/states/${state.slug}) you can use!`;
+      }
+    }
+
+    // 2. Navigation
+    if (text.includes('go to') || text.includes('open') || text.includes('navigate') || text.includes('take me to')) {
+      if (text.includes('refinance')) {
+        setTimeout(() => window.location.href = '/refinance-calculator', 1500);
+        return "Navigating you to the Refinance Calculator...";
+      }
+      if (text.includes('extra payment') || text.includes('payoff')) {
+        setTimeout(() => window.location.href = '/extra-payment-calculator', 1500);
+        return "Navigating you to the Extra Payment Calculator...";
+      }
+      if (text.includes('afford')) {
+        setTimeout(() => window.location.href = '/how-much-can-i-afford', 1500);
+        return "Navigating you to the Affordability Calculator...";
+      }
+      if (text.includes('amortization')) {
+        setTimeout(() => window.location.href = '/amortization-schedule', 1500);
+        return "Navigating you to the Amortization Schedule...";
+      }
+      if (text.includes('heloc') || text.includes('equity')) {
+        setTimeout(() => window.location.href = '/heloc-calculator', 1500);
+        return "Navigating you to the HELOC Calculator...";
+      }
+      if (text.includes('home') || text.includes('main')) {
+        setTimeout(() => window.location.href = '/', 1500);
+        return "Navigating you to the Main Calculator...";
+      }
+    }
+
+    // 3. Auto-filling calculator
+    if (text.includes('set') || text.includes('change') || text.includes('make')) {
+      let changed = false;
+      let response = "I've updated the calculator for you: ";
+      
+      // Extract numbers (including k/m shorthand)
+      const numMatch = query.match(/(\d+(?:,\d+)*(?:\.\d+)?)\s*(k|m|%)?/gi);
+      
+      if (numMatch) {
+        numMatch.forEach(val => {
+          let num = parseFloat(val.replace(/,/g, ''));
+          if (val.toLowerCase().includes('k')) num *= 1000;
+          if (val.toLowerCase().includes('m')) num *= 1000000;
+          
+          if (text.includes('price') || text.includes('home') || text.includes('loan')) {
+            const el = document.getElementById('home-price') || document.getElementById('loan-amount') || document.getElementById('home-value');
+            if (el) {
+              (el as HTMLInputElement).value = num.toString();
+              changed = true;
+              response += `Home/Loan to $${num.toLocaleString()}. `;
+            }
+          } else if ((text.includes('down') || text.includes('payment')) && (val.includes('%') || num < 100)) {
+            const el = document.getElementById('down-payment');
+            if (el) {
+              (el as HTMLInputElement).value = num.toString();
+              changed = true;
+              response += `Down Payment to ${num}%. `;
+            }
+          } else if (text.includes('rate') || text.includes('interest')) {
+            const el = document.getElementById('interest-rate') || document.getElementById('heloc-rate');
+            if (el) {
+              (el as HTMLInputElement).value = num.toString();
+              changed = true;
+              response += `Interest Rate to ${num}%. `;
+            }
+          }
+        });
+
+        if (changed) {
+          // Trigger change event to update the UI formulas
+          const ev = new Event('change');
+          const inputEv = new Event('input');
+          document.getElementById('home-price')?.dispatchEvent(inputEv);
+          document.getElementById('home-price')?.dispatchEvent(ev);
+          document.getElementById('loan-amount')?.dispatchEvent(inputEv);
+          document.getElementById('down-payment')?.dispatchEvent(inputEv);
+          document.getElementById('interest-rate')?.dispatchEvent(inputEv);
+          return response;
+        } else {
+          return "I couldn't find those fields on this page. Try navigating to the Main Calculator first.";
+        }
+      }
+    }
+
+    return null; // Fallback to knowledge base
+  }
+
   const toggleBtn = document.getElementById('chatbot-toggle');
   const closeBtn = document.getElementById('chatbot-close');
   const windowEl = document.getElementById('chatbot-window');
@@ -316,8 +426,16 @@
     // Simulate database lookup delay
     setTimeout(() => {
       document.getElementById(typingId)?.remove();
-      const response = findBestMatch(text);
-      addMessage(response, false);
+      
+      // Try command interceptor first
+      const commandResponse = handleCommand(text);
+      if (commandResponse) {
+        addMessage(commandResponse, false);
+      } else {
+        // Fallback to Knowledge Base
+        const response = findBestMatch(text);
+        addMessage(response, false);
+      }
     }, 700);
   });
 </script>
