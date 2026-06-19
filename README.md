@@ -15,8 +15,10 @@ A comprehensive, high-performance Mortgage Calculator suite built with [Astro](h
 - **Loan Type Guides:** Comprehensive information and tools for VA, FHA, and Jumbo loans.
 - **AI Virtual Assistant (Chatbot):** 
   - **State Memory:** Answers localized property tax, home price, and insurance questions (e.g. "What is the property tax in Colorado?").
-  - **Auto-Navigation:** Navigates the user to different calculators based on intent (e.g. "Go to the Refinance Calculator").
-  - **Auto-Filling:** Parses user input and fills out calculator forms automatically (e.g. "Set my home price to 400k and down payment to 20%").
+  - **Auto-Filling & Navigation:** Parses user input and fills out calculator forms automatically, and can navigate between pages.
+  - **Fuzzy Matching:** Uses Levenshtein Distance to mathematically infer meaning from spelling mistakes (e.g. mapping "hoem pryce" to "Home Price").
+  - **Contextual Number Parsing:** Scans words immediately around numbers to safely route multiple numbers to their correct respective fields in a single prompt.
+  - **Global RLHF Memory:** Features a Reinforcement Learning from Human Feedback (RLHF) loop. If it doesn't recognize an abbreviation (e.g. "dp"), it will ask for clarification. Once answered, it securely saves this to global memory for all future users.
   - **Secure Server-Side API:** The Chatbot's logic and data are hidden safely on the server behind an `/api/chat` endpoint, preventing client-side tampering.
 - **Technical SEO & Edge Deployment:** 
   - Deployed seamlessly to Cloudflare Pages via `@astrojs/cloudflare`
