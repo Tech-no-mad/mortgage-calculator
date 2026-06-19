@@ -15,10 +15,11 @@ A comprehensive, high-performance Mortgage Calculator suite built with [Astro](h
 - **Loan Type Guides:** Comprehensive information and tools for VA, FHA, and Jumbo loans.
 - **AI Virtual Assistant (Chatbot):** 
   - **State Memory:** Answers localized property tax, home price, and insurance questions (e.g. "What is the property tax in Colorado?").
-  - **Auto-Filling & Navigation:** Parses user input and fills out calculator forms automatically, and can navigate between pages.
-  - **Fuzzy Matching:** Uses Levenshtein Distance to mathematically infer meaning from spelling mistakes (e.g. mapping "hoem pryce" to "Home Price").
-  - **Contextual Number Parsing:** Scans words immediately around numbers to safely route multiple numbers to their correct respective fields in a single prompt.
-  - **Global RLHF Memory:** Features a Reinforcement Learning from Human Feedback (RLHF) loop. If it doesn't recognize an abbreviation (e.g. "dp"), it will ask for clarification. Once answered, it securely saves this to global memory for all future users.
+  - **Combined Actions:** Can parse complex prompts to simultaneously navigate your browser *and* autofill data across pages (e.g. "Take me to Washington and set the term to 15 yr").
+  - **Fuzzy Semantic Memory:** Uses Levenshtein Distance and an extensive global dictionary to instinctively map typos and synonyms (like `cost`, `value`, or `hoem pryce`) directly to their correct inputs.
+  - **Conversational Memory:** Uses compressed lightweight context history so you can have natural multi-turn conversations (e.g. pointing out a missing field and answering the follow-up question).
+  - **Global RLHF Dictionary:** Features a Reinforcement Learning from Human Feedback (RLHF) loop. If it doesn't recognize an abbreviation (e.g. "dp"), it will ask for clarification. Once answered, it securely saves this to global memory for all future users.
+  - **Responsive UI:** Features a gorgeous full-screen vertical drawer on desktop and mobile for an unhindered chatting experience.
   - **Secure Server-Side API:** The Chatbot's logic and data are hidden safely on the server behind an `/api/chat` endpoint, preventing client-side tampering.
 - **Technical SEO & Edge Deployment:** 
   - Deployed seamlessly to Cloudflare Pages via `@astrojs/cloudflare`

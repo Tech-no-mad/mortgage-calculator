@@ -21,7 +21,19 @@ if (!globalAny.rlhfMap) {
     ['taxes', 'tax-rate'],
     ['insurance', 'home-insurance'],
     ['ins', 'home-insurance'],
-    ['state', 'state-selector']
+    ['state', 'state-selector'],
+    // Extended synonyms
+    ['cost', 'home-price'],
+    ['value', 'home-price'],
+    ['amount', 'home-price'],
+    ['principal', 'home-price'],
+    ['upfront', 'down-payment'],
+    ['initial', 'down-payment'],
+    ['apr', 'interest-rate'],
+    ['fixed', 'interest-rate'],
+    ['duration', 'term'],
+    ['length', 'term'],
+    ['period', 'term']
   ]);
 }
 const rlhfMap: Map<string, string> = globalAny.rlhfMap;
@@ -60,15 +72,33 @@ export const POST: APIRoute = async ({ request }) => {
     const data = await request.json();
     const query = data.query || '';
     const text = query.toLowerCase();
+    const history = data.history || {};
+
+    // Check conversational context for missing fields
+    if (history.missingField) {
+      // Look for a single number in the user's response
+      const numMatch = query.match(/^(\$?\d+(?:,\d+)*(?:\.\d+)?)(k|m|%|yr|years?)?$/i);
+      if (numMatch || query.match(/\d+/)) {
+        let nStr = numMatch ? numMatch[1].replace(/[$,]/g, '') : query.match(/\d+/)[0];
+        let num = parseFloat(nStr);
+        let mod = numMatch ? numMatch[2]?.toLowerCase() : '';
+        if (mod === 'k') num *= 1000;
+        if (mod === 'm') num *= 1000000;
+        
+        let fills = [{ id: FIELD_MAP[history.missingField], value: num.toString() }];
+        return new Response(JSON.stringify({ 
+          response: `Got it! I've updated the ${history.missingField.replace('-', ' ')} to ${mod === '%' ? num + '%' : num}.`, 
+          action: { type: 'fill', payload: fills },
+          context: null // clear context
+        }));
+      }
+    }
 
     // 1. RLHF Learning Interceptor
-    // e.g. "learn that hp means home price" or "hp is home price"
     const learnMatch = query.match(/(.+?)\s+(?:means|is)\s+(.+)/i);
     if (learnMatch && (text.includes('learn') || (text.includes('means') && text.split(' ').length < 8) || data.learningMode)) {
       let alias = learnMatch[1].replace(/learn that /i, '').replace(/['"]/g, '').trim().toLowerCase();
-      // If learning mode from client clarification, alias is just the target
       if (data.learningMode && data.alias) alias = data.alias.toLowerCase();
-      
       let target = learnMatch[2].replace(/['"\.]/g, '').trim().toLowerCase();
       
       let closestField = target;
@@ -82,50 +112,43 @@ export const POST: APIRoute = async ({ request }) => {
         if (d < bestDist) { bestDist = d; closestField = v; }
       }
 
-      // Safeguard threshold (max 5 edits)
       if (bestDist <= 5) {
         rlhfMap.set(alias, closestField);
-        return new Response(JSON.stringify({ response: `Got it! I've learned that "${alias}" means "${closestField.replace('-', ' ')}". I will remember this for next time.` }));
+        return new Response(JSON.stringify({ response: `Got it! I've learned that "${alias}" means "${closestField.replace('-', ' ')}". I will remember this for next time.`, context: null }));
       } else {
-        return new Response(JSON.stringify({ response: `I tried to learn that, but "${target}" doesn't match any fields I know about (like home price, down payment, etc).` }));
+        return new Response(JSON.stringify({ response: `I tried to learn that, but "${target}" doesn't match any fields I know about.`, context: null }));
       }
     }
 
-    // 2. Navigation Actions
-    if (text.includes('go to') || text.includes('navigate') || text.includes('take me to')) {
-      if (text.includes('refinance')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/refinance-calculator' } }));
-      if (text.includes('extra') || text.includes('payoff')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/extra-payment-calculator' } }));
-      if (text.includes('afford')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/how-much-can-i-afford' } }));
-      if (text.includes('amortization')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/amortization-schedule' } }));
-      if (text.includes('heloc')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/heloc-calculator' } }));
-      return new Response(JSON.stringify({ response: "Navigating to Main Calculator...", action: { type: 'navigate', payload: '/' } }));
-    }
-
-    // 3. Smart Parser with Contextual Numbers
     let fills: any[] = [];
+    let actions: any[] = [];
     let rtext = "I've updated the calculator: ";
     let unknownWords: string[] = [];
+    let targetStatePath = null;
+    let stateFound = false;
 
     // Parse states first
-    let stateFound = false;
     for (const state of statesData) {
       if (text.includes(state.name.toLowerCase()) || text.match(new RegExp(`\\b${state.abbr.toLowerCase()}\\b`, 'i'))) {
-        if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update')) {
+        if (text.includes('take me to') || text.includes('go to') || text.includes('navigate') || text.includes('section')) {
+           targetStatePath = `/states/${state.slug}`;
+        }
+        if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update') || text.includes('switch')) {
           fills.push({ id: ['state-selector'], value: state.abbr });
           rtext += `State to ${state.name}. `;
           stateFound = true;
-          break; // only do one state
+          break;
         }
       }
     }
 
     // Parse numeric fields
-    if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update')) {
-      // Find numbers and their preceding/succeeding 2 words
+    if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update') || text.includes('adjust') || text.includes('switch')) {
       const words = query.split(/\s+/);
       
       for (let i = 0; i < words.length; i++) {
-        let w = words[i].toLowerCase();
+        // Strip trailing punctuation from the word so regex can match properly
+        let w = words[i].toLowerCase().replace(/[.,!?;:]+$/, '');
         const numMatch = w.match(/^(\$?\d+(?:,\d+)*(?:\.\d+)?)(k|m|%|yr|years?)?$/i);
         
         if (numMatch) {
@@ -136,15 +159,13 @@ export const POST: APIRoute = async ({ request }) => {
           if (modifier === 'k') num *= 1000;
           if (modifier === 'm') num *= 1000000;
           
-          // Contextual analysis: look at -3 to +3 words around the number
           let contextWords = words.slice(Math.max(0, i - 3), Math.min(words.length, i + 4));
           contextWords = contextWords.filter(cw => cw.toLowerCase() !== w && cw.length > 1);
           
           let matchedField = null;
           let bestDist = 999;
 
-          // Explicit overrides
-          if (modifier === 'yr' || modifier === 'year' || modifier === 'years') {
+          if (modifier === 'yr' || modifier === 'year' || modifier === 'years' || modifier === 'yrs') {
             matchedField = 'term';
             bestDist = 0;
           }
@@ -154,20 +175,16 @@ export const POST: APIRoute = async ({ request }) => {
               let clean = cw.toLowerCase().replace(/[^\w]/g, '');
               if (!clean) continue;
 
-              // Check RLHF Map first (exact matches on abbreviations)
               if (rlhfMap.has(clean)) {
                 matchedField = rlhfMap.get(clean);
                 bestDist = 0;
                 break;
               }
 
-              // Check Fuzzy Fields
               for (const field of Object.keys(FIELD_MAP)) {
                 let d = levenshtein(clean, field);
-                let d2 = levenshtein(clean, field.replace('-', '')); // check without dash
+                let d2 = levenshtein(clean, field.replace('-', ''));
                 let minD = Math.min(d, d2);
-                
-                // Allow fuzzy match if within 3 edits
                 if (minD < bestDist && minD <= 3) {
                   bestDist = minD;
                   matchedField = field;
@@ -176,11 +193,9 @@ export const POST: APIRoute = async ({ request }) => {
             }
           }
 
-          // If STILL no match, try bigrams (e.g. "home price", "down payment")
           if (!matchedField) {
             for (let j = 0; j < contextWords.length - 1; j++) {
               let bigram = contextWords[j].toLowerCase().replace(/[^\w]/g, '') + '-' + contextWords[j+1].toLowerCase().replace(/[^\w]/g, '');
-              
               if (rlhfMap.has(bigram)) {
                 matchedField = rlhfMap.get(bigram);
                 break;
@@ -192,37 +207,65 @@ export const POST: APIRoute = async ({ request }) => {
             }
           }
 
-          // Fallbacks based on value
           if (!matchedField) {
-            if (modifier === '%') {
-              matchedField = num > 10 ? 'down-payment' : 'interest-rate';
-            } else if (num > 10000) {
-              matchedField = 'home-price';
-            } else if (num >= 10 && num <= 40) {
-              matchedField = 'term';
-            }
+            if (modifier === '%') matchedField = num > 10 ? 'down-payment' : 'interest-rate';
+            else if (num > 10000) matchedField = 'home-price';
+            else if (num >= 10 && num <= 40) matchedField = 'term';
           }
 
           if (matchedField) {
             fills.push({ id: FIELD_MAP[matchedField], value: num.toString() });
             rtext += `${matchedField.replace('-', ' ')} to ${modifier === '%' ? num + '%' : num}. `;
           } else {
-             // We found a number but literally have no idea what it is.
              unknownWords.push(contextWords.join(" "));
           }
         }
       }
+    }
 
-      if (fills.length > 0) {
-        return new Response(JSON.stringify({ response: rtext, action: { type: 'fill', payload: fills } }));
-      }
-      
-      if (unknownWords.length > 0) {
-        return new Response(JSON.stringify({ 
-          response: `I see you want to update something, but I don't recognize the terms you used around the numbers. What do you mean by it? (e.g. "it means down payment")`,
-          action: null
-        }));
-      }
+    // Conversational Complaints
+    if (text.includes('did not update') || text.includes('forgot') || text.includes('missed')) {
+       // Check if they mentioned a field
+       let missingField = null;
+       for (const field of Object.keys(FIELD_MAP)) {
+          if (text.includes(field.replace('-', ' '))) missingField = field;
+       }
+       for (const [k, v] of rlhfMap.entries()) {
+          if (text.includes(k)) missingField = v;
+       }
+       if (missingField) {
+         return new Response(JSON.stringify({ 
+           response: `Ah, I apologize! What number did you want to set the ${missingField.replace('-', ' ')} to?`,
+           context: { missingField }
+         }));
+       }
+    }
+
+    if (unknownWords.length > 0 && fills.length === 0) {
+      return new Response(JSON.stringify({ 
+        response: `I see you want to update something, but I don't recognize the terms you used around the numbers. What do you mean by it?`,
+        context: null
+      }));
+    }
+
+    if (fills.length > 0) {
+      actions.push({ type: 'fill', payload: fills });
+    }
+
+    if (targetStatePath) {
+      actions.push({ type: 'navigate', payload: targetStatePath });
+      rtext += `Navigating you to ${targetStatePath.split('/').pop()}...`;
+    } else if (text.includes('go to') || text.includes('navigate') || text.includes('take me to') || text.includes('section')) {
+      if (text.includes('refinance')) { actions.push({ type: 'navigate', payload: '/refinance-calculator' }); rtext += "Navigating..."; }
+      else if (text.includes('extra') || text.includes('payoff')) { actions.push({ type: 'navigate', payload: '/extra-payment-calculator' }); rtext += "Navigating..."; }
+      else if (text.includes('afford')) { actions.push({ type: 'navigate', payload: '/how-much-can-i-afford' }); rtext += "Navigating..."; }
+      else if (text.includes('amortization')) { actions.push({ type: 'navigate', payload: '/amortization-schedule' }); rtext += "Navigating..."; }
+      else if (text.includes('heloc')) { actions.push({ type: 'navigate', payload: '/heloc-calculator' }); rtext += "Navigating..."; }
+      else { actions.push({ type: 'navigate', payload: '/' }); rtext += "Navigating to Main Calculator..."; }
+    }
+
+    if (actions.length > 0) {
+      return new Response(JSON.stringify({ response: rtext, actions: actions, context: null }));
     }
 
     // 4. Data Interceptor
@@ -237,9 +280,9 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    return new Response(JSON.stringify({ response: "I'm a Virtual Assistant. Ask me to 'Set the home price to 400k' or 'What is the property tax in Colorado?'" }));
+    return new Response(JSON.stringify({ response: "I'm a Virtual Assistant. Ask me to 'Set the home price to 400k', 'Take me to Washington and set the term to 15 yr', or 'What is the property tax in Colorado?'", context: null }));
     
   } catch (error) {
-    return new Response(JSON.stringify({ response: "Sorry, I ran into an error processing that request." }), { status: 500 });
+    return new Response(JSON.stringify({ response: "Sorry, I ran into an error processing that request.", context: null }), { status: 500 });
   }
 };

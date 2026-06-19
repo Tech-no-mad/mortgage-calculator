@@ -18,7 +18,7 @@
 <div 
   id="chatbot-window" 
   class="fixed bottom-24 right-6 w-80 sm:w-96 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4"
-  style="background: var(--bg-surface); border: 1px solid var(--border-default); height: 500px; max-height: calc(100vh - 120px);"
+  style="background: var(--bg-surface); border: 1px solid var(--border-default); height: 90vh; max-height: 800px;"
 >
   <!-- Header -->
   <div class="px-5 py-4 flex justify-between items-center bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white">
@@ -52,7 +52,7 @@
         </svg>
       </div>
       <div class="p-3.5 rounded-2xl rounded-bl-none shadow-sm text-sm leading-relaxed" style="background: var(--bg-surface-2); color: var(--text-primary); border: 1px solid var(--border-default);">
-        Hi! I can scan our documentation and knowledge base to answer your questions. Try asking: "Where is the data sourced from?" or "What is PMI?"
+        Hi! I can scan our documentation and knowledge base to answer your questions. Try asking: "Take me to Washington and set my home price to 400k"
       </div>
     </div>
   </div>
@@ -87,7 +87,6 @@
   const input = document.getElementById('chatbot-input') as HTMLTextAreaElement;
   const messagesContainer = document.getElementById('chatbot-messages');
 
-  // Textarea auto-resize and submit on Enter
   if (input) {
     input.addEventListener('input', function() {
       this.style.height = 'auto';
@@ -103,6 +102,7 @@
 
   let isOpen = sessionStorage.getItem('chatbotOpen') === 'true';
   let chatHistory: Array<{text: string, isUser: boolean}> = [];
+  let chatContext: any = null; // Lightweight conversational memory state
 
   function toggleChat(forceState?: boolean) {
     isOpen = forceState !== undefined ? forceState : !isOpen;
@@ -120,6 +120,8 @@
 
   function saveHistory() {
     sessionStorage.setItem('chatbotHistory', JSON.stringify(chatHistory));
+    if (chatContext) sessionStorage.setItem('chatbotContext', JSON.stringify(chatContext));
+    else sessionStorage.removeItem('chatbotContext');
   }
 
   function renderMessage(text: string, isUser: boolean, animate = true) {
@@ -128,15 +130,11 @@
     const div = document.createElement('div');
     div.className = `flex items-end gap-2.5 ${isUser ? 'flex-row-reverse' : ''} ${animate ? 'animate-fade-in' : ''}`;
     
-    let avatar = '';
-    if (isUser) {
-      avatar = `
+    let avatar = isUser ? `
         <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-slate-500 dark:text-slate-400 pb-[1px]">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
         </div>
-      `;
-    } else {
-      avatar = `
+      ` : `
         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-usa-blue)] to-[var(--color-usa-red)] flex-shrink-0 flex items-center justify-center text-white shadow-sm">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -144,7 +142,6 @@
           </svg>
         </div>
       `;
-    }
 
     let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="underline text-current font-semibold hover:opacity-80 transition-opacity">$1</a>');
@@ -173,7 +170,6 @@
     renderMessage(text, isUser, true);
   }
 
-  // Restore session on load
   document.addEventListener('DOMContentLoaded', () => {
     const storedHistory = sessionStorage.getItem('chatbotHistory');
     if (storedHistory && messagesContainer) {
@@ -181,15 +177,18 @@
         const parsed = JSON.parse(storedHistory);
         if (parsed.length > 0) {
           chatHistory = parsed;
-          messagesContainer.innerHTML = ''; // Clear initial greeting
+          messagesContainer.innerHTML = '';
           chatHistory.forEach(msg => renderMessage(msg.text, msg.isUser, false));
         }
       } catch(e) {}
     }
+    const storedCtx = sessionStorage.getItem('chatbotContext');
+    if (storedCtx) {
+      try { chatContext = JSON.parse(storedCtx); } catch(e) {}
+    }
 
     if (isOpen) toggleChat(true);
 
-    // Handle cross-page autofill
     const pendingFill = sessionStorage.getItem('pendingAutofill');
     if (pendingFill) {
       try {
@@ -197,22 +196,27 @@
         let updated = false;
         payload.forEach((fill: any) => {
           for (const id of fill.id) {
-            const el = document.getElementById(id);
-            if (el) {
-              (el as HTMLInputElement).value = fill.value;
-              updated = true;
+            if (id === 'term') {
+              const btn = document.querySelector(`.term-btn[data-term="${fill.value}"]`) as HTMLElement;
+              if (btn) { btn.click(); updated = true; }
+            } else {
+              const el = document.getElementById(id);
+              if (el) {
+                (el as HTMLInputElement).value = fill.value;
+                updated = true;
+              }
             }
           }
         });
         if (updated) {
           const ev = new Event('change');
           const inputEv = new Event('input');
-          ['home-price', 'loan-amount', 'down-payment', 'interest-rate'].forEach(id => {
+          ['home-price', 'loan-amount', 'down-payment', 'interest-rate', 'state-selector'].forEach(id => {
             document.getElementById(id)?.dispatchEvent(inputEv);
             document.getElementById(id)?.dispatchEvent(ev);
           });
           sessionStorage.removeItem('pendingAutofill');
-          toggleChat(true); // Open chat to show user
+          toggleChat(true); 
         }
       } catch(e) {}
     }
@@ -226,7 +230,7 @@
 
     addMessage(text, true);
     input.value = '';
-    input.style.height = 'auto'; // reset textarea height
+    input.style.height = 'auto'; 
 
     const typingId = 'typing-' + Date.now();
     const typingDiv = document.createElement('div');
@@ -252,50 +256,74 @@
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: text })
+        body: JSON.stringify({ query: text, history: chatContext })
       });
       const data = await res.json();
       
       document.getElementById(typingId)?.remove();
       addMessage(data.response, false);
+      
+      // Update compressed context memory
+      if (data.context !== undefined) {
+        chatContext = data.context;
+        saveHistory();
+      }
 
-      if (data.action) {
-        if (data.action.type === 'navigate') {
-          setTimeout(() => { window.location.href = data.action.payload; }, 1500);
-        } else if (data.action.type === 'fill') {
+      if (data.actions && Array.isArray(data.actions)) {
+        let shouldNavigate = false;
+        let navigateUrl = '';
+        let hasFills = false;
+        let fillsPayload = null;
+
+        data.actions.forEach((action: any) => {
+          if (action.type === 'navigate') {
+            shouldNavigate = true;
+            navigateUrl = action.payload;
+          } else if (action.type === 'fill') {
+            hasFills = true;
+            fillsPayload = action.payload;
+          }
+        });
+
+        if (shouldNavigate) {
+          if (hasFills) {
+            sessionStorage.setItem('pendingAutofill', JSON.stringify(fillsPayload));
+          }
+          setTimeout(() => { window.location.href = navigateUrl; }, 1500);
+        } else if (hasFills) {
           let updated = false;
-          let foundElements = 0;
-          data.action.payload.forEach((fill: any) => {
+          fillsPayload.forEach((fill: any) => {
             for (const id of fill.id) {
               if (id === 'term') {
                 const btn = document.querySelector(`.term-btn[data-term="${fill.value}"]`) as HTMLElement;
-                if (btn) { btn.click(); updated = true; foundElements++; }
+                if (btn) { btn.click(); updated = true; }
               } else {
                 const el = document.getElementById(id);
                 if (el) {
                   (el as HTMLInputElement).value = fill.value;
                   updated = true;
-                  foundElements++;
                 }
               }
             }
           });
           
           if (updated) {
-            // We found elements on this page, trigger updates
             const ev = new Event('change');
             const inputEv = new Event('input');
-            ['home-price', 'loan-amount', 'down-payment', 'interest-rate'].forEach(id => {
+            ['home-price', 'loan-amount', 'down-payment', 'interest-rate', 'state-selector'].forEach(id => {
               document.getElementById(id)?.dispatchEvent(inputEv);
               document.getElementById(id)?.dispatchEvent(ev);
             });
           } else {
-            // We didn't find any of the target elements on this page.
-            // Save payload to sessionStorage and navigate to the Main Calculator
-            sessionStorage.setItem('pendingAutofill', JSON.stringify(data.action.payload));
+            sessionStorage.setItem('pendingAutofill', JSON.stringify(fillsPayload));
             setTimeout(() => { window.location.href = '/'; }, 1000);
           }
         }
+      } else if (data.action) {
+         // Legacy single action support just in case
+         if (data.action.type === 'navigate') {
+           setTimeout(() => { window.location.href = data.action.payload; }, 1500);
+         }
       }
     } catch (e) {
       document.getElementById(typingId)?.remove();
@@ -311,5 +339,18 @@
   }
   .animate-fade-in {
     animation: fade-in 0.2s ease-out forwards;
+  }
+  
+  /* Mobile Full Screen Specific */
+  @media (max-width: 640px) {
+    #chatbot-window {
+      width: 100% !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      bottom: 0 !important;
+      right: 0 !important;
+      border-radius: 0 !important;
+      border: none !important;
+    }
   }
 </style>
