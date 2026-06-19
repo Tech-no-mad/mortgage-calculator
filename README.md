@@ -1,25 +1,27 @@
 # MortgageDash (Mortgage Calculator Suite)
 
-A comprehensive, high-performance Mortgage Calculator suite built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/). This application features dynamic home loan calculators, state-specific mortgage guides, a smart AI chatbot, and built-in technical SEO optimization for maximum visibility.
+A comprehensive, high-performance Mortgage Calculator suite built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/). This application features dynamic home loan calculators, an intelligent Virtual Assistant chatbot, state-specific mortgage data integration, and built-in technical SEO optimization.
 
 ## 🚀 Features
 
 - **Advanced Calculators:** 
-  - Standard Amortization
-  - Refinance Calculator
+  - Standard Amortization (with Monthly & Yearly aggregate views)
+  - Refinance Calculator (with break-even analysis)
   - Extra Payment Calculator
   - Affordability Calculator
   - Recast Calculator
   - HELOC (Home Equity Line of Credit)
+- **State-Specific Integrations:** Select a state to instantly pre-fill local property tax rates, median home prices, and annual home insurance averages directly into the calculators.
 - **Loan Type Guides:** Comprehensive information and tools for VA, FHA, and Jumbo loans.
-- **State-Specific Guides:** Localized guides and tools optimized for all 50 US states.
-- **Interactive AI Chatbot:** Features a smart assistant trained on a financial knowledge base to answer user questions with instant access to the right calculators.
-- **Local Lead Capture:** Backend API to capture lead generation emails and save them locally to a CSV.
-- **Technical SEO:** 
-  - Dynamic `sitemap.xml` generation
-  - `robots.txt` configuration
-  - Cloudflare Pages no-index protection (`_headers`)
+- **AI Virtual Assistant (Chatbot):** 
+  - **State Memory:** Answers localized property tax, home price, and insurance questions (e.g. "What is the property tax in Colorado?").
+  - **Auto-Navigation:** Navigates the user to different calculators based on intent (e.g. "Go to the Refinance Calculator").
+  - **Auto-Filling:** Parses user input and fills out calculator forms automatically (e.g. "Set my home price to 400k and down payment to 20%").
+- **Technical SEO & Edge Deployment:** 
+  - Deployed seamlessly to Cloudflare Pages via `@astrojs/cloudflare`
+  - Dynamic `sitemap.xml` generation and `robots.txt`
   - Extensive JSON-LD structured data and semantic markup
+  - Wildcard `_headers` configuration to manage indexing during staging
 
 ## 🧞 Commands
 
@@ -36,20 +38,14 @@ All commands are run from the root of the project, from a terminal:
 
 - **Framework:** Astro
 - **Styling:** Tailwind CSS
-- **Backend Adapter:** `@astrojs/node`
+- **Backend Adapter:** `@astrojs/cloudflare` (Configured for Cloudflare Pages edge execution)
 - **SEO/Sitemaps:** `@astrojs/sitemap`
 
 ## 📁 Directory Structure
 
 - `src/pages/` - Contains all routing logic including state guides and calculators.
-- `src/components/` - Reusable UI components including the Header, Footer, and the Chatbot.
+- `src/components/` - Reusable UI components including the Header, Footer, and the Chatbot Assistant.
 - `src/layouts/` - Contains `BaseLayout.astro` which handles global SEO meta tags, dark/light mode context, and styling.
 - `src/styles/` - Global CSS tokens and resets.
-- `src/data/` - Static JSON data such as the 50 US states mapping.
-- `public/` - Static assets including favicons, robots.txt, and _headers.
-
-## 🤝 Lead Capture
-
-Leads collected through the site's contact forms are saved securely as a local file (`leads.csv`) in the root directory via the `/api/contact.ts` endpoint. 
-
-*Note: The Node filesystem (`fs`) module is used for saving leads locally. If deploying to serverless edge platforms like Cloudflare Pages, the API endpoint will need to be adapted to use external databases (like D1) or email forwarding APIs.*
+- `src/data/` - Static JSON data (like `states.json`) used by the calculators and the Virtual Assistant.
+- `public/` - Static assets including favicons, robots.txt, and `_headers`.
