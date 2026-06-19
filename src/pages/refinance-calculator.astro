@@ -171,15 +171,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const savingsEl = document.getElementById('monthly-savings')!;
     if (monthlySavings > 0) {
       savingsEl.innerHTML = `<span class="text-[#10b981]">${fmt(monthlySavings)}</span>`;
-    } else {
+    } else if (monthlySavings < 0) {
       savingsEl.innerHTML = `<span class="text-[#f43f5e]">${fmt(monthlySavings)}</span>`;
+    } else {
+      savingsEl.innerHTML = `<span class="text-[#f59e0b]">${fmt(monthlySavings)}</span>`;
+    }
+
+    const lifetimeEl = document.getElementById('lifetime-savings')!;
+    if (lifetimeSavings > 0) {
+      lifetimeEl.innerHTML = `<span class="text-[#10b981]">${fmt(lifetimeSavings)}</span>`;
+    } else if (lifetimeSavings < 0) {
+      lifetimeEl.innerHTML = `<span class="text-[#f43f5e]">${fmt(lifetimeSavings)}</span>`;
+    } else {
+      lifetimeEl.innerHTML = `<span class="text-[#f59e0b]">${fmt(lifetimeSavings)}</span>`;
     }
 
     document.getElementById('break-even')!.textContent = monthlySavings > 0 ? `${breakEvenMonths} months` : 'Never';
-    
-    const lifeEl = document.getElementById('lifetime-savings')!;
-    lifeEl.textContent = fmt(lifetimeSavings);
-    lifeEl.style.color = lifetimeSavings > 0 ? '#06b6d4' : '#f43f5e';
 
     const recEl = document.getElementById('refi-recommendation')!;
     if (lifetimeSavings > 0 && monthlySavings > 0) {

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import statesData from '../data/states.json';
 ---
 
 <BaseLayout
@@ -31,6 +32,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </svg>
             Home Details
           </h2>
+
+          <!-- State Selection -->
+          <div>
+            <label class="label block mb-1.5">State (Pre-fills Average Home Value)</label>
+            <select id="state-selector" class="calc-input font-mono w-full mb-5">
+              <option value="">National Average</option>
+              {statesData.map(state => (
+                <option value={state.abbr} data-price={state.medianPrice}>
+                  {state.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <!-- Home Value -->
           <div>
@@ -151,6 +165,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('state-selector')?.addEventListener('change', (e) => {
+      const select = e.target as HTMLSelectElement;
+      const option = select.options[select.selectedIndex];
+      if (option.value) {
+        (document.getElementById('home-value') as HTMLInputElement).value = fmtNum(parseFloat(option.getAttribute('data-price') || '450000'));
+      } else {
+        (document.getElementById('home-value') as HTMLInputElement).value = "450,000";
+      }
+      calcHeloc();
+    });
+
     ['home-value', 'mortgage-balance', 'heloc-amount', 'heloc-rate'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', calcHeloc);
       document.getElementById(id)?.addEventListener('change', calcHeloc);

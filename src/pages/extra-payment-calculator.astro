@@ -163,7 +163,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const interestSaved = Math.max(0, normalTotalInterest - newTotalInterest);
     const monthsSaved = Math.max(0, n - newMonths);
 
-    document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#10b981]">${fmt(interestSaved)}</span>`;
+    if (interestSaved > 0) {
+      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#10b981]">${fmt(interestSaved)}</span>`;
+    } else if (interestSaved < 0) {
+      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#f43f5e]">${fmt(interestSaved)}</span>`;
+    } else {
+      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#f59e0b]">${fmt(interestSaved)}</span>`;
+    }
     
     const savedYrs = Math.floor(monthsSaved / 12);
     const savedMos = monthsSaved % 12;

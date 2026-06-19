@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import statesData from '../data/states.json';
 ---
 
 <BaseLayout
@@ -87,6 +88,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <button data-term="20" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">20 yr</button>
               <button data-term="30" class="term-btn active py-2 rounded-lg text-sm font-medium border border-[var(--color-usa-blue)] text-[var(--color-usa-blue)] bg-[var(--color-usa-blue)]/10 transition-all">30 yr</button>
             </div>
+          </div>
+
+          <!-- State Selection for Taxes -->
+          <div>
+            <label class="label block mb-1.5">State (For Accurate Taxes & Insurance)</label>
+            <select id="state-selector" class="calc-input font-mono w-full">
+              <option value="">National Average</option>
+              {statesData.map(state => (
+                <option value={state.abbr} data-tax={state.taxRate} data-ins={state.insurance}>
+                  {state.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <!-- Tax & Insurance -->
@@ -281,6 +295,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       $('home-price-input').value = "850,000";
       document.title = "Jumbo Mortgage Calculator | MortgageDash";
     }
+
+    $('state-selector')?.addEventListener('change', (e) => {
+      const select = e.target as HTMLSelectElement;
+      const option = select.options[select.selectedIndex];
+      if (option.value) {
+        ($('property-tax') as HTMLInputElement).value = option.getAttribute('data-tax') || '1.1';
+        ($('home-insurance') as HTMLInputElement).value = option.getAttribute('data-ins') || '1200';
+      } else {
+        ($('property-tax') as HTMLInputElement).value = '1.1';
+        ($('home-insurance') as HTMLInputElement).value = '1200';
+      }
+      calc();
+    });
 
     ['home-price', 'down-payment', 'interest-rate'].forEach(id => $(id)?.addEventListener('input', calc));
 
