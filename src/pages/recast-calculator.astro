@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Mortgage Recast Calculator"
+  description="Calculate how much your monthly mortgage payment will drop if you make a lump-sum payment and recast your loan."
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        Mortgage Recast
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Calculator</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        See how much your monthly payment will decrease if you make a large lump-sum payment and recast your loan.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Current Loan Details
+          </h2>
+
+          <!-- Remaining Balance -->
+          <div>
+            <label class="label block mb-1.5">Remaining Loan Balance</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="current-balance" value="300,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+
+          <!-- Current Rate -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Interest Rate (%)</label>
+              <input type="text" id="current-rate" value="6.5" inputmode="decimal" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">Years Left</label>
+              <input type="text" id="current-years-left" value="25" inputmode="numeric" class="calc-input font-mono" />
+            </div>
+          </div>
+
+          <h2 class="text-base font-semibold flex items-center gap-2 mt-8" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Lump Sum Payment
+          </h2>
+
+          <div>
+            <label class="label block mb-1.5">Lump Sum Amount</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="lump-sum" value="50,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">Recast Fee (Optional)</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="recast-fee" value="250" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Recast Breakdown
+          </h2>
+
+          <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <p class="label-faint text-sm mb-2">New Monthly Payment</p>
+            <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="new-payment">
+              <span class="text-[#06b6d4]">$0</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f43f5e]"></span>
+                <span class="label">Current Payment</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f43f5e]" id="current-payment">$0</span>
+            </div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#10b981]"></span>
+                <span class="label">Monthly Savings</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#10b981]" id="monthly-savings">$0</span>
+            </div>
+            <div class="result-row mt-4 pt-4" style="border-top: 1px solid var(--border-default);">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
+                <span class="label">Total Interest Saved</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="interest-savings">$0</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calcRecast() {
+    const balance = parse((document.getElementById('current-balance') as HTMLInputElement).value);
+    const rate = parseFloat((document.getElementById('current-rate') as HTMLInputElement).value);
+    const yearsLeft = parseFloat((document.getElementById('current-years-left') as HTMLInputElement).value);
+    const lumpSum = parse((document.getElementById('lump-sum') as HTMLInputElement).value);
+
+    if (document.activeElement?.id !== 'current-balance') (document.getElementById('current-balance') as HTMLInputElement).value = fmtNum(balance);
+    if (document.activeElement?.id !== 'lump-sum') (document.getElementById('lump-sum') as HTMLInputElement).value = fmtNum(lumpSum);
+
+    const mr = (rate / 100) / 12;
+    const n = yearsLeft * 12;
+    
+    // Current
+    const currentPmt = mr > 0 ? balance * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1) : balance / n;
+    const currentTotalInterest = (currentPmt * n) - balance;
+
+    // New
+    const newBalance = Math.max(0, balance - lumpSum);
+    const newPmt = mr > 0 ? newBalance * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1) : newBalance / n;
+    const newTotalInterest = (newPmt * n) - newBalance;
+
+    const monthlySavings = currentPmt - newPmt;
+    const interestSavings = currentTotalInterest - newTotalInterest;
+
+    document.getElementById('new-payment')!.innerHTML = `<span class="text-[#06b6d4]">${fmt(newPmt)}</span>`;
+    document.getElementById('current-payment')!.textContent = fmt(currentPmt);
+    document.getElementById('monthly-savings')!.textContent = fmt(monthlySavings);
+    document.getElementById('interest-savings')!.textContent = fmt(interestSavings);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    ['current-balance', 'current-rate', 'current-years-left', 'lump-sum', 'recast-fee'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', calcRecast);
+      document.getElementById(id)?.addEventListener('change', calcRecast);
+    });
+    calcRecast();
+  });
+</script>

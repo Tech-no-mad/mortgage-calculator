@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="FHA Loans Guide & Calculator"
+  description="Learn about FHA loans, minimum credit scores, down payment requirements, and how to calculate your FHA mortgage payments."
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        FHA Loans:
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Complete Guide</span>
+      </h1>
+      <p class="text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+        Everything you need to know about Federal Housing Administration loans, including requirements, limits, and mortgage insurance premiums (MIP).
+      </p>
+    </div>
+
+    <div class="card p-8 sm:p-10 space-y-8">
+      <div>
+        <h2 class="text-2xl font-bold mb-4" style="color: var(--text-primary);">What is an FHA Loan?</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7;">
+          An FHA loan is a mortgage insured by the Federal Housing Administration. They are popular among first-time homebuyers because they allow down payments as low as 3.5% for credit scores of 580 or higher.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-xl border" style="background: var(--bg-surface-2); border-color: var(--border-subtle);">
+          <h3 class="font-bold mb-2 text-[#06b6d4]">Credit Score Minimum</h3>
+          <p class="text-sm" style="color: var(--text-secondary);">580 for 3.5% down, or 500-579 for 10% down.</p>
+        </div>
+        <div class="p-5 rounded-xl border" style="background: var(--bg-surface-2); border-color: var(--border-subtle);">
+          <h3 class="font-bold mb-2 text-[#10b981]">Mortgage Insurance (MIP)</h3>
+          <p class="text-sm" style="color: var(--text-secondary);">Requires an upfront premium (1.75%) and an annual premium (0.15% - 0.75%).</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold mb-4" style="color: var(--text-primary);">How to Calculate Your FHA Payment</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7;">
+          To calculate your monthly FHA mortgage payment, simply use our <a href="/" class="text-[#06b6d4] hover:underline font-medium">Standard Mortgage Calculator</a> and make two adjustments:
+        </p>
+        <ul class="list-disc pl-5 mt-4 space-y-2" style="color: var(--text-secondary);">
+          <li>Set your <strong>Down Payment</strong> to 3.5%.</li>
+          <li>Set your <strong>PMI / Mortgage Insurance</strong> to roughly 0.55% per year (the current standard FHA annual MIP).</li>
+        </ul>
+      </div>
+      
+      <div class="mt-8 text-center">
+        <a href="/" class="inline-block px-8 py-3 rounded-lg bg-[#06b6d4] hover:bg-[#0891b2] text-white font-medium transition-colors shadow-sm">
+          Calculate FHA Payment Now
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

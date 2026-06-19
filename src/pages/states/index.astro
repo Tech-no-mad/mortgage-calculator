@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import statesData from '../../data/states.json';
+
+// Let's grab some quick stats for a summary widget
+const sortedByTax = [...statesData].sort((a, b) => b.taxRate - a.taxRate);
+const highestTaxStates = sortedByTax.slice(0, 3);
+const lowestTaxStates = sortedByTax.slice(-3).reverse();
+---
+
+<BaseLayout
+  title="Mortgage Rates & Property Taxes by State"
+  description="Explore property tax rates, median home prices, and calculate your exact mortgage payment for all 50 US states."
+>
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+    <div class="text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6" style="color: var(--text-primary);">
+        US Mortgage Data
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">by State</span>
+      </h1>
+      <p class="text-lg mb-8" style="color: var(--text-muted); line-height: 1.7;">
+        Property taxes and home insurance vary wildly across the country. Select your state below to use a calculator pre-loaded with accurate local averages.
+      </p>
+    </div>
+  </section>
+
+  <!-- Highlight Cards -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Lowest Tax -->
+      <div class="card p-8">
+        <h2 class="text-xl font-bold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
+          <svg class="w-5 h-5 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+          </svg>
+          Lowest Property Taxes
+        </h2>
+        <div class="space-y-4">
+          {lowestTaxStates.map((s, i) => (
+            <a href={`/states/${s.slug}`} class="flex items-center justify-between p-4 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border" style="border-color: var(--border-default);">
+              <div class="flex items-center gap-4">
+                <span class="text-2xl font-black text-slate-200 dark:text-slate-700">0{i+1}</span>
+                <div>
+                  <div class="font-bold" style="color: var(--text-primary);">{s.name}</div>
+                  <div class="text-sm" style="color: var(--text-muted);">Avg Price: ${s.medianPrice.toLocaleString('en-US')}</div>
+                </div>
+              </div>
+              <div class="text-xl font-bold text-[#10b981]">{s.taxRate}%</div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Highest Tax -->
+      <div class="card p-8">
+        <h2 class="text-xl font-bold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
+          <svg class="w-5 h-5 text-[#f43f5e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+          Highest Property Taxes
+        </h2>
+        <div class="space-y-4">
+          {highestTaxStates.map((s, i) => (
+            <a href={`/states/${s.slug}`} class="flex items-center justify-between p-4 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border" style="border-color: var(--border-default);">
+              <div class="flex items-center gap-4">
+                <span class="text-2xl font-black text-slate-200 dark:text-slate-700">0{i+1}</span>
+                <div>
+                  <div class="font-bold" style="color: var(--text-primary);">{s.name}</div>
+                  <div class="text-sm" style="color: var(--text-muted);">Avg Price: ${s.medianPrice.toLocaleString('en-US')}</div>
+                </div>
+              </div>
+              <div class="text-xl font-bold text-[#f43f5e]">{s.taxRate}%</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- State Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+      <h2 class="text-2xl font-bold" style="color: var(--text-primary);">All 50 States</h2>
+      <div class="relative max-w-xs w-full">
+        <input 
+          type="text" 
+          id="state-search" 
+          placeholder="Search states..." 
+          class="w-full pl-10 pr-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#06b6d4]"
+          style="background: var(--bg-surface-2); border: 1px solid var(--border-default); color: var(--text-primary);"
+        />
+        <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {statesData.map((state) => (
+        <a href={`/states/${state.slug}`} data-name={state.name} data-abbr={state.abbr} class="state-card card p-6 group hover:border-[#06b6d4] transition-all flex flex-col h-full">
+          <div class="flex justify-between items-center mb-4 pb-4 border-b" style="border-color: var(--border-subtle);">
+            <h3 class="font-bold text-lg group-hover:text-[#06b6d4] transition-colors" style="color: var(--text-primary);">{state.name}</h3>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 font-semibold" style="color: var(--text-muted);">{state.abbr}</span>
+          </div>
+          
+          <div class="space-y-3 text-sm flex-grow">
+            <div class="flex justify-between items-center">
+              <span style="color: var(--text-muted);">Median Home Price</span>
+              <span class="font-mono font-medium" style="color: var(--text-primary);">${state.medianPrice.toLocaleString('en-US')}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span style="color: var(--text-muted);">Property Tax</span>
+              <span class="font-mono font-medium text-[#f59e0b]">{state.taxRate}%</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span style="color: var(--text-muted);">Avg Insurance</span>
+              <span class="font-mono font-medium text-[#10b981]">${state.insurance.toLocaleString('en-US')}/yr</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Methodology Section -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 text-center">
+    <div class="card p-8 sm:p-10" style="background: var(--bg-surface-2);">
+      <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Data Methodology & Evidence</h3>
+      <p class="mb-4" style="color: var(--text-secondary); line-height: 1.7;">
+        To provide the most accurate mortgage calculations possible, our calculators do not rely on generic national averages. Instead, we use state-specific datasets to calculate your monthly payments:
+      </p>
+      <ul class="text-left space-y-3 mx-auto max-w-2xl text-sm" style="color: var(--text-secondary); line-height: 1.6;">
+        <li class="flex gap-3">
+          <span class="text-[#06b6d4] mt-0.5">•</span>
+          <span><strong>Property Taxes:</strong> Tax rates are based on the effective property tax rates reported by the US Census Bureau and local municipal data. This is calculated as the median property taxes paid divided by the median home value in each state.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-[#06b6d4] mt-0.5">•</span>
+          <span><strong>Home Prices:</strong> Median home listing prices are aggregated from recent housing market data (Zillow Home Value Index / FRED) to establish a realistic baseline for each state.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-[#06b6d4] mt-0.5">•</span>
+          <span><strong>Insurance:</strong> Annual homeowner's insurance premiums are estimated based on data from the National Association of Insurance Commissioners (NAIC) and adjusted for current market conditions.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-[#06b6d4] mt-0.5">•</span>
+          <span><strong>Interest Rates:</strong> The 30-year and 15-year fixed average rates reflect recent national market averages (Freddie Mac PMMS), with slight adjustments factored in for regional pricing variations.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.getElementById('state-search')?.addEventListener('input', (e) => {
+    const q = (e.target as HTMLInputElement).value.toLowerCase();
+    document.querySelectorAll('.state-card').forEach(card => {
+      const name = card.getAttribute('data-name')?.toLowerCase() || '';
+      const abbr = card.getAttribute('data-abbr')?.toLowerCase() || '';
+      if (name.includes(q) || abbr.includes(q)) {
+        (card as HTMLElement).style.display = 'flex';
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+  });
+</script>

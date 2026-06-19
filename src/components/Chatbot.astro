@@ -1,0 +1,333 @@
+---
+---
+
+<!-- Chatbot Toggle Button -->
+<button 
+  id="chatbot-toggle" 
+  class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white shadow-lg flex items-center justify-center hover:shadow-xl transition-all z-50 focus:outline-none focus:ring-4 focus:ring-[var(--color-usa-blue)]/30 transform hover:scale-105"
+  aria-label="Open Mortgage Assistant"
+>
+  <!-- Robot/AI Icon -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01M15 9h.01" />
+  </svg>
+</button>
+
+<!-- Chatbot Window -->
+<div 
+  id="chatbot-window" 
+  class="fixed bottom-24 right-6 w-80 sm:w-96 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4"
+  style="background: var(--bg-surface); border: 1px solid var(--border-default); height: 500px; max-height: calc(100vh - 120px);"
+>
+  <!-- Header -->
+  <div class="px-5 py-4 flex justify-between items-center bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shadow-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01M15 9h.01" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-bold text-sm">Mortgage AI Assistant</h3>
+        <p class="text-xs text-white/90">Assistant</p>
+      </div>
+    </div>
+    <button id="chatbot-close" class="text-white/80 hover:text-white transition-colors focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Chat History -->
+  <div id="chatbot-messages" class="flex-1 p-5 overflow-y-auto space-y-5" style="background: var(--bg-surface-2);">
+    <!-- Initial Greeting -->
+    <div class="flex items-end gap-2.5">
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-usa-blue)] to-[var(--color-usa-red)] flex-shrink-0 flex items-center justify-center text-white shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01M15 9h.01" />
+        </svg>
+      </div>
+      <div class="p-3.5 rounded-2xl rounded-bl-none shadow-sm text-sm leading-relaxed" style="background: var(--bg-surface-2); color: var(--text-primary); border: 1px solid var(--border-default);">
+        Hi! I can scan our documentation and knowledge base to answer your questions. Try asking: "Where is the data sourced from?" or "What is PMI?"
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="p-4" style="background: var(--bg-surface); border-top: 1px solid var(--border-default);">
+    <form id="chatbot-form" class="flex gap-2 relative">
+      <input 
+        type="text" 
+        id="chatbot-input" 
+        class="flex-1 pl-4 pr-12 py-3 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-usa-blue)]" 
+        style="background: var(--bg-surface-2); border: 1px solid var(--border-default); color: var(--text-primary);"
+        placeholder="Ask me anything..." 
+        autocomplete="off"
+      />
+      <button 
+        type="submit" 
+        class="absolute right-1.5 top-1.5 bottom-1.5 w-9 rounded-lg bg-[var(--color-usa-blue)] text-white flex items-center justify-center transition-colors focus:outline-none"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Comprehensive Knowledge Base (Document Lookup Simulation)
+  const KNOWLEDGE_BASE = [
+    {
+      topic: "data sources methodology",
+      keywords: ["source", "where", "data", "come", "from", "methodology", "origin", "database"],
+      answer: "Our data is sourced from several highly reputable national databases. **Property Taxes:** US Census Bureau (Effective Median Rates). **Home Prices:** Zillow Home Value Index and FRED. **Insurance:** National Association of Insurance Commissioners (NAIC). **Interest Rates:** Freddie Mac PMMS."
+    },
+    {
+      topic: "data frequency updates",
+      keywords: ["dynamic", "live", "updated", "static", "often", "when", "change"],
+      answer: "Currently, our dataset is static and periodically updated manually. It does not update dynamically every day via a live API. This ensures the tool remains 100% free and lightning fast without relying on expensive financial data feeds."
+    },
+    {
+      topic: "accuracy of calculations",
+      keywords: ["accurate", "accuracy", "correct", "exact", "right", "true"],
+      answer: "The Principal & Interest (P&I) calculations are 100% mathematically exact, utilizing standard global banking formulas. However, Taxes, Insurance, and PMI are generalizations based on state averages. Your exact costs will depend on your specific county assessment and personal credit score."
+    },
+    {
+      topic: "private mortgage insurance pmi",
+      keywords: ["pmi", "mortgage insurance", "private mortgage insurance", "under 20%"],
+      answer: "PMI (Private Mortgage Insurance) is required by lenders if your down payment is less than 20% of the home's price. It protects the lender, not you. Our calculators estimate PMI at a standard 0.7% annually, but in reality, it ranges from 0.3% to 1.5% based heavily on your credit score."
+    },
+    {
+      topic: "amortization schedule",
+      keywords: ["amortization", "schedule", "table", "breakdown"],
+      answer: "An amortization schedule is a complete table detailing every monthly payment over the life of your loan. Early on, almost your entire payment goes toward Interest. By the end of the loan, it almost entirely goes toward Principal. You can view this visual breakdown in our Amortization Calculator."
+    },
+    {
+      topic: "refinancing",
+      keywords: ["refinance", "refinancing", "when", "worth"],
+      answer: "Refinancing involves replacing your current mortgage with a new one to secure a lower interest rate or shorter term. You should calculate the 'Break-Even Point': the time it takes for your monthly savings to outweigh the closing costs of the new loan. Try our Refinance Calculator!"
+    },
+    {
+      topic: "affordability rule",
+      keywords: ["afford", "how much", "salary", "income", "rule", "28/36"],
+      answer: "We use the industry-standard '28/36 Rule'. This rule states that a household should spend a maximum of 28% of its gross monthly income on total housing expenses, and no more than 36% on total debt service (housing + car loans, student loans, credit cards)."
+    },
+    {
+      topic: "closing costs",
+      keywords: ["closing", "costs", "fees", "extra"],
+      answer: "Closing costs are fees paid at the closing of a real estate transaction. They usually equal 2% to 5% of the total loan amount and include things like appraisal fees, title insurance, loan origination fees, and escrow prepayments."
+    },
+    {
+      topic: "greeting",
+      keywords: ["hello", "hi", "hey", "yo"],
+      answer: "Hello! How can I help you with your mortgage questions today?"
+    },
+    {
+      topic: "recast calculator",
+      keywords: ["recast", "lump", "sum", "recasting"],
+      answer: "A mortgage recast allows you to make a large lump-sum payment to reduce your monthly payment without changing your interest rate or loan term. Try our [Recast Calculator](/recast-calculator) to see your savings!"
+    },
+    {
+      topic: "heloc calculator",
+      keywords: ["heloc", "equity", "line", "credit", "borrow"],
+      answer: "A Home Equity Line of Credit (HELOC) lets you borrow against the equity in your home. You only pay interest on what you draw during the draw period. Estimate your payments with our [HELOC Calculator](/heloc-calculator)."
+    },
+    {
+      topic: "fha loans",
+      keywords: ["fha", "3.5", "down", "credit"],
+      answer: "FHA loans are insured by the Federal Housing Administration and allow down payments as low as 3.5% for credit scores of 580+. Check out our [FHA Loans Guide](/fha-loans)."
+    },
+    {
+      topic: "va loans",
+      keywords: ["va", "veteran", "military", "zero", "down"],
+      answer: "VA loans are a $0-down mortgage option for veterans and active-duty service members. They don't require PMI but have a funding fee. Read our [VA Loans Guide](/va-loans)."
+    },
+    {
+      topic: "jumbo loans",
+      keywords: ["jumbo", "large", "expensive", "limit"],
+      answer: "Jumbo loans are for high-value properties that exceed conventional conforming loan limits. They generally require larger down payments and higher credit scores. See our [Jumbo Loans Guide](/jumbo-loans)."
+    },
+    {
+      topic: "reverse mortgage",
+      keywords: ["reverse", "senior", "retire"],
+      answer: "A reverse mortgage allows homeowners aged 62+ to convert part of their home equity into cash without having to sell the home. Ask a certified counselor for more details!"
+    },
+    {
+      topic: "assumable mortgage",
+      keywords: ["assumable", "assume", "take", "over"],
+      answer: "An assumable mortgage lets a buyer take over the seller's existing mortgage and its interest rate. This is highly valuable when current market rates are higher than the seller's rate. FHA and VA loans are generally assumable."
+    },
+    {
+      topic: "family opportunity mortgage",
+      keywords: ["family", "opportunity", "parents", "children"],
+      answer: "The Family Opportunity Mortgage allows you to buy a home for an elderly parent or an adult child with a disability as if it were a primary residence, meaning lower interest rates and down payments."
+    }
+  ];
+
+  // Tokenize and clean user input
+  function tokenize(text: string) {
+    return text.toLowerCase().replace(/[^\w\s]/gi, '').split(/\s+/).filter(w => w.length > 2 || w === "hi");
+  }
+
+  // Scoring function (TF/IDF style simulation)
+  function findBestMatch(query: string): string {
+    const userTokens = tokenize(query);
+    if (userTokens.length === 0) return "Could you please rephrase that?";
+
+    let bestScore = 0;
+    let bestAnswer = "";
+
+    for (const doc of KNOWLEDGE_BASE) {
+      let score = 0;
+      // Check for direct keyword matches
+      for (const keyword of doc.keywords) {
+        if (query.toLowerCase().includes(keyword)) {
+          score += 2; // High weight for exact phrase match
+        }
+        // Token intersection
+        if (userTokens.includes(keyword)) {
+          score += 1;
+        }
+      }
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestAnswer = doc.answer;
+      }
+    }
+
+    if (bestScore > 0) {
+      // Add a small prefix to simulate "summarization"
+      const prefixes = ["Based on our documentation: ", "Here is what I found in our knowledge base: ", "According to our data: "];
+      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+      // Don't add prefix for greetings
+      if (bestAnswer.includes("Hello!")) return bestAnswer;
+      return prefix + bestAnswer;
+    }
+    
+    return "I searched our knowledge base but couldn't find a direct answer to that. Try asking about our data sources, PMI, amortization, or how accurate the calculations are!";
+  }
+
+  const toggleBtn = document.getElementById('chatbot-toggle');
+  const closeBtn = document.getElementById('chatbot-close');
+  const windowEl = document.getElementById('chatbot-window');
+  const form = document.getElementById('chatbot-form');
+  const input = document.getElementById('chatbot-input') as HTMLInputElement;
+  const messagesContainer = document.getElementById('chatbot-messages');
+
+  let isOpen = false;
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      windowEl?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      input?.focus();
+    } else {
+      windowEl?.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+    }
+  }
+
+  toggleBtn?.addEventListener('click', toggleChat);
+  closeBtn?.addEventListener('click', toggleChat);
+
+  function addMessage(text: string, isUser: boolean) {
+    if (!messagesContainer) return;
+    
+    const div = document.createElement('div');
+    // Align items to the bottom (items-end) so avatars sit flush with the bottom of the message bubble
+    div.className = `flex items-end gap-2.5 ${isUser ? 'flex-row-reverse' : ''} animate-fade-in`;
+    
+    let avatar = '';
+    if (isUser) {
+      avatar = `
+        <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-slate-500 dark:text-slate-400 pb-[1px]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+        </div>
+      `;
+    } else {
+      avatar = `
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-usa-blue)] to-[var(--color-usa-red)] flex-shrink-0 flex items-center justify-center text-white shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01M15 9h.01" />
+          </svg>
+        </div>
+      `;
+    }
+
+    // Replace Markdown-style bold (**text**) with HTML strong tags for better formatting
+    let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Replace Markdown-style links ([text](url)) with HTML anchor tags
+    formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="underline text-current font-semibold hover:opacity-80 transition-opacity">$1</a>');
+
+    const bubbleClass = isUser 
+      ? `bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white p-3.5 rounded-2xl rounded-br-none shadow-sm text-sm leading-relaxed`
+      : `p-3.5 rounded-2xl rounded-bl-none shadow-sm text-sm leading-relaxed`;
+      
+    const botStyle = isUser ? '' : 'background: var(--bg-surface-2); color: var(--text-primary); border: 1px solid var(--border-default);';
+
+    div.innerHTML = `
+      ${avatar}
+      <div class="${bubbleClass}" style="max-width: 80%; ${botStyle}">
+        ${formattedText}
+      </div>
+    `;
+
+    messagesContainer.appendChild(div);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Add user message
+    addMessage(text, true);
+    input.value = '';
+
+    // Show typing indicator (optional aesthetic touch)
+    const typingId = 'typing-' + Date.now();
+    const typingDiv = document.createElement('div');
+    typingDiv.id = typingId;
+    typingDiv.className = `flex items-end gap-2.5`;
+    typingDiv.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-usa-blue)] to-[var(--color-usa-red)] flex-shrink-0 flex items-center justify-center text-white shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01M15 9h.01" />
+        </svg>
+      </div>
+      <div class="p-3.5 rounded-2xl rounded-bl-none shadow-sm text-sm flex gap-1 items-center h-10" style="background: var(--bg-surface-2); color: var(--text-primary); border: 1px solid var(--border-default);">
+        <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0ms;"></div>
+        <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 150ms;"></div>
+        <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 300ms;"></div>
+      </div>
+    `;
+    messagesContainer?.appendChild(typingDiv);
+    messagesContainer!.scrollTop = messagesContainer!.scrollHeight;
+
+    // Simulate database lookup delay
+    setTimeout(() => {
+      document.getElementById(typingId)?.remove();
+      const response = findBestMatch(text);
+      addMessage(response, false);
+    }, 700);
+  });
+</script>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out forwards;
+  }
+</style>

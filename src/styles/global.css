@@ -1,0 +1,254 @@
+/* ============================================================
+   MortgageDash — Global Styles
+   Tailwind CSS v4 · Clean Dark/Light · Professional UI
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import "tailwindcss";
+
+/* ── Design Tokens ──────────────────────────────────────── */
+@theme {
+  --color-accent: #0A3161; /* USA Blue */
+  --color-accent-light: #1e40af;
+  --color-emerald: #10b981;
+  --color-rose: #B31942; /* USA Red */
+  --color-amber: #f59e0b;
+  --color-usa-blue: #0A3161;
+  --color-usa-red: #B31942;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── CSS Custom Properties for theming ──────────────────── */
+:root {
+  /* Light mode defaults */
+  --bg-body: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #f1f5f9;
+  --bg-surface-3: #e2e8f0;
+  --bg-header: rgba(255, 255, 255, 0.85);
+  --bg-footer: #0f172a;
+  --bg-input: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+
+  --border-default: #e2e8f0;
+  --border-subtle: #f1f5f9;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --bg-body: #0a1628;
+  --bg-surface: #111827;
+  --bg-surface-2: #1e293b;
+  --bg-surface-3: #334155;
+  --bg-header: rgba(10, 22, 40, 0.85);
+  --bg-footer: #070e1a;
+  --bg-input: #0f172a;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+
+  --border-default: rgba(148, 163, 184, 0.12);
+  --border-subtle: rgba(148, 163, 184, 0.06);
+
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Base Styles ────────────────────────────────────────── */
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background-color: rgba(6, 182, 212, 0.3);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* ── Components ─────────────────────────────────────────── */
+@layer components {
+  /* Clean card — NOT glassmorphism */
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-1px);
+  }
+
+  /* Calculator text input — shadcn style */
+  .calc-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-family: "Inter", monospace;
+    font-weight: 500;
+    background: var(--bg-input);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    outline: none;
+  }
+
+  .calc-input:hover {
+    border-color: var(--color-accent);
+  }
+
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+  }
+
+  /* Stat card */
+  .stat-card {
+    background: var(--bg-surface-2);
+    border: 1px solid var(--border-default);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    text-align: center;
+  }
+
+  /* Result row */
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .result-row:last-child {
+    border-bottom: none;
+  }
+
+  /* Label text */
+  .label { color: var(--text-secondary); font-size: 0.875rem; }
+  .label-muted { color: var(--text-muted); font-size: 0.875rem; }
+  .label-faint { color: var(--text-faint); font-size: 0.75rem; }
+
+  /* AdSense Slot Placeholder */
+  .ad-slot {
+    width: 100%;
+    min-height: 90px;
+    background-color: var(--bg-surface-3);
+    border: 1px dashed var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-faint);
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+  }
+}
+
+/* ── Utilities ──────────────────────────────────────────── */
+@layer utilities {
+  .font-numeric { font-variant-numeric: tabular-nums; }
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-body); }
+::-webkit-scrollbar-thumb { background: var(--text-faint); border-radius: 9999px; }
+* { scrollbar-width: thin; scrollbar-color: var(--text-faint) var(--bg-body); }
+
+/* ── Range Slider ───────────────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--bg-surface-3);
+  border-radius: 9999px;
+  cursor: pointer;
+  outline: none;
+  margin: 10px 0 4px;
+  transition: background 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2px solid var(--bg-surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15), 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2px solid var(--bg-surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: var(--bg-surface-3);
+  border-radius: 9999px;
+  border: none;
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 9999px;
+}
+
+/* ── Print ──────────────────────────────────────────────── */
+@media print {
+  nav, footer, .no-print { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+}

@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Refinance Calculator"
+  description="Calculate if it makes sense to refinance your mortgage. Find your break-even point and total savings."
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        Mortgage Refinance
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Calculator</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        See if refinancing makes sense for you by calculating your break-even point and lifetime savings.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Current Loan
+          </h2>
+
+          <!-- Remaining Balance -->
+          <div>
+            <label class="label block mb-1.5">Remaining Balance</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="current-balance" value="250,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+
+          <!-- Current Rate -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Current Rate (%)</label>
+              <input type="text" id="current-rate" value="7.5" inputmode="decimal" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">Years Left</label>
+              <input type="text" id="current-years-left" value="25" inputmode="numeric" class="calc-input font-mono" />
+            </div>
+          </div>
+
+          <h2 class="text-base font-semibold flex items-center gap-2 mt-8" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            New Loan Options
+          </h2>
+
+          <!-- New Rate & Term -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">New Rate (%)</label>
+              <input type="text" id="new-rate" value="6.0" inputmode="decimal" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">New Term</label>
+              <select id="new-term" class="calc-input font-mono w-full">
+                <option value="30">30 Years</option>
+                <option value="15">15 Years</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Closing Costs -->
+          <div>
+            <label class="label block mb-1.5">Closing Costs (Est. $)</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="closing-costs" value="5,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Refinance Breakdown
+          </h2>
+
+          <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <p class="label-faint text-sm mb-2">Monthly Savings</p>
+            <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="monthly-savings">
+              <span class="text-[#10b981]">$0</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
+                <span class="label">Break-Even Point</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="break-even">0 months</span>
+            </div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#06b6d4]"></span>
+                <span class="label">Total Lifetime Savings</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#06b6d4]" id="lifetime-savings">$0</span>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 rounded-lg border" style="background: var(--bg-surface-2); border-color: var(--border-default);">
+            <p class="text-sm font-medium" style="color: var(--text-primary);" id="refi-recommendation">
+              Calculating...
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calcRefinance() {
+    const balance = parse((document.getElementById('current-balance') as HTMLInputElement).value);
+    const currRate = parseFloat((document.getElementById('current-rate') as HTMLInputElement).value);
+    const currYearsLeft = parseFloat((document.getElementById('current-years-left') as HTMLInputElement).value);
+    const newRate = parseFloat((document.getElementById('new-rate') as HTMLInputElement).value);
+    const newTerm = parseInt((document.getElementById('new-term') as HTMLSelectElement).value);
+    const costs = parse((document.getElementById('closing-costs') as HTMLInputElement).value);
+
+    // Format
+    if (document.activeElement?.id !== 'current-balance') (document.getElementById('current-balance') as HTMLInputElement).value = fmtNum(balance);
+    if (document.activeElement?.id !== 'closing-costs') (document.getElementById('closing-costs') as HTMLInputElement).value = fmtNum(costs);
+
+    // Current loan calculation
+    const currMr = (currRate / 100) / 12;
+    const currN = currYearsLeft * 12;
+    const currPayment = currMr > 0 ? balance * (currMr * Math.pow(1 + currMr, currN)) / (Math.pow(1 + currMr, currN) - 1) : balance / currN;
+    const currTotalCost = currPayment * currN;
+
+    // New loan calculation
+    const newMr = (newRate / 100) / 12;
+    const newN = newTerm * 12;
+    // Add closing costs to loan balance to see true cost if rolled in (or just add them at the end)
+    const newPayment = newMr > 0 ? balance * (newMr * Math.pow(1 + newMr, newN)) / (Math.pow(1 + newMr, newN) - 1) : balance / newN;
+    const newTotalCost = (newPayment * newN) + costs;
+
+    const monthlySavings = currPayment - newPayment;
+    const lifetimeSavings = currTotalCost - newTotalCost;
+    
+    let breakEvenMonths = 0;
+    if (monthlySavings > 0) {
+      breakEvenMonths = Math.ceil(costs / monthlySavings);
+    }
+
+    const savingsEl = document.getElementById('monthly-savings')!;
+    if (monthlySavings > 0) {
+      savingsEl.innerHTML = `<span class="text-[#10b981]">${fmt(monthlySavings)}</span>`;
+    } else {
+      savingsEl.innerHTML = `<span class="text-[#f43f5e]">${fmt(monthlySavings)}</span>`;
+    }
+
+    document.getElementById('break-even')!.textContent = monthlySavings > 0 ? `${breakEvenMonths} months` : 'Never';
+    
+    const lifeEl = document.getElementById('lifetime-savings')!;
+    lifeEl.textContent = fmt(lifetimeSavings);
+    lifeEl.style.color = lifetimeSavings > 0 ? '#06b6d4' : '#f43f5e';
+
+    const recEl = document.getElementById('refi-recommendation')!;
+    if (lifetimeSavings > 0 && monthlySavings > 0) {
+      recEl.innerHTML = `<strong>Good idea!</strong> You will save money every month, and you will recoup your closing costs in about <strong>${Math.round(breakEvenMonths / 12 * 10) / 10} years</strong>.`;
+    } else if (monthlySavings < 0) {
+      recEl.innerHTML = `<strong>Not recommended.</strong> Your monthly payment will actually go up by ${fmt(Math.abs(monthlySavings))}.`;
+    } else {
+      recEl.innerHTML = `<strong>Think twice.</strong> While your monthly payment might go down, you will actually lose money over the life of the loan due to resetting the clock on your mortgage.`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    ['current-balance', 'current-rate', 'current-years-left', 'new-rate', 'new-term', 'closing-costs'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', calcRefinance);
+      document.getElementById(id)?.addEventListener('change', calcRefinance);
+    });
+    calcRefinance();
+  });
+</script>

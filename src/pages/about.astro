@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About Us"
+  description="Learn more about MortgageDash and our mission to provide accurate, easy-to-use mortgage tools."
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        About
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">MortgageDash</span>
+      </h1>
+    </div>
+
+    <div class="card p-8 sm:p-12 space-y-6">
+      <p class="text-lg" style="color: var(--text-secondary); line-height: 1.8;">
+        Buying a home is one of the most significant financial decisions you'll ever make. Yet, for too long, mortgage calculators have been clunky, filled with ads, or intentionally misleading to generate leads for lenders.
+      </p>
+      <p class="text-lg" style="color: var(--text-secondary); line-height: 1.8;">
+        <strong>MortgageDash was built to fix that.</strong>
+      </p>
+      <p class="text-lg" style="color: var(--text-secondary); line-height: 1.8;">
+        We provide clean, fast, and completely free financial tools. Our calculators are pre-loaded with highly accurate state-by-state data—including precise property tax averages and insurance estimates—so you get the real numbers, no guesswork required.
+      </p>
+      <p class="text-lg" style="color: var(--text-secondary); line-height: 1.8;">
+        Whether you are buying your first home, trying to pay off your loan early, or wondering if you should refinance, MortgageDash gives you the clarity you need to make confident decisions.
+      </p>
+      <div class="pt-6 border-t mt-8" style="border-color: var(--border-default);">
+        <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Our Core Principles</h3>
+        <ul class="space-y-4" style="color: var(--text-secondary);">
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-[#10b981] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span><strong>No Data Harvesting:</strong> Your financial data never leaves your browser.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-[#06b6d4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span><strong>Design First:</strong> Beautiful, intuitive interfaces that are easy to use on any device.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-[#f59e0b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span><strong>Accuracy:</strong> Incorporating real-world tax and insurance data for all 50 states.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

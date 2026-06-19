@@ -1,0 +1,8 @@
+- `[x]` Expand Brokers to Top 10
+  - Add 8 new lenders to `/brokers.astro`
+  - Update `index.astro` to add "Brokers" quick link
+- `[x]` Implement American UI Theme
+  - Update `global.css` with red/white/blue accents mapping safely to dark/light modes
+  - Implement dynamic UI per state in `[state].astro`
+- `[x]` Configure AdSense Spaces
+  - Add placeholder AdSense container div elements (`<div class="ad-slot">`) so space is reserved and layout shifts are minimized.

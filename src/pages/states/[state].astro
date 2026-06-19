@@ -1,0 +1,372 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import statesData from '../../data/states.json';
+
+export async function getStaticPaths() {
+  return statesData.map((state) => ({
+    params: { state: state.slug },
+    props: { stateData: state },
+  }));
+}
+
+const { stateData } = Astro.props;
+
+// Calculate national averages for comparison
+const natlAvgTax = statesData.reduce((acc, curr) => acc + curr.taxRate, 0) / statesData.length;
+const natlAvgPrice = statesData.reduce((acc, curr) => acc + curr.medianPrice, 0) / statesData.length;
+const natlAvgInsurance = statesData.reduce((acc, curr) => acc + curr.insurance, 0) / statesData.length;
+
+const taxDiff = stateData.taxRate - natlAvgTax;
+const priceDiff = stateData.medianPrice - natlAvgPrice;
+
+// Generate a deterministic but unique color pair for each state focusing on American reds/blues/golds
+const hues = [210, 220, 230, 340, 350, 360, 10, 40, 200]; 
+let hash = 0;
+for (let i = 0; i < stateData.name.length; i++) {
+  hash = stateData.name.charCodeAt(i) + ((hash << 5) - hash);
+}
+const hue = hues[Math.abs(hash) % hues.length];
+const primaryColor = `hsl(${hue}, 75%, 45%)`;
+const secondaryColor = `hsl(${(hue + 25) % 360}, 75%, 55%)`;
+const lightBg = `hsla(${hue}, 75%, 45%, 0.1)`;
+
+const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} mortgage, mortgage calculator ${stateData.name}, ${stateData.abbr} mortgage calculator, states mortgage calculator, ${stateData.name} property tax`;
+---
+
+<style define:vars={{ primary: primaryColor, secondary: secondaryColor, lightBg: lightBg }}>
+  .state-gradient {
+    background-image: linear-gradient(to right, var(--primary), var(--secondary));
+  }
+  .state-text { color: var(--primary); }
+  .state-border { border-color: var(--primary); }
+  .state-bg-light { background-color: var(--lightBg); }
+  .state-bg { background-color: var(--primary); }
+  .state-hover:hover { color: var(--primary); }
+</style>
+
+<BaseLayout
+  title={`${stateData.name} Mortgage Calculator`}
+  description={`Calculate your monthly mortgage payment in ${stateData.name}. Includes accurate ${stateData.taxRate}% property tax rates and home insurance estimates.`}
+  keywords={stateKeywords}
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="mb-8">
+      <nav class="flex" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <a href="/" class="inline-flex items-center text-sm font-medium text-slate-500 state-hover transition-colors">
+              <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-3 h-3 text-slate-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+              </svg>
+              <a href="/states" class="ml-1 text-sm font-medium text-slate-500 state-hover md:ml-2 transition-colors">States</a>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div class="flex items-center">
+              <svg class="w-3 h-3 text-slate-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+              </svg>
+              <span class="ml-1 text-sm font-medium text-slate-400 md:ml-2">{stateData.name}</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        <span class="state-gradient bg-clip-text text-transparent">{stateData.name}</span>
+        Mortgage Calculator
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        Pre-filled with {stateData.name}'s average property tax rate ({stateData.taxRate}%) and median home price.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 state-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Loan Details
+          </h2>
+
+          <!-- Home Price -->
+          <div>
+            <label class="label block mb-1.5">Home Price</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="home-price-input" value={stateData.medianPrice} inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+            <input type="range" id="home-price" min="50000" max="2000000" step="5000" value={stateData.medianPrice} />
+            <div class="flex justify-between label-faint text-xs"><span>$50K</span><span>$2M</span></div>
+          </div>
+
+          <!-- Down Payment -->
+          <div>
+            <label class="label block mb-1.5">Down Payment</label>
+            <div class="flex gap-2">
+              <div class="relative flex-1">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+                <input type="text" id="down-payment-dollar-input" value={stateData.medianPrice * 0.2} inputmode="numeric" class="calc-input pl-7 font-mono" />
+              </div>
+              <div class="relative w-20">
+                <input type="text" id="down-payment-input" value="20" inputmode="decimal" class="calc-input text-center font-mono" />
+                <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
+              </div>
+            </div>
+            <input type="range" id="down-payment" min="0" max="50" step="1" value="20" />
+            <div class="flex justify-between label-faint text-xs"><span>0%</span><span>50%</span></div>
+          </div>
+
+          <!-- Interest Rate -->
+          <div>
+            <label class="label block mb-1.5">Interest Rate</label>
+            <div class="relative w-28">
+              <input type="text" id="interest-rate-input" value={stateData.avgRate30} inputmode="decimal" class="calc-input text-center font-mono" />
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
+            </div>
+            <input type="range" id="interest-rate" min="1" max="15" step="0.01" value={stateData.avgRate30} />
+            <div class="flex justify-between label-faint text-xs"><span>1%</span><span>15%</span></div>
+          </div>
+
+          <!-- Loan Term -->
+          <div>
+            <label class="label block mb-1.5">Loan Term</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button data-term="15" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">15 yr</button>
+              <button data-term="20" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">20 yr</button>
+              <button data-term="30" class="term-btn active py-2 rounded-lg text-sm font-medium border state-border state-text state-bg-light transition-all">30 yr</button>
+            </div>
+          </div>
+
+          <!-- Tax & Insurance -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Tax Rate (%/yr)</label>
+              <input type="text" id="property-tax" value={stateData.taxRate} inputmode="decimal" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">Insurance ($/yr)</label>
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+                <input type="text" id="home-insurance" value={stateData.insurance} inputmode="numeric" class="calc-input pl-7 font-mono" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[var(--secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Monthly Payment
+          </h2>
+
+          <!-- Big number -->
+          <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="monthly-payment">
+              <span class="state-gradient bg-clip-text text-transparent" id="monthly-payment-amount">$0</span>
+            </div>
+            <p class="label-faint text-sm mt-2">per month</p>
+          </div>
+
+          <!-- Breakdown -->
+          <div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full state-bg"></span>
+                <span class="label">Principal & Interest</span>
+              </div>
+              <span class="text-sm font-semibold font-mono state-text" id="pi-amount">$0</span>
+            </div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
+                <span class="label">Property Tax</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="tax-amount">$0</span>
+            </div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[var(--secondary)]"></span>
+                <span class="label">Home Insurance</span>
+              </div>
+              <span class="text-sm font-semibold font-mono" style="color: var(--secondary);" id="insurance-amount">$0</span>
+            </div>
+            <div class="result-row" id="pmi-row" style="display:none;">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f43f5e]"></span>
+                <span class="label">PMI</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f43f5e]" id="pmi-amount">$0</span>
+            </div>
+          </div>
+
+          <!-- Totals -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="stat-card">
+              <p class="label-faint text-xs mb-1">Total Interest</p>
+              <p class="text-lg font-bold font-mono text-[#f59e0b]" id="total-interest">$0</p>
+            </div>
+            <div class="stat-card">
+              <p class="label-faint text-xs mb-1">Total Cost</p>
+              <p class="text-lg font-bold font-mono state-text" id="total-cost">$0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="ad-slot max-w-4xl mx-auto mb-10">Advertisement Space Reserved</div>
+
+    <h2 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Buying a Home in {stateData.name} vs National Average</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      
+      <!-- Tax Compare -->
+      <div class="card p-6 text-center flex flex-col justify-between h-full">
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider mb-2" style="color: var(--text-muted);">Property Tax Rate</h3>
+          <p class="text-3xl font-bold font-mono mb-2" style="color: var(--text-primary);">{stateData.taxRate}%</p>
+        </div>
+        <div>
+          <p class="text-sm font-medium" class:list={[taxDiff > 0 ? "text-[#f43f5e]" : "text-[#10b981]"]}>
+            {taxDiff > 0 ? `+${taxDiff.toFixed(2)}% above average` : `${taxDiff.toFixed(2)}% below average`}
+          </p>
+          <p class="text-xs mt-2" style="color: var(--text-faint);">National Avg: {natlAvgTax.toFixed(2)}%</p>
+        </div>
+      </div>
+
+      <!-- Price Compare -->
+      <div class="card p-6 text-center flex flex-col justify-between h-full">
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider mb-2" style="color: var(--text-muted);">Median Home Price</h3>
+          <p class="text-3xl font-bold font-mono mb-2" style="color: var(--text-primary);">${stateData.medianPrice.toLocaleString('en-US')}</p>
+        </div>
+        <div>
+          <p class="text-sm font-medium" class:list={[priceDiff > 0 ? "text-[#f43f5e]" : "text-[#10b981]"]}>
+            {priceDiff > 0 ? `+$${priceDiff.toLocaleString('en-US')} above avg` : `-$${Math.abs(priceDiff).toLocaleString('en-US')} below avg`}
+          </p>
+          <p class="text-xs mt-2" style="color: var(--text-faint);">National Avg: ${Math.round(natlAvgPrice).toLocaleString('en-US')}</p>
+        </div>
+      </div>
+
+      <!-- Insurance Compare -->
+      <div class="card p-6 text-center flex flex-col justify-between h-full">
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider mb-2" style="color: var(--text-muted);">Annual Insurance</h3>
+          <p class="text-3xl font-bold font-mono mb-2" style="color: var(--text-primary);">${stateData.insurance.toLocaleString('en-US')}</p>
+        </div>
+        <div>
+          <p class="text-sm font-medium" class:list={[stateData.insurance - natlAvgInsurance > 0 ? "text-[#f43f5e]" : "text-[#10b981]"]}>
+            {stateData.insurance - natlAvgInsurance > 0 ? `+$${Math.round(stateData.insurance - natlAvgInsurance).toLocaleString('en-US')} above avg` : `-$${Math.round(Math.abs(stateData.insurance - natlAvgInsurance)).toLocaleString('en-US')} below avg`}
+          </p>
+          <p class="text-xs mt-2" style="color: var(--text-faint);">National Avg: ${Math.round(natlAvgInsurance).toLocaleString('en-US')}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-6">
+       <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Summary for {stateData.name} Buyers</h3>
+       <p style="color: var(--text-secondary); line-height: 1.6;">
+         The median home price in {stateData.name} is currently around <strong>${stateData.medianPrice.toLocaleString('en-US')}</strong>. 
+         When calculating your monthly mortgage payment, it's important to factor in local property taxes. 
+         {stateData.name} has an average effective property tax rate of <strong>{stateData.taxRate}%</strong>. 
+         Additionally, average annual home insurance costs in the state are approximately <strong>${stateData.insurance.toLocaleString('en-US')}</strong>. 
+         With current 30-year fixed mortgage rates averaging <strong>{stateData.avgRate30}%</strong> in {stateData.name}, you can use the calculator above to see exactly what your monthly costs will look like.
+       </p>
+    </div>
+    
+    <div class="ad-slot max-w-4xl mx-auto mt-10">Advertisement Space Reserved</div>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calc() {
+    const hp = parseFloat((document.getElementById('home-price') as HTMLInputElement).value);
+    const dp = parseFloat((document.getElementById('down-payment') as HTMLInputElement).value);
+    const r = parseFloat((document.getElementById('interest-rate') as HTMLInputElement).value);
+    const tax = parse((document.getElementById('property-tax') as HTMLInputElement).value);
+    const ins = parse((document.getElementById('home-insurance') as HTMLInputElement).value);
+    const t = parseInt(document.querySelector('.term-btn.active')?.getAttribute('data-term') || '30');
+
+    const down = hp * (dp / 100);
+    const loan = hp - down;
+    const mr = (r / 100) / 12;
+    const n = t * 12;
+
+    let pi = mr === 0 ? loan / n : loan * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1);
+    const mTax = (hp * (tax / 100)) / 12;
+    const mIns = ins / 12;
+    let pmi = dp < 20 ? (loan * 0.007) / 12 : 0;
+    const total = pi + mTax + mIns + pmi;
+
+    (document.getElementById('home-price-input') as HTMLInputElement).value = fmtNum(hp);
+    (document.getElementById('down-payment-input') as HTMLInputElement).value = dp.toString();
+    (document.getElementById('down-payment-dollar-input') as HTMLInputElement).value = fmtNum(down);
+    (document.getElementById('interest-rate-input') as HTMLInputElement).value = r.toFixed(2);
+    
+    document.getElementById('monthly-payment-amount')!.textContent = fmt(total);
+    document.getElementById('pi-amount')!.textContent = fmt(pi);
+    document.getElementById('tax-amount')!.textContent = fmt(mTax);
+    document.getElementById('insurance-amount')!.textContent = fmt(mIns);
+    document.getElementById('pmi-amount')!.textContent = fmt(pmi);
+    document.getElementById('total-interest')!.textContent = fmt((pi * n) - loan);
+    document.getElementById('total-cost')!.textContent = fmt(total * n);
+    document.getElementById('pmi-row')!.style.display = pmi > 0 ? 'flex' : 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+
+    ['home-price', 'down-payment', 'interest-rate'].forEach(id => $(id)?.addEventListener('input', calc));
+
+    $('home-price-input')?.addEventListener('change', e => { $('home-price').value = Math.min(2000000, Math.max(50000, parse((e.target as HTMLInputElement).value))).toString(); calc(); });
+    $('down-payment-input')?.addEventListener('change', e => { $('down-payment').value = Math.min(50, Math.max(0, parseFloat((e.target as HTMLInputElement).value) || 0)).toString(); calc(); });
+    $('down-payment-dollar-input')?.addEventListener('change', e => { const hp = parseFloat($('home-price').value); $('down-payment').value = Math.round(Math.min(50, Math.max(0, (parse((e.target as HTMLInputElement).value) / hp) * 100))).toString(); calc(); });
+    $('interest-rate-input')?.addEventListener('change', e => { $('interest-rate').value = Math.min(15, Math.max(1, parseFloat((e.target as HTMLInputElement).value) || 0)).toString(); calc(); });
+
+    ['property-tax', 'home-insurance'].forEach(id => $(id)?.addEventListener('change', calc));
+
+    document.querySelectorAll('.term-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.term-btn').forEach(b => {
+          b.classList.remove('active', 'state-border', 'state-text', 'state-bg-light');
+          (b as HTMLElement).style.borderColor = 'var(--border-default)';
+          (b as HTMLElement).style.color = 'var(--text-muted)';
+          (b as HTMLElement).style.backgroundColor = 'transparent';
+        });
+        btn.classList.add('active', 'state-border', 'state-text', 'state-bg-light');
+        (btn as HTMLElement).style.borderColor = '';
+        (btn as HTMLElement).style.color = '';
+        (btn as HTMLElement).style.backgroundColor = '';
+        calc();
+      });
+    });
+
+    calc();
+  });
+</script>

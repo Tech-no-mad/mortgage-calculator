@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    q: "What is included in a monthly mortgage payment?",
+    a: "A standard monthly mortgage payment includes four main components, often abbreviated as PITI: Principal (paying down the loan balance), Interest (the cost of borrowing), Taxes (local property taxes), and Insurance (homeowner's insurance). If your down payment is less than 20%, it may also include PMI (Private Mortgage Insurance)."
+  },
+  {
+    q: "How much house can I afford?",
+    a: "A common rule of thumb is the 28/36 rule: your housing costs should not exceed 28% of your gross monthly income, and your total debt payments (including the mortgage) should not exceed 36%. You can use our Affordability Calculator to get a personalized estimate based on your income and debts."
+  },
+  {
+    q: "What is PMI and how can I avoid it?",
+    a: "PMI stands for Private Mortgage Insurance. Lenders usually require it if your down payment is less than 20% of the home's purchase price. It protects the lender in case you default. To avoid PMI, you need to put down at least 20%, or you can ask to have it removed once you've built up 20% equity in your home."
+  },
+  {
+    q: "Should I choose a 15-year or 30-year mortgage?",
+    a: "A 30-year mortgage offers lower monthly payments, which can make it easier to qualify and afford your day-to-day expenses. However, you will pay significantly more in total interest over the life of the loan. A 15-year mortgage has higher monthly payments but typically comes with a lower interest rate, saving you tens or hundreds of thousands of dollars in interest."
+  },
+  {
+    q: "How do property taxes impact my mortgage?",
+    a: "Property taxes are collected by your local government and vary widely depending on where you live. Lenders typically divide your annual property tax bill by 12 and add that amount to your monthly mortgage payment, holding it in an escrow account until the tax bill is due. High property taxes can significantly increase your monthly payment."
+  },
+  {
+    q: "When is the right time to refinance?",
+    a: "It's generally a good idea to consider refinancing if you can lower your interest rate by at least 0.75% to 1%, if your credit score has improved significantly, or if you want to switch from an adjustable-rate to a fixed-rate mortgage. You should also calculate the 'break-even' point to ensure the monthly savings outweigh the closing costs of the new loan."
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title="Frequently Asked Questions"
+  description="Common questions about mortgages, interest rates, down payments, and how to use our mortgage calculator."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        Frequently Asked
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Questions</span>
+      </h1>
+      <p class="text-lg" style="color: var(--text-muted);">
+        Everything you need to know about mortgages, rates, and the home-buying process.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      {faqs.map((faq) => (
+        <div class="card p-6">
+          <h3 class="text-xl font-semibold mb-3" style="color: var(--text-primary);">{faq.q}</h3>
+          <p style="color: var(--text-secondary); line-height: 1.6;">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

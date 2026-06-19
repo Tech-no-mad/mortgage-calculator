@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Home Affordability Calculator"
+  description="Find out how much house you can afford based on your income, debts, and down payment."
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        How Much House Can I
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Afford?</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        Estimate your maximum home price based on the 28/36 rule.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Financial Details
+          </h2>
+
+          <!-- Income -->
+          <div>
+            <label class="label block mb-1.5">Annual Income (Gross)</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="annual-income" value="80,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+
+          <!-- Monthly Debts -->
+          <div>
+            <label class="label block mb-1.5">Monthly Debts (Car, Student Loans, etc.)</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="monthly-debts" value="400" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+
+          <!-- Down Payment -->
+          <div>
+            <label class="label block mb-1.5">Available Down Payment</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="down-payment" value="50,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+
+          <!-- Interest Rate -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Interest Rate (%)</label>
+              <input type="text" id="interest-rate" value="6.52" inputmode="decimal" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">Loan Term</label>
+              <select id="loan-term" class="calc-input font-mono w-full">
+                <option value="30">30 Years</option>
+                <option value="15">15 Years</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Affordability Estimate
+          </h2>
+
+          <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <p class="label-faint text-sm mb-2">Maximum Home Price</p>
+            <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="max-home-price">
+              <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">$0</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
+                <span class="label">Max Monthly Payment</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="max-monthly">$0</span>
+            </div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#10b981]"></span>
+                <span class="label">Loan Amount</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#10b981]" id="max-loan">$0</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calcAffordability() {
+    const income = parse((document.getElementById('annual-income') as HTMLInputElement).value);
+    const debts = parse((document.getElementById('monthly-debts') as HTMLInputElement).value);
+    const dp = parse((document.getElementById('down-payment') as HTMLInputElement).value);
+    const r = parseFloat((document.getElementById('interest-rate') as HTMLInputElement).value);
+    const t = parseInt((document.getElementById('loan-term') as HTMLSelectElement).value);
+
+    // Format inputs back
+    if (document.activeElement?.id !== 'annual-income') (document.getElementById('annual-income') as HTMLInputElement).value = fmtNum(income);
+    if (document.activeElement?.id !== 'monthly-debts') (document.getElementById('monthly-debts') as HTMLInputElement).value = fmtNum(debts);
+    if (document.activeElement?.id !== 'down-payment') (document.getElementById('down-payment') as HTMLInputElement).value = fmtNum(dp);
+
+    const monthlyIncome = income / 12;
+    // Rule 1: 28% of gross income for housing
+    const maxHousing28 = monthlyIncome * 0.28;
+    // Rule 2: 36% of gross income for total debt (housing + other debts)
+    const maxHousing36 = (monthlyIncome * 0.36) - debts;
+
+    // Use the more conservative number
+    const maxMonthlyPayment = Math.max(0, Math.min(maxHousing28, maxHousing36));
+
+    // Assume 1.2% property tax and $1200 insurance per year scaled roughly to home price
+    // But to solve backwards for loan amount based on PI, we estimate PI is about 80% of total payment
+    const estimatedPI = maxMonthlyPayment * 0.8;
+
+    const mr = (r / 100) / 12;
+    const n = t * 12;
+    
+    // Present value of annuity formula to get loan amount from payment
+    let loan = 0;
+    if (mr > 0) {
+      loan = estimatedPI * ((Math.pow(1 + mr, n) - 1) / (mr * Math.pow(1 + mr, n)));
+    } else {
+      loan = estimatedPI * n;
+    }
+
+    const homePrice = loan + dp;
+
+    document.getElementById('max-home-price')!.innerHTML = `<span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">${fmt(homePrice)}</span>`;
+    document.getElementById('max-monthly')!.textContent = fmt(maxMonthlyPayment);
+    document.getElementById('max-loan')!.textContent = fmt(loan);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    ['annual-income', 'monthly-debts', 'down-payment', 'interest-rate', 'loan-term'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', calcAffordability);
+      document.getElementById(id)?.addEventListener('change', calcAffordability);
+    });
+    calcAffordability();
+  });
+</script>

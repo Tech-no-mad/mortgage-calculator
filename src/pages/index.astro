@@ -1,0 +1,291 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free Mortgage Calculator"
+  description="Calculate your monthly mortgage payment, see amortization schedules, and compare rates across all 50 US states. Free, fast, and accurate."
+>
+  <!-- Hero -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6" style="background: rgba(10, 49, 97, 0.1); color: var(--color-usa-blue); border: 1px solid rgba(10, 49, 97, 0.2);">
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-usa-red)] animate-pulse"></span>
+        Updated June 2026 · Rates at 6.52%
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        Mortgage Payment
+        <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        Free calculator with state-specific tax rates for all 50 US states.
+      </p>
+    </div>
+
+    <!-- Ad Slot under Hero -->
+    <div class="ad-slot max-w-4xl mx-auto">Advertisement Space Reserved</div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[var(--color-usa-blue)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Loan Details
+          </h2>
+
+          <!-- Home Price -->
+          <div>
+            <label class="label block mb-1.5">Home Price</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="home-price-input" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+            <input type="range" id="home-price" min="50000" max="2000000" step="5000" value="350000" />
+            <div class="flex justify-between label-faint text-xs"><span>$50K</span><span>$2M</span></div>
+          </div>
+
+          <!-- Down Payment -->
+          <div>
+            <label class="label block mb-1.5">Down Payment</label>
+            <div class="flex gap-2">
+              <div class="relative flex-1">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+                <input type="text" id="down-payment-dollar-input" value="70,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+              </div>
+              <div class="relative w-20">
+                <input type="text" id="down-payment-input" value="20" inputmode="decimal" class="calc-input text-center font-mono" />
+                <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
+              </div>
+            </div>
+            <input type="range" id="down-payment" min="0" max="50" step="1" value="20" />
+            <div class="flex justify-between label-faint text-xs"><span>0%</span><span>50%</span></div>
+          </div>
+
+          <!-- Interest Rate -->
+          <div>
+            <label class="label block mb-1.5">Interest Rate</label>
+            <div class="relative w-28">
+              <input type="text" id="interest-rate-input" value="6.52" inputmode="decimal" class="calc-input text-center font-mono" />
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
+            </div>
+            <input type="range" id="interest-rate" min="1" max="15" step="0.01" value="6.52" />
+            <div class="flex justify-between label-faint text-xs"><span>1%</span><span>15%</span></div>
+          </div>
+
+          <!-- Loan Term -->
+          <div>
+            <label class="label block mb-1.5">Loan Term</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button data-term="15" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">15 yr</button>
+              <button data-term="20" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">20 yr</button>
+              <button data-term="30" class="term-btn active py-2 rounded-lg text-sm font-medium border border-[var(--color-usa-blue)] text-[var(--color-usa-blue)] bg-[var(--color-usa-blue)]/10 transition-all">30 yr</button>
+            </div>
+          </div>
+
+          <!-- Tax & Insurance -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Tax Rate (%/yr)</label>
+              <input type="text" id="property-tax" value="1.1" inputmode="decimal" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">Insurance ($/yr)</label>
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+                <input type="text" id="home-insurance" value="1,200" inputmode="numeric" class="calc-input pl-7 font-mono" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[var(--color-usa-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Monthly Payment
+          </h2>
+
+          <!-- Big number -->
+          <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="monthly-payment">
+              <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">$1,837</span>
+            </div>
+            <p class="label-faint text-sm mt-2">per month</p>
+          </div>
+
+          <!-- Breakdown -->
+          <div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-usa-blue)]"></span>
+                <span class="label">Principal & Interest</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[var(--color-usa-blue)]" id="pi-amount">$1,572</span>
+            </div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
+                <span class="label">Property Tax</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="tax-amount">$321</span>
+            </div>
+            <div class="result-row">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-usa-red)]"></span>
+                <span class="label">Home Insurance</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[var(--color-usa-red)]" id="insurance-amount">$100</span>
+            </div>
+            <div class="result-row" id="pmi-row" style="display:none;">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f43f5e]"></span>
+                <span class="label">PMI</span>
+              </div>
+              <span class="text-sm font-semibold font-mono text-[#f43f5e]" id="pmi-amount">$0</span>
+            </div>
+          </div>
+
+          <!-- Totals -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="stat-card">
+              <p class="label-faint text-xs mb-1">Total Interest</p>
+              <p class="text-lg font-bold font-mono text-[#f59e0b]" id="total-interest">$285,862</p>
+            </div>
+            <div class="stat-card">
+              <p class="label-faint text-xs mb-1">Total Cost</p>
+              <p class="text-lg font-bold font-mono text-[var(--color-usa-blue)]" id="total-cost">$661,562</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+    <div class="ad-slot max-w-4xl mx-auto">Advertisement Space Reserved</div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-xl font-bold text-center mb-8" style="color: var(--text-primary);">More Tools</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      {[
+        { title: 'Affordability', desc: 'How much house can you afford?', href: '/how-much-can-i-afford', icon: '💰' },
+        { title: 'Extra Payments', desc: 'Save thousands on interest', href: '/extra-payment-calculator', icon: '📊' },
+        { title: 'Refinance', desc: 'Should you refinance?', href: '/refinance-calculator', icon: '🔄' },
+        { title: '50 State Rates', desc: 'Tax rates for every state', href: '/states', icon: '🗺️' },
+        { title: 'Top 10 Brokers', desc: 'Compare the best lenders', href: '/brokers', icon: '🏛️' },
+      ].map((tool) => (
+        <a href={tool.href} class="card p-5 group hover:border-[var(--color-usa-blue)] transition-all">
+          <span class="text-2xl mb-3 block">{tool.icon}</span>
+          <h3 class="font-semibold mb-1 group-hover:text-[var(--color-usa-blue)] transition-colors" style="color: var(--text-primary);">{tool.title}</h3>
+          <p class="text-sm" style="color: var(--text-muted);">{tool.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- SEO Content -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="space-y-5">
+      <h2 class="text-xl font-bold" style="color: var(--text-primary);">How Does a Mortgage Calculator Work?</h2>
+      <p style="color: var(--text-secondary);">A mortgage calculator estimates your monthly payment by factoring in home price, down payment, interest rate, and loan term. It breaks down your PITI: Principal, Interest, Taxes, and Insurance.</p>
+      
+      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Understanding PITI</h3>
+      <p style="color: var(--text-secondary);">Your monthly payment includes <strong>Principal</strong> (paying down the loan), <strong>Interest</strong> (cost of borrowing), <strong>Taxes</strong> (local property taxes), and <strong>Insurance</strong> (homeowner's protection). If your down payment is below 20%, you'll also pay PMI — typically 0.3% to 1.5% of the loan annually.</p>
+
+      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">2026 Mortgage Rates</h3>
+      <p style="color: var(--text-secondary);">As of June 2026, the 30-year fixed rate averages 6.52% and the 15-year fixed averages 5.84%. Rates depend on your credit score, down payment, loan type (conventional, FHA, VA), and state.</p>
+
+      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">The 28/36 Rule</h3>
+      <p style="color: var(--text-secondary);">Keep housing costs under 28% of gross income and total debt under 36%. On $80K/year ($6,667/month), your max housing payment should be ~$1,867.</p>
+
+      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Property Tax by State</h3>
+      <p style="color: var(--text-secondary);">Taxes range dramatically: New Jersey (2.2%), Illinois (2.1%), and New Hampshire (2.0%) are highest. Hawaii (0.27%), Alabama (0.39%), and Louisiana (0.55%) are lowest. Our <a href="/states/texas" class="text-[var(--color-usa-blue)] hover:underline">state calculators</a> auto-fill local rates.</p>
+
+      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">15-Year vs 30-Year</h3>
+      <p style="color: var(--text-secondary);">On a $280K loan: a 30-year at 6.52% costs $1,572/month ($285K total interest). A 15-year at 5.84% costs $2,335/month but only $140K interest — saving $145,000+.</p>
+
+      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Get the Best Rate</h3>
+      <p style="color: var(--text-secondary);">Score above 740, put 20%+ down, compare 3-5 lenders, consider buying points, and lock when favorable. Even 0.25% saves tens of thousands over the loan's life.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calc() {
+    const hp = parseFloat(document.getElementById('home-price').value);
+    const dp = parseFloat(document.getElementById('down-payment').value);
+    const r = parseFloat(document.getElementById('interest-rate').value);
+    const tax = parse(document.getElementById('property-tax').value);
+    const ins = parse(document.getElementById('home-insurance').value);
+    const t = parseInt(document.querySelector('.term-btn.active')?.dataset.term || '30');
+
+    const down = hp * (dp / 100);
+    const loan = hp - down;
+    const mr = (r / 100) / 12;
+    const n = t * 12;
+
+    let pi = mr === 0 ? loan / n : loan * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1);
+    const mTax = (hp * (tax / 100)) / 12;
+    const mIns = ins / 12;
+    let pmi = dp < 20 ? (loan * 0.007) / 12 : 0;
+    const total = pi + mTax + mIns + pmi;
+
+    document.getElementById('home-price-input').value = fmtNum(hp);
+    document.getElementById('down-payment-input').value = dp;
+    document.getElementById('down-payment-dollar-input').value = fmtNum(down);
+    document.getElementById('interest-rate-input').value = r.toFixed(2);
+    document.getElementById('monthly-payment').innerHTML = `<span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">${fmt(total)}</span>`;
+    document.getElementById('pi-amount').textContent = fmt(pi);
+    document.getElementById('tax-amount').textContent = fmt(mTax);
+    document.getElementById('insurance-amount').textContent = fmt(mIns);
+    document.getElementById('pmi-amount').textContent = fmt(pmi);
+    document.getElementById('total-interest').textContent = fmt((pi * n) - loan);
+    document.getElementById('total-cost').textContent = fmt(total * n);
+    document.getElementById('pmi-row').style.display = pmi > 0 ? 'flex' : 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const $ = (id) => document.getElementById(id);
+
+    ['home-price', 'down-payment', 'interest-rate'].forEach(id => $(id)?.addEventListener('input', calc));
+
+    $('home-price-input')?.addEventListener('change', e => { $('home-price').value = Math.min(2000000, Math.max(50000, parse(e.target.value))); calc(); });
+    $('down-payment-input')?.addEventListener('change', e => { $('down-payment').value = Math.min(50, Math.max(0, parseFloat(e.target.value) || 0)); calc(); });
+    $('down-payment-dollar-input')?.addEventListener('change', e => { const hp = parseFloat($('home-price').value); $('down-payment').value = Math.round(Math.min(50, Math.max(0, (parse(e.target.value) / hp) * 100))); calc(); });
+    $('interest-rate-input')?.addEventListener('change', e => { $('interest-rate').value = Math.min(15, Math.max(1, parseFloat(e.target.value) || 0)); calc(); });
+
+    ['property-tax', 'home-insurance'].forEach(id => $(id)?.addEventListener('change', calc));
+
+    document.querySelectorAll('.term-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.term-btn').forEach(b => {
+          b.classList.remove('active', 'border-[var(--color-usa-blue)]', 'text-[var(--color-usa-blue)]', 'bg-[var(--color-usa-blue)]/10');
+          b.style.borderColor = 'var(--border-default)';
+          b.style.color = 'var(--text-muted)';
+          b.style.background = 'transparent';
+        });
+        btn.classList.add('active');
+        btn.style.borderColor = 'var(--color-usa-blue)';
+        btn.style.color = 'var(--color-usa-blue)';
+        btn.style.background = 'rgba(10, 49, 97, 0.1)';
+        calc();
+      });
+    });
+
+    calc();
+  });
+</script>
