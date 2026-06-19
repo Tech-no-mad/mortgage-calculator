@@ -25,15 +25,16 @@ if (!globalAny.rlhfMap) {
     // Extended synonyms
     ['cost', 'home-price'],
     ['value', 'home-price'],
+    ['price', 'home-price'],
+    ['pryce', 'home-price'],
+    ['hoem', 'home-price'],
     ['amount', 'home-price'],
     ['principal', 'home-price'],
     ['upfront', 'down-payment'],
     ['initial', 'down-payment'],
     ['apr', 'interest-rate'],
     ['fixed', 'interest-rate'],
-    ['duration', 'term'],
-    ['length', 'term'],
-    ['period', 'term']
+    ['duration', 'term']
   ]);
 }
 const rlhfMap: Map<string, string> = globalAny.rlhfMap;
@@ -126,6 +127,28 @@ export const POST: APIRoute = async ({ request }) => {
     let unknownWords: string[] = [];
     let targetStatePath = null;
     let stateFound = false;
+
+    // 0. Conversational Amnesia Check
+    // If the bot previously asked "What number did you want for home-price?", scan for a standalone number here.
+    if (history.missingField) {
+       const words = query.split(/\s+/);
+       for (let i = 0; i < words.length; i++) {
+         let w = words[i].toLowerCase().replace(/[.,!?;:]+$/, '');
+         const numMatch = w.match(/^(\$?\d+(?:,\d+)*(?:\.\d+)?)(k|m|%|yr|years?)?$/i);
+         if (numMatch) {
+            let numStr = numMatch[1].replace(/[$,]/g, '');
+            let num = parseFloat(numStr);
+            let modifier = numMatch[2]?.toLowerCase();
+            if (modifier === 'k') num *= 1000;
+            if (modifier === 'm') num *= 1000000;
+            
+            fills.push({ id: FIELD_MAP[history.missingField], value: num.toString() });
+            rtext += `Updated ${history.missingField.replace('-', ' ')} to ${modifier === '%' ? num + '%' : num}. `;
+            history.missingField = null; // Clear context
+            break;
+         }
+       }
+    }
 
     // Parse states first
     const commonWords = ['me', 'in', 'or', 'as', 'do', 'hi', 'la', 'ma', 'md', 'ok', 'pa', 'sc', 'va', 'wa'];
@@ -301,7 +324,7 @@ export const POST: APIRoute = async ({ request }) => {
       if (!matchedState && history.activeScope) {
          const scopeStr = history.activeScope.toString().toLowerCase();
          if (scopeStr.includes('/states/')) {
-            const scopeSlug = scopeStr.split('/').pop();
+            const scopeSlug = scopeStr.replace(/\/$/, '').split('/').pop();
             for (const state of statesData) {
                if (state.slug === scopeSlug) { matchedState = state; break; }
             }
