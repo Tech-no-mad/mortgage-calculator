@@ -13,7 +13,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-usa-red)] animate-pulse"></span>
         Updated June 2026 · Rates at 6.52%
       </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+      <h1 id="calc-title" class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
         Mortgage Payment
         <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>
       </h1>
@@ -260,6 +260,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   document.addEventListener('DOMContentLoaded', () => {
     const $ = (id) => document.getElementById(id);
+    
+    // Parse URL params for specific loan types
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    
+    if (type === 'fha') {
+      $('calc-title').innerHTML = `FHA Mortgage <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>`;
+      $('down-payment').value = "3.5";
+      $('down-payment-input').value = "3.5";
+      document.title = "FHA Mortgage Calculator | MortgageDash";
+    } else if (type === 'va') {
+      $('calc-title').innerHTML = `VA Mortgage <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>`;
+      $('down-payment').value = "0";
+      $('down-payment-input').value = "0";
+      document.title = "VA Mortgage Calculator | MortgageDash";
+    } else if (type === 'jumbo') {
+      $('calc-title').innerHTML = `Jumbo Mortgage <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>`;
+      $('home-price').value = "850000";
+      $('home-price-input').value = "850,000";
+      document.title = "Jumbo Mortgage Calculator | MortgageDash";
+    }
 
     ['home-price', 'down-payment', 'interest-rate'].forEach(id => $(id)?.addEventListener('input', calc));
 
