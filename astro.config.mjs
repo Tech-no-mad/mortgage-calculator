@@ -5,6 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 import node from '@astrojs/node';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mortgagedash.app',
@@ -14,7 +16,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  adapter: node({
-    mode: 'standalone'
-  })
+  adapter: cloudflare()
 });

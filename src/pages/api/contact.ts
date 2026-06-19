@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import type { APIRoute } from 'astro';
 
 export const prerender = false;
@@ -13,16 +11,11 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
     }
 
-    const csvPath = path.resolve('./leads.csv');
-    const date = new Date().toISOString();
-    const cleanMsg = message ? message.replace(/\n/g, ' ').replace(/"/g, '""') : '';
-    const row = `"${date}","${firstName}","${lastName}","${email}","${cleanMsg}"\n`;
-
-    if (!fs.existsSync(csvPath)) {
-      fs.writeFileSync(csvPath, 'Date,First Name,Last Name,Email,Message\n');
-    }
+    // On Cloudflare Pages, we cannot write to a local "leads.csv" file
+    // because serverless edge networks do not have a local filesystem.
+    // Leads should be forwarded to a database (like Cloudflare D1) or email API.
     
-    fs.appendFileSync(csvPath, row);
+    console.log("Lead captured (Cloudflare env):", { firstName, lastName, email });
 
     return new Response(JSON.stringify({ success: true }), { 
       status: 200,
