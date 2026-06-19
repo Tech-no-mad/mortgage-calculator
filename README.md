@@ -17,6 +17,7 @@ A comprehensive, high-performance Mortgage Calculator suite built with [Astro](h
   - **State Memory:** Answers localized property tax, home price, and insurance questions (e.g. "What is the property tax in Colorado?").
   - **Auto-Navigation:** Navigates the user to different calculators based on intent (e.g. "Go to the Refinance Calculator").
   - **Auto-Filling:** Parses user input and fills out calculator forms automatically (e.g. "Set my home price to 400k and down payment to 20%").
+  - **Secure Server-Side API:** The Chatbot's logic and data are hidden safely on the server behind an `/api/chat` endpoint, preventing client-side tampering.
 - **Technical SEO & Edge Deployment:** 
   - Deployed seamlessly to Cloudflare Pages via `@astrojs/cloudflare`
   - Dynamic `sitemap.xml` generation and `robots.txt`
@@ -44,6 +45,7 @@ All commands are run from the root of the project, from a terminal:
 ## 📁 Directory Structure
 
 - `src/pages/` - Contains all routing logic including state guides and calculators.
+- `src/pages/api/` - Contains secure server-side API endpoints (like the Chatbot's logic).
 - `src/components/` - Reusable UI components including the Header, Footer, and the Chatbot Assistant.
 - `src/layouts/` - Contains `BaseLayout.astro` which handles global SEO meta tags, dark/light mode context, and styling.
 - `src/styles/` - Global CSS tokens and resets.

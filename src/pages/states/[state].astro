@@ -249,7 +249,7 @@ const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} 
           <p class="text-3xl font-bold font-mono mb-2" style="color: var(--text-primary);">{stateData.taxRate}%</p>
         </div>
         <div>
-          <p class="text-sm font-medium" class:list={[taxDiff > 0 ? "text-[#f43f5e]" : "text-[#10b981]"]}>
+          <p class="text-sm font-medium" class:list={[taxDiff > 0 ? "text-[#10b981]" : "text-[#f43f5e]"]}>
             {taxDiff > 0 ? `+${taxDiff.toFixed(2)}% above average` : `${taxDiff.toFixed(2)}% below average`}
           </p>
           <p class="text-xs mt-2" style="color: var(--text-faint);">National Avg: {natlAvgTax.toFixed(2)}%</p>
@@ -263,7 +263,7 @@ const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} 
           <p class="text-3xl font-bold font-mono mb-2" style="color: var(--text-primary);">${stateData.medianPrice.toLocaleString('en-US')}</p>
         </div>
         <div>
-          <p class="text-sm font-medium" class:list={[priceDiff > 0 ? "text-[#f43f5e]" : "text-[#10b981]"]}>
+          <p class="text-sm font-medium" class:list={[priceDiff > 0 ? "text-[#10b981]" : "text-[#f43f5e]"]}>
             {priceDiff > 0 ? `+$${priceDiff.toLocaleString('en-US')} above avg` : `-$${Math.abs(priceDiff).toLocaleString('en-US')} below avg`}
           </p>
           <p class="text-xs mt-2" style="color: var(--text-faint);">National Avg: ${Math.round(natlAvgPrice).toLocaleString('en-US')}</p>
@@ -277,7 +277,7 @@ const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} 
           <p class="text-3xl font-bold font-mono mb-2" style="color: var(--text-primary);">${stateData.insurance.toLocaleString('en-US')}</p>
         </div>
         <div>
-          <p class="text-sm font-medium" class:list={[stateData.insurance - natlAvgInsurance > 0 ? "text-[#f43f5e]" : "text-[#10b981]"]}>
+          <p class="text-sm font-medium" class:list={[stateData.insurance - natlAvgInsurance > 0 ? "text-[#10b981]" : "text-[#f43f5e]"]}>
             {stateData.insurance - natlAvgInsurance > 0 ? `+$${Math.round(stateData.insurance - natlAvgInsurance).toLocaleString('en-US')} above avg` : `-$${Math.round(Math.abs(stateData.insurance - natlAvgInsurance)).toLocaleString('en-US')} below avg`}
           </p>
           <p class="text-xs mt-2" style="color: var(--text-faint);">National Avg: ${Math.round(natlAvgInsurance).toLocaleString('en-US')}</p>

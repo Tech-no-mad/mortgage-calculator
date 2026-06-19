@@ -1,5 +1,4 @@
 ---
-import statesData from '../data/states.json';
 ---
 
 <!-- Chatbot Toggle Button -->
@@ -82,248 +81,6 @@ import statesData from '../data/states.json';
 </div>
 
 <script>
-  // Comprehensive Knowledge Base (Document Lookup Simulation)
-  const KNOWLEDGE_BASE = [
-    {
-      topic: "data sources methodology",
-      keywords: ["source", "where", "data", "come", "from", "methodology", "origin", "database"],
-      answer: "Our data is sourced from several highly reputable national databases. **Property Taxes:** US Census Bureau (Effective Median Rates). **Home Prices:** Zillow Home Value Index and FRED. **Insurance:** National Association of Insurance Commissioners (NAIC). **Interest Rates:** Freddie Mac PMMS."
-    },
-    {
-      topic: "data frequency updates",
-      keywords: ["dynamic", "live", "updated", "static", "often", "when", "change"],
-      answer: "Currently, our dataset is static and periodically updated manually. It does not update dynamically every day via a live API. This ensures the tool remains 100% free and lightning fast without relying on expensive financial data feeds."
-    },
-    {
-      topic: "accuracy of calculations",
-      keywords: ["accurate", "accuracy", "correct", "exact", "right", "true"],
-      answer: "The Principal & Interest (P&I) calculations are 100% mathematically exact, utilizing standard global banking formulas. However, Taxes, Insurance, and PMI are generalizations based on state averages. Your exact costs will depend on your specific county assessment and personal credit score."
-    },
-    {
-      topic: "private mortgage insurance pmi",
-      keywords: ["pmi", "mortgage insurance", "private mortgage insurance", "under 20%"],
-      answer: "PMI (Private Mortgage Insurance) is required by lenders if your down payment is less than 20% of the home's price. It protects the lender, not you. Our calculators estimate PMI at a standard 0.7% annually, but in reality, it ranges from 0.3% to 1.5% based heavily on your credit score."
-    },
-    {
-      topic: "amortization schedule",
-      keywords: ["amortization", "schedule", "table", "breakdown"],
-      answer: "An amortization schedule is a complete table detailing every monthly payment over the life of your loan. Early on, almost your entire payment goes toward Interest. By the end of the loan, it almost entirely goes toward Principal. You can view this visual breakdown in our Amortization Calculator."
-    },
-    {
-      topic: "refinancing",
-      keywords: ["refinance", "refinancing", "when", "worth"],
-      answer: "Refinancing involves replacing your current mortgage with a new one to secure a lower interest rate or shorter term. You should calculate the 'Break-Even Point': the time it takes for your monthly savings to outweigh the closing costs of the new loan. Try our Refinance Calculator!"
-    },
-    {
-      topic: "affordability rule",
-      keywords: ["afford", "how much", "salary", "income", "rule", "28/36"],
-      answer: "We use the industry-standard '28/36 Rule'. This rule states that a household should spend a maximum of 28% of its gross monthly income on total housing expenses, and no more than 36% on total debt service (housing + car loans, student loans, credit cards)."
-    },
-    {
-      topic: "closing costs",
-      keywords: ["closing", "costs", "fees", "extra"],
-      answer: "Closing costs are fees paid at the closing of a real estate transaction. They usually equal 2% to 5% of the total loan amount and include things like appraisal fees, title insurance, loan origination fees, and escrow prepayments."
-    },
-    {
-      topic: "greeting",
-      keywords: ["hello", "hi", "hey", "yo"],
-      answer: "Hello! How can I help you with your mortgage questions today?"
-    },
-    {
-      topic: "recast calculator",
-      keywords: ["recast", "lump", "sum", "recasting"],
-      answer: "A mortgage recast allows you to make a large lump-sum payment to reduce your monthly payment without changing your interest rate or loan term. Try our [Recast Calculator](/recast-calculator) to see your savings!"
-    },
-    {
-      topic: "heloc calculator",
-      keywords: ["heloc", "equity", "line", "credit", "borrow"],
-      answer: "A Home Equity Line of Credit (HELOC) lets you borrow against the equity in your home. You only pay interest on what you draw during the draw period. Estimate your payments with our [HELOC Calculator](/heloc-calculator)."
-    },
-    {
-      topic: "fha loans",
-      keywords: ["fha", "3.5", "down", "credit"],
-      answer: "FHA loans are insured by the Federal Housing Administration and allow down payments as low as 3.5% for credit scores of 580+. Check out our [FHA Loans Guide](/fha-loans)."
-    },
-    {
-      topic: "va loans",
-      keywords: ["va", "veteran", "military", "zero", "down"],
-      answer: "VA loans are a $0-down mortgage option for veterans and active-duty service members. They don't require PMI but have a funding fee. Read our [VA Loans Guide](/va-loans)."
-    },
-    {
-      topic: "jumbo loans",
-      keywords: ["jumbo", "large", "expensive", "limit"],
-      answer: "Jumbo loans are for high-value properties that exceed conventional conforming loan limits. They generally require larger down payments and higher credit scores. See our [Jumbo Loans Guide](/jumbo-loans)."
-    },
-    {
-      topic: "reverse mortgage",
-      keywords: ["reverse", "senior", "retire"],
-      answer: "A reverse mortgage allows homeowners aged 62+ to convert part of their home equity into cash without having to sell the home. Ask a certified counselor for more details!"
-    },
-    {
-      topic: "assumable mortgage",
-      keywords: ["assumable", "assume", "take", "over"],
-      answer: "An assumable mortgage lets a buyer take over the seller's existing mortgage and its interest rate. This is highly valuable when current market rates are higher than the seller's rate. FHA and VA loans are generally assumable."
-    },
-    {
-      topic: "family opportunity mortgage",
-      keywords: ["family", "opportunity", "parents", "children"],
-      answer: "The Family Opportunity Mortgage allows you to buy a home for an elderly parent or an adult child with a disability as if it were a primary residence, meaning lower interest rates and down payments."
-    }
-  ];
-
-  // Tokenize and clean user input
-  function tokenize(text: string) {
-    return text.toLowerCase().replace(/[^\w\s]/gi, '').split(/\s+/).filter(w => w.length > 2 || w === "hi");
-  }
-
-  // Scoring function (TF/IDF style simulation)
-  function findBestMatch(query: string): string {
-    const userTokens = tokenize(query);
-    if (userTokens.length === 0) return "Could you please rephrase that?";
-
-    let bestScore = 0;
-    let bestAnswer = "";
-
-    for (const doc of KNOWLEDGE_BASE) {
-      let score = 0;
-      // Check for direct keyword matches
-      for (const keyword of doc.keywords) {
-        if (query.toLowerCase().includes(keyword)) {
-          score += 2; // High weight for exact phrase match
-        }
-        // Token intersection
-        if (userTokens.includes(keyword)) {
-          score += 1;
-        }
-      }
-
-      if (score > bestScore) {
-        bestScore = score;
-        bestAnswer = doc.answer;
-      }
-    }
-
-    if (bestScore > 0) {
-      // Add a small prefix to simulate "summarization"
-      const prefixes = ["Based on our documentation: ", "Here is what I found in our knowledge base: ", "According to our data: "];
-      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-      // Don't add prefix for greetings
-      if (bestAnswer.includes("Hello!")) return bestAnswer;
-      return prefix + bestAnswer;
-    }
-    
-    return "I searched our knowledge base but couldn't find a direct answer to that. Try asking about our data sources, PMI, amortization, or how accurate the calculations are!";
-  }
-
-  // Inject states data from server-side Astro
-  const STATES_DATA = ${JSON.stringify(statesData)};
-
-  // Handle Action Commands (Virtual Assistant)
-  function handleCommand(query: string): string | null {
-    const text = query.toLowerCase();
-
-    // 1. State Queries
-    for (const state of STATES_DATA) {
-      if (text.includes(state.name.toLowerCase())) {
-        if (text.includes('tax') || text.includes('property') || text.includes('rate')) {
-          return `The average property tax rate in **${state.name}** is **${state.taxRate}%**.`;
-        }
-        if (text.includes('insurance')) {
-          return `The average annual home insurance cost in **${state.name}** is around **$${state.insurance.toLocaleString()}**.`;
-        }
-        if (text.includes('price') || text.includes('cost') || text.includes('home')) {
-          return `The median home price in **${state.name}** is **$${state.medianPrice.toLocaleString()}**.`;
-        }
-        // General state info
-        return `**${state.name}** has a median home price of **$${state.medianPrice.toLocaleString()}**, an average property tax rate of **${state.taxRate}%**, and annual home insurance around **$${state.insurance.toLocaleString()}**. We have a [${state.name} Mortgage Calculator](/states/${state.slug}) you can use!`;
-      }
-    }
-
-    // 2. Navigation
-    if (text.includes('go to') || text.includes('open') || text.includes('navigate') || text.includes('take me to')) {
-      if (text.includes('refinance')) {
-        setTimeout(() => window.location.href = '/refinance-calculator', 1500);
-        return "Navigating you to the Refinance Calculator...";
-      }
-      if (text.includes('extra payment') || text.includes('payoff')) {
-        setTimeout(() => window.location.href = '/extra-payment-calculator', 1500);
-        return "Navigating you to the Extra Payment Calculator...";
-      }
-      if (text.includes('afford')) {
-        setTimeout(() => window.location.href = '/how-much-can-i-afford', 1500);
-        return "Navigating you to the Affordability Calculator...";
-      }
-      if (text.includes('amortization')) {
-        setTimeout(() => window.location.href = '/amortization-schedule', 1500);
-        return "Navigating you to the Amortization Schedule...";
-      }
-      if (text.includes('heloc') || text.includes('equity')) {
-        setTimeout(() => window.location.href = '/heloc-calculator', 1500);
-        return "Navigating you to the HELOC Calculator...";
-      }
-      if (text.includes('home') || text.includes('main')) {
-        setTimeout(() => window.location.href = '/', 1500);
-        return "Navigating you to the Main Calculator...";
-      }
-    }
-
-    // 3. Auto-filling calculator
-    if (text.includes('set') || text.includes('change') || text.includes('make')) {
-      let changed = false;
-      let response = "I've updated the calculator for you: ";
-      
-      // Extract numbers (including k/m shorthand)
-      const numMatch = query.match(/(\d+(?:,\d+)*(?:\.\d+)?)\s*(k|m|%)?/gi);
-      
-      if (numMatch) {
-        numMatch.forEach(val => {
-          let num = parseFloat(val.replace(/,/g, ''));
-          if (val.toLowerCase().includes('k')) num *= 1000;
-          if (val.toLowerCase().includes('m')) num *= 1000000;
-          
-          if (text.includes('price') || text.includes('home') || text.includes('loan')) {
-            const el = document.getElementById('home-price') || document.getElementById('loan-amount') || document.getElementById('home-value');
-            if (el) {
-              (el as HTMLInputElement).value = num.toString();
-              changed = true;
-              response += `Home/Loan to $${num.toLocaleString()}. `;
-            }
-          } else if ((text.includes('down') || text.includes('payment')) && (val.includes('%') || num < 100)) {
-            const el = document.getElementById('down-payment');
-            if (el) {
-              (el as HTMLInputElement).value = num.toString();
-              changed = true;
-              response += `Down Payment to ${num}%. `;
-            }
-          } else if (text.includes('rate') || text.includes('interest')) {
-            const el = document.getElementById('interest-rate') || document.getElementById('heloc-rate');
-            if (el) {
-              (el as HTMLInputElement).value = num.toString();
-              changed = true;
-              response += `Interest Rate to ${num}%. `;
-            }
-          }
-        });
-
-        if (changed) {
-          // Trigger change event to update the UI formulas
-          const ev = new Event('change');
-          const inputEv = new Event('input');
-          document.getElementById('home-price')?.dispatchEvent(inputEv);
-          document.getElementById('home-price')?.dispatchEvent(ev);
-          document.getElementById('loan-amount')?.dispatchEvent(inputEv);
-          document.getElementById('down-payment')?.dispatchEvent(inputEv);
-          document.getElementById('interest-rate')?.dispatchEvent(inputEv);
-          return response;
-        } else {
-          return "I couldn't find those fields on this page. Try navigating to the Main Calculator first.";
-        }
-      }
-    }
-
-    return null; // Fallback to knowledge base
-  }
-
   const toggleBtn = document.getElementById('chatbot-toggle');
   const closeBtn = document.getElementById('chatbot-close');
   const windowEl = document.getElementById('chatbot-window');
@@ -350,7 +107,6 @@ import statesData from '../data/states.json';
     if (!messagesContainer) return;
     
     const div = document.createElement('div');
-    // Align items to the bottom (items-end) so avatars sit flush with the bottom of the message bubble
     div.className = `flex items-end gap-2.5 ${isUser ? 'flex-row-reverse' : ''} animate-fade-in`;
     
     let avatar = '';
@@ -371,9 +127,7 @@ import statesData from '../data/states.json';
       `;
     }
 
-    // Replace Markdown-style bold (**text**) with HTML strong tags for better formatting
     let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Replace Markdown-style links ([text](url)) with HTML anchor tags
     formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="underline text-current font-semibold hover:opacity-80 transition-opacity">$1</a>');
 
     const bubbleClass = isUser 
@@ -393,16 +147,14 @@ import statesData from '../data/states.json';
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const text = input.value.trim();
     if (!text) return;
 
-    // Add user message
     addMessage(text, true);
     input.value = '';
 
-    // Show typing indicator (optional aesthetic touch)
     const typingId = 'typing-' + Date.now();
     const typingDiv = document.createElement('div');
     typingDiv.id = typingId;
@@ -423,20 +175,46 @@ import statesData from '../data/states.json';
     messagesContainer?.appendChild(typingDiv);
     messagesContainer!.scrollTop = messagesContainer!.scrollHeight;
 
-    // Simulate database lookup delay
-    setTimeout(() => {
-      document.getElementById(typingId)?.remove();
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: text })
+      });
+      const data = await res.json();
       
-      // Try command interceptor first
-      const commandResponse = handleCommand(text);
-      if (commandResponse) {
-        addMessage(commandResponse, false);
-      } else {
-        // Fallback to Knowledge Base
-        const response = findBestMatch(text);
-        addMessage(response, false);
+      document.getElementById(typingId)?.remove();
+      addMessage(data.response, false);
+
+      if (data.action) {
+        if (data.action.type === 'navigate') {
+          setTimeout(() => { window.location.href = data.action.payload; }, 1500);
+        } else if (data.action.type === 'fill') {
+          let updated = false;
+          data.action.payload.forEach((fill: any) => {
+            for (const id of fill.id) {
+              const el = document.getElementById(id);
+              if (el) {
+                (el as HTMLInputElement).value = fill.value;
+                updated = true;
+              }
+            }
+          });
+          if (updated) {
+            // Trigger changes
+            const ev = new Event('change');
+            const inputEv = new Event('input');
+            ['home-price', 'loan-amount', 'down-payment', 'interest-rate'].forEach(id => {
+              document.getElementById(id)?.dispatchEvent(inputEv);
+              document.getElementById(id)?.dispatchEvent(ev);
+            });
+          }
+        }
       }
-    }, 700);
+    } catch (e) {
+      document.getElementById(typingId)?.remove();
+      addMessage("Sorry, I'm having trouble connecting to the server.", false);
+    }
   });
 </script>
 
