@@ -60,14 +60,13 @@
   <!-- Input Area -->
   <div class="p-4" style="background: var(--bg-surface); border-top: 1px solid var(--border-default);">
     <form id="chatbot-form" class="flex gap-2 relative">
-      <input 
-        type="text" 
+      <textarea 
         id="chatbot-input" 
-        class="flex-1 pl-4 pr-12 py-3 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-usa-blue)]" 
-        style="background: var(--bg-surface-2); border: 1px solid var(--border-default); color: var(--text-primary);"
+        rows="1"
+        class="flex-1 pl-4 pr-12 py-3 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-usa-blue)] resize-none" 
+        style="background: var(--bg-surface-2); border: 1px solid var(--border-default); color: var(--text-primary); max-height: 120px; overflow-y: auto;"
         placeholder="Ask me anything..." 
-        autocomplete="off"
-      />
+      ></textarea>
       <button 
         type="submit" 
         class="absolute right-1.5 top-1.5 bottom-1.5 w-9 rounded-lg bg-[var(--color-usa-blue)] text-white flex items-center justify-center transition-colors focus:outline-none"
@@ -85,13 +84,29 @@
   const closeBtn = document.getElementById('chatbot-close');
   const windowEl = document.getElementById('chatbot-window');
   const form = document.getElementById('chatbot-form');
-  const input = document.getElementById('chatbot-input') as HTMLInputElement;
+  const input = document.getElementById('chatbot-input') as HTMLTextAreaElement;
   const messagesContainer = document.getElementById('chatbot-messages');
 
-  let isOpen = false;
+  // Textarea auto-resize and submit on Enter
+  if (input) {
+    input.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        form?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      }
+    });
+  }
 
-  function toggleChat() {
-    isOpen = !isOpen;
+  let isOpen = sessionStorage.getItem('chatbotOpen') === 'true';
+  let chatHistory: Array<{text: string, isUser: boolean}> = [];
+
+  function toggleChat(forceState?: boolean) {
+    isOpen = forceState !== undefined ? forceState : !isOpen;
+    sessionStorage.setItem('chatbotOpen', isOpen.toString());
     if (isOpen) {
       windowEl?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
       input?.focus();
@@ -100,14 +115,18 @@
     }
   }
 
-  toggleBtn?.addEventListener('click', toggleChat);
-  closeBtn?.addEventListener('click', toggleChat);
+  toggleBtn?.addEventListener('click', () => toggleChat());
+  closeBtn?.addEventListener('click', () => toggleChat(false));
 
-  function addMessage(text: string, isUser: boolean) {
+  function saveHistory() {
+    sessionStorage.setItem('chatbotHistory', JSON.stringify(chatHistory));
+  }
+
+  function renderMessage(text: string, isUser: boolean, animate = true) {
     if (!messagesContainer) return;
     
     const div = document.createElement('div');
-    div.className = `flex items-end gap-2.5 ${isUser ? 'flex-row-reverse' : ''} animate-fade-in`;
+    div.className = `flex items-end gap-2.5 ${isUser ? 'flex-row-reverse' : ''} ${animate ? 'animate-fade-in' : ''}`;
     
     let avatar = '';
     if (isUser) {
@@ -129,6 +148,7 @@
 
     let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="underline text-current font-semibold hover:opacity-80 transition-opacity">$1</a>');
+    formattedText = formattedText.replace(/\n/g, '<br/>');
 
     const bubbleClass = isUser 
       ? `bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white p-3.5 rounded-2xl rounded-br-none shadow-sm text-sm leading-relaxed`
@@ -147,13 +167,66 @@
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
+  function addMessage(text: string, isUser: boolean) {
+    chatHistory.push({ text, isUser });
+    saveHistory();
+    renderMessage(text, isUser, true);
+  }
+
+  // Restore session on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const storedHistory = sessionStorage.getItem('chatbotHistory');
+    if (storedHistory && messagesContainer) {
+      try {
+        const parsed = JSON.parse(storedHistory);
+        if (parsed.length > 0) {
+          chatHistory = parsed;
+          messagesContainer.innerHTML = ''; // Clear initial greeting
+          chatHistory.forEach(msg => renderMessage(msg.text, msg.isUser, false));
+        }
+      } catch(e) {}
+    }
+
+    if (isOpen) toggleChat(true);
+
+    // Handle cross-page autofill
+    const pendingFill = sessionStorage.getItem('pendingAutofill');
+    if (pendingFill) {
+      try {
+        const payload = JSON.parse(pendingFill);
+        let updated = false;
+        payload.forEach((fill: any) => {
+          for (const id of fill.id) {
+            const el = document.getElementById(id);
+            if (el) {
+              (el as HTMLInputElement).value = fill.value;
+              updated = true;
+            }
+          }
+        });
+        if (updated) {
+          const ev = new Event('change');
+          const inputEv = new Event('input');
+          ['home-price', 'loan-amount', 'down-payment', 'interest-rate'].forEach(id => {
+            document.getElementById(id)?.dispatchEvent(inputEv);
+            document.getElementById(id)?.dispatchEvent(ev);
+          });
+          sessionStorage.removeItem('pendingAutofill');
+          toggleChat(true); // Open chat to show user
+        }
+      } catch(e) {}
+    }
+  });
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!input) return;
     const text = input.value.trim();
     if (!text) return;
 
     addMessage(text, true);
     input.value = '';
+    input.style.height = 'auto'; // reset textarea height
 
     const typingId = 'typing-' + Date.now();
     const typingDiv = document.createElement('div');
@@ -191,23 +264,31 @@
           setTimeout(() => { window.location.href = data.action.payload; }, 1500);
         } else if (data.action.type === 'fill') {
           let updated = false;
+          let foundElements = 0;
           data.action.payload.forEach((fill: any) => {
             for (const id of fill.id) {
               const el = document.getElementById(id);
               if (el) {
                 (el as HTMLInputElement).value = fill.value;
                 updated = true;
+                foundElements++;
               }
             }
           });
+          
           if (updated) {
-            // Trigger changes
+            // We found elements on this page, trigger updates
             const ev = new Event('change');
             const inputEv = new Event('input');
             ['home-price', 'loan-amount', 'down-payment', 'interest-rate'].forEach(id => {
               document.getElementById(id)?.dispatchEvent(inputEv);
               document.getElementById(id)?.dispatchEvent(ev);
             });
+          } else {
+            // We didn't find any of the target elements on this page.
+            // Save payload to sessionStorage and navigate to the Main Calculator
+            sessionStorage.setItem('pendingAutofill', JSON.stringify(data.action.payload));
+            setTimeout(() => { window.location.href = '/'; }, 1000);
           }
         }
       }
