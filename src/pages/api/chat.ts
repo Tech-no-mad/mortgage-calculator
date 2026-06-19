@@ -253,6 +253,22 @@ export const POST: APIRoute = async ({ request }) => {
       }));
     }
 
+    // 4. Parameter Shifts (FHA, VA, Jumbo)
+    if (text.includes('fha')) {
+       fills.push({ id: ['down-payment'], value: '3.5' });
+       rtext += 'Switched to FHA parameters (3.5% down). ';
+    }
+    if (text.includes('va loan') || text.match(/\bva\b/)) {
+       // Make sure it's not Virginia scope unless proven
+       if (!targetStatePath || !targetStatePath.includes('virginia')) {
+         fills.push({ id: ['down-payment'], value: '0' });
+         rtext += 'Switched to VA parameters (0% down). ';
+       }
+    }
+    if (text.includes('jumbo')) {
+       rtext += 'Switched to Jumbo parameters. ';
+    }
+
     if (fills.length > 0) {
       actions.push({ type: 'fill', payload: fills });
     }
@@ -270,22 +286,40 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     if (actions.length > 0) {
-      return new Response(JSON.stringify({ response: rtext, actions: actions, context: null }));
+      return new Response(JSON.stringify({ response: rtext, actions: actions, context: history }));
     }
 
-    // 4. Data Interceptor
-    for (const state of statesData) {
-      if (text.includes(state.name.toLowerCase())) {
-        if (text.includes('tax')) return new Response(JSON.stringify({ response: `The average property tax rate in **${state.name}** is **${state.taxRate}%**.` }));
-        if (text.includes('insurance')) return new Response(JSON.stringify({ response: `The average annual home insurance cost in **${state.name}** is around **$${state.insurance.toLocaleString()}**.` }));
-        if (text.includes('price')) return new Response(JSON.stringify({ response: `The median home price in **${state.name}** is **$${state.medianPrice.toLocaleString()}**.` }));
+    // 5. Data Interceptor (Scope-aware)
+    if (text.includes('what') || text.includes('how much') || text.includes('tell me') || text.includes('average')) {
+      let matchedState = null;
+      // 1. Check explicitly named states (Breakout)
+      for (const state of statesData) {
+         if (text.includes(state.name.toLowerCase())) { matchedState = state; break; }
+      }
+      
+      // 2. If no explicit state, fallback to Active Scope
+      if (!matchedState && history.activeScope) {
+         const scopeStr = history.activeScope.toString().toLowerCase();
+         if (scopeStr.includes('/states/')) {
+            const scopeSlug = scopeStr.split('/').pop();
+            for (const state of statesData) {
+               if (state.slug === scopeSlug) { matchedState = state; break; }
+            }
+         }
+      }
+
+      if (matchedState) {
+        if (text.includes('tax')) return new Response(JSON.stringify({ response: `The average property tax rate in **${matchedState.name}** is **${matchedState.taxRate}%**.` }));
+        if (text.includes('insurance')) return new Response(JSON.stringify({ response: `The average annual home insurance cost in **${matchedState.name}** is around **$${matchedState.insurance.toLocaleString()}**.` }));
+        if (text.includes('price') || text.includes('cost')) return new Response(JSON.stringify({ response: `The median home price in **${matchedState.name}** is **$${matchedState.medianPrice.toLocaleString()}**.` }));
+        
         if (!stateFound) {
-           return new Response(JSON.stringify({ response: `**${state.name}** has a median home price of **$${state.medianPrice.toLocaleString()}**, an average property tax rate of **${state.taxRate}%**, and annual home insurance around **$${state.insurance.toLocaleString()}**.` }));
+           return new Response(JSON.stringify({ response: `**${matchedState.name}** has a median home price of **$${matchedState.medianPrice.toLocaleString()}**, an average property tax rate of **${matchedState.taxRate}%**, and annual home insurance around **$${matchedState.insurance.toLocaleString()}**.` }));
         }
       }
     }
 
-    return new Response(JSON.stringify({ response: "I'm a Virtual Assistant. Ask me to 'Set the home price to 400k', 'Take me to Washington and set the term to 15 yr', or 'What is the property tax in Colorado?'", context: null }));
+    return new Response(JSON.stringify({ response: "I'm a Virtual Assistant. Ask me to 'Set the home price to 400k', 'Make it an FHA loan', 'Take me to Washington', or 'What is the property tax?'", context: history }));
     
   } catch (error) {
     return new Response(JSON.stringify({ response: "Sorry, I ran into an error processing that request.", context: null }), { status: 500 });

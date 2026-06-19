@@ -218,6 +218,10 @@
       try { chatContext = JSON.parse(storedCtx); } catch(e) {}
     }
 
+    // Always inject the current page path as the Active Scope
+    if (!chatContext) chatContext = {};
+    chatContext.activeScope = window.location.pathname;
+
     if (isOpen) toggleChat(true);
 
     const pendingFill = sessionStorage.getItem('pendingAutofill');
