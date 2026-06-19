@@ -1,131 +1,59 @@
 import type { APIRoute } from 'astro';
 import statesData from '../../data/states.json';
 
-// Comprehensive Knowledge Base (Document Lookup Simulation)
-const KNOWLEDGE_BASE = [
-  {
-    topic: "data sources methodology",
-    keywords: ["source", "where", "data", "come", "from", "methodology", "origin", "database"],
-    answer: "Our data is sourced from several highly reputable national databases. **Property Taxes:** US Census Bureau (Effective Median Rates). **Home Prices:** Zillow Home Value Index and FRED. **Insurance:** National Association of Insurance Commissioners (NAIC). **Interest Rates:** Freddie Mac PMMS."
-  },
-  {
-    topic: "data frequency updates",
-    keywords: ["dynamic", "live", "updated", "static", "often", "when", "change"],
-    answer: "Currently, our dataset is static and periodically updated manually. It does not update dynamically every day via a live API. This ensures the tool remains 100% free and lightning fast without relying on expensive financial data feeds."
-  },
-  {
-    topic: "accuracy of calculations",
-    keywords: ["accurate", "accuracy", "correct", "exact", "right", "true"],
-    answer: "The Principal & Interest (P&I) calculations are 100% mathematically exact, utilizing standard global banking formulas. However, Taxes, Insurance, and PMI are generalizations based on state averages. Your exact costs will depend on your specific county assessment and personal credit score."
-  },
-  {
-    topic: "private mortgage insurance pmi",
-    keywords: ["pmi", "mortgage insurance", "private mortgage insurance", "under 20%"],
-    answer: "PMI (Private Mortgage Insurance) is required by lenders if your down payment is less than 20% of the home's price. It protects the lender, not you. Our calculators estimate PMI at a standard 0.7% annually, but in reality, it ranges from 0.3% to 1.5% based heavily on your credit score."
-  },
-  {
-    topic: "amortization schedule",
-    keywords: ["amortization", "schedule", "table", "breakdown"],
-    answer: "An amortization schedule is a complete table detailing every monthly payment over the life of your loan. Early on, almost your entire payment goes toward Interest. By the end of the loan, it almost entirely goes toward Principal. You can view this visual breakdown in our Amortization Calculator."
-  },
-  {
-    topic: "refinancing",
-    keywords: ["refinance", "refinancing", "when", "worth"],
-    answer: "Refinancing involves replacing your current mortgage with a new one to secure a lower interest rate or shorter term. You should calculate the 'Break-Even Point': the time it takes for your monthly savings to outweigh the closing costs of the new loan. Try our Refinance Calculator!"
-  },
-  {
-    topic: "affordability rule",
-    keywords: ["afford", "how much", "salary", "income", "rule", "28/36"],
-    answer: "We use the industry-standard '28/36 Rule'. This rule states that a household should spend a maximum of 28% of its gross monthly income on total housing expenses, and no more than 36% on total debt service (housing + car loans, student loans, credit cards)."
-  },
-  {
-    topic: "closing costs",
-    keywords: ["closing", "costs", "fees", "extra"],
-    answer: "Closing costs are fees paid at the closing of a real estate transaction. They usually equal 2% to 5% of the total loan amount and include things like appraisal fees, title insurance, loan origination fees, and escrow prepayments."
-  },
-  {
-    topic: "greeting",
-    keywords: ["hello", "hi", "hey", "yo"],
-    answer: "Hello! How can I help you with your mortgage questions today?"
-  },
-  {
-    topic: "recast calculator",
-    keywords: ["recast", "lump", "sum", "recasting"],
-    answer: "A mortgage recast allows you to make a large lump-sum payment to reduce your monthly payment without changing your interest rate or loan term. Try our [Recast Calculator](/recast-calculator) to see your savings!"
-  },
-  {
-    topic: "heloc calculator",
-    keywords: ["heloc", "equity", "line", "credit", "borrow"],
-    answer: "A Home Equity Line of Credit (HELOC) lets you borrow against the equity in your home. You only pay interest on what you draw during the draw period. Estimate your payments with our [HELOC Calculator](/heloc-calculator)."
-  },
-  {
-    topic: "fha loans",
-    keywords: ["fha", "3.5", "down", "credit"],
-    answer: "FHA loans are insured by the Federal Housing Administration and allow down payments as low as 3.5% for credit scores of 580+. Check out our [FHA Loans Guide](/fha-loans)."
-  },
-  {
-    topic: "va loans",
-    keywords: ["va", "veteran", "military", "zero", "down"],
-    answer: "VA loans are a $0-down mortgage option for veterans and active-duty service members. They don't require PMI but have a funding fee. Read our [VA Loans Guide](/va-loans)."
-  },
-  {
-    topic: "jumbo loans",
-    keywords: ["jumbo", "large", "expensive", "limit"],
-    answer: "Jumbo loans are for high-value properties that exceed conventional conforming loan limits. They generally require larger down payments and higher credit scores. See our [Jumbo Loans Guide](/jumbo-loans)."
-  },
-  {
-    topic: "reverse mortgage",
-    keywords: ["reverse", "senior", "retire"],
-    answer: "A reverse mortgage allows homeowners aged 62+ to convert part of their home equity into cash without having to sell the home. Ask a certified counselor for more details!"
-  },
-  {
-    topic: "assumable mortgage",
-    keywords: ["assumable", "assume", "take", "over"],
-    answer: "An assumable mortgage lets a buyer take over the seller's existing mortgage and its interest rate. This is highly valuable when current market rates are higher than the seller's rate. FHA and VA loans are generally assumable."
-  },
-  {
-    topic: "family opportunity mortgage",
-    keywords: ["family", "opportunity", "parents", "children"],
-    answer: "The Family Opportunity Mortgage allows you to buy a home for an elderly parent or an adult child with a disability as if it were a primary residence, meaning lower interest rates and down payments."
-  }
-];
-
-function tokenize(text: string) {
-  return text.toLowerCase().replace(/[^\w\s]/gi, '').split(/\s+/).filter(w => w.length > 2 || w === "hi");
+// Global RLHF Map for persistence across requests in memory
+const globalAny: any = globalThis;
+if (!globalAny.rlhfMap) {
+  globalAny.rlhfMap = new Map<string, string>([
+    ['dp', 'down-payment'],
+    ['downpayment', 'down-payment'],
+    ['dwn pymnt', 'down-payment'],
+    ['hp', 'home-price'],
+    ['homeprice', 'home-price'],
+    ['loan', 'home-price'],
+    ['ir', 'interest-rate'],
+    ['interest', 'interest-rate'],
+    ['rate', 'interest-rate'],
+    ['term', 'term'],
+    ['years', 'term'],
+    ['yr', 'term'],
+    ['tax', 'tax-rate'],
+    ['taxes', 'tax-rate'],
+    ['insurance', 'home-insurance'],
+    ['ins', 'home-insurance'],
+    ['state', 'state-selector']
+  ]);
 }
+const rlhfMap: Map<string, string> = globalAny.rlhfMap;
 
-function findBestMatch(query: string): string {
-  const userTokens = tokenize(query);
-  if (userTokens.length === 0) return "Could you please rephrase that?";
-
-  let bestScore = 0;
-  let bestAnswer = "";
-
-  for (const doc of KNOWLEDGE_BASE) {
-    let score = 0;
-    for (const keyword of doc.keywords) {
-      if (query.toLowerCase().includes(keyword)) {
-        score += 2;
-      }
-      if (userTokens.includes(keyword)) {
-        score += 1;
+// Levenshtein distance for fuzzy matching
+function levenshtein(a: string, b: string): number {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+  const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+  for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+  for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      if (a[i - 1] === b[j - 1]) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(matrix[i - 1][j - 1], matrix[i][j - 1], matrix[i - 1][j]) + 1;
       }
     }
-    if (score > bestScore) {
-      bestScore = score;
-      bestAnswer = doc.answer;
-    }
   }
-
-  if (bestScore > 0) {
-    const prefixes = ["Based on our documentation: ", "Here is what I found in our knowledge base: ", "According to our data: "];
-    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-    if (bestAnswer.includes("Hello!")) return bestAnswer;
-    return prefix + bestAnswer;
-  }
-  
-  return "I searched our knowledge base but couldn't find a direct answer to that. Try asking about our data sources, PMI, amortization, or how accurate the calculations are!";
+  return matrix[a.length][b.length];
 }
+
+const FIELD_MAP: Record<string, string[]> = {
+  'home-price': ['home-price', 'loan-amount', 'home-value'],
+  'down-payment': ['down-payment'],
+  'interest-rate': ['interest-rate', 'heloc-rate'],
+  'term': ['term'],
+  'tax-rate': ['tax-rate'],
+  'home-insurance': ['home-insurance'],
+  'state-selector': ['state-selector']
+};
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -133,76 +61,183 @@ export const POST: APIRoute = async ({ request }) => {
     const query = data.query || '';
     const text = query.toLowerCase();
 
-    // 1. Navigation Actions
-    if (text.includes('go to') || text.includes('open') || text.includes('navigate') || text.includes('take me to')) {
-      if (text.includes('refinance')) {
-        return new Response(JSON.stringify({ response: "Navigating you to the Refinance Calculator...", action: { type: 'navigate', payload: '/refinance-calculator' } }));
+    // 1. RLHF Learning Interceptor
+    // e.g. "learn that hp means home price" or "hp is home price"
+    const learnMatch = query.match(/(.+?)\s+(?:means|is)\s+(.+)/i);
+    if (learnMatch && (text.includes('learn') || (text.includes('means') && text.split(' ').length < 8) || data.learningMode)) {
+      let alias = learnMatch[1].replace(/learn that /i, '').replace(/['"]/g, '').trim().toLowerCase();
+      // If learning mode from client clarification, alias is just the target
+      if (data.learningMode && data.alias) alias = data.alias.toLowerCase();
+      
+      let target = learnMatch[2].replace(/['"\.]/g, '').trim().toLowerCase();
+      
+      let closestField = target;
+      let bestDist = 999;
+      for (const field of Object.keys(FIELD_MAP)) {
+        const d = levenshtein(target.replace(/\s+/g, '-'), field);
+        if (d < bestDist) { bestDist = d; closestField = field; }
       }
-      if (text.includes('extra payment') || text.includes('payoff')) {
-        return new Response(JSON.stringify({ response: "Navigating you to the Extra Payment Calculator...", action: { type: 'navigate', payload: '/extra-payment-calculator' } }));
+      for (const [k, v] of rlhfMap.entries()) {
+        const d = levenshtein(target.replace(/\s+/g, '-'), v);
+        if (d < bestDist) { bestDist = d; closestField = v; }
       }
-      if (text.includes('afford')) {
-        return new Response(JSON.stringify({ response: "Navigating you to the Affordability Calculator...", action: { type: 'navigate', payload: '/how-much-can-i-afford' } }));
-      }
-      if (text.includes('amortization')) {
-        return new Response(JSON.stringify({ response: "Navigating you to the Amortization Schedule...", action: { type: 'navigate', payload: '/amortization-schedule' } }));
-      }
-      if (text.includes('heloc') || text.includes('equity')) {
-        return new Response(JSON.stringify({ response: "Navigating you to the HELOC Calculator...", action: { type: 'navigate', payload: '/heloc-calculator' } }));
-      }
-      if (text.includes('home') || text.includes('main')) {
-        return new Response(JSON.stringify({ response: "Navigating you to the Main Calculator...", action: { type: 'navigate', payload: '/' } }));
+
+      // Safeguard threshold (max 5 edits)
+      if (bestDist <= 5) {
+        rlhfMap.set(alias, closestField);
+        return new Response(JSON.stringify({ response: `Got it! I've learned that "${alias}" means "${closestField.replace('-', ' ')}". I will remember this for next time.` }));
+      } else {
+        return new Response(JSON.stringify({ response: `I tried to learn that, but "${target}" doesn't match any fields I know about (like home price, down payment, etc).` }));
       }
     }
 
-    // 2. Auto-fill Actions
-    if (text.includes('set') || text.includes('change') || text.includes('make')) {
-      const numMatch = query.match(/(\d+(?:,\d+)*(?:\.\d+)?)\s*(k|m|%)?/gi);
-      if (numMatch) {
-        let fills: any[] = [];
-        let rtext = "I've updated the calculator for you: ";
-        numMatch.forEach((val: string) => {
-          let num = parseFloat(val.replace(/,/g, ''));
-          if (val.toLowerCase().includes('k')) num *= 1000;
-          if (val.toLowerCase().includes('m')) num *= 1000000;
-          
-          if (text.includes('price') || text.includes('home') || text.includes('loan')) {
-            fills.push({ id: ['home-price', 'loan-amount', 'home-value'], value: num.toString() });
-            rtext += `Home/Loan to $${num.toLocaleString()}. `;
-          } else if ((text.includes('down') || text.includes('payment')) && (val.includes('%') || num < 100)) {
-            fills.push({ id: ['down-payment'], value: num.toString() });
-            rtext += `Down Payment to ${num}%. `;
-          } else if (text.includes('rate') || text.includes('interest')) {
-            fills.push({ id: ['interest-rate', 'heloc-rate'], value: num.toString() });
-            rtext += `Interest Rate to ${num}%. `;
-          }
-        });
+    // 2. Navigation Actions
+    if (text.includes('go to') || text.includes('navigate') || text.includes('take me to')) {
+      if (text.includes('refinance')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/refinance-calculator' } }));
+      if (text.includes('extra') || text.includes('payoff')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/extra-payment-calculator' } }));
+      if (text.includes('afford')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/how-much-can-i-afford' } }));
+      if (text.includes('amortization')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/amortization-schedule' } }));
+      if (text.includes('heloc')) return new Response(JSON.stringify({ response: "Navigating...", action: { type: 'navigate', payload: '/heloc-calculator' } }));
+      return new Response(JSON.stringify({ response: "Navigating to Main Calculator...", action: { type: 'navigate', payload: '/' } }));
+    }
 
-        if (fills.length > 0) {
-          return new Response(JSON.stringify({ response: rtext, action: { type: 'fill', payload: fills } }));
+    // 3. Smart Parser with Contextual Numbers
+    let fills: any[] = [];
+    let rtext = "I've updated the calculator: ";
+    let unknownWords: string[] = [];
+
+    // Parse states first
+    let stateFound = false;
+    for (const state of statesData) {
+      if (text.includes(state.name.toLowerCase()) || text.match(new RegExp(`\\b${state.abbr.toLowerCase()}\\b`, 'i'))) {
+        if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update')) {
+          fills.push({ id: ['state-selector'], value: state.abbr });
+          rtext += `State to ${state.name}. `;
+          stateFound = true;
+          break; // only do one state
         }
       }
     }
 
-    // 3. State Data Interceptor
+    // Parse numeric fields
+    if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update')) {
+      // Find numbers and their preceding/succeeding 2 words
+      const words = query.split(/\s+/);
+      
+      for (let i = 0; i < words.length; i++) {
+        let w = words[i].toLowerCase();
+        const numMatch = w.match(/^(\$?\d+(?:,\d+)*(?:\.\d+)?)(k|m|%|yr|years?)?$/i);
+        
+        if (numMatch) {
+          let numStr = numMatch[1].replace(/[$,]/g, '');
+          let num = parseFloat(numStr);
+          let modifier = numMatch[2]?.toLowerCase();
+          
+          if (modifier === 'k') num *= 1000;
+          if (modifier === 'm') num *= 1000000;
+          
+          // Contextual analysis: look at -3 to +3 words around the number
+          let contextWords = words.slice(Math.max(0, i - 3), Math.min(words.length, i + 4));
+          contextWords = contextWords.filter(cw => cw.toLowerCase() !== w && cw.length > 1);
+          
+          let matchedField = null;
+          let bestDist = 999;
+
+          // Explicit overrides
+          if (modifier === 'yr' || modifier === 'year' || modifier === 'years') {
+            matchedField = 'term';
+            bestDist = 0;
+          }
+
+          if (!matchedField) {
+            for (const cw of contextWords) {
+              let clean = cw.toLowerCase().replace(/[^\w]/g, '');
+              if (!clean) continue;
+
+              // Check RLHF Map first (exact matches on abbreviations)
+              if (rlhfMap.has(clean)) {
+                matchedField = rlhfMap.get(clean);
+                bestDist = 0;
+                break;
+              }
+
+              // Check Fuzzy Fields
+              for (const field of Object.keys(FIELD_MAP)) {
+                let d = levenshtein(clean, field);
+                let d2 = levenshtein(clean, field.replace('-', '')); // check without dash
+                let minD = Math.min(d, d2);
+                
+                // Allow fuzzy match if within 3 edits
+                if (minD < bestDist && minD <= 3) {
+                  bestDist = minD;
+                  matchedField = field;
+                }
+              }
+            }
+          }
+
+          // If STILL no match, try bigrams (e.g. "home price", "down payment")
+          if (!matchedField) {
+            for (let j = 0; j < contextWords.length - 1; j++) {
+              let bigram = contextWords[j].toLowerCase().replace(/[^\w]/g, '') + '-' + contextWords[j+1].toLowerCase().replace(/[^\w]/g, '');
+              
+              if (rlhfMap.has(bigram)) {
+                matchedField = rlhfMap.get(bigram);
+                break;
+              }
+              for (const field of Object.keys(FIELD_MAP)) {
+                let d = levenshtein(bigram, field);
+                if (d <= 3) { matchedField = field; break; }
+              }
+            }
+          }
+
+          // Fallbacks based on value
+          if (!matchedField) {
+            if (modifier === '%') {
+              matchedField = num > 10 ? 'down-payment' : 'interest-rate';
+            } else if (num > 10000) {
+              matchedField = 'home-price';
+            } else if (num >= 10 && num <= 40) {
+              matchedField = 'term';
+            }
+          }
+
+          if (matchedField) {
+            fills.push({ id: FIELD_MAP[matchedField], value: num.toString() });
+            rtext += `${matchedField.replace('-', ' ')} to ${modifier === '%' ? num + '%' : num}. `;
+          } else {
+             // We found a number but literally have no idea what it is.
+             unknownWords.push(contextWords.join(" "));
+          }
+        }
+      }
+
+      if (fills.length > 0) {
+        return new Response(JSON.stringify({ response: rtext, action: { type: 'fill', payload: fills } }));
+      }
+      
+      if (unknownWords.length > 0) {
+        return new Response(JSON.stringify({ 
+          response: `I see you want to update something, but I don't recognize the terms you used around the numbers. What do you mean by it? (e.g. "it means down payment")`,
+          action: null
+        }));
+      }
+    }
+
+    // 4. Data Interceptor
     for (const state of statesData) {
       if (text.includes(state.name.toLowerCase())) {
-        if (text.includes('tax') || text.includes('property') || text.includes('rate')) {
-          return new Response(JSON.stringify({ response: `The average property tax rate in **${state.name}** is **${state.taxRate}%**.` }));
+        if (text.includes('tax')) return new Response(JSON.stringify({ response: `The average property tax rate in **${state.name}** is **${state.taxRate}%**.` }));
+        if (text.includes('insurance')) return new Response(JSON.stringify({ response: `The average annual home insurance cost in **${state.name}** is around **$${state.insurance.toLocaleString()}**.` }));
+        if (text.includes('price')) return new Response(JSON.stringify({ response: `The median home price in **${state.name}** is **$${state.medianPrice.toLocaleString()}**.` }));
+        if (!stateFound) {
+           return new Response(JSON.stringify({ response: `**${state.name}** has a median home price of **$${state.medianPrice.toLocaleString()}**, an average property tax rate of **${state.taxRate}%**, and annual home insurance around **$${state.insurance.toLocaleString()}**.` }));
         }
-        if (text.includes('insurance')) {
-          return new Response(JSON.stringify({ response: `The average annual home insurance cost in **${state.name}** is around **$${state.insurance.toLocaleString()}**.` }));
-        }
-        if (text.includes('price') || text.includes('cost') || text.includes('home')) {
-          return new Response(JSON.stringify({ response: `The median home price in **${state.name}** is **$${state.medianPrice.toLocaleString()}**.` }));
-        }
-        return new Response(JSON.stringify({ response: `**${state.name}** has a median home price of **$${state.medianPrice.toLocaleString()}**, an average property tax rate of **${state.taxRate}%**, and annual home insurance around **$${state.insurance.toLocaleString()}**. We have a [${state.name} Mortgage Calculator](/states/${state.slug}) you can use!` }));
       }
     }
 
-    // 4. Fallback to Knowledge Base
-    const response = findBestMatch(query);
-    return new Response(JSON.stringify({ response }));
+    return new Response(JSON.stringify({ response: "I'm a Virtual Assistant. Ask me to 'Set the home price to 400k' or 'What is the property tax in Colorado?'" }));
     
   } catch (error) {
     return new Response(JSON.stringify({ response: "Sorry, I ran into an error processing that request." }), { status: 500 });

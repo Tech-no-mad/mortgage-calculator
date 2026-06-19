@@ -267,11 +267,16 @@
           let foundElements = 0;
           data.action.payload.forEach((fill: any) => {
             for (const id of fill.id) {
-              const el = document.getElementById(id);
-              if (el) {
-                (el as HTMLInputElement).value = fill.value;
-                updated = true;
-                foundElements++;
+              if (id === 'term') {
+                const btn = document.querySelector(`.term-btn[data-term="${fill.value}"]`) as HTMLElement;
+                if (btn) { btn.click(); updated = true; foundElements++; }
+              } else {
+                const el = document.getElementById(id);
+                if (el) {
+                  (el as HTMLInputElement).value = fill.value;
+                  updated = true;
+                  foundElements++;
+                }
               }
             }
           });
