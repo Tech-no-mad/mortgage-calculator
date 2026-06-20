@@ -8,7 +8,23 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1450,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Alabama.svg/1920px-Flag_of_Alabama.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Alabama.svg/1920px-Flag_of_Alabama.svg.png",
+    "keywords": [
+      "AL",
+      "Birmingham",
+      "Montgomery",
+      "Mobile",
+      "Huntsville",
+      "Tuscaloosa",
+      "Southern US",
+      "Gulf Coast",
+      "Alabama mortgage calculator",
+      "AL mortgage calculator",
+      "mortgage rates in Alabama",
+      "Alabama housing market",
+      "home loan calculator",
+      "buying a house in Alabama"
+    ]
   },
   {
     "slug": "alaska",
@@ -19,7 +35,21 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Alaska.svg/1920px-Flag_of_Alaska.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Wonder_Lake_and_Denali.jpg/1920px-Wonder_Lake_and_Denali.jpg",
+    "keywords": [
+      "AK",
+      "Anchorage",
+      "Fairbanks",
+      "Juneau",
+      "Last Frontier",
+      "Arctic",
+      "Alaska mortgage calculator",
+      "AK mortgage calculator",
+      "mortgage rates in Alaska",
+      "Alaska housing market",
+      "home loan calculator",
+      "buying a house in Alaska"
+    ]
   },
   {
     "slug": "arizona",
@@ -30,7 +60,22 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1750,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Flag_of_Arizona.svg/1920px-Flag_of_Arizona.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Canyon_River_Tree_%28165872763%29.jpeg/1920px-Canyon_River_Tree_%28165872763%29.jpeg",
+    "keywords": [
+      "AZ",
+      "Phoenix",
+      "Tucson",
+      "Mesa",
+      "Scottsdale",
+      "Desert",
+      "Southwest",
+      "Arizona mortgage calculator",
+      "AZ mortgage calculator",
+      "mortgage rates in Arizona",
+      "Arizona housing market",
+      "home loan calculator",
+      "buying a house in Arizona"
+    ]
   },
   {
     "slug": "arkansas",
@@ -41,7 +86,20 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1900,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Flag_of_Arkansas.svg/1920px-Flag_of_Arkansas.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Steamy_Entrance_Springs_on_Cold_Night_in_Hot_Springs_National_Park.jpg/1920px-Steamy_Entrance_Springs_on_Cold_Night_in_Hot_Springs_National_Park.jpg",
+    "keywords": [
+      "AR",
+      "Little Rock",
+      "Fayetteville",
+      "Fort Smith",
+      "Ozarks",
+      "Arkansas mortgage calculator",
+      "AR mortgage calculator",
+      "mortgage rates in Arkansas",
+      "Arkansas housing market",
+      "home loan calculator",
+      "buying a house in Arkansas"
+    ]
   },
   {
     "slug": "california",
@@ -52,7 +110,25 @@
     "avgRate30": 6.48,
     "avgRate15": 5.8,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_California.svg/1920px-Flag_of_California.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg/1920px-Golden_Gate_Bridge_as_seen_from_Battery_East.jpg",
+    "keywords": [
+      "CA",
+      "Los Angeles",
+      "LA",
+      "San Francisco",
+      "SF",
+      "San Diego",
+      "Bay Area",
+      "SoCal",
+      "NorCal",
+      "Silicon Valley",
+      "California mortgage calculator",
+      "CA mortgage calculator",
+      "mortgage rates in California",
+      "California housing market",
+      "home loan calculator",
+      "buying a house in California"
+    ]
   },
   {
     "slug": "colorado",
@@ -63,7 +139,21 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 2200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Flag_of_Colorado.svg/1920px-Flag_of_Colorado.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Rocky_Mountain_National_Park_in_September_2011_-_Glacier_Gorge_from_Bear_Lake.JPG/1920px-Rocky_Mountain_National_Park_in_September_2011_-_Glacier_Gorge_from_Bear_Lake.JPG",
+    "keywords": [
+      "CO",
+      "Denver",
+      "Colorado Springs",
+      "Aurora",
+      "Boulder",
+      "Rockies",
+      "Colorado mortgage calculator",
+      "CO mortgage calculator",
+      "mortgage rates in Colorado",
+      "Colorado housing market",
+      "home loan calculator",
+      "buying a house in Colorado"
+    ]
   },
   {
     "slug": "connecticut",
@@ -74,7 +164,21 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1800,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Flag_of_Connecticut.svg/1920px-Flag_of_Connecticut.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Yale_University_Shield_1.svg/1920px-Yale_University_Shield_1.svg.png",
+    "keywords": [
+      "CT",
+      "Bridgeport",
+      "New Haven",
+      "Stamford",
+      "Hartford",
+      "New England",
+      "Connecticut mortgage calculator",
+      "CT mortgage calculator",
+      "mortgage rates in Connecticut",
+      "Connecticut housing market",
+      "home loan calculator",
+      "buying a house in Connecticut"
+    ]
   },
   {
     "slug": "delaware",
@@ -85,7 +189,20 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Delaware.svg/1920px-Flag_of_Delaware.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rehoboth_Beach_boardwalk_looking_north_toward_Rehoboth_Avenue.jpg/1920px-Rehoboth_Beach_boardwalk_looking_north_toward_Rehoboth_Avenue.jpg",
+    "keywords": [
+      "DE",
+      "Wilmington",
+      "Dover",
+      "Newark",
+      "East Coast",
+      "Delaware mortgage calculator",
+      "DE mortgage calculator",
+      "mortgage rates in Delaware",
+      "Delaware housing market",
+      "home loan calculator",
+      "buying a house in Delaware"
+    ]
   },
   {
     "slug": "florida",
@@ -96,7 +213,22 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 3200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Florida.svg/1920px-Flag_of_Florida.svg.png"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Sunset_over_the_River_of_Grass%2C_NPSphoto%2C_G.Gardner_%289255157507%29.jpg/1920px-Sunset_over_the_River_of_Grass%2C_NPSphoto%2C_G.Gardner_%289255157507%29.jpg",
+    "keywords": [
+      "FL",
+      "Miami",
+      "Orlando",
+      "Tampa",
+      "Jacksonville",
+      "Sunshine State",
+      "South Florida",
+      "Florida mortgage calculator",
+      "FL mortgage calculator",
+      "mortgage rates in Florida",
+      "Florida housing market",
+      "home loan calculator",
+      "buying a house in Florida"
+    ]
   },
   {
     "slug": "georgia",
@@ -107,7 +239,21 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1650,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "GA",
+      "Atlanta",
+      "Augusta",
+      "Savannah",
+      "Athens",
+      "Deep South",
+      "Georgia mortgage calculator",
+      "GA mortgage calculator",
+      "mortgage rates in Georgia",
+      "Georgia housing market",
+      "home loan calculator",
+      "buying a house in Georgia"
+    ]
   },
   {
     "slug": "hawaii",
@@ -118,7 +264,22 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Flag_of_Hawaii.svg/1920px-Flag_of_Hawaii.svg.png",
+    "keywords": [
+      "HI",
+      "Honolulu",
+      "Maui",
+      "Oahu",
+      "Kauai",
+      "Aloha State",
+      "Pacific",
+      "Hawaii mortgage calculator",
+      "HI mortgage calculator",
+      "mortgage rates in Hawaii",
+      "Hawaii housing market",
+      "home loan calculator",
+      "buying a house in Hawaii"
+    ]
   },
   {
     "slug": "idaho",
@@ -129,7 +290,21 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_Idaho.svg/1920px-Flag_of_Idaho.svg.png",
+    "keywords": [
+      "ID",
+      "Boise",
+      "Meridian",
+      "Nampa",
+      "Pacific Northwest",
+      "PNW",
+      "Idaho mortgage calculator",
+      "ID mortgage calculator",
+      "mortgage rates in Idaho",
+      "Idaho housing market",
+      "home loan calculator",
+      "buying a house in Idaho"
+    ]
   },
   {
     "slug": "illinois",
@@ -140,7 +315,22 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1500,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Sears_Tower%2C_Wacker_Drive_and_Jackson_Boulevard%2C_Chicago%2C_IL_-_54189600901.jpg/1920px-Sears_Tower%2C_Wacker_Drive_and_Jackson_Boulevard%2C_Chicago%2C_IL_-_54189600901.jpg",
+    "keywords": [
+      "IL",
+      "Chicago",
+      "Aurora",
+      "Naperville",
+      "Joliet",
+      "Midwest",
+      "Chicagoland",
+      "Illinois mortgage calculator",
+      "IL mortgage calculator",
+      "mortgage rates in Illinois",
+      "Illinois housing market",
+      "home loan calculator",
+      "buying a house in Illinois"
+    ]
   },
   {
     "slug": "indiana",
@@ -151,7 +341,20 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1350,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Indianapolis-motor-speedway-1848561.jpg/1920px-Indianapolis-motor-speedway-1848561.jpg",
+    "keywords": [
+      "IN",
+      "Indianapolis",
+      "Fort Wayne",
+      "Evansville",
+      "Hoosier State",
+      "Indiana mortgage calculator",
+      "IN mortgage calculator",
+      "mortgage rates in Indiana",
+      "Indiana housing market",
+      "home loan calculator",
+      "buying a house in Indiana"
+    ]
   },
   {
     "slug": "iowa",
@@ -162,7 +365,20 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1250,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/1/12/Capitol_building%2C_Des_Moines%2C_Iowa.jpg",
+    "keywords": [
+      "IA",
+      "Des Moines",
+      "Cedar Rapids",
+      "Davenport",
+      "Midwest",
+      "Iowa mortgage calculator",
+      "IA mortgage calculator",
+      "mortgage rates in Iowa",
+      "Iowa housing market",
+      "home loan calculator",
+      "buying a house in Iowa"
+    ]
   },
   {
     "slug": "kansas",
@@ -173,7 +389,21 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 2100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Monument_Rocks.jpg/1920px-Monument_Rocks.jpg",
+    "keywords": [
+      "KS",
+      "Wichita",
+      "Overland Park",
+      "Kansas City",
+      "Midwest",
+      "Great Plains",
+      "Kansas mortgage calculator",
+      "KS mortgage calculator",
+      "mortgage rates in Kansas",
+      "Kansas housing market",
+      "home loan calculator",
+      "buying a house in Kansas"
+    ]
   },
   {
     "slug": "kentucky",
@@ -184,7 +414,20 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1600,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/7/70/Mammoth_Cave_Rotunda_%28USGS_Lwt02830%29.jpg",
+    "keywords": [
+      "KY",
+      "Louisville",
+      "Lexington",
+      "Bowling Green",
+      "Bluegrass State",
+      "Kentucky mortgage calculator",
+      "KY mortgage calculator",
+      "mortgage rates in Kentucky",
+      "Kentucky housing market",
+      "home loan calculator",
+      "buying a house in Kentucky"
+    ]
   },
   {
     "slug": "louisiana",
@@ -195,7 +438,21 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 2800,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/8/8f/French_Quarter%2C_looking_north_with_Mississippi_River_to_the_right_2011.jpg",
+    "keywords": [
+      "LA",
+      "New Orleans",
+      "Baton Rouge",
+      "Shreveport",
+      "NOLA",
+      "Gulf Coast",
+      "Louisiana mortgage calculator",
+      "LA mortgage calculator",
+      "mortgage rates in Louisiana",
+      "Louisiana housing market",
+      "home loan calculator",
+      "buying a house in Louisiana"
+    ]
   },
   {
     "slug": "maine",
@@ -206,7 +463,20 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Acadia_National_Park_02.JPG/1920px-Acadia_National_Park_02.JPG",
+    "keywords": [
+      "ME",
+      "Portland",
+      "Lewiston",
+      "Bangor",
+      "New England",
+      "Maine mortgage calculator",
+      "ME mortgage calculator",
+      "mortgage rates in Maine",
+      "Maine housing market",
+      "home loan calculator",
+      "buying a house in Maine"
+    ]
   },
   {
     "slug": "maryland",
@@ -217,7 +487,21 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Inner_Harbor_2020.jpg/1920px-Inner_Harbor_2020.jpg",
+    "keywords": [
+      "MD",
+      "Baltimore",
+      "Annapolis",
+      "Frederick",
+      "DMV",
+      "East Coast",
+      "Maryland mortgage calculator",
+      "MD mortgage calculator",
+      "mortgage rates in Maryland",
+      "Maryland housing market",
+      "home loan calculator",
+      "buying a house in Maryland"
+    ]
   },
   {
     "slug": "massachusetts",
@@ -228,7 +512,21 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1600,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/131023-F-PR861-033_Hanscom_participates_in_World_Series_pregame_events.jpg/1920px-131023-F-PR861-033_Hanscom_participates_in_World_Series_pregame_events.jpg",
+    "keywords": [
+      "MA",
+      "Boston",
+      "Worcester",
+      "Springfield",
+      "Cambridge",
+      "New England",
+      "Massachusetts mortgage calculator",
+      "MA mortgage calculator",
+      "mortgage rates in Massachusetts",
+      "Massachusetts housing market",
+      "home loan calculator",
+      "buying a house in Massachusetts"
+    ]
   },
   {
     "slug": "michigan",
@@ -239,7 +537,22 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "MI",
+      "Detroit",
+      "Grand Rapids",
+      "Warren",
+      "Ann Arbor",
+      "Midwest",
+      "Great Lakes",
+      "Michigan mortgage calculator",
+      "MI mortgage calculator",
+      "mortgage rates in Michigan",
+      "Michigan housing market",
+      "home loan calculator",
+      "buying a house in Michigan"
+    ]
   },
   {
     "slug": "minnesota",
@@ -250,7 +563,21 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1650,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "MN",
+      "Minneapolis",
+      "St. Paul",
+      "Twin Cities",
+      "Duluth",
+      "Midwest",
+      "Minnesota mortgage calculator",
+      "MN mortgage calculator",
+      "mortgage rates in Minnesota",
+      "Minnesota housing market",
+      "home loan calculator",
+      "buying a house in Minnesota"
+    ]
   },
   {
     "slug": "mississippi",
@@ -261,7 +588,20 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1800,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "MS",
+      "Jackson",
+      "Gulfport",
+      "Southaven",
+      "Deep South",
+      "Mississippi mortgage calculator",
+      "MS mortgage calculator",
+      "mortgage rates in Mississippi",
+      "Mississippi housing market",
+      "home loan calculator",
+      "buying a house in Mississippi"
+    ]
   },
   {
     "slug": "missouri",
@@ -272,7 +612,21 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1600,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Flag_of_Missouri.svg/1920px-Flag_of_Missouri.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "MO",
+      "Kansas City",
+      "St. Louis",
+      "Springfield",
+      "Midwest",
+      "Show Me State",
+      "Missouri mortgage calculator",
+      "MO mortgage calculator",
+      "mortgage rates in Missouri",
+      "Missouri housing market",
+      "home loan calculator",
+      "buying a house in Missouri"
+    ]
   },
   {
     "slug": "montana",
@@ -283,7 +637,21 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_Montana.svg/1920px-Flag_of_Montana.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "MT",
+      "Billings",
+      "Missoula",
+      "Great Falls",
+      "Bozeman",
+      "Big Sky Country",
+      "Montana mortgage calculator",
+      "MT mortgage calculator",
+      "mortgage rates in Montana",
+      "Montana housing market",
+      "home loan calculator",
+      "buying a house in Montana"
+    ]
   },
   {
     "slug": "nebraska",
@@ -294,7 +662,21 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1800,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Flag_of_Nebraska.svg/1920px-Flag_of_Nebraska.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "NE",
+      "Omaha",
+      "Lincoln",
+      "Bellevue",
+      "Midwest",
+      "Great Plains",
+      "Nebraska mortgage calculator",
+      "NE mortgage calculator",
+      "mortgage rates in Nebraska",
+      "Nebraska housing market",
+      "home loan calculator",
+      "buying a house in Nebraska"
+    ]
   },
   {
     "slug": "nevada",
@@ -305,7 +687,21 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Flag_of_Nevada.svg/1920px-Flag_of_Nevada.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "NV",
+      "Las Vegas",
+      "Henderson",
+      "Reno",
+      "Vegas",
+      "Silver State",
+      "Nevada mortgage calculator",
+      "NV mortgage calculator",
+      "mortgage rates in Nevada",
+      "Nevada housing market",
+      "home loan calculator",
+      "buying a house in Nevada"
+    ]
   },
   {
     "slug": "new-hampshire",
@@ -316,7 +712,20 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Flag_of_New_Hampshire.svg/1920px-Flag_of_New_Hampshire.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "NH",
+      "Manchester",
+      "Nashua",
+      "Concord",
+      "New England",
+      "New Hampshire mortgage calculator",
+      "NH mortgage calculator",
+      "mortgage rates in New Hampshire",
+      "New Hampshire housing market",
+      "home loan calculator",
+      "buying a house in New Hampshire"
+    ]
   },
   {
     "slug": "new-jersey",
@@ -327,7 +736,21 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Flag_of_New_Jersey.svg/1920px-Flag_of_New_Jersey.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "NJ",
+      "Newark",
+      "Jersey City",
+      "Paterson",
+      "NJ",
+      "East Coast",
+      "New Jersey mortgage calculator",
+      "NJ mortgage calculator",
+      "mortgage rates in New Jersey",
+      "New Jersey housing market",
+      "home loan calculator",
+      "buying a house in New Jersey"
+    ]
   },
   {
     "slug": "new-mexico",
@@ -338,7 +761,21 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1350,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_New_Mexico.svg/1920px-Flag_of_New_Mexico.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "NM",
+      "Albuquerque",
+      "Las Cruces",
+      "Rio Rancho",
+      "Santa Fe",
+      "Southwest",
+      "New Mexico mortgage calculator",
+      "NM mortgage calculator",
+      "mortgage rates in New Mexico",
+      "New Mexico housing market",
+      "home loan calculator",
+      "buying a house in New Mexico"
+    ]
   },
   {
     "slug": "new-york",
@@ -349,7 +786,24 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_New_York.svg/1920px-Flag_of_New_York.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "NY",
+      "New York City",
+      "NYC",
+      "Buffalo",
+      "Rochester",
+      "Yonkers",
+      "Syracuse",
+      "Albany",
+      "Upstate",
+      "New York mortgage calculator",
+      "NY mortgage calculator",
+      "mortgage rates in New York",
+      "New York housing market",
+      "home loan calculator",
+      "buying a house in New York"
+    ]
   },
   {
     "slug": "north-carolina",
@@ -360,7 +814,21 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Flag_of_North_Carolina.svg/1920px-Flag_of_North_Carolina.svg.png"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "NC",
+      "Charlotte",
+      "Raleigh",
+      "Greensboro",
+      "Durham",
+      "Research Triangle",
+      "North Carolina mortgage calculator",
+      "NC mortgage calculator",
+      "mortgage rates in North Carolina",
+      "North Carolina housing market",
+      "home loan calculator",
+      "buying a house in North Carolina"
+    ]
   },
   {
     "slug": "north-dakota",
@@ -371,7 +839,20 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "ND",
+      "Fargo",
+      "Bismarck",
+      "Grand Forks",
+      "Midwest",
+      "North Dakota mortgage calculator",
+      "ND mortgage calculator",
+      "mortgage rates in North Dakota",
+      "North Dakota housing market",
+      "home loan calculator",
+      "buying a house in North Dakota"
+    ]
   },
   {
     "slug": "ohio",
@@ -382,7 +863,22 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "OH",
+      "Columbus",
+      "Cleveland",
+      "Cincinnati",
+      "Toledo",
+      "Midwest",
+      "Buckeye State",
+      "Ohio mortgage calculator",
+      "OH mortgage calculator",
+      "mortgage rates in Ohio",
+      "Ohio housing market",
+      "home loan calculator",
+      "buying a house in Ohio"
+    ]
   },
   {
     "slug": "oklahoma",
@@ -393,7 +889,21 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 2400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "OK",
+      "Oklahoma City",
+      "OKC",
+      "Tulsa",
+      "Norman",
+      "Southwest",
+      "Oklahoma mortgage calculator",
+      "OK mortgage calculator",
+      "mortgage rates in Oklahoma",
+      "Oklahoma housing market",
+      "home loan calculator",
+      "buying a house in Oklahoma"
+    ]
   },
   {
     "slug": "oregon",
@@ -404,7 +914,21 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "OR",
+      "Portland",
+      "Salem",
+      "Eugene",
+      "PNW",
+      "Pacific Northwest",
+      "Oregon mortgage calculator",
+      "OR mortgage calculator",
+      "mortgage rates in Oregon",
+      "Oregon housing market",
+      "home loan calculator",
+      "buying a house in Oregon"
+    ]
   },
   {
     "slug": "pennsylvania",
@@ -415,7 +939,21 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "PA",
+      "Philadelphia",
+      "Philly",
+      "Pittsburgh",
+      "Allentown",
+      "Keystone State",
+      "Pennsylvania mortgage calculator",
+      "PA mortgage calculator",
+      "mortgage rates in Pennsylvania",
+      "Pennsylvania housing market",
+      "home loan calculator",
+      "buying a house in Pennsylvania"
+    ]
   },
   {
     "slug": "rhode-island",
@@ -426,7 +964,20 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1800,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "RI",
+      "Providence",
+      "Warwick",
+      "Cranston",
+      "New England",
+      "Rhode Island mortgage calculator",
+      "RI mortgage calculator",
+      "mortgage rates in Rhode Island",
+      "Rhode Island housing market",
+      "home loan calculator",
+      "buying a house in Rhode Island"
+    ]
   },
   {
     "slug": "south-carolina",
@@ -437,7 +988,20 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1600,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "SC",
+      "Charleston",
+      "Columbia",
+      "North Charleston",
+      "Lowcountry",
+      "South Carolina mortgage calculator",
+      "SC mortgage calculator",
+      "mortgage rates in South Carolina",
+      "South Carolina housing market",
+      "home loan calculator",
+      "buying a house in South Carolina"
+    ]
   },
   {
     "slug": "south-dakota",
@@ -448,7 +1012,20 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1500,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "SD",
+      "Sioux Falls",
+      "Rapid City",
+      "Aberdeen",
+      "Midwest",
+      "South Dakota mortgage calculator",
+      "SD mortgage calculator",
+      "mortgage rates in South Dakota",
+      "South Dakota housing market",
+      "home loan calculator",
+      "buying a house in South Dakota"
+    ]
   },
   {
     "slug": "tennessee",
@@ -459,7 +1036,21 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1700,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "TN",
+      "Nashville",
+      "Memphis",
+      "Knoxville",
+      "Chattanooga",
+      "Volunteer State",
+      "Tennessee mortgage calculator",
+      "TN mortgage calculator",
+      "mortgage rates in Tennessee",
+      "Tennessee housing market",
+      "home loan calculator",
+      "buying a house in Tennessee"
+    ]
   },
   {
     "slug": "texas",
@@ -470,7 +1061,23 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 2400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "TX",
+      "Houston",
+      "San Antonio",
+      "Dallas",
+      "Austin",
+      "Fort Worth",
+      "DFW",
+      "Lone Star State",
+      "Texas mortgage calculator",
+      "TX mortgage calculator",
+      "mortgage rates in Texas",
+      "Texas housing market",
+      "home loan calculator",
+      "buying a house in Texas"
+    ]
   },
   {
     "slug": "utah",
@@ -481,7 +1088,21 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1000,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "UT",
+      "Salt Lake City",
+      "SLC",
+      "West Valley City",
+      "Provo",
+      "West",
+      "Utah mortgage calculator",
+      "UT mortgage calculator",
+      "mortgage rates in Utah",
+      "Utah housing market",
+      "home loan calculator",
+      "buying a house in Utah"
+    ]
   },
   {
     "slug": "vermont",
@@ -492,7 +1113,20 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1000,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "VT",
+      "Burlington",
+      "South Burlington",
+      "Rutland",
+      "New England",
+      "Vermont mortgage calculator",
+      "VT mortgage calculator",
+      "mortgage rates in Vermont",
+      "Vermont housing market",
+      "home loan calculator",
+      "buying a house in Vermont"
+    ]
   },
   {
     "slug": "virginia",
@@ -503,7 +1137,22 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1300,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "VA",
+      "Virginia Beach",
+      "Norfolk",
+      "Chesapeake",
+      "Richmond",
+      "DMV",
+      "East Coast",
+      "Virginia mortgage calculator",
+      "VA mortgage calculator",
+      "mortgage rates in Virginia",
+      "Virginia housing market",
+      "home loan calculator",
+      "buying a house in Virginia"
+    ]
   },
   {
     "slug": "washington",
@@ -514,7 +1163,22 @@
     "avgRate30": 6.48,
     "avgRate15": 5.8,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "keywords": [
+      "WA",
+      "Seattle",
+      "Spokane",
+      "Tacoma",
+      "Vancouver",
+      "PNW",
+      "Pacific Northwest",
+      "Washington mortgage calculator",
+      "WA mortgage calculator",
+      "mortgage rates in Washington",
+      "Washington housing market",
+      "home loan calculator",
+      "buying a house in Washington"
+    ]
   },
   {
     "slug": "west-virginia",
@@ -525,7 +1189,20 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/New_River_Gorge_Bridge.jpg/1920px-New_River_Gorge_Bridge.jpg",
+    "keywords": [
+      "WV",
+      "Charleston",
+      "Huntington",
+      "Morgantown",
+      "Appalachia",
+      "West Virginia mortgage calculator",
+      "WV mortgage calculator",
+      "mortgage rates in West Virginia",
+      "West Virginia housing market",
+      "home loan calculator",
+      "buying a house in West Virginia"
+    ]
   },
   {
     "slug": "wisconsin",
@@ -536,7 +1213,21 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Wisconsin_State_Capitol_Building_6.jpg/1920px-Wisconsin_State_Capitol_Building_6.jpg",
+    "keywords": [
+      "WI",
+      "Milwaukee",
+      "Madison",
+      "Green Bay",
+      "Midwest",
+      "Badger State",
+      "Wisconsin mortgage calculator",
+      "WI mortgage calculator",
+      "mortgage rates in Wisconsin",
+      "Wisconsin housing market",
+      "home loan calculator",
+      "buying a house in Wisconsin"
+    ]
   },
   {
     "slug": "wyoming",
@@ -547,6 +1238,20 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80"
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/7/73/Grand_Canyon_of_yellowstone.jpg",
+    "keywords": [
+      "WY",
+      "Cheyenne",
+      "Casper",
+      "Laramie",
+      "West",
+      "Cowboy State",
+      "Wyoming mortgage calculator",
+      "WY mortgage calculator",
+      "mortgage rates in Wyoming",
+      "Wyoming housing market",
+      "home loan calculator",
+      "buying a house in Wyoming"
+    ]
   }
 ]
