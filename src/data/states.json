@@ -8,7 +8,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1450,
-    "heroImage": "/images/states/alabama.jpg",
+    "heroImage": "/images/states/alabama.webp",
     "keywords": [
       "AL",
       "Birmingham",
@@ -35,7 +35,7 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1200,
-    "heroImage": "/images/states/alaska.jpg",
+    "heroImage": "/images/states/alaska.webp",
     "keywords": [
       "AK",
       "Anchorage",
@@ -60,7 +60,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1750,
-    "heroImage": "/images/states/arizona.jpg",
+    "heroImage": "/images/states/arizona.webp",
     "keywords": [
       "AZ",
       "Phoenix",
@@ -86,7 +86,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1900,
-    "heroImage": "/images/states/arkansas.jpg",
+    "heroImage": "/images/states/arkansas.webp",
     "keywords": [
       "AR",
       "Little Rock",
@@ -110,7 +110,7 @@
     "avgRate30": 6.48,
     "avgRate15": 5.8,
     "insurance": 1500,
-    "heroImage": "/images/states/california.jpg",
+    "heroImage": "/images/states/california.webp",
     "keywords": [
       "CA",
       "Los Angeles",
@@ -139,7 +139,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 2200,
-    "heroImage": "/images/states/colorado.jpg",
+    "heroImage": "/images/states/colorado.webp",
     "keywords": [
       "CO",
       "Denver",
@@ -164,7 +164,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1800,
-    "heroImage": "/images/states/connecticut.jpg",
+    "heroImage": "/images/states/connecticut.webp",
     "keywords": [
       "CT",
       "Bridgeport",
@@ -189,7 +189,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "/images/states/delaware.jpg",
+    "heroImage": "/images/states/delaware.webp",
     "keywords": [
       "DE",
       "Wilmington",
@@ -213,7 +213,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 3200,
-    "heroImage": "/images/states/florida.jpg",
+    "heroImage": "/images/states/florida.webp",
     "keywords": [
       "FL",
       "Miami",
@@ -239,7 +239,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1650,
-    "heroImage": "/images/states/georgia.jpg",
+    "heroImage": "/images/states/georgia.webp",
     "keywords": [
       "GA",
       "Atlanta",
@@ -264,7 +264,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1200,
-    "heroImage": "/images/states/hawaii.jpg",
+    "heroImage": "/images/states/hawaii.webp",
     "keywords": [
       "HI",
       "Honolulu",
@@ -290,7 +290,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1100,
-    "heroImage": "/images/states/idaho.jpg",
+    "heroImage": "/images/states/idaho.webp",
     "keywords": [
       "ID",
       "Boise",
@@ -315,7 +315,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1500,
-    "heroImage": "/images/states/illinois.jpg",
+    "heroImage": "/images/states/illinois.webp",
     "keywords": [
       "IL",
       "Chicago",
@@ -341,7 +341,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1350,
-    "heroImage": "/images/states/indiana.jpg",
+    "heroImage": "/images/states/indiana.webp",
     "keywords": [
       "IN",
       "Indianapolis",
@@ -365,7 +365,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1250,
-    "heroImage": "/images/states/iowa.jpg",
+    "heroImage": "/images/states/iowa.webp",
     "keywords": [
       "IA",
       "Des Moines",
@@ -389,7 +389,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 2100,
-    "heroImage": "/images/states/kansas.jpg",
+    "heroImage": "/images/states/kansas.webp",
     "keywords": [
       "KS",
       "Wichita",
@@ -414,7 +414,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1600,
-    "heroImage": "/images/states/kentucky.jpg",
+    "heroImage": "/images/states/kentucky.webp",
     "keywords": [
       "KY",
       "Louisville",
@@ -438,7 +438,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 2800,
-    "heroImage": "/images/states/louisiana.jpg",
+    "heroImage": "/images/states/louisiana.webp",
     "keywords": [
       "LA",
       "New Orleans",
@@ -463,7 +463,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "/images/states/maine.jpg",
+    "heroImage": "/images/states/maine.webp",
     "keywords": [
       "ME",
       "Portland",
@@ -487,7 +487,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1400,
-    "heroImage": "/images/states/maryland.jpg",
+    "heroImage": "/images/states/maryland.webp",
     "keywords": [
       "MD",
       "Baltimore",
@@ -512,7 +512,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1600,
-    "heroImage": "/images/states/massachusetts.jpg",
+    "heroImage": "/images/states/massachusetts.webp",
     "keywords": [
       "MA",
       "Boston",
@@ -537,7 +537,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1400,
-    "heroImage": "/images/states/michigan.jpg",
+    "heroImage": "/images/states/michigan.webp",
     "keywords": [
       "MI",
       "Detroit",
@@ -563,7 +563,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1650,
-    "heroImage": "/images/states/minnesota.jpg",
+    "heroImage": "/images/states/minnesota.webp",
     "keywords": [
       "MN",
       "Minneapolis",
@@ -588,7 +588,7 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1800,
-    "heroImage": "/images/states/mississippi.jpg",
+    "heroImage": "/images/states/mississippi.webp",
     "keywords": [
       "MS",
       "Jackson",
@@ -612,7 +612,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1600,
-    "heroImage": "/images/states/missouri.jpg",
+    "heroImage": "/images/states/missouri.webp",
     "keywords": [
       "MO",
       "Kansas City",
@@ -637,7 +637,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1400,
-    "heroImage": "/images/states/montana.jpg",
+    "heroImage": "/images/states/montana.webp",
     "keywords": [
       "MT",
       "Billings",
@@ -662,7 +662,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1800,
-    "heroImage": "/images/states/nebraska.jpg",
+    "heroImage": "/images/states/nebraska.webp",
     "keywords": [
       "NE",
       "Omaha",
@@ -687,7 +687,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "/images/states/nevada.jpg",
+    "heroImage": "/images/states/nevada.webp",
     "keywords": [
       "NV",
       "Las Vegas",
@@ -712,7 +712,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "/images/states/new-hampshire.jpg",
+    "heroImage": "/images/states/new-hampshire.webp",
     "keywords": [
       "NH",
       "Manchester",
@@ -736,7 +736,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1400,
-    "heroImage": "/images/states/new-jersey.jpg",
+    "heroImage": "/images/states/new-jersey.webp",
     "keywords": [
       "NJ",
       "Newark",
@@ -761,7 +761,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1350,
-    "heroImage": "/images/states/new-mexico.jpg",
+    "heroImage": "/images/states/new-mexico.webp",
     "keywords": [
       "NM",
       "Albuquerque",
@@ -786,7 +786,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1500,
-    "heroImage": "/images/states/new_york.jpg",
+    "heroImage": "/images/states/new_york.webp",
     "keywords": [
       "NY",
       "New York City",
@@ -814,7 +814,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1500,
-    "heroImage": "/images/states/north-carolina.jpg",
+    "heroImage": "/images/states/north-carolina.webp",
     "keywords": [
       "NC",
       "Charlotte",
@@ -839,7 +839,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1400,
-    "heroImage": "/images/states/north_dakota.jpg",
+    "heroImage": "/images/states/north_dakota.webp",
     "keywords": [
       "ND",
       "Fargo",
@@ -863,7 +863,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "/images/states/ohio.jpg",
+    "heroImage": "/images/states/ohio.webp",
     "keywords": [
       "OH",
       "Columbus",
@@ -889,7 +889,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 2400,
-    "heroImage": "/images/states/oklahoma.jpg",
+    "heroImage": "/images/states/oklahoma.webp",
     "keywords": [
       "OK",
       "Oklahoma City",
@@ -914,7 +914,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1100,
-    "heroImage": "/images/states/oregon.jpg",
+    "heroImage": "/images/states/oregon.webp",
     "keywords": [
       "OR",
       "Portland",
@@ -939,7 +939,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "/images/states/pennsylvania.jpg",
+    "heroImage": "/images/states/pennsylvania.webp",
     "keywords": [
       "PA",
       "Philadelphia",
@@ -964,7 +964,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1800,
-    "heroImage": "/images/states/rhode_island.jpg",
+    "heroImage": "/images/states/rhode_island.webp",
     "keywords": [
       "RI",
       "Providence",
@@ -988,7 +988,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1600,
-    "heroImage": "/images/states/south_carolina.jpg",
+    "heroImage": "/images/states/south_carolina.webp",
     "keywords": [
       "SC",
       "Charleston",
@@ -1012,7 +1012,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1500,
-    "heroImage": "/images/states/south-dakota.jpg",
+    "heroImage": "/images/states/south-dakota.webp",
     "keywords": [
       "SD",
       "Sioux Falls",
@@ -1036,7 +1036,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1700,
-    "heroImage": "/images/states/tennessee.jpg",
+    "heroImage": "/images/states/tennessee.webp",
     "keywords": [
       "TN",
       "Nashville",
@@ -1061,7 +1061,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 2400,
-    "heroImage": "/images/states/texas.jpg",
+    "heroImage": "/images/states/texas.webp",
     "keywords": [
       "TX",
       "Houston",
@@ -1088,7 +1088,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1000,
-    "heroImage": "/images/states/utah.jpg",
+    "heroImage": "/images/states/utah.webp",
     "keywords": [
       "UT",
       "Salt Lake City",
@@ -1113,7 +1113,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1000,
-    "heroImage": "/images/states/vermont.jpg",
+    "heroImage": "/images/states/vermont.webp",
     "keywords": [
       "VT",
       "Burlington",
@@ -1137,7 +1137,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1300,
-    "heroImage": "/images/states/virginia.jpg",
+    "heroImage": "/images/states/virginia.webp",
     "keywords": [
       "VA",
       "Virginia Beach",
@@ -1163,7 +1163,7 @@
     "avgRate30": 6.48,
     "avgRate15": 5.8,
     "insurance": 1200,
-    "heroImage": "/images/states/washington.jpg",
+    "heroImage": "/images/states/washington.webp",
     "keywords": [
       "WA",
       "Seattle",
@@ -1189,7 +1189,7 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1200,
-    "heroImage": "/images/states/west-virginia.jpg",
+    "heroImage": "/images/states/west-virginia.webp",
     "keywords": [
       "WV",
       "Charleston",
@@ -1213,7 +1213,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "/images/states/wisconsin.jpg",
+    "heroImage": "/images/states/wisconsin.webp",
     "keywords": [
       "WI",
       "Milwaukee",
@@ -1238,7 +1238,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1100,
-    "heroImage": "/images/states/wyoming.jpg",
+    "heroImage": "/images/states/wyoming.webp",
     "keywords": [
       "WY",
       "Cheyenne",

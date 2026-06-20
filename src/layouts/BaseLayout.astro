@@ -12,7 +12,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Chatbot from '../components/Chatbot.astro';
 
-const defaultKeywords = "mortgage calculator, states mortgage calculator, home loan, home loan calculator, mortgage rates, mortgage broker, mortgage recast, fixed-rate mortgage, mortgage recast calculator, reverse mortgage, assumable mortgage, simple mortgage calculator, mortgage affordability calculator, mortgage estimator, mortgage lender near me, mortgage refinance calculator, home mortgage, mortgage calc, mortgage lenders, family opportunity mortgage, ralo ai mortgage broker funding, rocket mortgage, pennymac, phh mortgage, onity mortgage, rosegate mortgage, shellpoint mortgage, chase mortgage, bank of america mortgage, uwm mortgage, freedom mortgage, champion mortgage, guild mortgage, dhi mortgage, essex mortgage, roundpoint mortgage, united wholesale mortgage, bankrate mortgage, midland mortgage, cmg mortgage, lennar mortgage, dave ramsey mortgage, union home mortgage, interest rate, amortization, PITI, principal, property tax, home insurance, PMI, conventional loan, FHA loan, VA loan, jumbo loan, down payment, closing costs, APR, HELOC";
+const defaultKeywords = "mortgage calculator, states mortgage calculator, home loan, home loan calculator, mortgage rates, mortgage broker, mortgage recast, fixed-rate mortgage, mortgage recast calculator, reverse mortgage, assumable mortgage, simple mortgage calculator, mortgage affordability calculator, mortgage estimator, mortgage lender near me, mortgage refinance calculator, home mortgage, mortgage calc, mortgage lenders, interest rate, amortization, PITI, principal, property tax, home insurance, PMI, conventional loan, FHA loan, VA loan, jumbo loan, down payment, closing costs, APR, HELOC";
 const { title, description, canonicalUrl, ogImage = '/og-default.png', keywords = defaultKeywords } = Astro.props;
 const fullTitle = `${title} | MortgageDash`;
 ---
@@ -41,6 +41,27 @@ const fullTitle = `${title} | MortgageDash`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Google Consent Mode & Dynamic Script Loading -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      const hasConsent = localStorage.getItem('mortgagedash_cookie_consent') === 'granted';
+      
+      gtag('consent', 'default', {
+        'ad_storage': hasConsent ? 'granted' : 'denied',
+        'analytics_storage': hasConsent ? 'granted' : 'denied'
+      });
+      
+      if (hasConsent) {
+        const adsenseScript = document.createElement('script');
+        adsenseScript.async = true;
+        adsenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX";
+        adsenseScript.crossOrigin = "anonymous";
+        document.head.appendChild(adsenseScript);
+      }
+    </script>
 
     <!-- Prevent FOUC: set theme before paint -->
     <script is:inline>
@@ -129,6 +150,21 @@ const fullTitle = `${title} | MortgageDash`;
         document.getElementById('accept-cookies')?.addEventListener('click', () => {
           localStorage.setItem('mortgagedash_cookie_consent', 'granted');
           document.getElementById('cookie-banner')?.classList.add('hidden');
+          
+          if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+              'ad_storage': 'granted',
+              'analytics_storage': 'granted'
+            });
+          }
+          
+          if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
+             const adsenseScript = document.createElement('script');
+             adsenseScript.async = true;
+             adsenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX";
+             adsenseScript.crossOrigin = "anonymous";
+             document.head.appendChild(adsenseScript);
+          }
         });
 
         document.getElementById('decline-cookies')?.addEventListener('click', () => {

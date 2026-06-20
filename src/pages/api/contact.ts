@@ -14,10 +14,10 @@ export const POST: APIRoute = async ({ request }) => {
     // On Cloudflare Pages, we cannot write to a local "leads.csv" file
     // because serverless edge networks do not have a local filesystem.
     // Leads should be forwarded to a database (like Cloudflare D1) or email API.
-    
-    console.log("Lead captured (Cloudflare env):", { firstName, lastName, email });
+    // TODO: Implement Resend/SendGrid or Cloudflare D1 integration here.
+    console.log("Lead captured (Cloudflare env / DEMO MODE - no email sent):", { firstName, lastName, email });
 
-    return new Response(JSON.stringify({ success: true }), { 
+    return new Response(JSON.stringify({ success: true, demo: true }), { 
       status: 200,
       headers: {
         'Content-Type': 'application/json'
