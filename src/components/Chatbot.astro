@@ -136,10 +136,17 @@
     sessionStorage.setItem('chatbotOpen', isOpen.toString());
     if (isOpen) {
       windowEl?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      document.body.classList.add('chatbot-open');
       input?.focus();
     } else {
       windowEl?.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      document.body.classList.remove('chatbot-open');
     }
+  }
+
+  // Set initial state
+  if (isOpen) {
+    document.body.classList.add('chatbot-open');
   }
 
   toggleBtn?.addEventListener('click', () => toggleChat());

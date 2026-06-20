@@ -252,3 +252,10 @@ input[type="range"]::-moz-range-progress {
   nav, footer, .no-print { display: none !important; }
   body { background: #fff !important; color: #000 !important; }
 }
+
+/* ── Chatbot Layout Shift ───────────────────────────────── */
+@media (min-width: 1024px) {
+  body.chatbot-open {
+    padding-right: 420px;
+  }
+}
