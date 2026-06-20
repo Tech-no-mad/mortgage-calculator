@@ -83,10 +83,11 @@ import statesData from '../data/states.json';
           <!-- Loan Term -->
           <div>
             <label class="label block mb-1.5">Loan Term</label>
-            <div class="grid grid-cols-3 gap-2">
+            <div class="grid grid-cols-4 gap-2">
               <button data-term="15" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">15 yr</button>
               <button data-term="20" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">20 yr</button>
               <button data-term="30" class="term-btn active py-2 rounded-lg text-sm font-medium border border-[var(--color-usa-blue)] text-[var(--color-usa-blue)] bg-[var(--color-usa-blue)]/10 transition-all">30 yr</button>
+              <button data-term="50" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">50 yr</button>
             </div>
           </div>
 
@@ -129,24 +130,22 @@ import statesData from '../data/states.json';
           </h2>
 
           <!-- Big number & Donut Chart -->
-          <div class="text-center py-8 rounded-xl relative flex flex-col items-center justify-center" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
-            <div class="relative w-48 h-48 mb-4">
+          <div class="text-center py-6 rounded-xl flex flex-col items-center justify-center" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight mb-2" id="monthly-payment">
+              <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] dark:from-blue-300 dark:to-red-400 bg-clip-text text-transparent" id="monthly-payment-amount">$1,837</span>
+            </div>
+            <p class="label-faint text-sm mb-6">per month</p>
+            <div class="relative w-40 h-40">
               <svg width="100%" height="100%" viewBox="0 0 42 42" class="transform -rotate-90">
                 <!-- Background ring -->
                 <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--bg-surface-3)" stroke-width="4"></circle>
                 
                 <!-- Segments (will be updated via JS) -->
-                <circle id="donut-pi" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--color-usa-blue)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
-                <circle id="donut-tax" cx="21" cy="21" r="15.915" fill="transparent" stroke="#f59e0b" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
-                <circle id="donut-ins" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--color-usa-red)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
-                <circle id="donut-pmi" cx="21" cy="21" r="15.915" fill="transparent" stroke="#f43f5e" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
+                <circle id="donut-pi" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--donut-pi)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="donut-segment"></circle>
+                <circle id="donut-tax" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--donut-tax)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="donut-segment"></circle>
+                <circle id="donut-ins" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--donut-ins)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="donut-segment"></circle>
+                <circle id="donut-pmi" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--donut-pmi)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="donut-segment"></circle>
               </svg>
-              <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <div class="text-2xl sm:text-3xl font-bold font-mono tracking-tight" id="monthly-payment">
-                  <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] dark:from-blue-300 dark:to-red-400 bg-clip-text text-transparent" id="monthly-payment-amount">$1,837</span>
-                </div>
-                <p class="label-faint text-[10px] mt-1 uppercase tracking-widest">per month</p>
-              </div>
             </div>
           </div>
 

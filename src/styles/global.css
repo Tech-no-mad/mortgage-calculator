@@ -41,6 +41,11 @@
   --border-default: #e2e8f0;
   --border-subtle: #f1f5f9;
 
+  --donut-pi: var(--color-usa-blue);
+  --donut-tax: #f59e0b;
+  --donut-ins: var(--color-usa-red);
+  --donut-pmi: #f43f5e;
+
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -101,21 +106,18 @@
 
 /* ── Components ─────────────────────────────────────────── */
 @layer components {
-  /* Glassmorphism card */
+  /* Card UI */
   .card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 1rem;
-    box-shadow: var(--shadow-card), 0 4px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-card);
     transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
 
   .dark .card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
   }
 
   .card:hover {
@@ -158,6 +160,16 @@
     border-radius: 0.5rem;
     padding: 0.75rem;
     text-align: center;
+  }
+
+  /* Donut interactive */
+  .donut-segment {
+    transition: stroke-width 0.2s ease, filter 0.2s ease, stroke-dasharray 0.5s ease-out, stroke-dashoffset 0.5s ease-out;
+    cursor: pointer;
+  }
+  .donut-segment:hover {
+    stroke-width: 6;
+    filter: brightness(1.2);
   }
 
   /* Result row */
