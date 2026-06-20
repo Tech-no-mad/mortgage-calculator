@@ -27,11 +27,13 @@
   /* Light mode defaults */
   --bg-body: #f8fafc;
   --bg-surface: #ffffff;
+  --bg-surface-rgb: 255, 255, 255;
   --bg-surface-2: #f1f5f9;
   --bg-surface-3: #e2e8f0;
   --bg-header: rgba(255, 255, 255, 0.85);
   --bg-footer: #0f172a;
   --bg-input: #ffffff;
+  --bg-input-rgb: 255, 255, 255;
 
   --text-primary: #0f172a;
   --text-secondary: #334155;
@@ -53,11 +55,13 @@
 .dark {
   --bg-body: #0a1628;
   --bg-surface: #111827;
+  --bg-surface-rgb: 17, 24, 39;
   --bg-surface-2: #1e293b;
   --bg-surface-3: #334155;
   --bg-header: rgba(10, 22, 40, 0.85);
   --bg-footer: #070e1a;
   --bg-input: #0f172a;
+  --bg-input-rgb: 15, 23, 42;
 
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
@@ -108,16 +112,19 @@
 @layer components {
   /* Card UI */
   .card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-default);
-    border-radius: 1rem;
+    background: rgba(var(--bg-surface-rgb), 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 1.5rem;
     box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-subtle);
     transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
 
   .dark .card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-default);
+    background: rgba(var(--bg-surface-rgb), 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 
   .card:hover {

@@ -187,6 +187,26 @@ export const POST: APIRoute = async ({ request }) => {
     let currentIntent: 'SET' | 'NAV' | 'QUERY' | null = null;
     let pendingField: string | null = null;
 
+    // Detect general intent for State Parsing
+    const isNavIntent = text.includes('navigate') || text.includes('go to') || tokens.includes('nav');
+    const isQueryIntent = tokens.some(t => ['what', 'how', 'tell', 'average'].includes(t));
+    
+    // Multi-word state matching
+    let foundState = statesData.find(s => text.includes(s.name.toLowerCase()));
+    if (!foundState) {
+      foundState = statesData.find(s => new RegExp(`\\b${s.abbr.toLowerCase()}\\b`, 'i').test(text));
+    }
+    
+    if (foundState) {
+      if (isNavIntent || tokens.includes('to')) {
+        actions.push({ type: 'navigate', payload: `/states/${foundState.slug}` });
+        responseTextPieces.push(`Navigating to ${foundState.name}.`);
+      } else if (!isQueryIntent) {
+        fills.push({ id: FIELD_MAP[FIELDS.STATE][0], value: foundState.abbr });
+        responseTextPieces.push(`State set to ${foundState.name}.`);
+      }
+    }
+
     for (let i = 0; i < tokens.length; i++) {
       const token = tokens[i];
       const matchedNodeValue = intentTrie.search(token, 2);
@@ -200,22 +220,6 @@ export const POST: APIRoute = async ({ request }) => {
       if (matchedNodeValue && matchedNodeValue !== 'ACTION' && matchedNodeValue !== 'NAV') {
         pendingField = matchedNodeValue;
         if (token === 'down' && tokens[i + 1] === 'payment') i++; 
-        continue;
-      }
-
-      // State Target Nodes
-      const foundState = statesData.find(s => s.name.toLowerCase() === token || s.abbr.toLowerCase() === token);
-      if (foundState) {
-        if (currentIntent === 'NAV' || tokens.includes('to')) {
-          actions.push({ type: 'navigate', payload: `/states/${foundState.slug}` });
-          responseTextPieces.push(`Navigating to ${foundState.name}.`);
-        } else if (currentIntent === 'QUERY') {
-           // Proceed, don't execute a state shift if it was just a question
-        } else {
-          fills.push({ id: FIELD_MAP[FIELDS.STATE], value: foundState.abbr });
-          responseTextPieces.push(`State set to ${foundState.name}.`);
-        }
-        currentIntent = null;
         continue;
       }
 
@@ -233,7 +237,7 @@ export const POST: APIRoute = async ({ request }) => {
 
         if (!pendingField) {
           if (num >= 10000) pendingField = FIELDS.PRICE;
-          else if (num >= 10 && num <= 40) pendingField = FIELDS.TERM;
+          else if (num >= 10 && num <= 50) pendingField = FIELDS.TERM;
         }
 
         if (pendingField) {
