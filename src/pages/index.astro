@@ -128,12 +128,26 @@ import statesData from '../data/states.json';
             Monthly Payment
           </h2>
 
-          <!-- Big number -->
-          <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
-            <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="monthly-payment">
-              <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] dark:from-blue-300 dark:to-red-400 bg-clip-text text-transparent">$1,837</span>
+          <!-- Big number & Donut Chart -->
+          <div class="text-center py-8 rounded-xl relative flex flex-col items-center justify-center" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <div class="relative w-48 h-48 mb-4">
+              <svg width="100%" height="100%" viewBox="0 0 42 42" class="transform -rotate-90">
+                <!-- Background ring -->
+                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--bg-surface-3)" stroke-width="4"></circle>
+                
+                <!-- Segments (will be updated via JS) -->
+                <circle id="donut-pi" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--color-usa-blue)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
+                <circle id="donut-tax" cx="21" cy="21" r="15.915" fill="transparent" stroke="#f59e0b" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
+                <circle id="donut-ins" cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--color-usa-red)" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
+                <circle id="donut-pmi" cx="21" cy="21" r="15.915" fill="transparent" stroke="#f43f5e" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" class="transition-all duration-500 ease-out"></circle>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <div class="text-2xl sm:text-3xl font-bold font-mono tracking-tight" id="monthly-payment">
+                  <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] dark:from-blue-300 dark:to-red-400 bg-clip-text text-transparent" id="monthly-payment-amount">$1,837</span>
+                </div>
+                <p class="label-faint text-[10px] mt-1 uppercase tracking-widest">per month</p>
+              </div>
             </div>
-            <p class="label-faint text-sm mt-2">per month</p>
           </div>
 
           <!-- Breakdown -->
@@ -235,17 +249,62 @@ import statesData from '../data/states.json';
 </BaseLayout>
 
 <script>
+  import { animateValue } from '../scripts/utils.ts';
+
   function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
   function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
   function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
 
+  function updateDonut(pi, tax, ins, pmi, total) {
+    if (total <= 0) return;
+    const piPct = (pi / total) * 100;
+    const taxPct = (tax / total) * 100;
+    const insPct = (ins / total) * 100;
+    const pmiPct = (pmi / total) * 100;
+
+    const c = 100; // circumference
+    let offset = 0;
+
+    const piEl = document.getElementById('donut-pi');
+    if (piEl) {
+      piEl.style.strokeDasharray = `${piPct} ${c}`;
+      piEl.style.strokeDashoffset = offset;
+      offset -= piPct;
+    }
+
+    const taxEl = document.getElementById('donut-tax');
+    if (taxEl) {
+      taxEl.style.strokeDasharray = `${taxPct} ${c}`;
+      taxEl.style.strokeDashoffset = offset;
+      offset -= taxPct;
+    }
+
+    const insEl = document.getElementById('donut-ins');
+    if (insEl) {
+      insEl.style.strokeDasharray = `${insPct} ${c}`;
+      insEl.style.strokeDashoffset = offset;
+      offset -= insPct;
+    }
+
+    const pmiEl = document.getElementById('donut-pmi');
+    if (pmiEl) {
+      pmiEl.style.strokeDasharray = `${pmiPct} ${c}`;
+      pmiEl.style.strokeDashoffset = offset;
+    }
+  }
+
+  // To track last values for smooth animation
+  const lastVals = {
+    total: 0, pi: 0, mTax: 0, mIns: 0, pmi: 0, totalInterest: 0, totalCost: 0
+  };
+
   function calc() {
-    const hp = parseFloat(document.getElementById('home-price').value);
-    const dp = parseFloat(document.getElementById('down-payment').value);
-    const r = parseFloat(document.getElementById('interest-rate').value);
-    const tax = parse(document.getElementById('property-tax').value);
-    const ins = parse(document.getElementById('home-insurance').value);
-    const t = parseInt(document.querySelector('.term-btn.active')?.dataset.term || '30');
+    const hp = parseFloat((document.getElementById('home-price') as HTMLInputElement).value);
+    const dp = parseFloat((document.getElementById('down-payment') as HTMLInputElement).value);
+    const r = parseFloat((document.getElementById('interest-rate') as HTMLInputElement).value);
+    const tax = parse((document.getElementById('property-tax') as HTMLInputElement).value);
+    const ins = parse((document.getElementById('home-insurance') as HTMLInputElement).value);
+    const t = parseInt(document.querySelector('.term-btn.active')?.getAttribute('data-term') || '30');
 
     const down = hp * (dp / 100);
     const loan = hp - down;
@@ -257,19 +316,37 @@ import statesData from '../data/states.json';
     const mIns = ins / 12;
     let pmi = dp < 20 ? (loan * 0.007) / 12 : 0;
     const total = pi + mTax + mIns + pmi;
+    const totalInterest = (pi * n) - loan;
+    const totalCost = total * n;
 
-    document.getElementById('home-price-input').value = fmtNum(hp);
-    document.getElementById('down-payment-input').value = dp;
-    document.getElementById('down-payment-dollar-input').value = fmtNum(down);
-    document.getElementById('interest-rate-input').value = r.toFixed(2);
-    document.getElementById('monthly-payment').innerHTML = `<span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">${fmt(total)}</span>`;
-    document.getElementById('pi-amount').textContent = fmt(pi);
-    document.getElementById('tax-amount').textContent = fmt(mTax);
-    document.getElementById('insurance-amount').textContent = fmt(mIns);
-    document.getElementById('pmi-amount').textContent = fmt(pmi);
-    document.getElementById('total-interest').textContent = fmt((pi * n) - loan);
-    document.getElementById('total-cost').textContent = fmt(total * n);
-    document.getElementById('pmi-row').style.display = pmi > 0 ? 'flex' : 'none';
+    (document.getElementById('home-price-input') as HTMLInputElement).value = fmtNum(hp);
+    (document.getElementById('down-payment-input') as HTMLInputElement).value = dp.toString();
+    (document.getElementById('down-payment-dollar-input') as HTMLInputElement).value = fmtNum(down);
+    (document.getElementById('interest-rate-input') as HTMLInputElement).value = r.toFixed(2);
+    
+    // Animate Values
+    animateValue(document.getElementById('monthly-payment'), lastVals.total, total, 400);
+    animateValue(document.getElementById('pi-amount'), lastVals.pi, pi, 400);
+    animateValue(document.getElementById('tax-amount'), lastVals.mTax, mTax, 400);
+    animateValue(document.getElementById('insurance-amount'), lastVals.mIns, mIns, 400);
+    animateValue(document.getElementById('pmi-amount'), lastVals.pmi, pmi, 400);
+    animateValue(document.getElementById('total-interest'), lastVals.totalInterest, totalInterest, 400);
+    animateValue(document.getElementById('total-cost'), lastVals.totalCost, totalCost, 400);
+
+    // Update Donut
+    updateDonut(pi, mTax, mIns, pmi, total);
+
+    // Save for next calc
+    lastVals.total = total;
+    lastVals.pi = pi;
+    lastVals.mTax = mTax;
+    lastVals.mIns = mIns;
+    lastVals.pmi = pmi;
+    lastVals.totalInterest = totalInterest;
+    lastVals.totalCost = totalCost;
+
+    const pmiRow = document.getElementById('pmi-row');
+    if (pmiRow) pmiRow.style.display = pmi > 0 ? 'flex' : 'none';
   }
 
   document.addEventListener('DOMContentLoaded', () => {

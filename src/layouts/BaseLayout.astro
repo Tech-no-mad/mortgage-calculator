@@ -56,11 +56,37 @@ const fullTitle = `${title} | MortgageDash`;
   </head>
 
   <body class="min-h-screen font-sans antialiased transition-colors duration-300">
+    <div class="aurora-bg"></div>
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
     <Chatbot />
+
+    <script>
+      // Global Range Slider Logic for styling
+      function updateSliderProgress(slider: HTMLInputElement) {
+        const min = parseFloat(slider.min) || 0;
+        const max = parseFloat(slider.max) || 100;
+        const val = parseFloat(slider.value) || 0;
+        const percent = ((val - min) / (max - min)) * 100;
+        slider.style.setProperty('--progress', `${percent}%`);
+      }
+
+      document.addEventListener('input', (e) => {
+        if (e.target && (e.target as HTMLElement).matches('input[type="range"]')) {
+          updateSliderProgress(e.target as HTMLInputElement);
+        }
+      });
+
+      // Also run on Astro page load if using ViewTransitions, or standard load
+      function initSliders() {
+        document.querySelectorAll('input[type="range"]').forEach((el) => {
+          updateSliderProgress(el as HTMLInputElement);
+        });
+      }
+      document.addEventListener('DOMContentLoaded', initSliders);
+    </script>
   </body>
 </html>
