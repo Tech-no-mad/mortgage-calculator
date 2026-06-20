@@ -55,14 +55,40 @@ const fullTitle = `${title} | MortgageDash`;
     </script>
   </head>
 
-  <body class="min-h-screen font-sans antialiased transition-colors duration-300">
+  <body class="min-h-screen font-sans antialiased transition-colors duration-300 flex flex-col">
     <div class="aurora-bg"></div>
     <Header />
-    <main>
-      <slot />
-    </main>
+    
+    <!-- 🛡️ BOT LAYOUT SHIELDING -->
+    <div class="relative flex-grow flex flex-col pb-24 sm:pb-16">
+      <main class="flex-grow">
+        <slot />
+      </main>
+    </div>
+
     <Footer />
     <Chatbot />
+
+    <!-- 🍪 COMPLIANT COOKIE CONSENT BANNER INTERFACE -->
+    <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:max-w-md bg-[var(--bg-surface)] border border-[var(--border-default)] shadow-2xl rounded-2xl p-5 z-[9999] hidden transform transition-all duration-300">
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🍪</span>
+          <h4 class="text-sm font-bold text-[var(--text-primary)]">Cookie & Privacy Preferences</h4>
+        </div>
+        <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+          MortgageDash and our partner Google use cookies to analyze web traffic and deliver personalized, relevant advertisements. You can modify your choices at any time.
+        </p>
+        <div class="flex items-center justify-end gap-2 mt-2">
+          <button id="decline-cookies" class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-[var(--border-default)] text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-colors">
+            Decline
+          </button>
+          <button id="accept-cookies" class="px-4 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-[#06b6d4] to-[#10b981] text-white shadow-md hover:opacity-90 transition-opacity">
+            Accept All
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script>
       // Global Range Slider Logic for styling
@@ -86,7 +112,30 @@ const fullTitle = `${title} | MortgageDash`;
           updateSliderProgress(el as HTMLInputElement);
         });
       }
-      document.addEventListener('DOMContentLoaded', initSliders);
+      
+      const checkConsent = () => {
+        const consentState = localStorage.getItem('mortgagedash_cookie_consent');
+        const banner = document.getElementById('cookie-banner');
+        
+        if (!consentState && banner) {
+          banner.classList.remove('hidden');
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initSliders();
+        checkConsent();
+
+        document.getElementById('accept-cookies')?.addEventListener('click', () => {
+          localStorage.setItem('mortgagedash_cookie_consent', 'granted');
+          document.getElementById('cookie-banner')?.classList.add('hidden');
+        });
+
+        document.getElementById('decline-cookies')?.addEventListener('click', () => {
+          localStorage.setItem('mortgagedash_cookie_consent', 'denied');
+          document.getElementById('cookie-banner')?.classList.add('hidden');
+        });
+      });
     </script>
   </body>
 </html>

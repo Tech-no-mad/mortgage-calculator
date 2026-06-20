@@ -312,15 +312,21 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
       </div>
     </div>
 
-    <div class="card p-6">
-       <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Summary for {stateData.name} Buyers</h3>
-       <p style="color: var(--text-secondary); line-height: 1.6;">
-         The median home price in {stateData.name} is currently around <strong>${stateData.medianPrice.toLocaleString('en-US')}</strong>. 
-         When calculating your monthly mortgage payment, it's important to factor in local property taxes. 
-         {stateData.name} has an average effective property tax rate of <strong>{stateData.taxRate}%</strong>. 
-         Additionally, average annual home insurance costs in the state are approximately <strong>${stateData.insurance.toLocaleString('en-US')}</strong>. 
-         With current 30-year fixed mortgage rates averaging <strong>{stateData.avgRate30}%</strong> in {stateData.name}, you can use the calculator above to see exactly what your monthly costs will look like.
-       </p>
+    <div class="card p-6 sm:p-8">
+      <h2 class="text-2xl font-bold mb-4" style="color: var(--text-primary);">
+        Understanding {stateData.name} Mortgage Metrics & Loan Dynamics
+      </h2>
+      <div class="space-y-4 text-sm text-[var(--text-secondary)] leading-relaxed">
+        <p>
+          Navigating property acquisitions across <strong>{stateData.name}</strong> requires a calculated deep-dive into local microeconomic variables. Unlike a basic national estimator, our localized {stateData.name} Mortgage Calculator framework processes regional factors directly inside your local web sandbox. By synthesizing unique structural cost parameters, homebuyers can map realistic parameters for their long-term financial health.
+        </p>
+        <p>
+          Currently, baseline indicators show that the median home pricing threshold across {stateData.name} hovers around <strong style="color: var(--text-primary);">${stateData.medianPrice.toLocaleString('en-US')}</strong>. While your total monthly obligation relies significantly on the contractual home price agreed upon with a seller, long-form overhead arrays like localized property assessments hold massive influence. In {stateData.name}, the standard annualized property tax rate floats around <strong style="color: var(--text-primary);">{stateData.taxRate}%</strong>. This variable is collected directly by county and municipal tax authorities to maintain public infrastructure and is divided into monthly escrow components by your loan provider.
+        </p>
+        <p>
+          Concurrently, property safeguarding variables must be mapped cleanly into your underwriting calculations. Annual homeowner insurance protections throughout the state of {stateData.name} reflect an average layout baseline of <strong style="color: var(--text-primary);">${stateData.insurance.toLocaleString('en-US')}</strong> per year. This estimate shifts depending on regional geological data, proximity to fire resources, and your selected personal coverage limits. Utilizing this localized matrix ensures that your calculated Principal, Interest, Taxes, and Insurance (PITI) configurations reflect highly realistic market expectations rather than generic national averages. With current 30-year fixed mortgage rates averaging <strong style="color: var(--text-primary);">{stateData.avgRate30}%</strong> in {stateData.name}, you can use the calculator above to see exactly what your monthly costs will look like.
+        </p>
+      </div>
     </div>
     
     <div class="ad-slot max-w-4xl mx-auto mt-10">Advertisement Space Reserved</div>

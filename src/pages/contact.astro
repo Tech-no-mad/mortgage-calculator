@@ -52,43 +52,60 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </button>
       </form>
     </div>
+    <div class="text-center mt-6">
+      <p class="text-xs text-[var(--text-muted)]">
+        Prefer traditional mail options? Reach our administrative desk directly at 
+        <a href="mailto:support@mortgagedash.app" class="text-[#06b6d4] hover:underline font-medium">support@mortgagedash.app</a>.
+      </p>
+    </div>
   </section>
 
   <script>
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const successMsg = document.getElementById('success-message');
-    const resetBtn = document.getElementById('reset-form-btn');
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contact-form') as HTMLFormElement | null;
+      const successMsg = document.getElementById('success-message');
+      const resetBtn = document.getElementById('reset-form-btn');
 
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const firstName = (document.getElementById('first-name') as HTMLInputElement).value;
-      const lastName = (document.getElementById('last-name') as HTMLInputElement).value;
-      const email = (document.getElementById('email') as HTMLInputElement).value;
-      const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const firstNameInput = document.getElementById('first-name') as HTMLInputElement | null;
+          const lastNameInput = document.getElementById('last-name') as HTMLInputElement | null;
+          const emailInput = document.getElementById('email') as HTMLInputElement | null;
+          const messageInput = document.getElementById('message') as HTMLTextAreaElement | null;
 
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ firstName, lastName, email, message })
+          if (!firstNameInput || !lastNameInput || !emailInput || !messageInput) return;
+
+          const firstName = firstNameInput.value;
+          const lastName = lastNameInput.value;
+          const email = emailInput.value;
+          const message = messageInput.value;
+
+          try {
+            const response = await fetch('/api/contact', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ firstName, lastName, email, message })
+            });
+
+            if (response.ok) {
+              successMsg?.classList.remove('hidden');
+              form.reset();
+            } else {
+              alert('Something went wrong. Please try again.');
+            }
+          } catch (err) {
+            alert('Failed to submit the form.');
+          }
         });
-
-        if (response.ok) {
-          successMsg?.classList.remove('hidden');
-          form.reset();
-        } else {
-          alert('Something went wrong. Please try again.');
-        }
-      } catch (err) {
-        alert('Failed to submit the form.');
       }
-    });
 
-    resetBtn?.addEventListener('click', () => {
-      successMsg?.classList.add('hidden');
+      resetBtn?.addEventListener('click', () => {
+        successMsg?.classList.add('hidden');
+      });
     });
   </script>
 </BaseLayout>
