@@ -185,7 +185,7 @@ const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} 
           <!-- Big number -->
           <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
             <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="monthly-payment">
-              <span class="state-gradient bg-clip-text text-transparent" id="monthly-payment-amount">$0</span>
+              <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] dark:from-blue-300 dark:to-red-400 bg-clip-text text-transparent" id="monthly-payment-amount">$0</span>
             </div>
             <p class="label-faint text-sm mt-2">per month</p>
           </div>
@@ -204,7 +204,7 @@ const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} 
                 <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
                 <span class="label">Property Tax</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="tax-amount">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b] dark:text-amber-300" id="tax-amount">$0</span>
             </div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
@@ -218,7 +218,7 @@ const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} 
                 <span class="w-2.5 h-2.5 rounded-full bg-[#f43f5e]"></span>
                 <span class="label">PMI</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f43f5e]" id="pmi-amount">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#f43f5e] dark:text-rose-400" id="pmi-amount">$0</span>
             </div>
           </div>
 
@@ -226,7 +226,7 @@ const stateKeywords = `${stateData.name} mortgage calculator, ${stateData.name} 
           <div class="grid grid-cols-2 gap-3">
             <div class="stat-card">
               <p class="label-faint text-xs mb-1">Total Interest</p>
-              <p class="text-lg font-bold font-mono text-[#f59e0b]" id="total-interest">$0</p>
+              <p class="text-lg font-bold font-mono text-[#f59e0b] dark:text-amber-300" id="total-interest">$0</p>
             </div>
             <div class="stat-card">
               <p class="label-faint text-xs mb-1">Total Cost</p>

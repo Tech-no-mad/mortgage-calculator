@@ -131,7 +131,7 @@ import statesData from '../data/states.json';
           <!-- Big number -->
           <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
             <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="monthly-payment">
-              <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">$1,837</span>
+              <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] dark:from-blue-300 dark:to-red-400 bg-clip-text text-transparent">$1,837</span>
             </div>
             <p class="label-faint text-sm mt-2">per month</p>
           </div>
@@ -143,21 +143,21 @@ import statesData from '../data/states.json';
                 <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-usa-blue)]"></span>
                 <span class="label">Principal & Interest</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[var(--color-usa-blue)]" id="pi-amount">$1,572</span>
+              <span class="text-sm font-semibold font-mono text-[var(--color-usa-blue)] dark:text-blue-300" id="pi-amount">$1,572</span>
             </div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
                 <span class="label">Property Tax</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="tax-amount">$321</span>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b] dark:text-amber-300" id="tax-amount">$321</span>
             </div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-usa-red)]"></span>
                 <span class="label">Home Insurance</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[var(--color-usa-red)]" id="insurance-amount">$100</span>
+              <span class="text-sm font-semibold font-mono text-[var(--color-usa-red)] dark:text-red-400" id="insurance-amount">$100</span>
             </div>
             <div class="result-row" id="pmi-row" style="display:none;">
               <div class="flex items-center gap-2.5">
@@ -172,7 +172,7 @@ import statesData from '../data/states.json';
           <div class="grid grid-cols-2 gap-3">
             <div class="stat-card">
               <p class="label-faint text-xs mb-1">Total Interest</p>
-              <p class="text-lg font-bold font-mono text-[#f59e0b]" id="total-interest">$285,862</p>
+              <p class="text-lg font-bold font-mono text-[#f59e0b] dark:text-amber-300" id="total-interest">$285,862</p>
             </div>
             <div class="stat-card">
               <p class="label-faint text-xs mb-1">Total Cost</p>
