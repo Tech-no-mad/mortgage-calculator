@@ -8,7 +8,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1450,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Cheaha_Mountain%2C_Alabama.jpg/1920px-Cheaha_Mountain%2C_Alabama.jpg",
+    "heroImage": "/images/states/alabama.jpg",
     "keywords": [
       "AL",
       "Birmingham",
@@ -35,7 +35,7 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Wonder_Lake_and_Denali.jpg/1920px-Wonder_Lake_and_Denali.jpg",
+    "heroImage": "/images/states/alaska.jpg",
     "keywords": [
       "AK",
       "Anchorage",
@@ -60,7 +60,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1750,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Canyon_River_Tree_%28165872763%29.jpeg/1920px-Canyon_River_Tree_%28165872763%29.jpeg",
+    "heroImage": "/images/states/arizona.jpg",
     "keywords": [
       "AZ",
       "Phoenix",
@@ -86,7 +86,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1900,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Steamy_Entrance_Springs_on_Cold_Night_in_Hot_Springs_National_Park.jpg/1920px-Steamy_Entrance_Springs_on_Cold_Night_in_Hot_Springs_National_Park.jpg",
+    "heroImage": "/images/states/arkansas.jpg",
     "keywords": [
       "AR",
       "Little Rock",
@@ -110,7 +110,7 @@
     "avgRate30": 6.48,
     "avgRate15": 5.8,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg/1920px-Golden_Gate_Bridge_as_seen_from_Battery_East.jpg",
+    "heroImage": "/images/states/california.jpg",
     "keywords": [
       "CA",
       "Los Angeles",
@@ -139,7 +139,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 2200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Rocky_Mountain_National_Park_in_September_2011_-_Glacier_Gorge_from_Bear_Lake.JPG/1920px-Rocky_Mountain_National_Park_in_September_2011_-_Glacier_Gorge_from_Bear_Lake.JPG",
+    "heroImage": "/images/states/colorado.jpg",
     "keywords": [
       "CO",
       "Denver",
@@ -164,7 +164,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1800,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Yale_University_Shield_1.svg/1920px-Yale_University_Shield_1.svg.png",
+    "heroImage": "/images/states/connecticut.jpg",
     "keywords": [
       "CT",
       "Bridgeport",
@@ -189,7 +189,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rehoboth_Beach_boardwalk_looking_north_toward_Rehoboth_Avenue.jpg/1920px-Rehoboth_Beach_boardwalk_looking_north_toward_Rehoboth_Avenue.jpg",
+    "heroImage": "/images/states/delaware.jpg",
     "keywords": [
       "DE",
       "Wilmington",
@@ -213,7 +213,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 3200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Sunset_over_the_River_of_Grass%2C_NPSphoto%2C_G.Gardner_%289255157507%29.jpg/1920px-Sunset_over_the_River_of_Grass%2C_NPSphoto%2C_G.Gardner_%289255157507%29.jpg",
+    "heroImage": "/images/states/florida.jpg",
     "keywords": [
       "FL",
       "Miami",
@@ -239,7 +239,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1650,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Forsyth_Park_Fountain_in_Savannah%2C_GA_%2850917757917%29.jpg/1920px-Forsyth_Park_Fountain_in_Savannah%2C_GA_%2850917757917%29.jpg",
+    "heroImage": "/images/states/georgia.jpg",
     "keywords": [
       "GA",
       "Atlanta",
@@ -264,7 +264,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kalalau_Valley_and_Na_Pali_Coast_from_above.jpg/1920px-Kalalau_Valley_and_Na_Pali_Coast_from_above.jpg",
+    "heroImage": "/images/states/hawaii.jpg",
     "keywords": [
       "HI",
       "Honolulu",
@@ -290,7 +290,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Sawtooth_Range.JPG/1920px-Sawtooth_Range.JPG",
+    "heroImage": "/images/states/idaho.jpg",
     "keywords": [
       "ID",
       "Boise",
@@ -315,7 +315,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Sears_Tower%2C_Wacker_Drive_and_Jackson_Boulevard%2C_Chicago%2C_IL_-_54189600901.jpg/1920px-Sears_Tower%2C_Wacker_Drive_and_Jackson_Boulevard%2C_Chicago%2C_IL_-_54189600901.jpg",
+    "heroImage": "/images/states/illinois.jpg",
     "keywords": [
       "IL",
       "Chicago",
@@ -341,7 +341,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1350,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Indianapolis-motor-speedway-1848561.jpg/1920px-Indianapolis-motor-speedway-1848561.jpg",
+    "heroImage": "/images/states/indiana.jpg",
     "keywords": [
       "IN",
       "Indianapolis",
@@ -365,7 +365,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1250,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/1/12/Capitol_building%2C_Des_Moines%2C_Iowa.jpg",
+    "heroImage": "/images/states/iowa.jpg",
     "keywords": [
       "IA",
       "Des Moines",
@@ -389,7 +389,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 2100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Monument_Rocks.jpg/1920px-Monument_Rocks.jpg",
+    "heroImage": "/images/states/kansas.jpg",
     "keywords": [
       "KS",
       "Wichita",
@@ -414,7 +414,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1600,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/7/70/Mammoth_Cave_Rotunda_%28USGS_Lwt02830%29.jpg",
+    "heroImage": "/images/states/kentucky.jpg",
     "keywords": [
       "KY",
       "Louisville",
@@ -438,7 +438,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 2800,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/8/8f/French_Quarter%2C_looking_north_with_Mississippi_River_to_the_right_2011.jpg",
+    "heroImage": "/images/states/louisiana.jpg",
     "keywords": [
       "LA",
       "New Orleans",
@@ -463,7 +463,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Acadia_National_Park_02.JPG/1920px-Acadia_National_Park_02.JPG",
+    "heroImage": "/images/states/maine.jpg",
     "keywords": [
       "ME",
       "Portland",
@@ -487,7 +487,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Inner_Harbor_2020.jpg/1920px-Inner_Harbor_2020.jpg",
+    "heroImage": "/images/states/maryland.jpg",
     "keywords": [
       "MD",
       "Baltimore",
@@ -512,7 +512,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1600,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/131023-F-PR861-033_Hanscom_participates_in_World_Series_pregame_events.jpg/1920px-131023-F-PR861-033_Hanscom_participates_in_World_Series_pregame_events.jpg",
+    "heroImage": "/images/states/massachusetts.jpg",
     "keywords": [
       "MA",
       "Boston",
@@ -537,7 +537,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Mackinac_Bridge_2022.jpg/1920px-Mackinac_Bridge_2022.jpg",
+    "heroImage": "/images/states/michigan.jpg",
     "keywords": [
       "MI",
       "Detroit",
@@ -563,7 +563,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1650,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/2018_Mall_of_America_01.jpg/1920px-2018_Mall_of_America_01.jpg",
+    "heroImage": "/images/states/minnesota.jpg",
     "keywords": [
       "MN",
       "Minneapolis",
@@ -588,7 +588,7 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1800,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Illinois_Monument.jpg/1920px-Illinois_Monument.jpg",
+    "heroImage": "/images/states/mississippi.jpg",
     "keywords": [
       "MS",
       "Jackson",
@@ -612,7 +612,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1600,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/0/00/St_Louis_night_expblend_cropped.jpg",
+    "heroImage": "/images/states/missouri.jpg",
     "keywords": [
       "MO",
       "Kansas City",
@@ -637,7 +637,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mountain_Goat_at_Hidden_Lake.jpg/1920px-Mountain_Goat_at_Hidden_Lake.jpg",
+    "heroImage": "/images/states/montana.jpg",
     "keywords": [
       "MT",
       "Billings",
@@ -662,7 +662,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1800,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Chimney_Rock_NE.jpg/1920px-Chimney_Rock_NE.jpg",
+    "heroImage": "/images/states/nebraska.jpg",
     "keywords": [
       "NE",
       "Omaha",
@@ -687,7 +687,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Las_Vegas_Strip_09_2017_4897.jpg",
+    "heroImage": "/images/states/nevada.jpg",
     "keywords": [
       "NV",
       "Las Vegas",
@@ -712,7 +712,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Mount_Washington%2C_from_Intervale%2C_N.H._-_8270119864.jpg/1920px-Mount_Washington%2C_from_Intervale%2C_N.H._-_8270119864.jpg",
+    "heroImage": "/images/states/new-hampshire.jpg",
     "keywords": [
       "NH",
       "Manchester",
@@ -736,7 +736,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Atlantic_City_Boardwalk_view_south_from_Caesars_Atlantic_City_by_Silveira_Neto_June_24_2012.jpg/1920px-Atlantic_City_Boardwalk_view_south_from_Caesars_Atlantic_City_by_Silveira_Neto_June_24_2012.jpg",
+    "heroImage": "/images/states/new-jersey.jpg",
     "keywords": [
       "NJ",
       "Newark",
@@ -761,7 +761,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1350,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Carlsbad_Interior_Formations.jpg",
+    "heroImage": "/images/states/new-mexico.jpg",
     "keywords": [
       "NM",
       "Albuquerque",
@@ -786,7 +786,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Front_view_of_Statue_of_Liberty_%28cropped%29.jpg/1920px-Front_view_of_Statue_of_Liberty_%28cropped%29.jpg",
+    "heroImage": "/images/states/new_york.jpg",
     "keywords": [
       "NY",
       "New York City",
@@ -814,7 +814,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/View_atop_Cliff_Tops_on_Mount_LeConte%2C_GSMNP%2C_TN.jpg/1920px-View_atop_Cliff_Tops_on_Mount_LeConte%2C_GSMNP%2C_TN.jpg",
+    "heroImage": "/images/states/north-carolina.jpg",
     "keywords": [
       "NC",
       "Charlotte",
@@ -839,7 +839,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/View_of_Theodore_Roosevelt_National_Park.jpg/1920px-View_of_Theodore_Roosevelt_National_Park.jpg",
+    "heroImage": "/images/states/north_dakota.jpg",
     "keywords": [
       "ND",
       "Fargo",
@@ -863,7 +863,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Rock_and_Roll_Hall_of_Fame_-_Joy_of_Museums_1.jpg/1920px-Rock_and_Roll_Hall_of_Fame_-_Joy_of_Museums_1.jpg",
+    "heroImage": "/images/states/ohio.jpg",
     "keywords": [
       "OH",
       "Columbus",
@@ -889,7 +889,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 2400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/6/63/Elk_Mountain%2C_OK.jpg",
+    "heroImage": "/images/states/oklahoma.jpg",
     "keywords": [
       "OK",
       "Oklahoma City",
@@ -914,7 +914,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Crater_Lake_winter_pano2.jpg/1920px-Crater_Lake_winter_pano2.jpg",
+    "heroImage": "/images/states/oregon.jpg",
     "keywords": [
       "OR",
       "Portland",
@@ -939,7 +939,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Independence_Hall.jpg/1920px-Independence_Hall.jpg",
+    "heroImage": "/images/states/pennsylvania.jpg",
     "keywords": [
       "PA",
       "Philadelphia",
@@ -964,7 +964,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1800,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Breakers_01.jpg",
+    "heroImage": "/images/states/rhode_island.jpg",
     "keywords": [
       "RI",
       "Providence",
@@ -988,7 +988,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1600,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/2/2e/East_Battery_Street_Charleston_Aug2010.jpg",
+    "heroImage": "/images/states/south_carolina.jpg",
     "keywords": [
       "SC",
       "Charleston",
@@ -1012,7 +1012,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1500,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Mount_Rushmore_detail_view_%28100MP%29.jpg/1920px-Mount_Rushmore_detail_view_%28100MP%29.jpg",
+    "heroImage": "/images/states/south-dakota.jpg",
     "keywords": [
       "SD",
       "Sioux Falls",
@@ -1036,7 +1036,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1700,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/View_atop_Cliff_Tops_on_Mount_LeConte%2C_GSMNP%2C_TN.jpg/1920px-View_atop_Cliff_Tops_on_Mount_LeConte%2C_GSMNP%2C_TN.jpg",
+    "heroImage": "/images/states/tennessee.jpg",
     "keywords": [
       "TN",
       "Nashville",
@@ -1061,7 +1061,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 2400,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Canyon%2C_Rio_Grande%2C_Texas.jpeg/1920px-Canyon%2C_Rio_Grande%2C_Texas.jpeg",
+    "heroImage": "/images/states/texas.jpg",
     "keywords": [
       "TX",
       "Houston",
@@ -1088,7 +1088,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1000,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/1/10/Zion_angels_landing_view.jpg",
+    "heroImage": "/images/states/utah.jpg",
     "keywords": [
       "UT",
       "Salt Lake City",
@@ -1113,7 +1113,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1000,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/South_from_Mount_Mansfield.jpg/1920px-South_from_Mount_Mansfield.jpg",
+    "heroImage": "/images/states/vermont.jpg",
     "keywords": [
       "VT",
       "Burlington",
@@ -1137,7 +1137,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1300,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Colonial_Williamsburg_%283205781804%29.jpg/1920px-Colonial_Williamsburg_%283205781804%29.jpg",
+    "heroImage": "/images/states/virginia.jpg",
     "keywords": [
       "VA",
       "Virginia Beach",
@@ -1163,7 +1163,7 @@
     "avgRate30": 6.48,
     "avgRate15": 5.8,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Space_Needle_2011-07-04.jpg/1920px-Space_Needle_2011-07-04.jpg",
+    "heroImage": "/images/states/washington.jpg",
     "keywords": [
       "WA",
       "Seattle",
@@ -1189,7 +1189,7 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1200,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/New_River_Gorge_Bridge.jpg/1920px-New_River_Gorge_Bridge.jpg",
+    "heroImage": "/images/states/west-virginia.jpg",
     "keywords": [
       "WV",
       "Charleston",
@@ -1213,7 +1213,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Wisconsin_State_Capitol_Building_6.jpg/1920px-Wisconsin_State_Capitol_Building_6.jpg",
+    "heroImage": "/images/states/wisconsin.jpg",
     "keywords": [
       "WI",
       "Milwaukee",
@@ -1238,7 +1238,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1100,
-    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/7/73/Grand_Canyon_of_yellowstone.jpg",
+    "heroImage": "/images/states/wyoming.jpg",
     "keywords": [
       "WY",
       "Cheyenne",

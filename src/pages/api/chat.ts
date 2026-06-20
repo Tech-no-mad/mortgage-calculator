@@ -209,7 +209,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     for (let i = 0; i < tokens.length; i++) {
       const token = tokens[i];
-      const matchedNodeValue = intentTrie.search(token, 2);
+      // Only fuzzy search words longer than 2 characters to prevent "to" -> "go" misfires
+      const matchedNodeValue = token.length > 2 ? intentTrie.search(token, 2) : intentTrie.search(token, 0);
 
       // Intent Nodes
       if (matchedNodeValue === 'ACTION') { currentIntent = 'SET'; continue; }

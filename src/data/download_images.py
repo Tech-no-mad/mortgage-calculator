@@ -23,14 +23,21 @@ for s in states:
     if not os.path.exists(filepath):
         print(f"Downloading {s['name']} from {url}")
         try:
-            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}, stream=True)
+            r = requests.get(url, headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+                "Referer": "https://commons.wikimedia.org/"
+            }, stream=True)
             if r.status_code == 200:
                 with open(filepath, 'wb') as out_file:
                     for chunk in r.iter_content(1024):
                         out_file.write(chunk)
-                s['heroImage'] = f'/images/states/{filename}'
+                
+                # Update JSON data with new local path
+                s['heroImage'] = f"/images/states/{s['slug']}.jpg"
+                time.sleep(3)
             else:
                 print(f"Failed {s['name']}: {r.status_code}")
+                time.sleep(3)
         except Exception as e:
             print(f"Exception {s['name']}: {e}")
         time.sleep(1) # prevent 429
