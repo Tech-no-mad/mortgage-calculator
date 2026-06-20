@@ -1,54 +1,20 @@
 import type { APIRoute } from 'astro';
 import statesData from '../../data/states.json';
 
-// Global RLHF Map for persistence across requests in memory
-const globalAny: any = globalThis;
-if (!globalAny.rlhfMap) {
-  globalAny.rlhfMap = new Map<string, string>();
-}
+// Baseline dictionary. Dynamic additions should ideally be passed back & forth via request body.
+const BASE_RLHF_MAP = new Map<string, string>([
+  ['dp', 'down-payment'], ['downpayment', 'down-payment'], ['dwn pymnt', 'down-payment'],
+  ['hp', 'home-price'], ['homeprice', 'home-price'], ['loan', 'home-price'],
+  ['ir', 'interest-rate'], ['interest', 'interest-rate'], ['rate', 'interest-rate'],
+  ['term', 'term'], ['years', 'term'], ['yr', 'term'],
+  ['tax', 'tax-rate'], ['taxes', 'tax-rate'], ['insurance', 'home-insurance'],
+  ['ins', 'home-insurance'], ['state', 'state-selector'], ['cost', 'home-price'],
+  ['value', 'home-price'], ['price', 'home-price'], ['pryce', 'home-price'],
+  ['hoem', 'home-price'], ['amount', 'home-price'], ['principal', 'home-price'],
+  ['upfront', 'down-payment'], ['initial', 'down-payment'], ['apr', 'interest-rate'],
+  ['fixed', 'interest-rate'], ['duration', 'term']
+]);
 
-const defaultSynonyms = [
-    ['dp', 'down-payment'],
-    ['downpayment', 'down-payment'],
-    ['dwn pymnt', 'down-payment'],
-    ['hp', 'home-price'],
-    ['homeprice', 'home-price'],
-    ['loan', 'home-price'],
-    ['ir', 'interest-rate'],
-    ['interest', 'interest-rate'],
-    ['rate', 'interest-rate'],
-    ['term', 'term'],
-    ['years', 'term'],
-    ['yr', 'term'],
-    ['tax', 'tax-rate'],
-    ['taxes', 'tax-rate'],
-    ['insurance', 'home-insurance'],
-    ['ins', 'home-insurance'],
-    ['state', 'state-selector'],
-    // Extended synonyms
-    ['cost', 'home-price'],
-    ['value', 'home-price'],
-    ['price', 'home-price'],
-    ['pryce', 'home-price'],
-    ['hoem', 'home-price'],
-    ['amount', 'home-price'],
-    ['principal', 'home-price'],
-    ['upfront', 'down-payment'],
-    ['initial', 'down-payment'],
-    ['apr', 'interest-rate'],
-    ['fixed', 'interest-rate'],
-    ['duration', 'term']
-];
-
-defaultSynonyms.forEach(([k, v]) => {
-  if (!globalAny.rlhfMap.has(k)) {
-    globalAny.rlhfMap.set(k, v);
-  }
-});
-
-const rlhfMap: Map<string, string> = globalAny.rlhfMap;
-
-// Levenshtein distance for fuzzy matching
 function levenshtein(a: string, b: string): number {
   if (a.length === 0) return b.length;
   if (b.length === 0) return a.length;
@@ -57,11 +23,9 @@ function levenshtein(a: string, b: string): number {
   for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
   for (let i = 1; i <= a.length; i++) {
     for (let j = 1; j <= b.length; j++) {
-      if (a[i - 1] === b[j - 1]) {
-        matrix[i][j] = matrix[i - 1][j - 1];
-      } else {
-        matrix[i][j] = Math.min(matrix[i - 1][j - 1], matrix[i][j - 1], matrix[i - 1][j]) + 1;
-      }
+      matrix[i][j] = a[i - 1] === b[j - 1] 
+        ? matrix[i - 1][j - 1] 
+        : Math.min(matrix[i - 1][j - 1], matrix[i][j - 1], matrix[i - 1][j]) + 1;
     }
   }
   return matrix[a.length][b.length];
@@ -80,33 +44,40 @@ const FIELD_MAP: Record<string, string[]> = {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
-    const query = data.query || '';
+    const query = (data.query || '').trim();
     const text = query.toLowerCase();
-    const history = data.history || {};
+    
+    // Create an immutable shallow copy of context
+    const history = data.history ? { ...data.history } : {};
+    
+    // Merge baseline maps with runtime user session overrides if provided
+    const sessionOverrides = data.sessionMap ? new Map(Object.entries(data.sessionMap)) : new Map();
+    const activeMap = new Map([...BASE_RLHF_MAP, ...sessionOverrides]);
 
-    // Check conversational context for missing fields
+    // 1. Context Resolution Interceptor
     if (history.missingField) {
-      // Look for a single number in the user's response
       const numMatch = query.match(/^(\$?\d+(?:,\d+)*(?:\.\d+)?)(k|m|%|yr|years?)?$/i);
-      if (numMatch || query.match(/\d+/)) {
-        let nStr = numMatch ? numMatch[1].replace(/[$,]/g, '') : query.match(/\d+/)[0];
+      const fallbackMatch = query.match(/\d+/);
+      
+      if (numMatch || fallbackMatch) {
+        let nStr = numMatch ? numMatch[1].replace(/[$,]/g, '') : fallbackMatch![0];
         let num = parseFloat(nStr);
         let mod = numMatch ? numMatch[2]?.toLowerCase() : '';
         if (mod === 'k') num *= 1000;
         if (mod === 'm') num *= 1000000;
         
-        let fills = [{ id: FIELD_MAP[history.missingField], value: num.toString() }];
         return new Response(JSON.stringify({ 
           response: `Got it! I've updated the ${history.missingField.replace('-', ' ')} to ${mod === '%' ? num + '%' : num}.`, 
-          action: { type: 'fill', payload: fills },
-          context: null // clear context
+          actions: [{ type: 'fill', payload: [{ id: FIELD_MAP[history.missingField], value: num.toString() }] }],
+          context: null
         }));
       }
     }
 
-    // 1. RLHF Learning Interceptor
+    // 2. Learning Routine
     const learnMatch = query.match(/(.+?)\s+(?:means|is)\s+(.+)/i);
-    if (learnMatch && (text.includes('learn') || (text.includes('means') && text.split(' ').length < 8) || data.learningMode)) {
+    const splitLength = text.split(/\s+/).length;
+    if (learnMatch && (text.includes('learn') || (text.includes('means') && splitLength < 8) || data.learningMode)) {
       let alias = learnMatch[1].replace(/learn that /i, '').replace(/['"]/g, '').trim().toLowerCase();
       if (data.learningMode && data.alias) alias = data.alias.toLowerCase();
       let target = learnMatch[2].replace(/['"\.]/g, '').trim().toLowerCase();
@@ -117,60 +88,40 @@ export const POST: APIRoute = async ({ request }) => {
         const d = levenshtein(target.replace(/\s+/g, '-'), field);
         if (d < bestDist) { bestDist = d; closestField = field; }
       }
-      for (const [k, v] of rlhfMap.entries()) {
+      for (const [v] of activeMap.entries()) {
         const d = levenshtein(target.replace(/\s+/g, '-'), v);
         if (d < bestDist) { bestDist = d; closestField = v; }
       }
 
       if (bestDist <= 5) {
-        rlhfMap.set(alias, closestField);
-        return new Response(JSON.stringify({ response: `Got it! I've learned that "${alias}" means "${closestField.replace('-', ' ')}". I will remember this for next time.`, context: null }));
-      } else {
-        return new Response(JSON.stringify({ response: `I tried to learn that, but "${target}" doesn't match any fields I know about.`, context: null }));
+        return new Response(JSON.stringify({ 
+          response: `Got it! I've learned that "${alias}" means "${closestField.replace('-', ' ')}".`, 
+          context: null,
+          updateSessionMap: { key: alias, value: closestField } // Instruct client frontend to hold state
+        }));
       }
+      return new Response(JSON.stringify({ response: `I tried to learn that, but "${target}" doesn't match any fields I know about.`, context: null }));
     }
 
     let fills: any[] = [];
     let actions: any[] = [];
     let rtext = "I've updated the calculator: ";
     let unknownWords: string[] = [];
-    let targetStatePath = null;
+    let targetStatePath: string | null = null;
     let stateFound = false;
 
-    // 0. Conversational Amnesia Check
-    // If the bot previously asked "What number did you want for home-price?", scan for a standalone number here.
-    if (history.missingField) {
-       const words = query.split(/\s+/);
-       for (let i = 0; i < words.length; i++) {
-         let w = words[i].toLowerCase().replace(/[.,!?;:]+$/, '');
-         const numMatch = w.match(/^(\$?\d+(?:,\d+)*(?:\.\d+)?)(k|m|%|yr|years?)?$/i);
-         if (numMatch) {
-            let numStr = numMatch[1].replace(/[$,]/g, '');
-            let num = parseFloat(numStr);
-            let modifier = numMatch[2]?.toLowerCase();
-            if (modifier === 'k') num *= 1000;
-            if (modifier === 'm') num *= 1000000;
-            
-            fills.push({ id: FIELD_MAP[history.missingField], value: num.toString() });
-            rtext += `Updated ${history.missingField.replace('-', ' ')} to ${modifier === '%' ? num + '%' : num}. `;
-            history.missingField = null; // Clear context
-            break;
-         }
-       }
-    }
-
-    // Parse states first
+    // 3. Entity Parsing (Geography)
     const commonWords = ['me', 'in', 'or', 'as', 'do', 'hi', 'la', 'ma', 'md', 'ok', 'pa', 'sc', 'va', 'wa'];
     for (const state of statesData) {
       const explicitAbbr = text.match(new RegExp(`\\b${state.abbr.toLowerCase()}\\b`, 'i')) 
                             && (query.includes(state.abbr) || !commonWords.includes(state.abbr.toLowerCase()));
                             
       if (text.includes(state.name.toLowerCase()) || explicitAbbr) {
-        if (text.includes('take me to') || text.includes('go to') || text.includes('navigate') || text.includes('section') || text.includes('to ' + state.name.toLowerCase()) || text.includes('no to')) {
+        if (/take me to|go to|navigate|section|to \w+|no to/i.test(text)) {
            targetStatePath = `/states/${state.slug}`;
            stateFound = true;
         }
-        if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update') || text.includes('switch')) {
+        if (/set|change|make|update|switch/i.test(text)) {
           fills.push({ id: ['state-selector'], value: state.abbr });
           rtext += `State to ${state.name}. `;
           stateFound = true;
@@ -179,12 +130,11 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    // Parse numeric fields
-    if (text.includes('set') || text.includes('change') || text.includes('make') || text.includes('update') || text.includes('adjust') || text.includes('switch')) {
+    // 4. Numerical Evaluation Engine
+    if (/set|change|make|update|adjust|switch/i.test(text)) {
       const words = query.split(/\s+/);
       
       for (let i = 0; i < words.length; i++) {
-        // Strip trailing punctuation from the word so regex can match properly
         let w = words[i].toLowerCase().replace(/[.,!?;:]+$/, '');
         const numMatch = w.match(/^(\$?\d+(?:,\d+)*(?:\.\d+)?)(k|m|%|yr|years?)?$/i);
         
@@ -195,14 +145,14 @@ export const POST: APIRoute = async ({ request }) => {
           
           if (modifier === 'k') num *= 1000;
           if (modifier === 'm') num *= 1000000;
+
+          let contextWords = words.slice(Math.max(0, i - 3), Math.min(words.length, i + 4))
+                                  .filter(cw => cw.toLowerCase() !== w && cw.length > 1);
           
-          let contextWords = words.slice(Math.max(0, i - 3), Math.min(words.length, i + 4));
-          contextWords = contextWords.filter(cw => cw.toLowerCase() !== w && cw.length > 1);
-          
-          let matchedField = null;
+          let matchedField: string | null = null;
           let bestDist = 999;
 
-          if (modifier === 'yr' || modifier === 'year' || modifier === 'years' || modifier === 'yrs') {
+          if (['yr', 'year', 'years', 'yrs'].includes(modifier || '')) {
             matchedField = 'term';
             bestDist = 0;
           }
@@ -212,8 +162,8 @@ export const POST: APIRoute = async ({ request }) => {
               let clean = cw.toLowerCase().replace(/[^\w]/g, '');
               if (!clean) continue;
 
-              if (rlhfMap.has(clean)) {
-                matchedField = rlhfMap.get(clean);
+              if (activeMap.has(clean)) {
+                matchedField = activeMap.get(clean)!;
                 bestDist = 0;
                 break;
               }
@@ -233,13 +183,12 @@ export const POST: APIRoute = async ({ request }) => {
           if (!matchedField) {
             for (let j = 0; j < contextWords.length - 1; j++) {
               let bigram = contextWords[j].toLowerCase().replace(/[^\w]/g, '') + '-' + contextWords[j+1].toLowerCase().replace(/[^\w]/g, '');
-              if (rlhfMap.has(bigram)) {
-                matchedField = rlhfMap.get(bigram);
+              if (activeMap.has(bigram)) {
+                matchedField = activeMap.get(bigram)!;
                 break;
               }
               for (const field of Object.keys(FIELD_MAP)) {
-                let d = levenshtein(bigram, field);
-                if (d <= 3) { matchedField = field; break; }
+                if (levenshtein(bigram, field) <= 3) { matchedField = field; break; }
               }
             }
           }
@@ -260,14 +209,13 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    // Conversational Complaints
-    if (text.includes('did not update') || text.includes('forgot') || text.includes('missed')) {
-       // Check if they mentioned a field
-       let missingField = null;
+    // 5. Context Capture Strategy
+    if (/did not update|forgot|missed/i.test(text)) {
+       let missingField: string | null = null;
        for (const field of Object.keys(FIELD_MAP)) {
           if (text.includes(field.replace('-', ' '))) missingField = field;
        }
-       for (const [k, v] of rlhfMap.entries()) {
+       for (const [k, v] of activeMap.entries()) {
           if (text.includes(k)) missingField = v;
        }
        if (missingField) {
@@ -285,75 +233,72 @@ export const POST: APIRoute = async ({ request }) => {
       }));
     }
 
-    // 4. Parameter Shifts (FHA, VA, Jumbo)
+    // 6. Multi-bracket Parameter Modifiers
     if (text.includes('fha')) {
        fills.push({ id: ['down-payment'], value: '3.5' });
        rtext += 'Switched to FHA parameters (3.5% down). ';
     }
-    if (text.includes('va loan') || text.match(/\bva\b/)) {
-       // Make sure it's not Virginia scope unless proven
-       if (!targetStatePath || !targetStatePath.includes('virginia')) {
-         fills.push({ id: ['down-payment'], value: '0' });
-         rtext += 'Switched to VA parameters (0% down). ';
-       }
+    
+    if (/\bva\b/i.test(text) || text.includes('va loan')) {
+      if (!targetStatePath || !targetStatePath.includes('virginia')) {
+        fills.push({ id: ['down-payment'], value: '0' });
+        rtext += 'Switched to VA parameters (0% down). ';
+      }
     }
+    
     if (text.includes('jumbo')) {
-       rtext += 'Switched to Jumbo parameters. ';
+      rtext += 'Switched to Jumbo parameters. ';
     }
-
-    if (fills.length > 0) {
-      actions.push({ type: 'fill', payload: fills });
-    }
-
+    
+    if (fills.length > 0) actions.push({ type: 'fill', payload: fills });
+    
     if (targetStatePath) {
       actions.push({ type: 'navigate', payload: targetStatePath });
       rtext += `Navigating you to ${targetStatePath.split('/').pop()}...`;
-    } else if (text.includes('go to') || text.includes('navigate') || text.includes('take me to') || text.includes('section')) {
-      if (text.includes('refinance')) { actions.push({ type: 'navigate', payload: '/refinance-calculator' }); rtext += "Navigating..."; }
-      else if (text.includes('extra') || text.includes('payoff')) { actions.push({ type: 'navigate', payload: '/extra-payment-calculator' }); rtext += "Navigating..."; }
-      else if (text.includes('afford')) { actions.push({ type: 'navigate', payload: '/how-much-can-i-afford' }); rtext += "Navigating..."; }
-      else if (text.includes('amortization')) { actions.push({ type: 'navigate', payload: '/amortization-schedule' }); rtext += "Navigating..."; }
-      else if (text.includes('heloc')) { actions.push({ type: 'navigate', payload: '/heloc-calculator' }); rtext += "Navigating..."; }
-      else { actions.push({ type: 'navigate', payload: '/' }); rtext += "Navigating to Main Calculator..."; }
+    } else if (/go to|navigate|take me to|section/i.test(text)) {
+      const paths: Record<string, string> = {
+        refinance: '/refinance-calculator',
+        extra: '/extra-payment-calculator', 
+        payoff: '/extra-payment-calculator',
+        afford: '/how-much-can-i-afford',
+        amortization: '/amortization-schedule',
+        heloc: '/heloc-calculator'
+      };
+      let matchedPath = '/';
+      for (const key of Object.keys(paths)) {
+        if (text.includes(key)) { matchedPath = paths[key]; break; }
+      }
+      actions.push({ type: 'navigate', payload: matchedPath });
+      rtext += matchedPath === '/' ? "Navigating to Main Calculator..." : "Navigating...";
     }
-
+    
     if (actions.length > 0) {
       return new Response(JSON.stringify({ response: rtext, actions: actions, context: history }));
     }
 
-    // 5. Data Interceptor (Scope-aware)
-    if (text.includes('what') || text.includes('how much') || text.includes('tell me') || text.includes('average')) {
-      let matchedState = null;
-      // 1. Check explicitly named states (Breakout)
-      for (const state of statesData) {
-         if (text.includes(state.name.toLowerCase())) { matchedState = state; break; }
-      }
-      
-      // 2. If no explicit state, fallback to Active Scope
+    // 7. Information Queries
+    if (/what|how much|tell me|average/i.test(text)) {
+      let matchedState = statesData.find(s => text.includes(s.name.toLowerCase()));
       if (!matchedState && history.activeScope) {
-         const scopeStr = history.activeScope.toString().toLowerCase();
-         if (scopeStr.includes('/states/')) {
-            const scopeSlug = scopeStr.replace(/\/$/, '').split('/').pop();
-            for (const state of statesData) {
-               if (state.slug === scopeSlug) { matchedState = state; break; }
-            }
-         }
+        const scopeStr = history.activeScope.toString().toLowerCase();
+        if (scopeStr.includes('/states/')) {
+          const scopeSlug = scopeStr.replace(/\/$/, '').split('/').pop();
+          matchedState = statesData.find(s => s.slug === scopeSlug);
+        }
       }
-
       if (matchedState) {
         if (text.includes('tax')) return new Response(JSON.stringify({ response: `The average property tax rate in **${matchedState.name}** is **${matchedState.taxRate}%**.` }));
         if (text.includes('insurance')) return new Response(JSON.stringify({ response: `The average annual home insurance cost in **${matchedState.name}** is around **$${matchedState.insurance.toLocaleString()}**.` }));
         if (text.includes('price') || text.includes('cost')) return new Response(JSON.stringify({ response: `The median home price in **${matchedState.name}** is **$${matchedState.medianPrice.toLocaleString()}**.` }));
-        
         if (!stateFound) {
-           return new Response(JSON.stringify({ response: `**${matchedState.name}** has a median home price of **$${matchedState.medianPrice.toLocaleString()}**, an average property tax rate of **${matchedState.taxRate}%**, and annual home insurance around **$${matchedState.insurance.toLocaleString()}**.` }));
+          return new Response(JSON.stringify({ response: `**${matchedState.name}** has a median home price of **$${matchedState.medianPrice.toLocaleString()}**, an average property tax rate of **${matchedState.taxRate}%**, and annual home insurance around **$${matchedState.insurance.toLocaleString()}**.` }));
         }
       }
     }
 
     return new Response(JSON.stringify({ response: "I'm a Virtual Assistant. Ask me to 'Set the home price to 400k', 'Make it an FHA loan', 'Take me to Washington', or 'What is the property tax?'", context: history }));
-    
+
   } catch (error) {
     return new Response(JSON.stringify({ response: "Sorry, I ran into an error processing that request.", context: null }), { status: 500 });
   }
-};
+}

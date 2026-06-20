@@ -117,6 +117,7 @@
   let isOpen = sessionStorage.getItem('chatbotOpen') === 'true';
   let chatHistory: Array<{text: string, isUser: boolean}> = [];
   let chatContext: any = null; // Lightweight conversational memory state
+  let sessionMap: Record<string, string> = {}; // Edge-ready stateless learning memory
 
   maximizeBtn?.addEventListener('click', () => {
     windowEl?.classList.toggle('maximized-view');
@@ -148,6 +149,7 @@
     sessionStorage.setItem('chatbotHistory', JSON.stringify(chatHistory));
     if (chatContext) sessionStorage.setItem('chatbotContext', JSON.stringify(chatContext));
     else sessionStorage.removeItem('chatbotContext');
+    sessionStorage.setItem('chatbotSessionMap', JSON.stringify(sessionMap));
   }
 
   function renderMessage(text: string, isUser: boolean, animate = true) {
@@ -211,6 +213,10 @@
     const storedCtx = sessionStorage.getItem('chatbotContext');
     if (storedCtx) {
       try { chatContext = JSON.parse(storedCtx); } catch(e) {}
+    }
+    const storedMap = sessionStorage.getItem('chatbotSessionMap');
+    if (storedMap) {
+      try { sessionMap = JSON.parse(storedMap); } catch(e) {}
     }
 
     // Always inject the current page path as the Active Scope
@@ -304,18 +310,28 @@
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: text, history: chatContext })
+        body: JSON.stringify({ query: text, history: chatContext, sessionMap: sessionMap })
       });
       const data = await res.json();
       
       document.getElementById(typingId)?.remove();
       addMessage(data.response, false);
       
+      let shouldSave = false;
+
       // Update compressed context memory
       if (data.context !== undefined) {
         chatContext = data.context;
-        saveHistory();
+        shouldSave = true;
       }
+
+      // Update stateless memory (RLHF Learning)
+      if (data.updateSessionMap) {
+        sessionMap[data.updateSessionMap.key] = data.updateSessionMap.value;
+        shouldSave = true;
+      }
+
+      if (shouldSave) saveHistory();
 
       if (data.actions && Array.isArray(data.actions)) {
         let shouldNavigate = false;
