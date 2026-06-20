@@ -46,19 +46,19 @@ import statesData from '../data/states.json';
             <label class="label block mb-1.5">Home Price</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="home-price-input" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+              <input type="text" id="home-price-input" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Enter Home Price" />
             </div>
             <input type="range" id="home-price" min="50000" max="2000000" step="5000" value="350000" />
             <div class="flex justify-between label-faint text-xs"><span>$50K</span><span>$2M</span></div>
           </div>
 
           <!-- Down Payment -->
-          <div>
+          <div id="down-payment-wrapper">
             <label class="label block mb-1.5">Down Payment</label>
             <div class="flex gap-2">
               <div class="relative flex-1">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-                <input type="text" id="down-payment-dollar-input" value="70,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+                <input type="text" id="down-payment-dollar-input" value="70,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="2" data-tooltip="Step 2: Enter Down Payment" />
               </div>
               <div class="relative w-20">
                 <input type="text" id="down-payment-input" value="20" inputmode="decimal" class="calc-input text-center font-mono" />
@@ -73,7 +73,7 @@ import statesData from '../data/states.json';
           <div>
             <label class="label block mb-1.5">Interest Rate</label>
             <div class="relative w-28">
-              <input type="text" id="interest-rate-input" value="6.52" inputmode="decimal" class="calc-input text-center font-mono" />
+              <input type="text" id="interest-rate-input" value="6.52" inputmode="decimal" class="calc-input text-center font-mono" data-step="3" data-tooltip="Step 3: Enter Interest Rate" />
               <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
             </div>
             <input type="range" id="interest-rate" min="1" max="15" step="0.01" value="6.52" />
@@ -81,7 +81,7 @@ import statesData from '../data/states.json';
           </div>
 
           <!-- Loan Term -->
-          <div>
+          <div data-step="4" data-tooltip="Step 4: Select Loan Term">
             <label class="label block mb-1.5">Loan Term</label>
             <div class="grid grid-cols-4 gap-2">
               <button data-term="15" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">15 yr</button>
@@ -94,7 +94,7 @@ import statesData from '../data/states.json';
           <!-- State Selection for Taxes -->
           <div>
             <label class="label block mb-1.5">State (For Accurate Taxes & Insurance)</label>
-            <select id="state-selector" class="calc-input font-mono w-full">
+            <select id="state-selector" class="calc-input font-mono w-full" data-step="5" data-tooltip="Step 5: Select your state for local data">
               <option value="">National Average</option>
               {statesData.map(state => (
                 <option value={state.abbr} data-tax={state.taxRate} data-ins={state.insurance}>
@@ -348,7 +348,7 @@ import statesData from '../data/states.json';
     if (pmiRow) pmiRow.style.display = pmi > 0 ? 'flex' : 'none';
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     const $ = (id) => document.getElementById(id);
     
     // Parse URL params for specific loan types
@@ -360,11 +360,13 @@ import statesData from '../data/states.json';
       $('down-payment').value = "3.5";
       $('down-payment-input').value = "3.5";
       document.title = "FHA Mortgage Calculator | MortgageDash";
+      $('down-payment-dollar-input')?.removeAttribute('data-step'); // Fixed value, skip onboarding step
     } else if (type === 'va') {
       $('calc-title').innerHTML = `VA Mortgage <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>`;
       $('down-payment').value = "0";
       $('down-payment-input').value = "0";
       document.title = "VA Mortgage Calculator | MortgageDash";
+      $('down-payment-dollar-input')?.removeAttribute('data-step'); // Fixed value, skip onboarding step
     } else if (type === 'jumbo') {
       $('calc-title').innerHTML = `Jumbo Mortgage <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>`;
       $('home-price').value = "850000";
@@ -411,5 +413,8 @@ import statesData from '../data/states.json';
     });
 
     calc();
+
+    const { OnboardingTour } = await import('../scripts/onboarding.ts');
+    new OnboardingTour().init();
   });
 </script>

@@ -7,6 +7,7 @@ Welcome to **MortgageDash**, a completely free, high-performance web application
 ## ✨ Core Features
 
 - **Gorgeous, Premium UI:** Step away from clunky, outdated financial tools. MortgageDash features modern glassmorphism, dynamic Aurora background gradients, SVG Donut Chart animations, and state-specific parallax headers.
+- **Interactive Onboarding Guides:** First-time users are greeted with sequential, floating tooltips that highlight each input step-by-step. The onboarding engine intelligently skips over fixed loan parameters (like FHA down payments), while continuous ripple animations prompt users toward key navigation features like the AI Chatbot.
 - **Advanced Calculation Engine:** Our suite includes robust tools for standard Amortization, Refinancing, Extra Payments, Affordability, Recasting, and HELOC scenarios.
 - **50-State Precision Integration:** No more guessing local taxes! Select any US state to instantly pre-fill its local property tax rate, median home price, and annual home insurance averages directly into the calculators. Includes support for extended 50-year loan terms.
 - **Loan Type Mastery:** Comprehensive, interactive guides and integrated parameter shifts for FHA, VA, and Jumbo loan types.

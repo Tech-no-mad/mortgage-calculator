@@ -28,20 +28,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <label class="label block mb-1.5">Loan Amount</label>
           <div class="relative">
             <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-            <input type="text" id="loan-amount" value="300,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            <input type="text" id="loan-amount" value="300,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Enter Loan Amount" />
           </div>
         </div>
 
         <!-- Interest Rate -->
         <div>
           <label class="label block mb-1.5">Interest Rate (%)</label>
-          <input type="text" id="interest-rate" value="6.52" inputmode="decimal" class="calc-input font-mono" />
+          <input type="text" id="interest-rate" value="6.52" inputmode="decimal" class="calc-input font-mono" data-step="2" data-tooltip="Step 2: Enter Interest Rate" />
         </div>
 
         <!-- Loan Term -->
         <div>
           <label class="label block mb-1.5">Loan Term</label>
-          <select id="loan-term" class="calc-input font-mono w-full">
+          <select id="loan-term" class="calc-input font-mono w-full" data-step="3" data-tooltip="Step 3: Select Loan Term">
             <option value="30">30 Years</option>
             <option value="20">20 Years</option>
             <option value="15">15 Years</option>
@@ -198,7 +198,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     document.getElementById('col-payment')!.textContent = currentView === 'monthly' ? 'Payment #' : 'Year';
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     ['loan-amount', 'interest-rate', 'loan-term'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', generateSchedule);
       document.getElementById(id)?.addEventListener('change', generateSchedule);
@@ -227,5 +227,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     // Initial generation
     generateSchedule();
+
+    const { OnboardingTour } = await import('../scripts/onboarding.ts');
+    new OnboardingTour().init();
   });
 </script>

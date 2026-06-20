@@ -124,19 +124,19 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
             <label class="label block mb-1.5">Home Price</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="home-price-input" value={stateData.medianPrice} inputmode="numeric" class="calc-input pl-7 font-mono" />
+              <input type="text" id="home-price-input" value={stateData.medianPrice} inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Adjust Home Price" />
             </div>
             <input type="range" id="home-price" min="50000" max="2000000" step="5000" value={stateData.medianPrice} />
             <div class="flex justify-between label-faint text-xs"><span>$50K</span><span>$2M</span></div>
           </div>
 
           <!-- Down Payment -->
-          <div>
+          <div id="down-payment-wrapper">
             <label class="label block mb-1.5">Down Payment</label>
             <div class="flex gap-2">
               <div class="relative flex-1">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-                <input type="text" id="down-payment-dollar-input" value={stateData.medianPrice * 0.2} inputmode="numeric" class="calc-input pl-7 font-mono" />
+                <input type="text" id="down-payment-dollar-input" value={stateData.medianPrice * 0.2} inputmode="numeric" class="calc-input pl-7 font-mono" data-step="2" data-tooltip="Step 2: Set Down Payment" />
               </div>
               <div class="relative w-20">
                 <input type="text" id="down-payment-input" value="20" inputmode="decimal" class="calc-input text-center font-mono" />
@@ -151,7 +151,7 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
           <div>
             <label class="label block mb-1.5">Interest Rate</label>
             <div class="relative w-28">
-              <input type="text" id="interest-rate-input" value={stateData.avgRate30} inputmode="decimal" class="calc-input text-center font-mono" />
+              <input type="text" id="interest-rate-input" value={stateData.avgRate30} inputmode="decimal" class="calc-input text-center font-mono" data-step="3" data-tooltip="Step 3: Check Local Rates" />
               <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
             </div>
             <input type="range" id="interest-rate" min="1" max="15" step="0.01" value={stateData.avgRate30} />
@@ -159,7 +159,7 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
           </div>
 
           <!-- Loan Term -->
-          <div>
+          <div data-step="4" data-tooltip="Step 4: Pick Loan Term">
             <label class="label block mb-1.5">Loan Term</label>
             <div class="grid grid-cols-4 gap-2">
               <button data-term="15" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">15 yr</button>
@@ -430,7 +430,7 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
     if (pmiRow) pmiRow.style.display = pmi > 0 ? 'flex' : 'none';
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
 
     ['home-price', 'down-payment', 'interest-rate'].forEach(id => $(id)?.addEventListener('input', calc));
@@ -459,5 +459,8 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
     });
 
     calc();
+
+    const { OnboardingTour } = await import('../../scripts/onboarding.ts');
+    new OnboardingTour().init();
   });
 </script>
