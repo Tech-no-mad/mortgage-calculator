@@ -88,7 +88,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
             <p class="label-faint text-sm mb-2">New Monthly Payment</p>
             <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="new-payment">
-              <span class="text-[#06b6d4]">$0</span>
+              <span class="text-[#06b6d4] dark:text-cyan-300">$0</span>
             </div>
           </div>
 
@@ -98,21 +98,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <span class="w-2.5 h-2.5 rounded-full bg-[#f43f5e]"></span>
                 <span class="label">Current Payment</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f43f5e]" id="current-payment">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#f43f5e] dark:text-rose-400" id="current-payment">$0</span>
             </div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#10b981]"></span>
                 <span class="label">Monthly Savings</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#10b981]" id="monthly-savings">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#10b981] dark:text-emerald-400" id="monthly-savings">$0</span>
             </div>
             <div class="result-row mt-4 pt-4" style="border-top: 1px solid var(--border-default);">
               <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
                 <span class="label">Total Interest Saved</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="interest-savings">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b] dark:text-amber-300" id="interest-savings">$0</span>
             </div>
           </div>
 
@@ -151,7 +151,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const monthlySavings = currentPmt - newPmt;
     const interestSavings = currentTotalInterest - newTotalInterest;
 
-    document.getElementById('new-payment')!.innerHTML = `<span class="text-[#06b6d4]">${fmt(newPmt)}</span>`;
+    document.getElementById('new-payment')!.innerHTML = `<span class="text-[#06b6d4] dark:text-cyan-300">${fmt(newPmt)}</span>`;
     document.getElementById('current-payment')!.textContent = fmt(currentPmt);
     document.getElementById('monthly-savings')!.textContent = fmt(monthlySavings);
     document.getElementById('interest-savings')!.textContent = fmt(interestSavings);

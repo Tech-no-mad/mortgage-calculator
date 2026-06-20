@@ -85,7 +85,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
             <p class="label-faint text-sm mb-2">Total Interest Saved</p>
             <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="interest-saved">
-              <span class="text-[#10b981]">$0</span>
+              <span class="text-[#10b981] dark:text-emerald-400">$0</span>
             </div>
           </div>
 
@@ -95,14 +95,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
                 <span class="label">Time Saved</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="time-saved">0 yrs 0 mos</span>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b] dark:text-amber-300" id="time-saved">0 yrs 0 mos</span>
             </div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#06b6d4]"></span>
                 <span class="label">New Payoff Time</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#06b6d4]" id="new-payoff">0 yrs 0 mos</span>
+              <span class="text-sm font-semibold font-mono text-[#06b6d4] dark:text-cyan-300" id="new-payoff">0 yrs 0 mos</span>
             </div>
           </div>
 
@@ -164,11 +164,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const monthsSaved = Math.max(0, n - newMonths);
 
     if (interestSaved > 0) {
-      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#10b981]">${fmt(interestSaved)}</span>`;
+      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#10b981] dark:text-emerald-400">${fmt(interestSaved)}</span>`;
     } else if (interestSaved < 0) {
-      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#f43f5e]">${fmt(interestSaved)}</span>`;
+      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#f43f5e] dark:text-rose-400">${fmt(interestSaved)}</span>`;
     } else {
-      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#f59e0b]">${fmt(interestSaved)}</span>`;
+      document.getElementById('interest-saved')!.innerHTML = `<span class="text-[#f59e0b] dark:text-amber-300">${fmt(interestSaved)}</span>`;
     }
     
     const savedYrs = Math.floor(monthsSaved / 12);

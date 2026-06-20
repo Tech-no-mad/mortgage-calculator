@@ -97,14 +97,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
                 <span class="label">Max Monthly Payment</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="max-monthly">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b] dark:text-amber-300" id="max-monthly">$0</span>
             </div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#10b981]"></span>
                 <span class="label">Loan Amount</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#10b981]" id="max-loan">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#10b981] dark:text-emerald-400" id="max-loan">$0</span>
             </div>
           </div>
 
@@ -157,7 +157,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     const homePrice = loan + dp;
 
-    document.getElementById('max-home-price')!.innerHTML = `<span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">${fmt(homePrice)}</span>`;
+    document.getElementById('max-home-price')!.innerHTML = `<span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] dark:from-cyan-300 dark:to-emerald-400 bg-clip-text text-transparent">${fmt(homePrice)}</span>`;
     document.getElementById('max-monthly')!.textContent = fmt(maxMonthlyPayment);
     document.getElementById('max-loan')!.textContent = fmt(loan);
   }

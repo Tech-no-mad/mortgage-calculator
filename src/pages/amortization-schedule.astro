@@ -55,11 +55,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="flex gap-8">
            <div>
              <p class="label-faint text-xs mb-1">Monthly (P&I) Payment</p>
-             <p class="text-2xl font-bold font-mono text-[#06b6d4]" id="monthly-pi">$0</p>
+             <p class="text-2xl font-bold font-mono text-[#06b6d4] dark:text-cyan-300" id="monthly-pi">$0</p>
            </div>
            <div>
              <p class="label-faint text-xs mb-1">Total Interest Paid</p>
-             <p class="text-2xl font-bold font-mono text-[#f59e0b]" id="total-interest">$0</p>
+             <p class="text-2xl font-bold font-mono text-[#f59e0b] dark:text-amber-300" id="total-interest">$0</p>
            </div>
         </div>
         
@@ -149,10 +149,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         html += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors ${rowClass}">
           <td class="px-6 py-3 whitespace-nowrap" style="color: var(--text-primary);">
-            ${i} ${isYearEnd ? `<span class="text-xs ml-2 text-[#06b6d4]">(Year ${i/12})</span>` : ''}
+            ${i} ${isYearEnd ? `<span class="text-xs ml-2 text-[#06b6d4] dark:text-cyan-300">(Year ${i/12})</span>` : ''}
           </td>
-          <td class="px-6 py-3 text-right text-[#10b981]">${fmt(principalPayment)}</td>
-          <td class="px-6 py-3 text-right text-[#f59e0b]">${fmt(interestPayment)}</td>
+          <td class="px-6 py-3 text-right text-[#10b981] dark:text-emerald-400">${fmt(principalPayment)}</td>
+          <td class="px-6 py-3 text-right text-[#f59e0b] dark:text-amber-300">${fmt(interestPayment)}</td>
           <td class="px-6 py-3 text-right" style="color: var(--text-primary);">${fmt(totalInterest)}</td>
           <td class="px-6 py-3 text-right" style="color: var(--text-primary);">${fmt(balance)}</td>
         </tr>`;
@@ -179,8 +179,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <td class="px-6 py-4 whitespace-nowrap" style="color: var(--text-primary);">
               Year ${yearCount}
             </td>
-            <td class="px-6 py-4 text-right text-[#10b981]">${fmt(yearlyPrincipal)}</td>
-            <td class="px-6 py-4 text-right text-[#f59e0b]">${fmt(yearlyInterest)}</td>
+            <td class="px-6 py-4 text-right text-[#10b981] dark:text-emerald-400">${fmt(yearlyPrincipal)}</td>
+            <td class="px-6 py-4 text-right text-[#f59e0b] dark:text-amber-300">${fmt(yearlyInterest)}</td>
             <td class="px-6 py-4 text-right" style="color: var(--text-primary);">${fmt(totalInterest)}</td>
             <td class="px-6 py-4 text-right" style="color: var(--text-primary);">${fmt(balance)}</td>
           </tr>`;

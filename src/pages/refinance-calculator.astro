@@ -10,7 +10,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
         Mortgage Refinance
-        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Calculator</span>
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] dark:from-cyan-300 dark:to-emerald-400 bg-clip-text text-transparent">Calculator</span>
       </h1>
       <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
         See if refinancing makes sense for you by calculating your break-even point and lifetime savings.
@@ -26,7 +26,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- INPUTS -->
         <div class="space-y-5">
           <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
-            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <svg class="w-4 h-4 text-[#06b6d4] dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Current Loan
@@ -54,7 +54,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
 
           <h2 class="text-base font-semibold flex items-center gap-2 mt-8" style="color: var(--text-primary);">
-            <svg class="w-4 h-4 text-[#f59e0b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <svg class="w-4 h-4 text-[#f59e0b] dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
             New Loan Options
@@ -88,7 +88,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- RESULTS -->
         <div class="space-y-5">
           <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
-            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <svg class="w-4 h-4 text-[#10b981] dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
             Refinance Breakdown
@@ -97,24 +97,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="text-center py-8 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
             <p class="label-faint text-sm mb-2">Monthly Savings</p>
             <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight" id="monthly-savings">
-              <span class="text-[#10b981]">$0</span>
+              <span class="text-[#10b981] dark:text-emerald-400">$0</span>
             </div>
           </div>
 
           <div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b] dark:bg-amber-400"></span>
                 <span class="label">Break-Even Point</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="break-even">0 months</span>
+              <span class="text-sm font-semibold font-mono text-[#f59e0b] dark:text-amber-400" id="break-even">0 months</span>
             </div>
             <div class="result-row">
               <div class="flex items-center gap-2.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-[#06b6d4]"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#06b6d4] dark:bg-cyan-400"></span>
                 <span class="label">Total Lifetime Savings</span>
               </div>
-              <span class="text-sm font-semibold font-mono text-[#06b6d4]" id="lifetime-savings">$0</span>
+              <span class="text-sm font-semibold font-mono text-[#06b6d4] dark:text-cyan-400" id="lifetime-savings">$0</span>
             </div>
           </div>
 
@@ -170,20 +170,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     const savingsEl = document.getElementById('monthly-savings')!;
     if (monthlySavings > 0) {
-      savingsEl.innerHTML = `<span class="text-[#10b981]">${fmt(monthlySavings)}</span>`;
+      savingsEl.innerHTML = `<span class="text-[#10b981] dark:text-emerald-400">${fmt(monthlySavings)}</span>`;
     } else if (monthlySavings < 0) {
-      savingsEl.innerHTML = `<span class="text-[#f43f5e]">${fmt(monthlySavings)}</span>`;
+      savingsEl.innerHTML = `<span class="text-[#f43f5e] dark:text-rose-400">${fmt(monthlySavings)}</span>`;
     } else {
-      savingsEl.innerHTML = `<span class="text-[#f59e0b]">${fmt(monthlySavings)}</span>`;
+      savingsEl.innerHTML = `<span class="text-[#f59e0b] dark:text-amber-300">${fmt(monthlySavings)}</span>`;
     }
 
     const lifetimeEl = document.getElementById('lifetime-savings')!;
     if (lifetimeSavings > 0) {
-      lifetimeEl.innerHTML = `<span class="text-[#10b981]">${fmt(lifetimeSavings)}</span>`;
+      lifetimeEl.innerHTML = `<span class="text-[#10b981] dark:text-emerald-400">${fmt(lifetimeSavings)}</span>`;
     } else if (lifetimeSavings < 0) {
-      lifetimeEl.innerHTML = `<span class="text-[#f43f5e]">${fmt(lifetimeSavings)}</span>`;
+      lifetimeEl.innerHTML = `<span class="text-[#f43f5e] dark:text-rose-400">${fmt(lifetimeSavings)}</span>`;
     } else {
-      lifetimeEl.innerHTML = `<span class="text-[#f59e0b]">${fmt(lifetimeSavings)}</span>`;
+      lifetimeEl.innerHTML = `<span class="text-[#f59e0b] dark:text-amber-300">${fmt(lifetimeSavings)}</span>`;
     }
 
     document.getElementById('break-even')!.textContent = monthlySavings > 0 ? `${breakEvenMonths} months` : 'Never';
