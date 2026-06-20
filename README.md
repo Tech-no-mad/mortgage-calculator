@@ -4,6 +4,7 @@ A comprehensive, high-performance Mortgage Calculator suite built with [Astro](h
 
 ## 🚀 Features
 
+- **Premium UI Aesthetics:** Features glassmorphism, Aurora background gradients, SVG Donut Chart animations, and dynamic state-specific parallax headers.
 - **Advanced Calculators:** Includes Amortization, Refinance, Extra Payment, Affordability, Recast, and HELOC.
 - **State-Specific Integrations:** Select a state to instantly pre-fill local property tax rates, median home prices, and annual home insurance averages directly into the calculators.
 - **Loan Type Guides:** Comprehensive information and tools for VA, FHA, and Jumbo loans.
