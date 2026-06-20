@@ -18,7 +18,7 @@
 <div 
   id="chatbot-window" 
   class="fixed bottom-24 right-6 w-80 sm:w-96 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4"
-  style="background: var(--bg-surface); border: 1px solid var(--border-default); height: 90vh; max-height: 800px;"
+  style="background: var(--bg-surface); border: 1px solid var(--border-default); min-height: 250px; max-height: 80vh; height: auto;"
 >
   <!-- Header -->
   <div class="px-5 py-4 flex justify-between items-center bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white">
@@ -229,6 +229,19 @@
             if (id === 'term') {
               const btn = document.querySelector(`.term-btn[data-term="${fill.value}"]`) as HTMLElement;
               if (btn) { btn.click(); updated = true; }
+              const sel = document.getElementById('loan-term') as HTMLSelectElement;
+              if (sel) { sel.value = fill.value; sel.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+            } else if (id === 'down-payment') {
+              let v = parseFloat(fill.value);
+              if (v > 100) {
+                 const dEl = document.getElementById('down-payment-dollar-input') as HTMLInputElement;
+                 if (dEl) { dEl.value = v.toString(); dEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+              } else {
+                 const pEl = document.getElementById('down-payment-input') as HTMLInputElement;
+                 if (pEl) { pEl.value = v.toString(); pEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+                 const el = document.getElementById(id) as HTMLInputElement;
+                 if (el) { el.value = v.toString(); el.dispatchEvent(new Event('input', {bubbles: true})); }
+              }
             } else {
               const el = document.getElementById(id);
               if (el) {
@@ -327,6 +340,19 @@
               if (id === 'term') {
                 const btn = document.querySelector(`.term-btn[data-term="${fill.value}"]`) as HTMLElement;
                 if (btn) { btn.click(); updated = true; }
+                const sel = document.getElementById('loan-term') as HTMLSelectElement;
+                if (sel) { sel.value = fill.value; sel.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+              } else if (id === 'down-payment') {
+                let v = parseFloat(fill.value);
+                if (v > 100) {
+                   const dEl = document.getElementById('down-payment-dollar-input') as HTMLInputElement;
+                   if (dEl) { dEl.value = v.toString(); dEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+                } else {
+                   const pEl = document.getElementById('down-payment-input') as HTMLInputElement;
+                   if (pEl) { pEl.value = v.toString(); pEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+                   const el = document.getElementById(id) as HTMLInputElement;
+                   if (el) { el.value = v.toString(); el.dispatchEvent(new Event('input', {bubbles: true})); }
+                }
               } else {
                 const el = document.getElementById(id);
                 if (el) {
