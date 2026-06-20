@@ -27,7 +27,7 @@ export function animateValue(obj: HTMLElement | null, start: number, end: number
       window.requestAnimationFrame(step);
     } else {
       // Final exact value
-      const finalStr = isCurrency ? '$' + end.toLocaleString('en-US') : end.toString();
+      const finalStr = isCurrency ? '$' + Math.round(end).toLocaleString('en-US') : Math.round(end).toString();
       const innerSpan = obj.querySelector('span');
       if (innerSpan) {
         innerSpan.innerText = finalStr;
