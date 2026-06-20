@@ -221,47 +221,52 @@
 
     const pendingFill = sessionStorage.getItem('pendingAutofill');
     if (pendingFill) {
-      try {
-        const payload = JSON.parse(pendingFill);
-        let updated = false;
-        payload.forEach((fill: any) => {
-          for (const id of fill.id) {
-            if (id === 'term') {
-              const btn = document.querySelector(`.term-btn[data-term="${fill.value}"]`) as HTMLElement;
-              if (btn) { btn.click(); updated = true; }
-              const sel = document.getElementById('loan-term') as HTMLSelectElement;
-              if (sel) { sel.value = fill.value; sel.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
-            } else if (id === 'down-payment') {
-              let v = parseFloat(fill.value);
-              if (v > 100) {
-                 const dEl = document.getElementById('down-payment-dollar-input') as HTMLInputElement;
-                 if (dEl) { dEl.value = v.toString(); dEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+      // Delay to ensure the calculator's DOMContentLoaded runs first
+      setTimeout(() => {
+        try {
+          const payload = JSON.parse(pendingFill);
+          let updated = false;
+          payload.forEach((fill: any) => {
+            for (const id of fill.id) {
+              if (id === 'term') {
+                const btn = document.querySelector(`.term-btn[data-term="${fill.value}"]`) as HTMLElement;
+                if (btn) { btn.click(); updated = true; }
+                const sel = document.getElementById('loan-term') as HTMLSelectElement;
+                if (sel) { sel.value = fill.value; sel.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+              } else if (id === 'down-payment') {
+                let v = parseFloat(fill.value);
+                if (v > 100) {
+                   const dEl = document.getElementById('down-payment-dollar-input') as HTMLInputElement;
+                   if (dEl) { dEl.value = v.toString(); dEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+                } else {
+                   const pEl = document.getElementById('down-payment-input') as HTMLInputElement;
+                   if (pEl) { pEl.value = v.toString(); pEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
+                   const el = document.getElementById(id) as HTMLInputElement;
+                   if (el) { el.value = v.toString(); el.dispatchEvent(new Event('input', {bubbles: true})); }
+                }
               } else {
-                 const pEl = document.getElementById('down-payment-input') as HTMLInputElement;
-                 if (pEl) { pEl.value = v.toString(); pEl.dispatchEvent(new Event('change', { bubbles: true })); updated = true; }
-                 const el = document.getElementById(id) as HTMLInputElement;
-                 if (el) { el.value = v.toString(); el.dispatchEvent(new Event('input', {bubbles: true})); }
-              }
-            } else {
-              const el = document.getElementById(id);
-              if (el) {
-                (el as HTMLInputElement).value = fill.value;
-                updated = true;
+                const el = document.getElementById(id);
+                if (el) {
+                  (el as HTMLInputElement).value = fill.value;
+                  updated = true;
+                }
               }
             }
-          }
-        });
-        if (updated) {
-          const ev = new Event('change');
-          const inputEv = new Event('input');
-          ['home-price', 'loan-amount', 'down-payment', 'interest-rate', 'state-selector'].forEach(id => {
-            document.getElementById(id)?.dispatchEvent(inputEv);
-            document.getElementById(id)?.dispatchEvent(ev);
           });
-          sessionStorage.removeItem('pendingAutofill');
-          toggleChat(true); 
+          if (updated) {
+            const ev = new Event('change', { bubbles: true });
+            const inputEv = new Event('input', { bubbles: true });
+            ['home-price', 'loan-amount', 'down-payment', 'interest-rate', 'state-selector'].forEach(id => {
+              document.getElementById(id)?.dispatchEvent(inputEv);
+              document.getElementById(id)?.dispatchEvent(ev);
+            });
+            sessionStorage.removeItem('pendingAutofill');
+            toggleChat(true); 
+          }
+        } catch(e) {
+          console.error('Failed to parse pending autofill', e);
         }
-      } catch(e) {}
+      }, 50);
     }
   });
 

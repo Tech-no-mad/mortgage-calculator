@@ -4,7 +4,10 @@ import statesData from '../../data/states.json';
 // Global RLHF Map for persistence across requests in memory
 const globalAny: any = globalThis;
 if (!globalAny.rlhfMap) {
-  globalAny.rlhfMap = new Map<string, string>([
+  globalAny.rlhfMap = new Map<string, string>();
+}
+
+const defaultSynonyms = [
     ['dp', 'down-payment'],
     ['downpayment', 'down-payment'],
     ['dwn pymnt', 'down-payment'],
@@ -35,8 +38,14 @@ if (!globalAny.rlhfMap) {
     ['apr', 'interest-rate'],
     ['fixed', 'interest-rate'],
     ['duration', 'term']
-  ]);
-}
+];
+
+defaultSynonyms.forEach(([k, v]) => {
+  if (!globalAny.rlhfMap.has(k)) {
+    globalAny.rlhfMap.set(k, v);
+  }
+});
+
 const rlhfMap: Map<string, string> = globalAny.rlhfMap;
 
 // Levenshtein distance for fuzzy matching
