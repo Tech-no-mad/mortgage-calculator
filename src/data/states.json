@@ -537,7 +537,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Mackinac_Bridge_2022.jpg/1920px-Mackinac_Bridge_2022.jpg",
     "keywords": [
       "MI",
       "Detroit",
@@ -563,7 +563,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1650,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/2018_Mall_of_America_01.jpg/1920px-2018_Mall_of_America_01.jpg",
     "keywords": [
       "MN",
       "Minneapolis",
@@ -588,7 +588,7 @@
     "avgRate30": 6.6,
     "avgRate15": 5.92,
     "insurance": 1800,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Illinois_Monument.jpg/1920px-Illinois_Monument.jpg",
     "keywords": [
       "MS",
       "Jackson",
@@ -612,7 +612,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1600,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/0/00/St_Louis_night_expblend_cropped.jpg",
     "keywords": [
       "MO",
       "Kansas City",
@@ -637,7 +637,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mountain_Goat_at_Hidden_Lake.jpg/1920px-Mountain_Goat_at_Hidden_Lake.jpg",
     "keywords": [
       "MT",
       "Billings",
@@ -662,7 +662,7 @@
     "avgRate30": 6.55,
     "avgRate15": 5.88,
     "insurance": 1800,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Chimney_Rock_NE.jpg/1920px-Chimney_Rock_NE.jpg",
     "keywords": [
       "NE",
       "Omaha",
@@ -687,7 +687,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Las_Vegas_Strip_09_2017_4897.jpg",
     "keywords": [
       "NV",
       "Las Vegas",
@@ -712,7 +712,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Flag_of_New_Hampshire.svg/1920px-Flag_of_New_Hampshire.svg.png",
     "keywords": [
       "NH",
       "Manchester",
@@ -736,7 +736,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Atlantic_City_Boardwalk_view_south_from_Caesars_Atlantic_City_by_Silveira_Neto_June_24_2012.jpg/1920px-Atlantic_City_Boardwalk_view_south_from_Caesars_Atlantic_City_by_Silveira_Neto_June_24_2012.jpg",
     "keywords": [
       "NJ",
       "Newark",
@@ -761,7 +761,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1350,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Carlsbad_Interior_Formations.jpg",
     "keywords": [
       "NM",
       "Albuquerque",
@@ -786,7 +786,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1500,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Front_view_of_Statue_of_Liberty_%28cropped%29.jpg/1920px-Front_view_of_Statue_of_Liberty_%28cropped%29.jpg",
     "keywords": [
       "NY",
       "New York City",
@@ -814,7 +814,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1500,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Blue_Ridge_Parkway_shield.png",
     "keywords": [
       "NC",
       "Charlotte",
@@ -839,7 +839,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 1400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/View_of_Theodore_Roosevelt_National_Park.jpg/1920px-View_of_Theodore_Roosevelt_National_Park.jpg",
     "keywords": [
       "ND",
       "Fargo",
@@ -863,7 +863,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Rock_and_Roll_Hall_of_Fame_-_Joy_of_Museums_1.jpg/1920px-Rock_and_Roll_Hall_of_Fame_-_Joy_of_Museums_1.jpg",
     "keywords": [
       "OH",
       "Columbus",
@@ -889,7 +889,7 @@
     "avgRate30": 6.58,
     "avgRate15": 5.9,
     "insurance": 2400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Flag_of_Oklahoma.svg/1920px-Flag_of_Oklahoma.svg.png",
     "keywords": [
       "OK",
       "Oklahoma City",
@@ -914,7 +914,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1100,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Crater_Lake_winter_pano2.jpg/1920px-Crater_Lake_winter_pano2.jpg",
     "keywords": [
       "OR",
       "Portland",
@@ -939,7 +939,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Independence_Hall.jpg/1920px-Independence_Hall.jpg",
     "keywords": [
       "PA",
       "Philadelphia",
@@ -964,7 +964,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1800,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Breakers_01.jpg",
     "keywords": [
       "RI",
       "Providence",
@@ -988,7 +988,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1600,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/2/2e/East_Battery_Street_Charleston_Aug2010.jpg",
     "keywords": [
       "SC",
       "Charleston",
@@ -1012,7 +1012,7 @@
     "avgRate30": 6.56,
     "avgRate15": 5.89,
     "insurance": 1500,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Mount_Rushmore_detail_view_%28100MP%29.jpg/1920px-Mount_Rushmore_detail_view_%28100MP%29.jpg",
     "keywords": [
       "SD",
       "Sioux Falls",
@@ -1036,7 +1036,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1700,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/View_atop_Cliff_Tops_on_Mount_LeConte%2C_GSMNP%2C_TN.jpg/1920px-View_atop_Cliff_Tops_on_Mount_LeConte%2C_GSMNP%2C_TN.jpg",
     "keywords": [
       "TN",
       "Nashville",
@@ -1061,7 +1061,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 2400,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Texas.svg/1920px-Flag_of_Texas.svg.png",
     "keywords": [
       "TX",
       "Houston",
@@ -1088,7 +1088,7 @@
     "avgRate30": 6.52,
     "avgRate15": 5.84,
     "insurance": 1000,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/1/10/Zion_angels_landing_view.jpg",
     "keywords": [
       "UT",
       "Salt Lake City",
@@ -1113,7 +1113,7 @@
     "avgRate30": 6.54,
     "avgRate15": 5.86,
     "insurance": 1000,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/South_from_Mount_Mansfield.jpg/1920px-South_from_Mount_Mansfield.jpg",
     "keywords": [
       "VT",
       "Burlington",
@@ -1137,7 +1137,7 @@
     "avgRate30": 6.5,
     "avgRate15": 5.82,
     "insurance": 1300,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Colonial_Williamsburg_%283205781804%29.jpg/1920px-Colonial_Williamsburg_%283205781804%29.jpg",
     "keywords": [
       "VA",
       "Virginia Beach",
@@ -1163,7 +1163,7 @@
     "avgRate30": 6.48,
     "avgRate15": 5.8,
     "insurance": 1200,
-    "heroImage": "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1600&q=80",
+    "heroImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Space_Needle_2011-07-04.jpg/1920px-Space_Needle_2011-07-04.jpg",
     "keywords": [
       "WA",
       "Seattle",
