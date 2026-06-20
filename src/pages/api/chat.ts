@@ -286,6 +286,12 @@ export const POST: APIRoute = async ({ request }) => {
             responseTextPieces.push(`You can get in touch with us on our [Contact page](/contact).`);
           } else if (tokens.includes('about')) {
             responseTextPieces.push(`You can read about us on our [About page](/about).`);
+          } else if (tokens.includes('privacy') || tokens.includes('legal')) {
+            responseTextPieces.push(`You can review our privacy policy on our [Privacy page](/privacy).`);
+          } else if (tokens.includes('terms') || tokens.includes('conditions')) {
+            responseTextPieces.push(`You can read our terms of service on our [Terms page](/terms).`);
+          } else if (tokens.includes('faq') || tokens.includes('questions')) {
+            responseTextPieces.push(`You can find answers to frequently asked questions on our [FAQ page](/faq).`);
           }
        }
     }
