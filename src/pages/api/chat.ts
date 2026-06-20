@@ -272,6 +272,21 @@ export const POST: APIRoute = async ({ request }) => {
        }
        if (matchedState) {
           responseTextPieces.push(`**${matchedState.name}** has a median home price of **$${matchedState.medianPrice.toLocaleString()}**, an average property tax rate of **${matchedState.taxRate}%**, and annual home insurance around **$${matchedState.insurance.toLocaleString()}**.`);
+       } else {
+          // General topic queries
+          if (tokens.includes('fha')) {
+            responseTextPieces.push(`An FHA loan is backed by the government and allows down payments as low as 3.5%. You can learn more on our [FHA Loans page](/fha-loans).`);
+          } else if (tokens.includes('va')) {
+            responseTextPieces.push(`A VA loan is for veterans and service members, offering 0% down payments with no private mortgage insurance. Learn more on our [VA Loans page](/va-loans).`);
+          } else if (tokens.includes('jumbo')) {
+            responseTextPieces.push(`A Jumbo loan is required when financing exceeds the conforming loan limits. You can read more on our [Jumbo Loans page](/jumbo-loans).`);
+          } else if (tokens.includes('brokers') || tokens.includes('broker')) {
+            responseTextPieces.push(`Mortgage brokers help you shop across multiple lenders to find the best rate. Learn more on our [Brokers page](/brokers).`);
+          } else if (tokens.includes('contact')) {
+            responseTextPieces.push(`You can get in touch with us on our [Contact page](/contact).`);
+          } else if (tokens.includes('about')) {
+            responseTextPieces.push(`You can read about us on our [About page](/about).`);
+          }
        }
     }
 
@@ -296,7 +311,18 @@ export const POST: APIRoute = async ({ request }) => {
         'payoff': '/extra-payment-calculator',
         'afford': '/how-much-can-i-afford',
         'amortization': '/amortization-schedule',
-        'heloc': '/heloc-calculator'
+        'heloc': '/heloc-calculator',
+        'about': '/about',
+        'contact': '/contact',
+        'faq': '/faq',
+        'privacy': '/privacy',
+        'terms': '/terms',
+        'brokers': '/brokers',
+        'broker': '/brokers',
+        'fha': '/fha-loans',
+        'va': '/va-loans',
+        'jumbo': '/jumbo-loans',
+        'home': '/'
       };
       
       let matchedPath = '/';
