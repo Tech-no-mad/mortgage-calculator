@@ -208,11 +208,18 @@ import statesData from '../data/states.json';
   <!-- Quick Links -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h2 class="text-xl font-bold text-center mb-8" style="color: var(--text-primary);">More Tools</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {[
         { title: 'Affordability', desc: 'How much house can you afford?', href: '/how-much-can-i-afford', icon: '💰' },
         { title: 'Extra Payments', desc: 'Save thousands on interest', href: '/extra-payment-calculator', icon: '📊' },
         { title: 'Refinance', desc: 'Should you refinance?', href: '/refinance-calculator', icon: '🔄' },
+        { title: 'Amortization', desc: 'View full payment schedule', href: '/amortization-schedule', icon: '📅' },
+        { title: 'ARM Calculator', desc: 'Adjustable rate projections', href: '/arm-calculator', icon: '📈' },
+        { title: 'Reverse Mortgage', desc: 'Convert equity to cash', href: '/reverse-mortgage-calculator', icon: '🏠' },
+        { title: 'Investment Property', desc: 'Calculate ROI & Cash Flow', href: '/investment-property-calculator', icon: '🏢' },
+        { title: 'Commercial Mortgage', desc: 'Business property loans', href: '/commercial-mortgage-calculator', icon: '🏬' },
+        { title: 'Auto Loan', desc: 'Car payment calculator', href: '/auto-loan-calculator', icon: '🚗' },
+        { title: 'Loan Payment', desc: 'Generic loan calculator', href: '/loan-payment-calculator', icon: '💳' },
         { title: '50 State Rates', desc: 'Tax rates for every state', href: '/states', icon: '🗺️' },
         { title: 'Top 10 Brokers', desc: 'Compare the best lenders', href: '/brokers', icon: '🏛️' },
       ].map((tool) => (

@@ -41,7 +41,7 @@ import statesData from '../data/states.json';
           <!-- State Selection -->
           <div>
             <label class="label block mb-1.5">State (Pre-fills Average Home Value)</label>
-            <select id="state-selector" class="calc-input font-mono w-full mb-5">
+            <select id="state-selector" class="calc-input font-mono w-full mb-5" data-step="1" data-tooltip="Step 1: Enter State Selector">
               <option value="">National Average</option>
               {statesData.map(state => (
                 <option value={state.abbr} data-price={state.medianPrice}>
@@ -56,7 +56,7 @@ import statesData from '../data/states.json';
             <label class="label block mb-1.5">Estimated Home Value</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="home-value" value="450,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+              <input type="text" id="home-value" value="450,000" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="2" data-tooltip="Step 2: Enter Home Value"/>
             </div>
           </div>
 
@@ -65,7 +65,7 @@ import statesData from '../data/states.json';
             <label class="label block mb-1.5">Current Mortgage Balance</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="mortgage-balance" value="250,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+              <input type="text" id="mortgage-balance" value="250,000" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="3" data-tooltip="Step 3: Enter Mortgage Balance"/>
             </div>
           </div>
 
@@ -81,12 +81,12 @@ import statesData from '../data/states.json';
               <label class="label block mb-1.5">HELOC Amount</label>
               <div class="relative">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-                <input type="text" id="heloc-amount" value="50,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+                <input type="text" id="heloc-amount" value="50,000" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="4" data-tooltip="Step 4: Enter Heloc Amount"/>
               </div>
             </div>
             <div>
               <label class="label block mb-1.5">Interest Rate (%)</label>
-              <input type="text" id="heloc-rate" value="8.5" inputmode="decimal" class="calc-input font-mono" />
+              <input type="text" id="heloc-rate" value="8.5" inputmode="decimal" class="calc-input font-mono"  data-step="5" data-tooltip="Step 5: Enter Heloc Rate"/>
             </div>
           </div>
         </div>

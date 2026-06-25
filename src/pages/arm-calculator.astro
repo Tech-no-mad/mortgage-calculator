@@ -37,13 +37,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <label class="label block mb-1.5">Loan Amount</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="arm-loan" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+              <input type="text" id="arm-loan" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="1" data-tooltip="Step 1: Enter Arm Loan"/>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="label block mb-1.5">Loan Term</label>
-              <select id="arm-term" class="calc-input font-mono w-full">
+              <select id="arm-term" class="calc-input font-mono w-full" data-step="2" data-tooltip="Step 2: Enter Arm Term">
                 <option value="30">30 Years</option>
                 <option value="20">20 Years</option>
                 <option value="15">15 Years</option>
@@ -51,20 +51,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             <div>
               <label class="label block mb-1.5">Initial Rate (%)</label>
-              <input type="number" id="arm-initial-rate" value="6.25" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+              <input type="number" id="arm-initial-rate" value="6.25" step="0.01" inputmode="numeric" class="calc-input font-mono"  data-step="3" data-tooltip="Step 3: Enter Arm Initial Rate"/>
             </div>
           </div>
           <div>
             <label class="label block mb-1.5">Fixed Period (months)</label>
-            <input type="number" id="arm-fixed-months" value="60" inputmode="numeric" class="calc-input font-mono" />
+            <input type="number" id="arm-fixed-months" value="60" inputmode="numeric" class="calc-input font-mono"  data-step="4" data-tooltip="Step 4: Enter Arm Fixed Months"/>
           </div>
           <div>
             <label class="label block mb-1.5">Rate increase cap at first adjustment (%)</label>
-            <input type="number" id="arm-cap" value="2.0" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+            <input type="number" id="arm-cap" value="2.0" step="0.01" inputmode="numeric" class="calc-input font-mono"  data-step="5" data-tooltip="Step 5: Enter Arm Cap"/>
           </div>
           <div>
             <label class="label block mb-1.5">Lifetime Rate Cap (%)</label>
-            <input type="number" id="arm-lifetime-cap" value="5.0" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+            <input type="number" id="arm-lifetime-cap" value="5.0" step="0.01" inputmode="numeric" class="calc-input font-mono"  data-step="6" data-tooltip="Step 6: Enter Arm Lifetime Cap"/>
           </div>
         </div>
 
