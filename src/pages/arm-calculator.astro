@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  canonicalUrl="https://mortgagedash.app/arm-calculator/"
+  title="ARM Calculator — Adjustable Rate Mortgage"
+  description="Calculate and compare your monthly payments before and after your ARM adjusts. See the full payment schedule for 5/1, 7/1, and 10/1 ARMs."
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        ARM
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Calculator</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        Compare payments before and after your Adjustable Rate Mortgage adjusts.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ad Slot -->
+  <div class="ad-slot max-w-4xl mx-auto mb-6">Advertisement Space Reserved</div>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Loan Details
+          </h2>
+          <div>
+            <label class="label block mb-1.5">Loan Amount</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="arm-loan" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Loan Term</label>
+              <select id="arm-term" class="calc-input font-mono w-full">
+                <option value="30">30 Years</option>
+                <option value="20">20 Years</option>
+                <option value="15">15 Years</option>
+              </select>
+            </div>
+            <div>
+              <label class="label block mb-1.5">Initial Rate (%)</label>
+              <input type="number" id="arm-initial-rate" value="6.25" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">Fixed Period (months)</label>
+            <input type="number" id="arm-fixed-months" value="60" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+          <div>
+            <label class="label block mb-1.5">Rate increase cap at first adjustment (%)</label>
+            <input type="number" id="arm-cap" value="2.0" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+          <div>
+            <label class="label block mb-1.5">Lifetime Rate Cap (%)</label>
+            <input type="number" id="arm-lifetime-cap" value="5.0" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Payment Projection
+          </h2>
+          <div class="text-center py-6 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <p class="label-faint text-sm mb-2">Initial Monthly Payment</p>
+            <div class="text-4xl font-bold font-mono tracking-tight" id="initial-payment">
+              <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">$0</span>
+            </div>
+          </div>
+          <div class="result-row">
+            <span class="label">Adjusted Monthly Payment</span>
+            <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="adjusted-payment">$0</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Maximum Possible Payment</span>
+            <span class="text-sm font-semibold font-mono text-[#ef4444]" id="max-payment">$0</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Remaining Balance at Adjustment</span>
+            <span class="text-sm font-semibold font-mono text-[#06b6d4]" id="rem-balance">$0</span>
+          </div>
+          <p class="text-sm text-center font-medium mt-4" style="color: var(--text-primary);" id="increase-note">
+            Payment increase at adjustment: +$0/mo
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot max-w-4xl mx-auto my-6">Advertisement Space Reserved</div>
+
+    <p class="text-xs mt-8 max-w-2xl mx-auto text-center" style="color: var(--text-muted); line-height: 1.6;">
+      This calculator provides estimates for informational purposes only and does not constitute financial advice. 
+      Consult a licensed financial advisor or lender before making any financial decisions.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function monthlyPayment(principal, annualRate, months) {
+    if (annualRate === 0) return principal / months;
+    const r = annualRate / 100 / 12;
+    return principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+  }
+
+  function calculate() {
+    const loanAmount = parse((document.getElementById('arm-loan')).value);
+    if (document.activeElement?.id !== 'arm-loan') document.getElementById('arm-loan').value = fmtNum(loanAmount);
+
+    const term = parseInt((document.getElementById('arm-term')).value);
+    const initialRate = parseFloat((document.getElementById('arm-initial-rate')).value) || 0;
+    const fixedMonths = parseInt((document.getElementById('arm-fixed-months')).value) || 0;
+    const rateCap = parseFloat((document.getElementById('arm-cap')).value) || 0;
+    const lifetimeCap = parseFloat((document.getElementById('arm-lifetime-cap')).value) || 0;
+
+    const totalMonths = term * 12;
+    const initialPmt = monthlyPayment(loanAmount, initialRate, totalMonths);
+
+    let balance = loanAmount;
+    const r0 = initialRate / 100 / 12;
+    for (let i = 0; i < fixedMonths; i++) {
+      const interest = balance * r0;
+      const principal = initialPmt - interest;
+      balance -= principal;
+    }
+
+    const remainingMonths = totalMonths - fixedMonths;
+    const adjustedRate = initialRate + rateCap;
+    const maxRate = initialRate + lifetimeCap;
+    const adjustedPmt = remainingMonths > 0 ? monthlyPayment(balance, adjustedRate, remainingMonths) : 0;
+    const maxPmt = remainingMonths > 0 ? monthlyPayment(balance, maxRate, remainingMonths) : 0;
+
+    document.getElementById('initial-payment').innerHTML = `<span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">${fmt(initialPmt)}</span>`;
+    document.getElementById('adjusted-payment').innerText = fmt(adjustedPmt);
+    document.getElementById('max-payment').innerText = fmt(maxPmt);
+    document.getElementById('rem-balance').innerText = fmt(balance);
+    document.getElementById('increase-note').innerText = `Payment increase at adjustment: +${fmt(Math.max(0, adjustedPmt - initialPmt))}/mo`;
+  }
+
+  ['arm-loan', 'arm-term', 'arm-initial-rate', 'arm-fixed-months', 'arm-cap', 'arm-lifetime-cap'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', calculate);
+  });
+  
+  calculate();
+</script>

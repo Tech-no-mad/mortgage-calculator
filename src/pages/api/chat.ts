@@ -317,12 +317,15 @@ export const POST: APIRoute = async ({ request }) => {
     // Catch generic navigate commands (if no state was matched but a path was hit)
     if (currentIntent === 'NAV' && actions.length === 0) {
       const paths: Record<string, string> = {
+        // Existing routes
         'refinance': '/refinance-calculator',
-        'extra': '/extra-payment-calculator', 
+        'extra': '/extra-payment-calculator',
         'payoff': '/extra-payment-calculator',
         'afford': '/how-much-can-i-afford',
+        'affordability': '/how-much-can-i-afford',
         'amortization': '/amortization-schedule',
         'heloc': '/heloc-calculator',
+        'recast': '/recast-calculator',
         'about': '/about',
         'contact': '/contact',
         'faq': '/faq',
@@ -333,7 +336,30 @@ export const POST: APIRoute = async ({ request }) => {
         'fha': '/fha-loans',
         'va': '/va-loans',
         'jumbo': '/jumbo-loans',
-        'home': '/'
+        'home': '/',
+        'main': '/',
+        // New calculator routes
+        'reverse': '/reverse-mortgage-calculator',
+        'hecm': '/reverse-mortgage-calculator',
+        'retirement': '/reverse-mortgage-calculator',
+        'arm': '/arm-calculator',
+        'adjustable': '/arm-calculator',
+        'variable': '/arm-calculator',
+        'commercial': '/commercial-mortgage-calculator',
+        'business': '/commercial-mortgage-calculator',
+        'balloon': '/commercial-mortgage-calculator',
+        'auto': '/auto-loan-calculator',
+        'car': '/auto-loan-calculator',
+        'vehicle': '/auto-loan-calculator',
+        'truck': '/auto-loan-calculator',
+        'investment': '/investment-property-calculator',
+        'rental': '/investment-property-calculator',
+        'cashflow': '/investment-property-calculator',
+        'roi': '/investment-property-calculator',
+        'personal': '/loan-payment-calculator',
+        'generic': '/loan-payment-calculator',
+        'second': '/loan-payment-calculator',
+        'loan': '/loan-payment-calculator',
       };
       
       let matchedPath = '/';

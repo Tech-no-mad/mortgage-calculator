@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  canonicalUrl="https://mortgagedash.app/investment-property-calculator/"
+  title="Investment Property Mortgage Calculator"
+  description="Calculate your monthly mortgage payment, estimated rental yield, cash flow, and return on investment for an investment property or rental home."
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        Investment Property
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Calculator</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        Calculate cash flow and ROI for your next rental property.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ad Slot -->
+  <div class="ad-slot max-w-4xl mx-auto mb-6">Advertisement Space Reserved</div>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Property Details
+          </h2>
+          <div>
+            <label class="label block mb-1.5">Property Purchase Price</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="inv-price" value="400,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">Down Payment (%) — investment properties typically require 20–25%</label>
+            <input type="number" id="inv-down-pct" value="25" step="1" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Interest Rate (%)</label>
+              <input type="number" id="inv-rate" value="7.25" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">Loan Term</label>
+              <select id="inv-term" class="calc-input font-mono w-full">
+                <option value="30">30 Years</option>
+                <option value="20">20 Years</option>
+                <option value="15">15 Years</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">Monthly Rental Income</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="inv-rent" value="2,200" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">Monthly Expenses (maintenance, vacancy, mgmt)</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="inv-expenses" value="400" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            ROI Projection
+          </h2>
+          <div class="text-center py-6 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <p class="label-faint text-sm mb-2">Monthly Cash Flow</p>
+            <div class="text-4xl font-bold font-mono tracking-tight" id="inv-monthly-cash">
+              <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">$0</span>
+            </div>
+          </div>
+          <div class="result-row">
+            <span class="label">Monthly Mortgage Payment</span>
+            <span class="text-sm font-semibold font-mono text-[#06b6d4]" id="inv-payment">$0</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Annual Cash Flow</span>
+            <span class="text-sm font-semibold font-mono text-[#10b981]" id="inv-annual-cash">$0</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Gross Rental Yield</span>
+            <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="inv-yield">0%</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Cash-on-Cash Return</span>
+            <span class="text-sm font-semibold font-mono" style="color: var(--text-primary);" id="inv-cash-on-cash">0%</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Cap Rate</span>
+            <span class="text-sm font-semibold font-mono text-[#6366f1]" id="inv-cap-rate">0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot max-w-4xl mx-auto my-6">Advertisement Space Reserved</div>
+
+    <p class="text-xs mt-8 max-w-2xl mx-auto text-center" style="color: var(--text-muted); line-height: 1.6;">
+      This calculator provides estimates for informational purposes only and does not constitute financial advice. 
+      Consult a licensed financial advisor or lender before making any financial decisions.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calculate() {
+    const price = parse((document.getElementById('inv-price')).value);
+    const rent = parse((document.getElementById('inv-rent')).value);
+    const expenses = parse((document.getElementById('inv-expenses')).value);
+
+    if (document.activeElement?.id !== 'inv-price') document.getElementById('inv-price').value = fmtNum(price);
+    if (document.activeElement?.id !== 'inv-rent') document.getElementById('inv-rent').value = fmtNum(rent);
+    if (document.activeElement?.id !== 'inv-expenses') document.getElementById('inv-expenses').value = fmtNum(expenses);
+
+    const downPct = parseFloat((document.getElementById('inv-down-pct')).value) || 0;
+    const rate = parseFloat((document.getElementById('inv-rate')).value) || 0;
+    const term = parseInt((document.getElementById('inv-term')).value) || 30;
+
+    const loanAmount = price * (1 - downPct / 100);
+    const downPaymentDollars = price * (downPct / 100);
+    const r = rate / 100 / 12;
+    const n = term * 12;
+    const payment = r === 0 ? (n > 0 ? loanAmount / n : 0) : loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    
+    const monthlyCashFlow = rent - payment - expenses;
+    const annualCashFlow = monthlyCashFlow * 12;
+    const grossYield = price > 0 ? ((rent * 12) / price) * 100 : 0;
+    const noi = (rent - expenses) * 12;
+    const capRate = price > 0 ? (noi / price) * 100 : 0;
+    const cashOnCash = downPaymentDollars > 0 ? (annualCashFlow / downPaymentDollars) * 100 : 0;
+
+    const cashFlowEl = document.getElementById('inv-monthly-cash');
+    if (monthlyCashFlow >= 0) {
+      cashFlowEl.innerHTML = `<span style="color: #10b981;">${fmt(monthlyCashFlow)}</span>`;
+    } else {
+      cashFlowEl.innerHTML = `<span style="color: #ef4444;">-${fmt(Math.abs(monthlyCashFlow))}</span>`;
+    }
+
+    document.getElementById('inv-payment').innerText = fmt(payment);
+    
+    const annCashEl = document.getElementById('inv-annual-cash');
+    if (annualCashFlow >= 0) annCashEl.style.color = '#10b981'; else annCashEl.style.color = '#ef4444';
+    annCashEl.innerText = (annualCashFlow < 0 ? '-' : '') + fmt(Math.abs(annualCashFlow));
+    
+    document.getElementById('inv-yield').innerText = grossYield.toFixed(2) + '%';
+    document.getElementById('inv-cash-on-cash').innerText = cashOnCash.toFixed(2) + '%';
+    document.getElementById('inv-cap-rate').innerText = capRate.toFixed(2) + '%';
+  }
+
+  ['inv-price', 'inv-down-pct', 'inv-rate', 'inv-term', 'inv-rent', 'inv-expenses'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', calculate);
+  });
+  
+  calculate();
+</script>

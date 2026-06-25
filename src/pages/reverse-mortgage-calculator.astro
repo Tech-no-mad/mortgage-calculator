@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  canonicalUrl="https://mortgagedash.app/reverse-mortgage-calculator/"
+  title="Reverse Mortgage Calculator"
+  description="Estimate your Home Equity Conversion Mortgage (HECM) payout based on your age, home value, and existing mortgage balance. Free reverse mortgage estimator."
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        Reverse Mortgage
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Calculator</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        Estimate your HECM payout based on your age and home equity.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ad Slot -->
+  <div class="ad-slot max-w-4xl mx-auto mb-6">Advertisement Space Reserved</div>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Home & Loan Details
+          </h2>
+          <div>
+            <label class="label block mb-1.5">Home Value</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="rv-home-value" value="400,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">Your Age (years)</label>
+            <input type="number" id="rv-age" value="70" min="62" max="95" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+          <div>
+            <label class="label block mb-1.5">Existing Mortgage Balance</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="rv-balance" value="0" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">Expected Interest Rate (%)</label>
+            <input type="number" id="rv-eir" value="5.5" step="0.1" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Estimated Payout
+          </h2>
+          <div class="text-center py-6 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <p class="label-faint text-sm mb-2">Net Available Proceeds</p>
+            <div class="text-4xl font-bold font-mono tracking-tight" id="net-proceeds">
+              <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">$0</span>
+            </div>
+          </div>
+          <div class="result-row">
+            <span class="label">Principal Limit (Gross Payout)</span>
+            <span class="text-sm font-semibold font-mono text-[#06b6d4]" id="gross-payout">$0</span>
+          </div>
+          <p class="text-xs text-center text-[#10b981] font-medium mt-2">HUD 2025 lending limit: $1,209,750</p>
+          <div class="mt-4 p-4 rounded-lg border border-amber-400 bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 text-xs leading-relaxed">
+            This is a simplified estimate. Actual HECM payouts depend on HUD lending limits, counseling requirements, and lender fees. Consult a HUD-approved counselor before proceeding.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ad Slot -->
+    <div class="ad-slot max-w-4xl mx-auto my-6">Advertisement Space Reserved</div>
+
+    <p class="text-xs mt-8 max-w-2xl mx-auto text-center" style="color: var(--text-muted); line-height: 1.6;">
+      This calculator provides estimates for informational purposes only and does not constitute financial advice. 
+      Consult a licensed financial advisor or lender before making any financial decisions.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calculate() {
+    const homeValue = parse((document.getElementById('rv-home-value')).value);
+    const age = parse((document.getElementById('rv-age')).value);
+    const balance = parse((document.getElementById('rv-balance')).value);
+
+    if (document.activeElement?.id !== 'rv-home-value') document.getElementById('rv-home-value').value = fmtNum(homeValue);
+    if (document.activeElement?.id !== 'rv-balance') document.getElementById('rv-balance').value = fmtNum(balance);
+
+    const HUD_LIMIT = 1209750;
+    const effectiveValue = Math.min(homeValue, HUD_LIMIT);
+    const plf = Math.min(0.42 + (age - 62) * 0.013, 0.75);
+    const grossPayout = effectiveValue * plf;
+    const netProceeds = Math.max(grossPayout - balance, 0);
+
+    document.getElementById('gross-payout').innerText = fmt(grossPayout);
+    document.getElementById('net-proceeds').innerHTML = `<span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">${fmt(netProceeds)}</span>`;
+  }
+
+  ['rv-home-value', 'rv-age', 'rv-balance', 'rv-eir'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', calculate);
+  });
+  
+  calculate();
+</script>

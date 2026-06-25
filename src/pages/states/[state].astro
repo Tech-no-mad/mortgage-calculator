@@ -47,6 +47,7 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
 </style>
 
 <BaseLayout
+  canonicalUrl={`https://mortgagedash.app/states/${stateData.slug}/`}
   title={`${stateData.name} Mortgage Calculator`}
   description={`Calculate your monthly mortgage payment in ${stateData.name}. Includes accurate ${stateData.taxRate}% property tax rates and home insurance estimates.`}
   keywords={stateKeywords}

@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  canonicalUrl="https://mortgagedash.app/commercial-mortgage-calculator/"
+  title="Commercial Mortgage Calculator"
+  description="Calculate monthly payments, balloon amounts, and total costs for commercial real estate loans. Supports custom amortization and balloon payment periods."
+>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        Commercial Mortgage
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Calculator</span>
+      </h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+        Estimate commercial real estate loan payments and balloon balances.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ad Slot -->
+  <div class="ad-slot max-w-4xl mx-auto mb-6">Advertisement Space Reserved</div>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="card p-6 sm:p-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <!-- INPUTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#06b6d4]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Loan Details
+          </h2>
+          <div>
+            <label class="label block mb-1.5">Property Value</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
+              <input type="text" id="comm-property-value" value="1,500,000" inputmode="numeric" class="calc-input pl-7 font-mono" />
+            </div>
+          </div>
+          <div>
+            <label class="label block mb-1.5">LTV (%) — typical commercial: 65–80%</label>
+            <input type="number" id="comm-ltv" value="75" step="1" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+          <div>
+            <label class="label block mb-1.5">Interest Rate (%)</label>
+            <input type="number" id="comm-rate" value="7.25" step="0.01" inputmode="numeric" class="calc-input font-mono" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label block mb-1.5">Full amortization period</label>
+              <input type="number" id="comm-amort" value="25" inputmode="numeric" class="calc-input font-mono" />
+            </div>
+            <div>
+              <label class="label block mb-1.5">Balloon due after (years)</label>
+              <input type="number" id="comm-balloon" value="10" inputmode="numeric" class="calc-input font-mono" />
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="space-y-5">
+          <h2 class="text-base font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+            <svg class="w-4 h-4 text-[#10b981]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Payment Projection
+          </h2>
+          <div class="text-center py-6 rounded-xl" style="background: var(--bg-surface-2); border: 1px solid var(--border-default);">
+            <p class="label-faint text-sm mb-2">Monthly P&I Payment</p>
+            <div class="text-4xl font-bold font-mono tracking-tight" id="comm-payment">
+              <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">$0</span>
+            </div>
+          </div>
+          <div class="result-row">
+            <span class="label">Loan Amount</span>
+            <span class="text-sm font-semibold font-mono text-[#06b6d4]" id="comm-loan">$0</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Total Paid Before Balloon</span>
+            <span class="text-sm font-semibold font-mono text-[#f59e0b]" id="comm-paid">$0</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Balloon Payment Due</span>
+            <span class="text-sm font-semibold font-mono text-[#ef4444]" id="comm-balloon-due">$0</span>
+          </div>
+          <p class="text-xs text-center font-medium mt-4 text-[#10b981]">
+            Lenders typically require DSCR ≥ 1.25. Ensure your net operating income covers this payment.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot max-w-4xl mx-auto my-6">Advertisement Space Reserved</div>
+
+    <p class="text-xs mt-8 max-w-2xl mx-auto text-center" style="color: var(--text-muted); line-height: 1.6;">
+      This calculator provides estimates for informational purposes only and does not constitute financial advice. 
+      Consult a licensed financial advisor or lender before making any financial decisions.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
+  function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function calculate() {
+    const propertyValue = parse((document.getElementById('comm-property-value')).value);
+    if (document.activeElement?.id !== 'comm-property-value') document.getElementById('comm-property-value').value = fmtNum(propertyValue);
+
+    const ltv = parseFloat((document.getElementById('comm-ltv')).value) || 0;
+    const rate = parseFloat((document.getElementById('comm-rate')).value) || 0;
+    const amortPeriod = parseInt((document.getElementById('comm-amort')).value) || 0;
+    const balloonTerm = parseInt((document.getElementById('comm-balloon')).value) || 0;
+
+    const loanAmount = propertyValue * (ltv / 100);
+    function monthlyPayment(principal, annualRate, amortYears) {
+      if (annualRate === 0) return amortYears > 0 ? principal / (amortYears * 12) : 0;
+      const r = annualRate / 100 / 12;
+      const n = amortYears * 12;
+      return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+    const payment = monthlyPayment(loanAmount, rate, amortPeriod);
+
+    let bal = loanAmount;
+    const r = rate / 100 / 12;
+    const balloonMonths = balloonTerm * 12;
+    for (let i = 0; i < balloonMonths; i++) {
+      bal = bal * (1 + r) - payment;
+    }
+    const balloonAmount = Math.max(bal, 0);
+
+    document.getElementById('comm-payment').innerHTML = `<span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">${fmt(payment)}</span>`;
+    document.getElementById('comm-loan').innerText = fmt(loanAmount);
+    document.getElementById('comm-paid').innerText = fmt(payment * balloonMonths);
+    document.getElementById('comm-balloon-due').innerText = fmt(balloonAmount);
+  }
+
+  ['comm-property-value', 'comm-ltv', 'comm-rate', 'comm-amort', 'comm-balloon'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', calculate);
+  });
+  
+  calculate();
+</script>
