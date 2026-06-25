@@ -82,10 +82,10 @@ export class OnboardingTour {
       this.tooltipEl.style.opacity = '1';
       
       // Highlight the target softly
-      document.querySelectorAll('.ring-2.ring-[var(--color-usa-blue)]').forEach(el => el.classList.remove('ring-2', 'ring-[var(--color-usa-blue)]'));
+      document.querySelectorAll('.onboarding-active').forEach(el => el.classList.remove('ring-2', 'ring-[var(--color-usa-blue)]', 'onboarding-active'));
       
       // Add ring to the target (make sure target doesn't break layout)
-      target.classList.add('ring-2', 'ring-[var(--color-usa-blue)]', 'rounded-lg', 'transition-all');
+      target.classList.add('ring-2', 'ring-[var(--color-usa-blue)]', 'rounded-lg', 'transition-all', 'onboarding-active');
       
       // Scroll into view if needed
       if (rect.top < 100 || rect.bottom > window.innerHeight) {
