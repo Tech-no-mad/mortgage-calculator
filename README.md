@@ -35,6 +35,25 @@ We've architected MortgageDash from the ground up to be fully compliant with str
 
 ---
 
+## 📈 Live Financial Data Automation
+
+MortgageDash uses a build-time automation script to fetch live economic data directly from the Federal Reserve Economic Data (FRED) API.
+- **Automated Accuracy:** A Node.js script (`fetch-rates.js`) executes automatically prior to every `npm run build`.
+- **Comprehensive Rates:** Dynamically fetches current values for 30-Year Mortgages, 15-Year Mortgages, 5/1 ARMs, the US Prime Rate, and 60-Month Auto Loans.
+- **Self-Sustaining Architecture:** Integrated with Cloudflare Pages environment variables, the site statically pre-renders with 100% accurate, live rates every week without any manual intervention.
+
+---
+
+## ♿ UX, Accessibility & Audits
+
+We take user experience and accessibility seriously, having recently implemented comprehensive recommendations from a WebsiteRating.com audit:
+- **100/100 Accessibility Score:** Every calculator input, dropdown, and chatbot interface is strictly mapped with `aria-label` attributes to ensure flawless screen reader navigation.
+- **Responsive Tap Targets:** Optimized mobile button sizing ensures "fat-finger" errors are minimized during loan term selection.
+- **Frictionless Conversion:** Features like the "Email me this breakdown" CTA allows users to seamlessly save their calculated results with a single click.
+- **Unobtrusive Cookie Banner:** A sleek, bottom-docked privacy banner prevents overlapping critical Monthly Payment UI elements on smaller viewports.
+
+---
+
 ## 🚀 Technical Infrastructure
 
 - **Edge Deployment:** Configured with `@astrojs/cloudflare` to deploy seamlessly to Cloudflare Pages for instant, edge-network performance.
