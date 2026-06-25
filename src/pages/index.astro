@@ -49,7 +49,7 @@ import statesData from '../data/states.json';
             <label class="label block mb-1.5">Home Price</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="home-price-input" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Enter Home Price" />
+              <input aria-label="Home Price Input" type="text" id="home-price-input" value="350,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Enter Home Price" />
             </div>
             <input type="range" id="home-price" min="50000" max="2000000" step="5000" value="350000" />
             <div class="flex justify-between label-faint text-xs"><span>$50K</span><span>$2M</span></div>
@@ -61,10 +61,10 @@ import statesData from '../data/states.json';
             <div class="flex gap-2">
               <div class="relative flex-1">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-                <input type="text" id="down-payment-dollar-input" value="70,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="2" data-tooltip="Step 2: Enter Down Payment" />
+                <input aria-label="Down Payment Dollar Input" type="text" id="down-payment-dollar-input" value="70,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="2" data-tooltip="Step 2: Enter Down Payment" />
               </div>
               <div class="relative w-20">
-                <input type="text" id="down-payment-input" value="20" inputmode="decimal" class="calc-input text-center font-mono" />
+                <input aria-label="Down Payment Input" type="text" id="down-payment-input" value="20" inputmode="decimal" class="calc-input text-center font-mono" />
                 <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
               </div>
             </div>
@@ -76,7 +76,7 @@ import statesData from '../data/states.json';
           <div>
             <label class="label block mb-1.5">Interest Rate</label>
             <div class="relative w-28">
-              <input type="text" id="interest-rate-input" value="6.52" inputmode="decimal" class="calc-input text-center font-mono" data-step="3" data-tooltip="Step 3: Enter Interest Rate" />
+              <input aria-label="Interest Rate Input" type="text" id="interest-rate-input" value="6.52" inputmode="decimal" class="calc-input text-center font-mono" data-step="3" data-tooltip="Step 3: Enter Interest Rate" />
               <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
             </div>
             <input type="range" id="interest-rate" min="1" max="15" step="0.01" value="6.52" />
@@ -97,7 +97,7 @@ import statesData from '../data/states.json';
           <!-- State Selection for Taxes -->
           <div>
             <label class="label block mb-1.5">State (For Accurate Taxes & Insurance)</label>
-            <select id="state-selector" class="calc-input font-mono w-full" data-step="5" data-tooltip="Step 5: Select your state for local data">
+            <select aria-label="State Selector" id="state-selector" class="calc-input font-mono w-full" data-step="5" data-tooltip="Step 5: Select your state for local data">
               <option value="">National Average</option>
               {statesData.map(state => (
                 <option value={state.abbr} data-tax={state.taxRate} data-ins={state.insurance}>
@@ -111,13 +111,13 @@ import statesData from '../data/states.json';
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="label block mb-1.5">Tax Rate (%/yr)</label>
-              <input type="text" id="property-tax" value="1.1" inputmode="decimal" class="calc-input font-mono" />
+              <input aria-label="Property Tax" type="text" id="property-tax" value="1.1" inputmode="decimal" class="calc-input font-mono" />
             </div>
             <div>
               <label class="label block mb-1.5">Insurance ($/yr)</label>
               <div class="relative">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-                <input type="text" id="home-insurance" value="1,200" inputmode="numeric" class="calc-input pl-7 font-mono" />
+                <input aria-label="Home Insurance" type="text" id="home-insurance" value="1,200" inputmode="numeric" class="calc-input pl-7 font-mono" />
               </div>
             </div>
           </div>

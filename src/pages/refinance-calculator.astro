@@ -42,7 +42,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <label class="label block mb-1.5">Remaining Balance</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="current-balance" value="250,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Current Loan Balance" />
+              <input aria-label="Current Balance" type="text" id="current-balance" value="250,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Current Loan Balance" />
             </div>
           </div>
 
@@ -50,11 +50,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="label block mb-1.5">Current Rate (%)</label>
-              <input type="text" id="current-rate" value="7.5" inputmode="decimal" class="calc-input font-mono" data-step="2" data-tooltip="Step 2: Current Interest Rate" />
+              <input aria-label="Current Rate" type="text" id="current-rate" value="7.5" inputmode="decimal" class="calc-input font-mono" data-step="2" data-tooltip="Step 2: Current Interest Rate" />
             </div>
             <div>
               <label class="label block mb-1.5">Years Left</label>
-              <input type="text" id="current-years-left" value="25" inputmode="numeric" class="calc-input font-mono" data-step="3" data-tooltip="Step 3: Years Remaining" />
+              <input aria-label="Current Years Left" type="text" id="current-years-left" value="25" inputmode="numeric" class="calc-input font-mono" data-step="3" data-tooltip="Step 3: Years Remaining" />
             </div>
           </div>
 
@@ -69,11 +69,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="label block mb-1.5">New Rate (%)</label>
-              <input type="text" id="new-rate" value="6.0" inputmode="decimal" class="calc-input font-mono" data-step="4" data-tooltip="Step 4: Target New Rate" />
+              <input aria-label="New Rate" type="text" id="new-rate" value="6.0" inputmode="decimal" class="calc-input font-mono" data-step="4" data-tooltip="Step 4: Target New Rate" />
             </div>
             <div>
               <label class="label block mb-1.5">New Term</label>
-              <select id="new-term" class="calc-input font-mono w-full" data-step="5" data-tooltip="Step 5: Select New Loan Term">
+              <select aria-label="New Term" id="new-term" class="calc-input font-mono w-full" data-step="5" data-tooltip="Step 5: Select New Loan Term">
                 <option value="30">30 Years</option>
                 <option value="15">15 Years</option>
               </select>
@@ -85,7 +85,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <label class="label block mb-1.5">Closing Costs (Est. $)</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="closing-costs" value="5,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="6" data-tooltip="Step 6: Estimated Closing Costs" />
+              <input aria-label="Closing Costs" type="text" id="closing-costs" value="5,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="6" data-tooltip="Step 6: Estimated Closing Costs" />
             </div>
           </div>
         </div>

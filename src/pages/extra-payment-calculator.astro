@@ -42,7 +42,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <label class="label block mb-1.5">Original Loan Amount</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="loan-amount" value="300,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Original Loan Amount" />
+              <input aria-label="Loan Amount" type="text" id="loan-amount" value="300,000" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="1" data-tooltip="Step 1: Original Loan Amount" />
             </div>
           </div>
 
@@ -50,11 +50,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="label block mb-1.5">Interest Rate (%)</label>
-              <input type="text" id="interest-rate" value="6.52" inputmode="decimal" class="calc-input font-mono" data-step="2" data-tooltip="Step 2: Interest Rate" />
+              <input aria-label="Interest Rate" type="text" id="interest-rate" value="6.52" inputmode="decimal" class="calc-input font-mono" data-step="2" data-tooltip="Step 2: Interest Rate" />
             </div>
             <div>
               <label class="label block mb-1.5">Original Term</label>
-              <select id="loan-term" class="calc-input font-mono w-full" data-step="3" data-tooltip="Step 3: Original Loan Term">
+              <select aria-label="Loan Term" id="loan-term" class="calc-input font-mono w-full" data-step="3" data-tooltip="Step 3: Original Loan Term">
                 <option value="30">30 Years</option>
                 <option value="15">15 Years</option>
               </select>
@@ -73,7 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <label class="label block mb-1.5">Extra Monthly Payment</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="extra-payment" value="200" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="4" data-tooltip="Step 4: Extra Monthly Payment" />
+              <input aria-label="Extra Payment" type="text" id="extra-payment" value="200" inputmode="numeric" class="calc-input pl-7 font-mono" data-step="4" data-tooltip="Step 4: Extra Monthly Payment" />
             </div>
           </div>
         </div>

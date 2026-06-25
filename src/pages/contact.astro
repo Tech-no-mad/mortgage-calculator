@@ -30,17 +30,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label for="first-name" class="label block mb-2 font-medium" style="color: var(--text-primary);">First name</label>
-            <input type="text" id="first-name" class="calc-input w-full" placeholder="John" required />
+            <input aria-label="First Name" type="text" id="first-name" class="calc-input w-full" placeholder="John" required />
           </div>
           <div>
             <label for="last-name" class="label block mb-2 font-medium" style="color: var(--text-primary);">Last name</label>
-            <input type="text" id="last-name" class="calc-input w-full" placeholder="Doe" required />
+            <input aria-label="Last Name" type="text" id="last-name" class="calc-input w-full" placeholder="Doe" required />
           </div>
         </div>
 
         <div>
           <label for="email" class="label block mb-2 font-medium" style="color: var(--text-primary);">Email</label>
-          <input type="email" id="email" class="calc-input w-full" placeholder="john@example.com" required />
+          <input aria-label="Email" type="email" id="email" class="calc-input w-full" placeholder="john@example.com" required />
         </div>
 
         <div>

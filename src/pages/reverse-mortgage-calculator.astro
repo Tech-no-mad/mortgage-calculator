@@ -37,23 +37,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <label class="label block mb-1.5">Home Value</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="rv-home-value" value="400,000" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="1" data-tooltip="Step 1: Enter Rv Home Value"/>
+              <input aria-label="Rv Home Value" type="text" id="rv-home-value" value="400,000" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="1" data-tooltip="Step 1: Enter Rv Home Value"/>
             </div>
           </div>
           <div>
             <label class="label block mb-1.5">Your Age (years)</label>
-            <input type="number" id="rv-age" value="70" min="62" max="95" inputmode="numeric" class="calc-input font-mono"  data-step="2" data-tooltip="Step 2: Enter Rv Age"/>
+            <input aria-label="Rv Age" type="number" id="rv-age" value="70" min="62" max="95" inputmode="numeric" class="calc-input font-mono"  data-step="2" data-tooltip="Step 2: Enter Rv Age"/>
           </div>
           <div>
             <label class="label block mb-1.5">Existing Mortgage Balance</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 label-faint">$</span>
-              <input type="text" id="rv-balance" value="0" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="3" data-tooltip="Step 3: Enter Rv Balance"/>
+              <input aria-label="Rv Balance" type="text" id="rv-balance" value="0" inputmode="numeric" class="calc-input pl-7 font-mono"  data-step="3" data-tooltip="Step 3: Enter Rv Balance"/>
             </div>
           </div>
           <div>
             <label class="label block mb-1.5">Expected Interest Rate (%)</label>
-            <input type="number" id="rv-eir" value="5.5" step="0.1" inputmode="numeric" class="calc-input font-mono"  data-step="4" data-tooltip="Step 4: Enter Rv Eir"/>
+            <input aria-label="Rv Eir" type="number" id="rv-eir" value="5.5" step="0.1" inputmode="numeric" class="calc-input font-mono"  data-step="4" data-tooltip="Step 4: Enter Rv Eir"/>
           </div>
         </div>
 
