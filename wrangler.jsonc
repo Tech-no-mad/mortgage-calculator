@@ -10,5 +10,8 @@
 	},
 	"observability": {
 		"enabled": true
+	},
+	"vars": {
+		"FRED_API_KEY": "5bf6fd09086dc0702d2f9f40ddfc6c0a"
 	}
 }

@@ -6,8 +6,8 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "node fetch-rates.js && astro dev",
+    "build": "node fetch-rates.js && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "generate-types": "wrangler types"
@@ -19,6 +19,7 @@
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^6.4.7",
+    "dotenv": "^17.4.2",
     "tailwindcss": "^4.3.1",
     "typescript": "^6.0.3",
     "wrangler": "^4.103.0"

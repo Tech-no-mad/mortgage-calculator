@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import statesData from '../data/states.json';
+import ratesData from '../data/rates.json';
+
+const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-US', { month: 'long', year: 'numeric', day: 'numeric' });
 ---
 
 <BaseLayout
@@ -11,16 +14,20 @@ import statesData from '../data/states.json';
   <!-- Hero -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
+      <div class="inline-block bg-[var(--color-usa-blue)]/10 text-[var(--color-usa-blue)] px-4 py-1.5 rounded-full text-sm font-semibold mb-6 shadow-sm border border-[var(--color-usa-blue)]/20">
+        🏆 Only calculator that auto-fills live property tax and interest rates
+      </div>
+      <br/>
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6" style="background: rgba(10, 49, 97, 0.1); color: var(--color-usa-blue); border: 1px solid rgba(10, 49, 97, 0.2);">
         <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-usa-red)] animate-pulse"></span>
-        Updated June 2026 · Rates at 6.52%
+        Updated {lastUpdatedDate} · Rates at {ratesData.MORTGAGE30US}%
       </div>
       <h1 id="calc-title" class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
         Mortgage Payment
         <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>
       </h1>
       <p class="text-base sm:text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
-        Free calculator with state-specific tax rates for all 50 US states.
+        Uses real county tax data from all 50 states + official Federal Reserve rates — updated weekly.
       </p>
     </div>
 
@@ -76,10 +83,10 @@ import statesData from '../data/states.json';
           <div>
             <label class="label block mb-1.5">Interest Rate</label>
             <div class="relative w-28">
-              <input aria-label="Interest Rate Input" type="text" id="interest-rate-input" value="6.52" inputmode="decimal" class="calc-input text-center font-mono" data-step="3" data-tooltip="Step 3: Enter Interest Rate" />
+              <input aria-label="Interest Rate Input" type="text" id="interest-rate-input" value={ratesData.MORTGAGE30US} inputmode="decimal" class="calc-input text-center font-mono" data-step="3" data-tooltip="Step 3: Enter Interest Rate" />
               <span class="absolute right-3 top-1/2 -translate-y-1/2 label-faint">%</span>
             </div>
-            <input type="range" id="interest-rate" min="1" max="15" step="0.01" value="6.52" />
+            <input type="range" id="interest-rate" min="1" max="15" step="0.01" value={ratesData.MORTGAGE30US} />
             <div class="flex justify-between label-faint text-xs"><span>1%</span><span>15%</span></div>
           </div>
 
@@ -87,10 +94,10 @@ import statesData from '../data/states.json';
           <div data-step="4" data-tooltip="Step 4: Select Loan Term">
             <label class="label block mb-1.5">Loan Term</label>
             <div class="grid grid-cols-4 gap-2">
-              <button data-term="15" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">15 yr</button>
-              <button data-term="20" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">20 yr</button>
-              <button data-term="30" class="term-btn active py-2 rounded-lg text-sm font-medium border border-[var(--color-usa-blue)] text-[var(--color-usa-blue)] bg-[var(--color-usa-blue)]/10 transition-all">30 yr</button>
-              <button data-term="50" class="term-btn py-2 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">50 yr</button>
+              <button data-term="15" class="term-btn py-3 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">15 yr</button>
+              <button data-term="20" class="term-btn py-3 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">20 yr</button>
+              <button data-term="30" class="term-btn active py-3 rounded-lg text-sm font-medium border border-[var(--color-usa-blue)] text-[var(--color-usa-blue)] bg-[var(--color-usa-blue)]/10 transition-all">30 yr</button>
+              <button data-term="50" class="term-btn py-3 rounded-lg text-sm font-medium border transition-all" style="border-color: var(--border-default); color: var(--text-muted);">50 yr</button>
             </div>
           </div>
 
@@ -133,11 +140,17 @@ import statesData from '../data/states.json';
           </h2>
 
           <!-- Big number & Donut Chart -->
-          <div class="card text-center py-6 flex flex-col items-center justify-center" style="border-radius: 1rem;">
+          <div class="card text-center py-6 flex flex-col items-center justify-center relative" style="border-radius: 1rem;">
             <div class="text-4xl sm:text-5xl font-bold font-mono tracking-tight mb-2" id="monthly-payment">
               <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] dark:from-blue-300 dark:to-red-400 bg-clip-text text-transparent" id="monthly-payment-amount">$1,837</span>
             </div>
             <p class="label-faint text-sm mb-6">per month</p>
+            
+            <a href="mailto:?subject=My Mortgage Calculation&body=Here is my mortgage breakdown..." id="email-cta" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--color-usa-blue)] text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition shadow-sm mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              Email me this breakdown
+            </a>
+
             <div class="relative w-40 h-40">
               <svg width="100%" height="100%" viewBox="0 0 42 42" class="transform -rotate-90">
                 <!-- Background ring -->
@@ -188,15 +201,23 @@ import statesData from '../data/states.json';
           <div class="grid grid-cols-2 gap-3">
             <div class="stat-card">
               <p class="label-faint text-xs mb-1">Total Interest</p>
-              <p class="text-lg font-bold font-mono text-[#f59e0b] dark:text-amber-300" id="total-interest">$285,862</p>
+              <p class="text-lg font-bold font-mono text-[#10b981] dark:text-emerald-400" id="total-interest">$285,862</p>
             </div>
             <div class="stat-card">
               <p class="label-faint text-xs mb-1">Total Cost</p>
-              <p class="text-lg font-bold font-mono text-[var(--color-usa-blue)]" id="total-cost">$661,562</p>
+              <p class="text-lg font-bold font-mono text-[#10b981] dark:text-emerald-400" id="total-cost">$661,562</p>
             </div>
           </div>
         </div>
       </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+    <div class="max-w-4xl mx-auto flex justify-center">
+      <a href="/states" class="inline-block bg-[var(--color-usa-blue)] text-white px-8 py-3 rounded-lg font-bold shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5">
+        Browse Rates by State 🗺️
+      </a>
+    </div>
   </section>
 
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
@@ -208,53 +229,80 @@ import statesData from '../data/states.json';
   <!-- Quick Links -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h2 class="text-xl font-bold text-center mb-8" style="color: var(--text-primary);">More Tools</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-grid">
       {[
         { title: 'Affordability', desc: 'How much house can you afford?', href: '/how-much-can-i-afford', icon: '💰' },
         { title: 'Extra Payments', desc: 'Save thousands on interest', href: '/extra-payment-calculator', icon: '📊' },
         { title: 'Refinance', desc: 'Should you refinance?', href: '/refinance-calculator', icon: '🔄' },
         { title: 'Amortization', desc: 'View full payment schedule', href: '/amortization-schedule', icon: '📅' },
         { title: 'ARM Calculator', desc: 'Adjustable rate projections', href: '/arm-calculator', icon: '📈' },
-        { title: 'Reverse Mortgage', desc: 'Convert equity to cash', href: '/reverse-mortgage-calculator', icon: '🏠' },
-        { title: 'Investment Property', desc: 'Calculate ROI & Cash Flow', href: '/investment-property-calculator', icon: '🏢' },
-        { title: 'Commercial Mortgage', desc: 'Business property loans', href: '/commercial-mortgage-calculator', icon: '🏬' },
         { title: 'Auto Loan', desc: 'Car payment calculator', href: '/auto-loan-calculator', icon: '🚗' },
-        { title: 'Loan Payment', desc: 'Generic loan calculator', href: '/loan-payment-calculator', icon: '💳' },
-        { title: '50 State Rates', desc: 'Tax rates for every state', href: '/states', icon: '🗺️' },
-        { title: 'Top 10 Brokers', desc: 'Compare the best lenders', href: '/brokers', icon: '🏛️' },
+        { title: 'Reverse Mortgage', desc: 'Convert equity to cash', href: '/reverse-mortgage-calculator', icon: '🏠', hidden: true },
+        { title: 'Investment Property', desc: 'Calculate ROI & Cash Flow', href: '/investment-property-calculator', icon: '🏢', hidden: true },
+        { title: 'Commercial Mortgage', desc: 'Business property loans', href: '/commercial-mortgage-calculator', icon: '🏬', hidden: true },
+        { title: 'Loan Payment', desc: 'Generic loan calculator', href: '/loan-payment-calculator', icon: '💳', hidden: true },
+        { title: '50 State Rates', desc: 'Tax rates for every state', href: '/states', icon: '🗺️', hidden: true },
+        { title: 'Top 10 Brokers', desc: 'Compare the best lenders', href: '/brokers', icon: '🏛️', hidden: true },
       ].map((tool) => (
-        <a href={tool.href} class="card p-5 group hover:border-[var(--color-usa-blue)] transition-all">
+        <a href={tool.href} class={`card p-5 group hover:border-[var(--color-usa-blue)] transition-all ${tool.hidden ? 'hidden extra-tool' : ''}`}>
           <span class="text-2xl mb-3 block">{tool.icon}</span>
           <h3 class="font-semibold mb-1 group-hover:text-[var(--color-usa-blue)] transition-colors" style="color: var(--text-primary);">{tool.title}</h3>
           <p class="text-sm" style="color: var(--text-muted);">{tool.desc}</p>
         </a>
       ))}
     </div>
+    <div class="text-center mt-8">
+      <button id="show-all-tools" class="px-6 py-2 border border-[var(--border-default)] rounded-lg text-sm font-semibold hover:bg-[var(--bg-hover)] transition-colors">
+        See all 12 tools ↓
+      </button>
+    </div>
   </section>
+
+  <script>
+    document.getElementById('show-all-tools')?.addEventListener('click', (e) => {
+      document.querySelectorAll('.extra-tool').forEach(el => el.classList.remove('hidden'));
+      (e.target as HTMLElement).style.display = 'none';
+    });
+  </script>
 
   <!-- SEO Content -->
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="space-y-5">
-      <h2 class="text-xl font-bold" style="color: var(--text-primary);">How Does a Mortgage Calculator Work?</h2>
-      <p style="color: var(--text-secondary);">A mortgage calculator estimates your monthly payment by factoring in home price, down payment, interest rate, and loan term. It breaks down your PITI: Principal, Interest, Taxes, and Insurance.</p>
+    <div class="space-y-6">
+      <h2 class="text-xl font-bold" style="color: var(--text-primary);">Why Use a State-Specific Mortgage Calculator?</h2>
+      <ul class="list-disc pl-5 space-y-2" style="color: var(--text-secondary);">
+        <li><strong>Accurate Local Taxes:</strong> Property taxes vary wildly by state (0.27% in Hawaii vs 2.2% in New Jersey). We auto-fill the real county tax rates so your payment isn't artificially low.</li>
+        <li><strong>Live Interest Rates:</strong> We pull official Federal Reserve data weekly, giving you an exact baseline for today's market conditions.</li>
+        <li><strong>True Affordability:</strong> By factoring in localized taxes and insurance upfront, you avoid surprises when applying for pre-approval.</li>
+      </ul>
       
-      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Understanding PITI</h3>
+      <h3 class="text-lg font-semibold mt-4" style="color: var(--text-primary);">Understanding Your PITI Payment</h3>
       <p style="color: var(--text-secondary);">Your monthly payment includes <strong>Principal</strong> (paying down the loan), <strong>Interest</strong> (cost of borrowing), <strong>Taxes</strong> (local property taxes), and <strong>Insurance</strong> (homeowner's protection). If your down payment is below 20%, you'll also pay PMI — typically 0.3% to 1.5% of the loan annually.</p>
 
-      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">2026 Mortgage Rates</h3>
-      <p style="color: var(--text-secondary);">As of June 2026, the 30-year fixed rate averages 6.52% and the 15-year fixed averages 5.84%. Rates depend on your credit score, down payment, loan type (conventional, FHA, VA), and state.</p>
+      <h3 class="text-lg font-semibold mt-4" style="color: var(--text-primary);">Current Mortgage Rates</h3>
+      <p style="color: var(--text-secondary);">As of {lastUpdatedDate}, the 30-year fixed rate averages {ratesData.MORTGAGE30US}% and the 15-year fixed averages {ratesData.MORTGAGE15US}%. Rates depend on your credit score, down payment, loan type (conventional, FHA, VA), and state.</p>
 
-      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">The 28/36 Rule</h3>
-      <p style="color: var(--text-secondary);">Keep housing costs under 28% of gross income and total debt under 36%. On $80K/year ($6,667/month), your max housing payment should be ~$1,867.</p>
+      <h3 class="text-lg font-semibold mt-4" style="color: var(--text-primary);">15-Year vs 30-Year</h3>
+      <p style="color: var(--text-secondary);">On a $280K loan: a 30-year at {ratesData.MORTGAGE30US}% costs more in total interest but keeps monthly payments lower. A 15-year at {ratesData.MORTGAGE15US}% raises your monthly bill but saves you tens of thousands in interest over the life of the loan.</p>
 
-      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Property Tax by State</h3>
-      <p style="color: var(--text-secondary);">Taxes range dramatically: New Jersey (2.2%), Illinois (2.1%), and New Hampshire (2.0%) are highest. Hawaii (0.27%), Alabama (0.39%), and Louisiana (0.55%) are lowest. Our <a href="/states/texas" class="text-[var(--color-usa-blue)] hover:underline">state calculators</a> auto-fill local rates.</p>
-
-      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">15-Year vs 30-Year</h3>
-      <p style="color: var(--text-secondary);">On a $280K loan: a 30-year at 6.52% costs $1,572/month ($285K total interest). A 15-year at 5.84% costs $2,335/month but only $140K interest — saving $145,000+.</p>
-
-      <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Get the Best Rate</h3>
-      <p style="color: var(--text-secondary);">Score above 740, put 20%+ down, compare 3-5 lenders, consider buying points, and lock when favorable. Even 0.25% saves tens of thousands over the loan's life.</p>
+      <h3 class="text-lg font-semibold mt-4" style="color: var(--text-primary);">Checklist: Get the Best Rate</h3>
+      <ul class="space-y-3" style="color: var(--text-secondary);">
+        <li class="flex items-start gap-2">
+          <span class="text-[var(--color-usa-blue)] font-bold">✓</span>
+          <span><strong>Boost Your Credit Score:</strong> A score above 740 gets you the top tier. (Saves ~$25,000+)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-[var(--color-usa-blue)] font-bold">✓</span>
+          <span><strong>Save 20% Down:</strong> Avoid PMI entirely. (Saves ~$150/mo)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-[var(--color-usa-blue)] font-bold">✓</span>
+          <span><strong>Compare 3-5 Lenders:</strong> Don't just accept the first offer. (Saves ~$1,500/yr)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-[var(--color-usa-blue)] font-bold">✓</span>
+          <span><strong>Consider Points:</strong> Pay upfront to permanently lower your rate if you plan to stay long-term.</span>
+        </li>
+      </ul>
     </div>
   </section>
 </BaseLayout>
