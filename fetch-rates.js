@@ -7,13 +7,25 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Retrieve the API key from the environment
+// dotenv is for local dev only; Cloudflare injects env vars directly into process.env
 import dotenv from 'dotenv';
 dotenv.config();
 
 const API_KEY = process.env.FRED_API_KEY;
 
+// Debug: show what environment variables are available (names only, not values)
+console.log('--- Environment Debug ---');
+console.log('FRED_API_KEY present:', !!API_KEY);
+console.log('FRED_API_KEY length:', API_KEY ? API_KEY.length : 0);
+console.log('All env var names containing FRED:', Object.keys(process.env).filter(k => k.includes('FRED')));
+console.log('CI environment:', process.env.CI || 'not set');
+console.log('CF_PAGES:', process.env.CF_PAGES || 'not set');
+console.log('NODE_ENV:', process.env.NODE_ENV || 'not set');
+console.log('--- End Debug ---');
+
 if (!API_KEY) {
-  console.warn('⚠️ No FRED_API_KEY found in environment. Using fallback fallback rates.');
+  console.warn('⚠️ No FRED_API_KEY found in environment. Using fallback rates.');
+  console.warn('💡 On Cloudflare Pages: Go to Settings → Environment Variables → Production → Add FRED_API_KEY');
   const fallbackRates = {
     MORTGAGE30US: 6.52,
     MORTGAGE15US: 5.84,
