@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import statesData from '../data/states.json';
 import ratesData from '../data/rates.json';
+import AdSlot from '../components/AdSlot.astro';
+import AffiliateCTA from '../components/AffiliateCTA.astro';
 
 const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-US', { month: 'long', year: 'numeric', day: 'numeric' });
 ---
@@ -31,10 +33,8 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
       </p>
     </div>
 
-    <!-- Ad Slot under Hero -->
-    <div class="max-w-4xl mx-auto">
-      <ins class="adsbygoogle" style="display:none"></ins>
-    </div>
+    <!-- Ad Slot 1: Leaderboard above calculator -->
+    <AdSlot type="leaderboard" />
   </section>
 
   <!-- Calculator -->
@@ -146,10 +146,10 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
             </div>
             <p class="label-faint text-sm mb-6">per month</p>
             
-            <a href="mailto:?subject=My Mortgage Calculation&body=Here is my mortgage breakdown..." id="email-cta" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--color-usa-blue)] text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition shadow-sm mb-6">
+            <button type="button" id="email-cta" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--color-usa-blue)] text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition shadow-sm mb-6 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               Email me this breakdown
-            </a>
+            </button>
 
             <div class="relative w-40 h-40">
               <svg width="100%" height="100%" viewBox="0 0 42 42" class="transform -rotate-90">
@@ -208,9 +208,15 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
               <p class="text-lg font-bold font-mono text-[#10b981] dark:text-emerald-400" id="total-cost">$661,562</p>
             </div>
           </div>
+
+          <!-- Affiliate CTA -->
+          <AffiliateCTA />
         </div>
       </div>
   </section>
+
+  <!-- Ad Slot 2: Rectangle between results and tools -->
+  <AdSlot type="rectangle" />
 
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
     <div class="max-w-4xl mx-auto flex justify-center">
@@ -220,11 +226,7 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
     </div>
   </section>
 
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-    <div class="max-w-4xl mx-auto">
-      <ins class="adsbygoogle" style="display:none"></ins>
-    </div>
-  </section>
+  <!-- (removed duplicate ad section — now handled by AdSlot components) -->
 
   <!-- Quick Links -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -257,6 +259,9 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
       </button>
     </div>
   </section>
+
+  <!-- Ad Slot 3: Rectangle-lg between tools and SEO content -->
+  <AdSlot type="rectangle-lg" />
 
   <script>
     document.getElementById('show-all-tools')?.addEventListener('click', (e) => {
@@ -406,6 +411,19 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
 
     const pmiRow = document.getElementById('pmi-row');
     if (pmiRow) pmiRow.style.display = pmi > 0 ? 'flex' : 'none';
+
+    // Update mobile sticky payment bar
+    const stickyAmount = document.getElementById('sticky-payment-amount');
+    if (stickyAmount) stickyAmount.textContent = fmt(total);
+
+    // Update email modal summary fields
+    const setModal = (id: string, val: string) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    setModal('modal-monthly', fmt(total));
+    setModal('modal-pi', fmt(pi));
+    setModal('modal-tax', fmt(mTax));
+    setModal('modal-ins', fmt(mIns));
+    setModal('modal-total-interest', fmt(totalInterest));
+    setModal('modal-total-cost', fmt(totalCost));
   }
 
   document.addEventListener('DOMContentLoaded', async () => {
@@ -473,6 +491,31 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
     });
 
     calc();
+
+    // Email CTA opens modal
+    document.getElementById('email-cta')?.addEventListener('click', () => {
+      if (typeof (window as any).__openEmailModal === 'function') {
+        (window as any).__openEmailModal();
+      }
+    });
+
+    // Mobile sticky payment bar - show when scrolled past results
+    const resultsSection = document.getElementById('monthly-payment');
+    const stickyBar = document.getElementById('mobile-sticky-payment');
+    if (resultsSection && stickyBar) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            stickyBar.classList.add('translate-y-full');
+            stickyBar.classList.remove('translate-y-0');
+          } else {
+            stickyBar.classList.remove('translate-y-full');
+            stickyBar.classList.add('translate-y-0');
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(resultsSection);
+    }
 
     const { OnboardingTour } = await import('../scripts/onboarding.ts');
     new OnboardingTour().init();

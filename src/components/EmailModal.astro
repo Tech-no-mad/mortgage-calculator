@@ -1,0 +1,175 @@
+---
+/**
+ * EmailModal.astro - Glassmorphism email capture modal
+ * Replaces the raw mailto: CTA with a proper lead capture form.
+ * Stores emails in localStorage for now; ready for Mailchimp integration.
+ */
+---
+
+<!-- Email Capture Modal Overlay -->
+<div
+  id="email-modal-overlay"
+  class="fixed inset-0 z-[10000] hidden items-center justify-center p-4"
+  style="background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);"
+>
+  <div
+    id="email-modal"
+    class="relative w-full max-w-md rounded-2xl p-8 shadow-2xl border transform transition-all duration-300 scale-95 opacity-0"
+    style="background: var(--bg-surface); border-color: var(--border-default);"
+  >
+    <!-- Close button -->
+    <button
+      id="email-modal-close"
+      class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--bg-hover)] transition-colors"
+      style="color: var(--text-muted);"
+      aria-label="Close modal"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Form State -->
+    <div id="email-form-state">
+      <!-- Icon -->
+      <div class="flex justify-center mb-5">
+        <div class="w-14 h-14 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--color-usa-blue), var(--color-usa-red));">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-center mb-2" style="color: var(--text-primary);">
+        Get Your Personalized Mortgage Report
+      </h3>
+      <p class="text-sm text-center mb-6" style="color: var(--text-muted);">
+        We'll email your full breakdown including monthly payment, amortization highlights, and current rates.
+      </p>
+
+      <!-- Hidden fields populated by JS -->
+      <div id="email-modal-summary" class="rounded-xl p-4 mb-6 space-y-2 text-sm font-mono" style="background: var(--bg-surface-2); color: var(--text-secondary);">
+        <div class="flex justify-between"><span>Monthly Payment</span><span id="modal-monthly" class="font-semibold" style="color: var(--text-primary);">—</span></div>
+        <div class="flex justify-between"><span>P&I</span><span id="modal-pi">—</span></div>
+        <div class="flex justify-between"><span>Tax</span><span id="modal-tax">—</span></div>
+        <div class="flex justify-between"><span>Insurance</span><span id="modal-ins">—</span></div>
+        <div class="flex justify-between"><span>Total Interest</span><span id="modal-total-interest">—</span></div>
+        <div class="flex justify-between"><span>Total Cost</span><span id="modal-total-cost">—</span></div>
+      </div>
+
+      <form id="email-capture-form" class="space-y-4">
+        <div class="relative">
+          <input
+            type="email"
+            id="email-capture-input"
+            required
+            placeholder="you@example.com"
+            class="calc-input w-full pl-10 font-mono"
+            autocomplete="email"
+          />
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+          </svg>
+        </div>
+        <button
+          type="submit"
+          class="w-full py-3 rounded-xl text-white font-bold text-sm shadow-lg hover:opacity-90 transition-opacity"
+          style="background: linear-gradient(135deg, var(--color-usa-blue), var(--color-usa-red));"
+        >
+          Send My Report →
+        </button>
+        <p class="text-xs text-center" style="color: var(--text-muted);">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
+
+    <!-- Success State -->
+    <div id="email-success-state" class="hidden text-center py-4">
+      <div class="flex justify-center mb-4">
+        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-emerald-500/10">
+          <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+      </div>
+      <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Report Sent! 🎉</h3>
+      <p class="text-sm mb-6" style="color: var(--text-muted);">Check your inbox for your personalized mortgage breakdown.</p>
+      <button
+        id="email-success-close"
+        class="px-6 py-2 rounded-lg text-sm font-semibold border transition-colors hover:bg-[var(--bg-hover)]"
+        style="border-color: var(--border-default); color: var(--text-secondary);"
+      >
+        Done
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('email-modal-overlay');
+    const modal = document.getElementById('email-modal');
+    const closeBtn = document.getElementById('email-modal-close');
+    const form = document.getElementById('email-capture-form') as HTMLFormElement;
+    const formState = document.getElementById('email-form-state');
+    const successState = document.getElementById('email-success-state');
+    const successClose = document.getElementById('email-success-close');
+
+    function openModal() {
+      if (!overlay || !modal) return;
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      requestAnimationFrame(() => {
+        modal.classList.remove('scale-95', 'opacity-0');
+        modal.classList.add('scale-100', 'opacity-100');
+      });
+    }
+
+    function closeModal() {
+      if (!overlay || !modal) return;
+      modal.classList.remove('scale-100', 'opacity-100');
+      modal.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('flex');
+        // Reset to form state
+        if (formState) formState.classList.remove('hidden');
+        if (successState) successState.classList.add('hidden');
+      }, 200);
+    }
+
+    // Expose openModal globally so index.astro can call it
+    (window as any).__openEmailModal = openModal;
+
+    closeBtn?.addEventListener('click', closeModal);
+    successClose?.addEventListener('click', closeModal);
+    overlay?.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    // Handle ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay && !overlay.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('email-capture-input') as HTMLInputElement;
+      const email = emailInput?.value?.trim();
+      if (!email) return;
+
+      // Store in localStorage
+      const stored = JSON.parse(localStorage.getItem('mortgagedash_emails') || '[]');
+      stored.push({ email, timestamp: new Date().toISOString() });
+      localStorage.setItem('mortgagedash_emails', JSON.stringify(stored));
+
+      // Show success state
+      if (formState) formState.classList.add('hidden');
+      if (successState) successState.classList.remove('hidden');
+
+      // Clear the input
+      emailInput.value = '';
+    });
+  });
+</script>

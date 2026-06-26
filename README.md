@@ -35,6 +35,17 @@ We've architected MortgageDash from the ground up to be fully compliant with str
 
 ---
 
+## 📊 High-RPM Monetization Architecture
+
+MortgageDash implements an advanced, multi-channel revenue strategy designed for the premium US Finance vertical.
+
+- **Strategic Ad Placement:** A reusable `AdSlot.astro` component places ads in 4 high-viewability positions across every page: Leaderboard (above calculator), Rectangle (between results and tools), Rectangle-lg (between tools and SEO content), and a persistent Sticky Anchor ad fixed to the viewport bottom.
+- **Affiliate Lead Generation:** An `AffiliateCTA.astro` component provides a "Compare Lenders" conversion card with ZIP code input and a call-to-action linking to affiliate partner networks (LendingTree, Bankrate). Affiliate leads in the mortgage vertical generate $20-$100+ per conversion vs. $0.50-$2 per display ad click.
+- **Email Capture Funnel:** The `EmailModal.astro` component replaces the legacy `mailto:` link with a beautiful glassmorphism modal that captures user emails alongside their live calculated values. Stored in `localStorage` and ready for Mailchimp integration.
+- **Mobile Sticky Payment Bar:** On mobile devices, a fixed bottom bar shows the live monthly payment amount as users scroll, using `IntersectionObserver` to hide when the results section is visible.
+
+---
+
 ## 📈 Live Financial Data Automation
 
 MortgageDash uses a build-time automation script to fetch live economic data directly from the Federal Reserve Economic Data (FRED) API.
@@ -79,7 +90,7 @@ Run the following commands from your terminal at the root of the project to dive
 
 - **`src/pages/`** - The core routing logic, including the individual state guides and standalone calculators.
 - **`src/pages/api/`** - Secure, server-side API endpoints (like the core engine for the Chatbot Assistant).
-- **`src/components/`** - Modular UI pieces including the Header, Footer, and the floating Chatbot interface.
+- **`src/components/`** - Modular UI pieces including the Header, Footer, floating Chatbot, reusable `AdSlot`, `AffiliateCTA`, and `EmailModal` components.
 - **`src/layouts/`** - Home to `BaseLayout.astro`, handling global SEO meta tags, dark/light mode context, cookie banners, and bot layout shielding.
 - **`src/styles/`** - Global CSS tokens, Aurora gradients, and resets.
 - **`src/data/`** - Static JSON databases (like `states.json`) powering the calculations and the Virtual Assistant.

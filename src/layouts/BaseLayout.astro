@@ -11,6 +11,8 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Chatbot from '../components/Chatbot.astro';
+import AdSlot from '../components/AdSlot.astro';
+import EmailModal from '../components/EmailModal.astro';
 
 const defaultKeywords = "mortgage calculator, monthly mortgage payment, mortgage payment calculator, home loan calculator, mortgage rates today, current mortgage rates, 30 year mortgage rates, 15 year mortgage rates, best mortgage rates, mortgage rate comparison, refinance calculator, mortgage refinance rates, cash out refinance, refinance my mortgage, should i refinance, break even refinance, home affordability calculator, how much house can i afford, debt to income ratio calculator, mortgage pre approval, mortgage pre qualification, fha loan calculator, fha loan requirements, fha loan limits 2025, fha vs conventional loan, va loan calculator, va loan eligibility, va loan rates, va loan no down payment, jumbo loan calculator, jumbo loan limits 2025, jumbo mortgage rates, non conforming loan, reverse mortgage calculator, reverse mortgage pros and cons, hecm calculator, how does reverse mortgage work, reverse mortgage age requirement, arm mortgage calculator, adjustable rate mortgage, 5 1 arm calculator, arm vs fixed rate mortgage, when to choose arm mortgage, commercial mortgage calculator, commercial real estate loan, commercial loan rates, dscr loan calculator, commercial property financing, balloon payment calculator, auto loan calculator, car loan calculator, monthly car payment, auto loan rates, vehicle financing calculator, investment property mortgage, investment property calculator, rental property calculator, real estate roi calculator, compound interest calculator, amortization schedule, mortgage amortization calculator, amortization table, loan payment calculator, personal loan calculator, heloc calculator, home equity line of credit rates, heloc vs home equity loan, home equity calculator, pmi calculator, private mortgage insurance, how to remove pmi, mortgage recast calculator, extra payment calculator, biweekly mortgage calculator, pay off mortgage early, mortgage payoff calculator, property tax calculator, states mortgage calculator, texas mortgage calculator, florida mortgage calculator, california mortgage calculator, new york mortgage calculator, north carolina mortgage calculator, closing costs calculator, mortgage points calculator, buy down rate calculator, mortgage broker, mortgage lender near me, online mortgage lender, rocket mortgage, pennymac, uwm mortgage, freedom mortgage, loan estimate, truth in lending, piti calculator, principal interest taxes insurance, conventional loan, conforming loan limit 2025, family opportunity mortgage, assumable mortgage, seller financing, bridge loan, construction loan, usda loan calculator, usda loan eligibility, first time home buyer programs, down payment assistance, dave ramsey mortgage, zero down mortgage";
 const { title, description, canonicalUrl, ogImage = '/og-default.png', keywords = defaultKeywords } = Astro.props;
@@ -89,6 +91,28 @@ const fullTitle = `${title} | MortgageDash`;
 
     <Footer />
     <Chatbot />
+    <EmailModal />
+
+    <!-- Sticky Anchor Ad (Slot 4) - fixed to bottom, hidden when cookie banner is visible -->
+    <AdSlot type="sticky" />
+
+    <!-- Mobile Sticky Payment Bar -->
+    <div
+      id="mobile-sticky-payment"
+      class="fixed bottom-0 left-0 right-0 z-[9985] md:hidden transform translate-y-full transition-transform duration-300"
+      style="background: var(--bg-surface); border-top: 1px solid var(--border-default); box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"
+    >
+      <div class="flex items-center justify-between px-4 py-3">
+        <div>
+          <p class="text-xs font-medium" style="color: var(--text-muted);">Monthly Payment</p>
+          <p class="text-xl font-bold font-mono bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent" id="sticky-payment-amount">$1,837</p>
+        </div>
+        <a href="#monthly-payment" class="px-4 py-2 rounded-lg text-xs font-semibold text-white" style="background: var(--color-usa-blue);">
+          View Details ↓
+        </a>
+      </div>
+    </div>
+
 
     <!-- 🍪 COMPLIANT COOKIE CONSENT BANNER INTERFACE -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-[var(--bg-surface)] border-t border-[var(--border-default)] shadow-2xl p-4 z-[9999] hidden transform transition-all duration-300">

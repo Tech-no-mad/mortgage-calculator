@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
+import AdSlot from '../components/AdSlot.astro';
 ---
 
 <BaseLayout
@@ -247,4 +248,12 @@ import ratesData from '../data/rates.json';
       </p>
     </div>
   </section>
+
+  <!-- Ad Slot: Leaderboard -->
+  <AdSlot type="leaderboard" />
+
+
+  <!-- Ad Slot: Rectangle -->
+  <AdSlot type="rectangle" />
+
 </BaseLayout>
