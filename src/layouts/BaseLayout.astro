@@ -14,9 +14,31 @@ import Chatbot from '../components/Chatbot.astro';
 import AdSlot from '../components/AdSlot.astro';
 import EmailModal from '../components/EmailModal.astro';
 
-const defaultKeywords = "mortgage calculator, monthly mortgage payment, mortgage payment calculator, home loan calculator, mortgage rates today, current mortgage rates, 30 year mortgage rates, 15 year mortgage rates, best mortgage rates, mortgage rate comparison, refinance calculator, mortgage refinance rates, cash out refinance, refinance my mortgage, should i refinance, break even refinance, home affordability calculator, how much house can i afford, debt to income ratio calculator, mortgage pre approval, mortgage pre qualification, fha loan calculator, fha loan requirements, fha loan limits 2025, fha vs conventional loan, va loan calculator, va loan eligibility, va loan rates, va loan no down payment, jumbo loan calculator, jumbo loan limits 2025, jumbo mortgage rates, non conforming loan, reverse mortgage calculator, reverse mortgage pros and cons, hecm calculator, how does reverse mortgage work, reverse mortgage age requirement, arm mortgage calculator, adjustable rate mortgage, 5 1 arm calculator, arm vs fixed rate mortgage, when to choose arm mortgage, commercial mortgage calculator, commercial real estate loan, commercial loan rates, dscr loan calculator, commercial property financing, balloon payment calculator, auto loan calculator, car loan calculator, monthly car payment, auto loan rates, vehicle financing calculator, investment property mortgage, investment property calculator, rental property calculator, real estate roi calculator, compound interest calculator, amortization schedule, mortgage amortization calculator, amortization table, loan payment calculator, personal loan calculator, heloc calculator, home equity line of credit rates, heloc vs home equity loan, home equity calculator, pmi calculator, private mortgage insurance, how to remove pmi, mortgage recast calculator, extra payment calculator, biweekly mortgage calculator, pay off mortgage early, mortgage payoff calculator, property tax calculator, states mortgage calculator, texas mortgage calculator, florida mortgage calculator, california mortgage calculator, new york mortgage calculator, north carolina mortgage calculator, closing costs calculator, mortgage points calculator, buy down rate calculator, mortgage broker, mortgage lender near me, online mortgage lender, rocket mortgage, pennymac, uwm mortgage, freedom mortgage, loan estimate, truth in lending, piti calculator, principal interest taxes insurance, conventional loan, conforming loan limit 2025, family opportunity mortgage, assumable mortgage, seller financing, bridge loan, construction loan, usda loan calculator, usda loan eligibility, first time home buyer programs, down payment assistance, dave ramsey mortgage, zero down mortgage";
-const { title, description, canonicalUrl, ogImage = '/og-default.png', keywords = defaultKeywords } = Astro.props;
+// Fallback to workers.dev if PUBLIC_SITE_URL is not yet set for the custom domain
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://mortgage-calculator.karteek-tadimalla.workers.dev';
+
+// Default keywords (ideally overridden by every page)
+const defaultKeywords = "mortgage calculator, home loan calculator, current mortgage rates, monthly mortgage payment";
+
+const { 
+  title, 
+  description, 
+  canonicalUrl = Astro.url.pathname, 
+  ogImage = '/og-default.png', 
+  keywords = defaultKeywords 
+} = Astro.props;
+
 const fullTitle = `${title} | MortgageDash`;
+
+// Ensure canonicalUrl is absolute
+const absoluteCanonicalUrl = canonicalUrl.startsWith('http') 
+  ? canonicalUrl 
+  : new URL(canonicalUrl, siteUrl).toString();
+
+// Ensure ogImage is absolute
+const absoluteOgImage = ogImage.startsWith('http') 
+  ? ogImage 
+  : new URL(ogImage, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -28,17 +50,17 @@ const fullTitle = `${title} | MortgageDash`;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {absoluteCanonicalUrl && <link rel="canonical" href={absoluteCanonicalUrl} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="MortgageDash" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:image" content={absoluteOgImage} />
+    {absoluteCanonicalUrl && <meta property="og:url" content={absoluteCanonicalUrl} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={absoluteOgImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

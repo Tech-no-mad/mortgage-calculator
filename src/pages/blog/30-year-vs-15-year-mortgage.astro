@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "30-Year vs. 15-Year Mortgage: Which Should You Choose?";
+const description = "Deciding between a 30-year and 15-year mortgage? Compare monthly payments, interest savings, and find out which loan term fits your financial goals.";
+const keywords = "30-year vs 15-year mortgage, mortgage term comparison, 15 year mortgage calculator, 30 year fixed mortgage rates, pay off mortgage early";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": "2026-07-01",
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  }
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
+    <header class="mb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
+        {title}
+      </h1>
+      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
+    </header>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <p class="lead font-medium text-xl mb-8">
+        The simplest answer to the 30-year vs. 15-year mortgage debate is this: a 30-year mortgage offers lower, more manageable monthly payments, while a 15-year mortgage saves you tens of thousands of dollars in interest and builds equity twice as fast. 
+      </p>
+
+      <p>
+        When you finally find the perfect home and start locking down your financing, your lender will ask you a critical question: how long do you want to take to pay off this loan? The term you choose will shape your monthly budget and long-term financial health for decades to come. While there are 10, 20, and even 40-year options out there, the vast majority of homebuyers choose between the traditional 30-year fixed-rate mortgage and the accelerated 15-year fixed-rate mortgage.
+      </p>
+      
+      <p>
+        Choosing the right loan term isn't just about picking a number; it is a strategic decision that depends on your cash flow, retirement goals, and risk tolerance. If you are already asking yourself <a href="/blog/how-much-house-can-i-afford" class="text-[var(--color-usa-blue)] hover:underline">how much house you can afford</a>, deciding on the term length is the logical next step. Let's break down the math and explore exactly which option is right for you.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Side-by-side comparison table</h2>
+      <p>
+        To truly understand the difference, you need to see the numbers side-by-side. The most dramatic differences show up in your monthly obligation versus your total lifetime interest cost. 
+      </p>
+      <p>
+        Let's look at a realistic example. Suppose you are taking out a <strong>$350,000</strong> loan. To keep things simple, we'll assume a standard <strong>6.5% interest rate</strong> for both loans (though realistically, 15-year rates are often a bit lower). Here is how they stack up:
+      </p>
+
+      <div class="overflow-x-auto my-8">
+        <table class="min-w-full border-collapse border border-[var(--border-default)]">
+          <thead class="bg-[var(--bg-surface)]">
+            <tr>
+              <th class="border border-[var(--border-default)] px-4 py-2 text-left font-semibold">Metric</th>
+              <th class="border border-[var(--border-default)] px-4 py-2 text-left font-semibold text-[var(--color-usa-blue)]">30-Year Mortgage</th>
+              <th class="border border-[var(--border-default)] px-4 py-2 text-left font-semibold text-[#10b981]">15-Year Mortgage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-[var(--border-default)] px-4 py-2 font-medium">Loan Amount</td>
+              <td class="border border-[var(--border-default)] px-4 py-2">$350,000</td>
+              <td class="border border-[var(--border-default)] px-4 py-2">$350,000</td>
+            </tr>
+            <tr>
+              <td class="border border-[var(--border-default)] px-4 py-2 font-medium">Interest Rate</td>
+              <td class="border border-[var(--border-default)] px-4 py-2">6.5%</td>
+              <td class="border border-[var(--border-default)] px-4 py-2">6.5%</td>
+            </tr>
+            <tr>
+              <td class="border border-[var(--border-default)] px-4 py-2 font-medium">Monthly Principal & Interest</td>
+              <td class="border border-[var(--border-default)] px-4 py-2 font-bold">$2,212</td>
+              <td class="border border-[var(--border-default)] px-4 py-2 font-bold">$3,049</td>
+            </tr>
+            <tr>
+              <td class="border border-[var(--border-default)] px-4 py-2 font-medium">Total Interest Paid</td>
+              <td class="border border-[var(--border-default)] px-4 py-2 text-[var(--color-usa-red)]">$446,396</td>
+              <td class="border border-[var(--border-default)] px-4 py-2 text-[#10b981]">$198,754</td>
+            </tr>
+            <tr>
+              <td class="border border-[var(--border-default)] px-4 py-2 font-medium">Total Cost of Loan</td>
+              <td class="border border-[var(--border-default)] px-4 py-2">$796,396</td>
+              <td class="border border-[var(--border-default)] px-4 py-2">$548,754</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        <strong>The Takeaway:</strong> The 15-year mortgage costs you <strong>$837 more per month</strong>, but it saves you a staggering <strong>$247,642 in total interest</strong> over the life of the loan!
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Who should pick a 15-year mortgage</h2>
+      <p>
+        A 15-year mortgage is an incredible wealth-building tool, but it requires a solid income and discipline. It might be the perfect choice for you if:
+      </p>
+      <ul class="list-disc pl-6 space-y-3 mb-6">
+        <li><strong>You have a high, stable income:</strong> You can comfortably afford the higher monthly payments without feeling cash-strapped at the end of the month.</li>
+        <li><strong>You hate debt:</strong> If the idea of owing hundreds of thousands of dollars to a bank for three decades keeps you up at night, a 15-year term will give you peace of mind much faster.</li>
+        <li><strong>You are approaching retirement:</strong> If you plan to retire in the next 10 to 15 years, locking in a 15-year mortgage ensures you enter retirement completely mortgage-free, drastically lowering your living expenses when your income drops.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Who should pick a 30-year mortgage</h2>
+      <p>
+        The 30-year mortgage is the gold standard in American real estate for a reason. It offers flexibility and safety. You should lean toward a 30-year term if:
+      </p>
+      <ul class="list-disc pl-6 space-y-3 mb-6">
+        <li><strong>You want budget flexibility:</strong> Life is unpredictable. Job losses, medical emergencies, or a growing family can squeeze your budget. The lower mandatory monthly payment of a 30-year loan acts as a financial safety net.</li>
+        <li><strong>You want to invest the difference:</strong> Instead of tying up your cash in home equity, you might prefer the lower payment so you can invest the extra $837 (from our example) into the stock market. Historically, diversified stock portfolios have returned more than a 6.5% mortgage rate.</li>
+        <li><strong>You are a first-time homebuyer:</strong> If you are stretching to get into your first home, the 30-year mortgage makes the debt-to-income ratios manageable and allows you to actually qualify for the loan.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">A middle path — extra payments on a 30-year loan</h2>
+      <p>
+        What if you want the massive interest savings of a 15-year loan, but you are terrified of being locked into a sky-high mandatory monthly payment? You can create a hybrid approach! 
+      </p>
+      <p>
+        You can take out a 30-year mortgage but <em>pay it like a 15-year mortgage</em>. Because most modern mortgages do not have prepayment penalties, you can simply add extra money to your principal payment every month. If you lose your job or face an emergency, you can immediately drop your payment back down to the required 30-year minimum. 
+      </p>
+      <p>
+        Even making one extra mortgage payment per year can shave years off your loan term and save you tens of thousands in interest. You can run these scenarios yourself using our dedicated <a href="/extra-payment-calculator/" class="text-[var(--color-usa-blue)] hover:underline font-medium">Extra Payments tool</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Key takeaways</h2>
+      <ul class="list-disc pl-6 space-y-2 mb-8">
+        <li>A 30-year mortgage provides the lowest possible monthly payment, giving you budget flexibility.</li>
+        <li>A 15-year mortgage requires higher monthly payments but saves you a massive amount of money in lifetime interest.</li>
+        <li>You build equity twice as fast with a 15-year term.</li>
+        <li>You can get the best of both worlds by taking a 30-year mortgage and making extra principal payments on your own schedule.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Find your perfect monthly payment</h2>
+      <p class="mb-8">
+        Are you ready to see exactly what your monthly bill would look like under a 15-year or 30-year term? Play around with the numbers, adjust the interest rates, and see how much house you can get for your money.
+      </p>
+
+      <div class="bg-[var(--bg-card)] p-8 rounded-2xl border border-[var(--border-default)] text-center shadow-lg my-10">
+        <p class="text-xl font-bold mb-6">
+          Compare your mortgage terms instantly and lock in your home buying strategy.
+        </p>
+        <a href="/loan-payment-calculator/" class="inline-block px-8 py-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[#0ea5e9] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          Try the Loan Payment Calculator
+        </a>
+      </div>
+      
+    </div>
+  </article>
+</BaseLayout>

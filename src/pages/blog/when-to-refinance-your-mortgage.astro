@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "When Does It Make Sense to Refinance Your Mortgage?";
+const description = "Wondering if you should refinance? Learn the break-even formula, discover the hidden costs, and find out exactly when refinancing makes financial sense.";
+const keywords = "when to refinance mortgage, mortgage refinance calculator, break-even point mortgage, refinance closing costs, lower mortgage rate";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": "2026-07-01",
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  }
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
+    <header class="mb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
+        {title}
+      </h1>
+      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
+    </header>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <p class="lead font-medium text-xl mb-8">
+        Refinancing your mortgage makes sense if the monthly savings from a lower interest rate outweigh the closing costs before you plan to sell the home, or if you need to switch from a risky adjustable-rate mortgage to a stable fixed-rate loan.
+      </p>
+
+      <p>
+        Mortgage rates are constantly moving. If rates have dropped since you originally bought your home, you are probably getting bombarded with advertisements promising to save you thousands of dollars a year if you refinance. While lowering your monthly payment sounds like a no-brainer, refinancing is not free. In fact, it involves taking out a brand-new loan to pay off your old one, which means you have to pay a new round of closing costs.
+      </p>
+
+      <p>
+        So, how do you separate the marketing hype from sound financial strategy? The answer lies in simple mathematics. By calculating your "break-even point," you can definitively know whether refinancing will put money back in your pocket or if it's just a waste of time. Let's explore the formulas, the good reasons to refinance, and the scenarios where you should stick with your current loan.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">The break-even formula</h2>
+      <p>
+        The most important concept in refinancing is the <strong>break-even point</strong>. This is the exact month where the money you save from a lower interest rate finally covers the upfront fees you paid to get the new loan. If you plan to move out before you hit your break-even point, refinancing is a bad idea.
+      </p>
+      
+      <p>Here is the simple formula:</p>
+      <p class="text-center text-xl font-mono bg-[var(--bg-surface)] py-4 rounded-lg border border-[var(--border-default)]">
+        Total Closing Costs ÷ Monthly Savings = Months to Break Even
+      </p>
+
+      <div class="bg-[var(--bg-surface)] p-6 rounded-lg border border-[var(--border-default)] my-6">
+        <h4 class="font-bold mb-3">Example: Calculating the Break-Even Point</h4>
+        <p>Imagine you have a $300,000 mortgage at 7.5% interest. You want to refinance to a <strong>6.5%</strong> rate.</p>
+        <ul class="list-none space-y-2 mt-3">
+          <li><strong>Current Monthly Payment:</strong> $2,097</li>
+          <li><strong>New Monthly Payment (at 6.5%):</strong> $1,896</li>
+          <li><strong>Monthly Savings:</strong> <strong>$201</strong></li>
+          <li><strong>Estimated Closing Costs (2% of loan):</strong> $6,000</li>
+        </ul>
+        <p class="mt-4">Now, apply the formula:</p>
+        <p class="font-mono mt-2">$6,000 ÷ $201 = <strong>29.8 months</strong></p>
+        <p class="mt-4 text-sm font-medium">
+          <em>The Result:</em> It will take you about two and a half years to break even. If you plan to stay in the home for at least 3 years, refinancing makes perfect financial sense!
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Good reasons to refinance</h2>
+      <p>
+        Chasing a lower rate is the most common reason to refinance, but there are several other strategic reasons you might want to restructure your debt:
+      </p>
+      
+      <ul class="list-disc pl-6 space-y-4 mb-6">
+        <li>
+          <strong>To secure a lower interest rate:</strong> The traditional rule of thumb is that refinancing is worth it if you can lower your rate by at least 0.75% to 1%. This translates directly into lower monthly payments and massive lifetime interest savings.
+        </li>
+        <li>
+          <strong>To switch from an ARM to a Fixed-Rate Mortgage:</strong> If you currently have an Adjustable-Rate Mortgage (ARM) that is about to reset to a higher rate, refinancing into a fixed-rate loan will lock in a predictable payment and protect you from future market volatility.
+        </li>
+        <li>
+          <strong>To shorten the loan term:</strong> If you are making more money now than when you bought the house, you can refinance your 30-year loan into a 15-year loan. Your monthly payment will go up, but you will save hundreds of thousands of dollars in interest and own the home much faster.
+        </li>
+        <li>
+          <strong>To drop Private Mortgage Insurance (PMI):</strong> If your home has appreciated significantly in value since you bought it, refinancing can prove to the bank that you now have over 20% equity. This allows you to get a new loan without the expensive monthly PMI fee.
+        </li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">When refinancing usually doesn't make sense</h2>
+      <p>
+        Despite what the aggressive lender commercials say, refinancing is not a magic wand. There are many scenarios where keeping your current loan is the smarter move:
+      </p>
+      <ul class="list-disc pl-6 space-y-3 mb-6">
+        <li><strong>You plan to move soon:</strong> If you are relocating for work or upgrading to a bigger house before you hit your break-even point, you will lose money on the transaction. The closing costs will outweigh your short-term savings.</li>
+        <li><strong>It significantly extends your payoff date:</strong> If you are 10 years into a 30-year mortgage and you refinance into a brand-new 30-year loan, you are resetting the clock. You might lower your monthly payment, but you are adding 10 extra years of interest payments to your life.</li>
+        <li><strong>Your break-even point is too far away:</strong> If the rate drop is very small (say, 0.25%), it might take 7 or 8 years just to break even on the closing fees. That is a long time to commit to a property just to recoup fees.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">What refinancing actually costs</h2>
+      <p>
+        You must be prepared to pay closing costs, just like when you originally bought the house. Refinancing fees typically range from <strong>2% to 5% of the total loan amount</strong>. On a $300,000 loan, expect to pay between $6,000 and $15,000.
+      </p>
+      <p>
+        These costs go toward application fees, a new home appraisal, title search and insurance, origination fees, and attorney fees. Some lenders offer "no-closing-cost" refinances, but be careful—they are not actually free. The lender simply covers the upfront costs and recoups the money by charging you a slightly higher interest rate for the entire life of the loan. 
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Key takeaways</h2>
+      <ul class="list-disc pl-6 space-y-2 mb-8">
+        <li>Always calculate your break-even point before agreeing to refinance.</li>
+        <li>Refinancing costs between 2% and 5% of your total loan amount in upfront fees.</li>
+        <li>It is a smart move if you want to lower your rate, drop PMI, or switch out of a risky ARM.</li>
+        <li>Avoid refinancing if you plan to move soon or if it drastically resets your loan payoff clock.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Run your own refinance numbers</h2>
+      <p class="mb-8">
+        Don't guess when it comes to your mortgage. Use our calculator to instantly find your break-even point, compare your current loan to a new one, and see exactly how much money you could save each month.
+      </p>
+
+      <div class="bg-[var(--bg-card)] p-8 rounded-2xl border border-[var(--border-default)] text-center shadow-lg my-10">
+        <p class="text-xl font-bold mb-6">
+          Find out if refinancing is the right financial move for you today.
+        </p>
+        <a href="/refinance-calculator/" class="inline-block px-8 py-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[#0ea5e9] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          Open the Refinance Calculator
+        </a>
+      </div>
+      
+    </div>
+  </article>
+</BaseLayout>

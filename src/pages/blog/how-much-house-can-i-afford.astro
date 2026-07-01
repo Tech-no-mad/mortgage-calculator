@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "How Much House Can I Afford? A Simple Formula for 2026";
+const description = "Learn exactly how much house you can afford in 2026 using the 28/36 rule. Discover how your salary, debt, and down payment affect your home buying budget.";
+const keywords = "how much house can I afford, how much house can I afford on my salary, home buying budget, 28/36 rule mortgage, mortgage affordability calculator";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": "2026-07-01",
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  }
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
+    <header class="mb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
+        {title}
+      </h1>
+      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
+    </header>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <p class="lead font-medium text-xl mb-8">
+        If you are wondering "how much house can I afford," the quick answer lies in the 28/36 rule: spend no more than 28% of your gross monthly income on housing costs, and no more than 36% on all your debts combined. This simple benchmark helps ensure you don't end up "house poor" while paying your mortgage.
+      </p>
+
+      <p>
+        Buying a home is one of the most exciting milestones in life, but it can also be incredibly stressful if you aren't sure about your budget. The housing market has evolved significantly, and as we navigate 2026, understanding exactly how much you can spend on a house is more critical than ever. We're here to break down the complex math into simple, bite-sized pieces so you can start house-hunting with absolute confidence.
+      </p>
+
+      <p>
+        In this guide, we'll walk you through the industry-standard formulas, provide real-world examples, and uncover the hidden costs of homeownership that many first-time buyers completely overlook. By the end, you'll know exactly how to calculate your personalized budget.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">The 28/36 rule explained</h2>
+      <p>
+        Lenders have used the 28/36 rule for decades to determine how much money they are willing to lend you safely. It's essentially a stress test for your finances. Let's break it down into its two components:
+      </p>
+      <ul class="list-disc pl-6 mb-6 space-y-2">
+        <li><strong>The 28% Rule (Front-End Ratio):</strong> Your total monthly housing costs should not exceed 28% of your gross monthly income (your income before taxes are taken out). Housing costs include your principal, interest, property taxes, and home insurance (often abbreviated as PITI).</li>
+        <li><strong>The 36% Rule (Back-End Ratio):</strong> Your total monthly debt payments should not exceed 36% of your gross monthly income. This includes your future housing costs <em>plus</em> existing obligations like student loans, auto loans, and minimum credit card payments.</li>
+      </ul>
+      <p>
+        While some loan programs (like FHA or VA loans) might allow for slightly higher ratios, staying within the 28/36 guidelines ensures you have enough cash left over for groceries, savings, and living your life comfortably. 
+        Curious about FHA options? Check out our guide on <a href="/blog/what-credit-score-to-buy-a-house" class="text-[var(--color-usa-blue)] hover:underline">what credit score you need to buy a house</a>.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Example — affordability at three income levels</h2>
+      <p>
+        To make this concrete, let's look at how much house you can afford on different salaries. We'll assume a current average mortgage rate of <strong>6.5%</strong> and that you have manageable existing debts.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">$60,000 Household Income</h3>
+      <p>
+        At $60,000 per year, your gross monthly income is $5,000.
+        According to the 28% rule, your maximum housing payment should be $1,400 ($5,000 × 0.28).
+        If you have a 10% down payment and factor in taxes and insurance, you might be looking at a home priced around <strong>$180,000 to $200,000</strong>.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">$90,000 Household Income</h3>
+      <p>
+        At $90,000 per year, your gross monthly income is $7,500.
+        The 28% rule sets your maximum housing payment at $2,100 ($7,500 × 0.28).
+        Assuming the same 6.5% interest rate, manageable debts, and a 10% down payment, your budget is roughly <strong>$280,000 to $310,000</strong>.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">$130,000 Household Income</h3>
+      <p>
+        At $130,000 per year, your gross monthly income is $10,833.
+        Your 28% maximum housing payment comes out to $3,033.
+        With a healthy down payment, this could put you in the market for a home priced between <strong>$400,000 and $450,000</strong>.
+      </p>
+      
+      <p class="mt-4 italic text-sm text-[var(--text-muted)]">
+        *Note: These are estimates. Your exact purchasing power will depend heavily on your local property tax rates, homeowners insurance premiums, and specific down payment amount.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">What affects your number besides income</h2>
+      <p>
+        While your salary is the baseline, it is far from the only factor lenders consider when approving your loan. Several other critical financial metrics play a huge role in determining how much house you can afford:
+      </p>
+      <ul class="list-disc pl-6 space-y-3 mb-6">
+        <li><strong>Your down payment:</strong> The more money you put down upfront, the less you have to borrow. A larger down payment immediately increases your buying power and can help you secure a better interest rate.</li>
+        <li><strong>Your credit score:</strong> A high credit score unlocks the lowest possible mortgage rates. Even a 0.5% difference in your interest rate can swing your budget by tens of thousands of dollars over a 30-year loan.</li>
+        <li><strong>Your existing debt:</strong> Remember the 36% rule? If you have massive student loan payments or a high car note, your "back-end ratio" might push you over the 36% limit. In this case, lenders will reduce your maximum housing budget to keep your total debt load safe.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Don't forget the "hidden" costs</h2>
+      <p>
+        One of the biggest mistakes first-time homebuyers make is looking only at the principal and interest. If you max out your budget on the mortgage alone, the hidden costs of homeownership will quickly drain your savings. When running your numbers, you absolutely must account for:
+      </p>
+      <ul class="list-disc pl-6 space-y-3 mb-6">
+        <li><strong>Private Mortgage Insurance (PMI):</strong> If you put down less than 20% on a conventional loan, lenders will charge you PMI. This can add $100 to $300 a month to your bill. Want to skip this? Read our guide on <a href="/blog/how-to-avoid-pmi" class="text-[var(--color-usa-blue)] hover:underline">how to avoid PMI</a>.</li>
+        <li><strong>Property Taxes:</strong> These vary wildly depending on your state and county. They are usually rolled into your monthly payment and can increase over time.</li>
+        <li><strong>Homeowners Association (HOA) Fees:</strong> If you buy a condo or a home in a planned community, HOA fees can easily add $200–$500+ to your monthly obligations.</li>
+        <li><strong>Maintenance and Repairs:</strong> As a rule of thumb, budget 1% of your home's value every year for maintenance. When the water heater breaks, there's no landlord to call—it's on you!</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Key takeaways</h2>
+      <ul class="list-disc pl-6 space-y-2 mb-8">
+        <li>Use the 28/36 rule to find a safe baseline for your housing budget.</li>
+        <li>Your gross income dictates the maximum amount you can borrow, but your existing debts might lower that ceiling.</li>
+        <li>Always factor in taxes, insurance, maintenance, and potential HOA fees when budgeting.</li>
+        <li>A higher down payment and a better credit score will significantly increase your buying power.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">A faster way to check your number</h2>
+      <p class="mb-8">
+        Doing the math manually is great for understanding the concepts, but it can get tedious when you want to test different scenarios, down payments, and interest rates. You don't need a spreadsheet to figure this out.
+      </p>
+
+      <div class="bg-[var(--bg-card)] p-8 rounded-2xl border border-[var(--border-default)] text-center shadow-lg my-10">
+        <p class="text-xl font-bold mb-6">
+          Ready to see exactly how much house you can afford based on your unique financial situation?
+        </p>
+        <a href="/how-much-can-i-afford/" class="inline-block px-8 py-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[#0ea5e9] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          Use the Affordability Calculator Now
+        </a>
+      </div>
+      
+    </div>
+  </article>
+</BaseLayout>

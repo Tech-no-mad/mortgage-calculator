@@ -7,7 +7,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mortgagedash.app',
+  site: process.env.PUBLIC_SITE_URL || 'https://mortgage-calculator.karteek-tadimalla.workers.dev',
   output: 'server',
   integrations: [sitemap()],
 

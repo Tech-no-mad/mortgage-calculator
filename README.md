@@ -11,6 +11,7 @@ Welcome to **MortgageDash**, a completely free, high-performance web application
 - **Advanced Calculation Engine:** Our expanding suite includes tools for standard Amortization, Refinancing, Extra Payments, Affordability, Recasting, HELOC scenarios, Reverse Mortgages, ARM (Adjustable Rate Mortgages), Commercial Loans, Auto Loans, Investment Properties, and Generic Loan Payments.
 - **50-State Precision Integration:** No more guessing local taxes! Select any US state to instantly pre-fill its local property tax rate, median home price, and annual home insurance averages directly into the calculators. Includes support for extended 50-year loan terms.
 - **Loan Type Mastery:** Comprehensive, interactive guides and integrated parameter shifts for FHA, VA, and Jumbo loan types.
+- **Educational Blog:** A comprehensive library of clear, jargon-free guides designed for first-time homebuyers. Includes practical advice on affordability, loan terms, credit scores, PMI strategies, and refinancing, perfectly optimized for SEO with semantic structures and Article schema.
 
 ---
 

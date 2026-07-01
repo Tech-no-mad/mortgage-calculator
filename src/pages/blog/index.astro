@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = [
+  {
+    title: "How Much House Can I Afford? A Simple Formula for 2026",
+    url: "/blog/how-much-house-can-i-afford/",
+    description: "Learn how the 28/36 rule works, see sample calculations for different incomes, and discover how debt and down payments affect your maximum purchase price."
+  },
+  {
+    title: "30-Year vs. 15-Year Mortgage: Which Should You Choose?",
+    url: "/blog/30-year-vs-15-year-mortgage/",
+    description: "Compare the monthly payments and total interest of a 15-year versus a 30-year mortgage to decide which term is best for your financial goals."
+  },
+  {
+    title: "What Credit Score Do You Need to Buy a House?",
+    url: "/blog/what-credit-score-to-buy-a-house/",
+    description: "Find out the minimum credit scores required for Conventional, FHA, VA, and Jumbo loans, and learn how your score impacts your interest rate."
+  },
+  {
+    title: "How to Avoid PMI (Private Mortgage Insurance) on Your Home Loan",
+    url: "/blog/how-to-avoid-pmi/",
+    description: "Discover the true cost of Private Mortgage Insurance and explore four proven strategies to avoid paying it on your next home purchase."
+  },
+  {
+    title: "When Does It Make Sense to Refinance Your Mortgage?",
+    url: "/blog/when-to-refinance-your-mortgage/",
+    description: "Learn the break-even formula for refinancing and uncover the best reasons to swap out your current mortgage for a new one."
+  }
+];
+---
+
+<BaseLayout
+  title="MortgageDash Blog | Homebuyer Guides & Tips"
+  description="Read our latest guides on mortgages, refinancing, credit scores, and navigating the home buying process."
+  canonicalUrl="/blog/"
+  keywords="mortgage blog, home buying tips, mortgage advice, first time home buyer guide"
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
+        MortgageDash
+        <span class="bg-gradient-to-r from-[#06b6d4] to-[#10b981] bg-clip-text text-transparent">Blog</span>
+      </h1>
+      <p class="text-lg" style="color: var(--text-muted);">
+        Clear, jargon-free guides to help you navigate the home buying process.
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {posts.map(post => (
+        <a href={post.url} class="block group">
+          <article class="card p-6 sm:p-8 hover:border-[#10b981]/50 transition-colors duration-300">
+            <h2 class="text-2xl font-bold mb-3 group-hover:text-[#10b981] transition-colors" style="color: var(--text-primary);">
+              {post.title}
+            </h2>
+            <p style="color: var(--text-secondary); line-height: 1.6;">
+              {post.description}
+            </p>
+            <div class="mt-4 text-sm font-semibold text-[#06b6d4] flex items-center gap-1">
+              Read guide
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

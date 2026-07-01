@@ -83,9 +83,9 @@ const { class: className = '' } = Astro.props;
       const zip = zipInput.value.replace(/\D/g, '').slice(0, 5);
       zipInput.value = zip;
       if (zip.length === 5) {
-        ctaBtn.href = `https://www.lendingtree.com/?zipcode=${zip}`;
+        ctaBtn.href = `https://www.lendingtree.com/?zipcode=${zip}`; // TODO: replace with real LendingTree affiliate ID once approved
       } else {
-        ctaBtn.href = 'https://www.lendingtree.com';
+        ctaBtn.href = 'https://www.lendingtree.com'; // TODO: replace with real LendingTree affiliate ID once approved
       }
     });
   });

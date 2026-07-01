@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "What Credit Score Do You Need to Buy a House?";
+const description = "Find out the minimum credit score needed to buy a house in 2026. Compare requirements for Conventional, FHA, VA, and Jumbo loans, and learn how to improve your score.";
+const keywords = "credit score to buy a house, minimum credit score for mortgage, FHA loan credit score, conventional loan requirements, mortgage interest rates by credit score";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": "2026-07-01",
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  }
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
+    <header class="mb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
+        {title}
+      </h1>
+      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
+    </header>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <p class="lead font-medium text-xl mb-8">
+        You can technically buy a house with a credit score as low as 500 using certain government-backed loans, but to qualify for a standard conventional mortgage and secure competitive interest rates, you will generally need a credit score of at least 620.
+      </p>
+
+      <p>
+        For many first-time homebuyers, the credit check is the most nerve-wracking part of the mortgage process. Your credit score—a three-digit number representing your history of borrowing and repaying money—tells a lender how risky it is to lend you hundreds of thousands of dollars. It dictates not only <em>if</em> you can get a loan, but also how much that loan is going to cost you over the next 30 years.
+      </p>
+
+      <p>
+        The good news? The dream of homeownership isn't reserved exclusively for people with perfect 800+ credit scores. There are numerous loan programs designed specifically for buyers with less-than-stellar credit. Let's break down exactly what score you need for each loan type and how it affects your bottom line.
+      </p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Minimum credit score by loan type</h2>
+      <p>
+        Not all mortgages are created equal. Depending on who is backing the loan, the minimum required credit score varies significantly.
+      </p>
+      
+      <ul class="list-disc pl-6 space-y-4 mb-6">
+        <li>
+          <strong>Conventional Loans (Minimum Score: 620):</strong> 
+          These are the most common type of mortgages, not backed by any government agency. Fannie Mae and Freddie Mac require a minimum score of 620, though individual lenders might impose higher minimums (called "overlays"). A higher score here will significantly reduce your Private Mortgage Insurance (PMI) costs.
+        </li>
+        <li>
+          <strong>FHA Loans (Minimum Score: 500 - 580):</strong> 
+          Backed by the Federal Housing Administration, FHA loans are a lifeline for buyers with lower credit. If your score is 580 or higher, you can buy a home with just 3.5% down. If your score is between 500 and 579, you can still qualify, but you will need to put down 10%.
+        </li>
+        <li>
+          <strong>VA Loans (Minimum Score: Typically 580 - 620):</strong> 
+          Available exclusively to eligible veterans, active-duty service members, and their spouses. The Department of Veterans Affairs doesn't actually set a minimum credit score, but most lenders who issue the loans require at least a 580 to 620. VA loans offer amazing benefits, including 0% down.
+        </li>
+        <li>
+          <strong>Jumbo Loans (Minimum Score: 680 - 700+):</strong> 
+          If you are buying an expensive property that exceeds standard borrowing limits (often over $766,550 in most areas for 2026), you need a Jumbo loan. Because the lender is taking on massive risk without government backing, they demand excellent credit.
+        </li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">How your score affects your interest rate</h2>
+      <p>
+        Clearing the minimum credit score hurdle simply means you get a loan. However, the exact score you have determines your interest rate. Lenders price their loans using tiers. A borrower with a 760 score will get a substantially better rate than a borrower with a 640 score.
+      </p>
+      <p>
+        Let's look at an example to see how this plays out in real life. Imagine you are taking out a <strong>$350,000</strong>, 30-year fixed mortgage.
+      </p>
+      
+      <div class="bg-[var(--bg-surface)] p-6 rounded-lg border border-[var(--border-default)] my-6">
+        <h4 class="font-bold mb-3">Example: The Cost of a Lower Credit Score</h4>
+        <ul class="list-none space-y-2">
+          <li><strong>Scenario A (Excellent Credit - 760+):</strong> You qualify for a <strong>6.5%</strong> rate. Your monthly principal and interest payment is <strong>$2,212</strong>.</li>
+          <li><strong>Scenario B (Fair Credit - 640):</strong> Because of the risk, the lender charges you a <strong>7.5%</strong> rate. Your monthly principal and interest payment jumps to <strong>$2,447</strong>.</li>
+        </ul>
+        <p class="mt-4 text-sm font-medium">
+          <em>The Difference:</em> The lower credit score costs you an extra $235 per month. Over a 30-year loan, that lower credit score will cost you an additional <strong>$84,600 in interest!</strong>
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">How to improve your score before applying</h2>
+      <p>
+        If your score is hovering near the minimums, or if you just want to bump yourself into a better interest rate tier, taking 3 to 6 months to improve your credit is the smartest financial move you can make. Here is how to do it:
+      </p>
+      <ul class="list-disc pl-6 space-y-3 mb-6">
+        <li><strong>Check for errors:</strong> Pull your free credit reports from AnnualCreditReport.com. Dispute any late payments or accounts that do not belong to you. Mistakes happen often!</li>
+        <li><strong>Pay down credit card balances:</strong> Your "credit utilization ratio" (how much credit you use vs. how much you have available) accounts for 30% of your score. Try to get your balances below 10% of your total limits.</li>
+        <li><strong>Don't close old accounts:</strong> The length of your credit history matters. Even if you never use your oldest credit card, keep it open. Closing it will shorten your average account age and temporarily ding your score.</li>
+        <li><strong>Stop applying for new credit:</strong> Do not buy a car or finance new furniture right before buying a house. "Hard inquiries" temporarily lower your score and ruin your debt-to-income ratio.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Credit score isn't the only factor</h2>
+      <p>
+        Don't let a great credit score give you a false sense of security, and conversely, don't let a mediocre score crush your dreams. Lenders look at your entire financial profile. They also heavily weigh:
+      </p>
+      <ul class="list-disc pl-6 space-y-3 mb-6">
+        <li><strong>Debt-to-Income (DTI) Ratio:</strong> You could have an 800 credit score, but if half your monthly paycheck goes toward auto loans and student debt, a lender will likely deny your mortgage application.</li>
+        <li><strong>Employment History:</strong> Lenders want to see a stable two-year work history, preferably in the same industry.</li>
+        <li><strong>Cash Reserves:</strong> Having money left over in the bank after closing (called reserves) can sometimes offset a lower credit score.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Key takeaways</h2>
+      <ul class="list-disc pl-6 space-y-2 mb-8">
+        <li>You need at least a 620 for a conventional loan, but FHA loans allow scores as low as 500.</li>
+        <li>A higher credit score unlocks lower interest rates, which can save you tens of thousands of dollars over the life of the loan.</li>
+        <li>Reduce your credit card balances and check for reporting errors before you apply for a mortgage.</li>
+        <li>Lenders also deeply care about your income stability and debt-to-income ratio.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4 border-b border-[var(--border-default)] pb-2">Check your FHA eligibility</h2>
+      <p class="mb-8">
+        If you have a lower credit score and are worried about qualifying for a conventional mortgage, an FHA loan might be your perfect path to homeownership. With lower down payment requirements and forgiving credit standards, it's designed to get you into a home.
+      </p>
+
+      <div class="bg-[var(--bg-card)] p-8 rounded-2xl border border-[var(--border-default)] text-center shadow-lg my-10">
+        <p class="text-xl font-bold mb-6">
+          See how an FHA loan changes your monthly payments and affordability right now.
+        </p>
+        <a href="/fha-loans/" class="inline-block px-8 py-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[#0ea5e9] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          Explore the FHA Loan Calculator
+        </a>
+      </div>
+      
+    </div>
+  </article>
+</BaseLayout>
