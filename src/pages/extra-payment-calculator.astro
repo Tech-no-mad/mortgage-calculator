@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Extra Payment Calculator",
+      "description": "See how much interest you can save and how much faster you can pay off your mortgage by making extra payments.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "Does making one extra payment a year really help?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. By making just one extra mortgage payment per year (often achieved by switching to bi-weekly payments), you can shave several years off a 30-year mortgage and save tens of thousands of dollars in total interest."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Should I make extra payments or invest the money instead?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is a debate between guaranteed return and potential return. Paying down a 6% mortgage yields a guaranteed 6% 'return' in saved interest. Investing the money in the stock market might yield a 7-10% return on average, but it carries market risk."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "How do I ensure my extra payment goes toward the principal?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When making an extra payment online or by check, you must explicitly instruct your lender to apply the funds directly to the principal balance. Otherwise, they might apply it to next month's interest or deposit it into an escrow account."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Is there a penalty for paying off my mortgage early?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most modern residential mortgages do not have prepayment penalties, but you should always review your specific loan documents to be absolutely sure before making large lump-sum extra payments."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="extra payment calculator, extra payment calculator calculator, extra payment calculator rates, how to calculate extra payment calculator"
+  keywords="extra mortgage payment calculator, early payoff calculator, pay off mortgage early, biweekly payment savings, mortgage principal calculator"
   canonicalUrl="/extra-payment-calculator/"
   title="Extra Payment Calculator"
   description="See how much interest you can save and how much faster you can pay off your mortgage by making extra payments."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -129,6 +186,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/amortization-schedule/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Amortization Schedule</a></li>
+            <li><a href="/recast-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Mortgage Recast Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/north-carolina/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ North Carolina Mortgage Calculator</a></li>
+            <li><a href="/states/michigan/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Michigan Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

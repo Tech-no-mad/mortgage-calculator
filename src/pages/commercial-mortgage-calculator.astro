@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Commercial Mortgage Calculator",
+      "description": "Calculate monthly payments, balloon amounts, and total costs for commercial real estate loans. Supports custom amortization and balloon payment periods.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How are commercial mortgages different from residential?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Commercial mortgages are for business properties (retail, office, multi-family 5+ units). They typically have shorter loan terms, higher interest rates, stricter LTV requirements, and are qualified based heavily on the property's income-generating potential rather than just the borrower's personal credit."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is a DSCR loan?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DSCR stands for Debt Service Coverage Ratio. A DSCR loan is a type of commercial financing where the lender qualifies the property based entirely on whether its rental income can cover the mortgage payments (the debt service). If the property's gross income covers 1.2x or more of the debt, it generally qualifies."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Do commercial mortgages have balloon payments?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, many commercial mortgages are structured with shorter terms (e.g., 5 or 10 years) but use longer amortization schedules (e.g., 25 years). This means that at the end of the 5 or 10 year term, a massive 'balloon' payment for the remaining principal is due, usually requiring the borrower to refinance."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is a typical term length for a commercial loan?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unlike 30-year residential loans, commercial loan terms generally range from 5 to 20 years. Shorter terms often feature balloon payments, while longer terms (like those backed by the SBA) can be fully amortizing."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="commercial mortgage calculator, commercial mortgage calculator calculator, commercial mortgage calculator rates, how to calculate commercial mortgage calculator"
+  keywords="commercial mortgage calculator, commercial real estate loan, dscr loan calculator, commercial balloon payment, ltv commercial loan"
   canonicalUrl="/commercial-mortgage-calculator/"
   title="Commercial Mortgage Calculator"
   description="Calculate monthly payments, balloon amounts, and total costs for commercial real estate loans. Supports custom amortization and balloon payment periods."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -112,6 +169,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/investment-property-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Investment Property Calculator</a></li>
+            <li><a href="/loan-payment-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Loan Payment Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/new-york/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ New York Mortgage Calculator</a></li>
+            <li><a href="/states/texas/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Texas Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

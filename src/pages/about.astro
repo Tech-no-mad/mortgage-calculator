@@ -31,6 +31,34 @@ import ratesData from '../data/rates.json';
         Whether you are buying your first home, trying to pay off your loan early, or wondering if you should refinance, MortgageDash gives you the clarity you need to make confident decisions.
       </p>
       <div class="pt-6 border-t mt-8" style="border-color: var(--border-default);">
+        <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Editorial Review & Authorship</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6;">
+          All tools, calculators, and educational content on MortgageDash are authored and strictly reviewed by <strong>Karteek Tadimalla, Founder</strong>. We adhere to rigorous editorial standards to ensure all calculations and state-specific insights reflect real, verifiable data to protect homebuyers from misinformation.
+        </p>
+      </div>
+
+      <div id="methodology" class="pt-6 border-t mt-8" style="border-color: var(--border-default);">
+        <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Methodology: How We Calculate Your Numbers</h3>
+        <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+          Our calculators use the standard fully-amortizing <strong>PITI formula</strong> (Principal, Interest, Taxes, and Insurance) to ensure you see the true cost of homeownership, not just a deceptively low principal and interest baseline.
+        </p>
+        <ul class="space-y-4" style="color: var(--text-secondary);">
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-[#10b981] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span><strong>Principal & Interest:</strong> Calculated using standard amortization formulas (<code>M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]</code>).</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-[#06b6d4] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span><strong>Interest Rates:</strong> Our default interest rates are automatically pulled from the official <strong>Federal Reserve Economic Data (FRED) API</strong> to ensure you are running simulations on current market realities.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-[#f59e0b] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span><strong>Taxes & Insurance:</strong> Our localized calculators use a custom <code>states.json</code> database built from aggregated, state-specific effective property tax rates and average homeowners insurance premiums.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="pt-6 border-t mt-8" style="border-color: var(--border-default);">
         <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Our Core Principles</h3>
         <ul class="space-y-4" style="color: var(--text-secondary);">
           <li class="flex items-start gap-3">

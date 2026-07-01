@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "ARM Calculator — Adjustable Rate Mortgage",
+      "description": "Calculate and compare your monthly payments before and after your ARM adjusts. See the full payment schedule for 5/1, 7/1, and 10/1 ARMs.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How does a 5/1 ARM work?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 5/1 Adjustable-Rate Mortgage offers a fixed interest rate for the first 5 years. After that initial period, the rate adjusts once every 1 year for the remainder of the 30-year term based on a financial market index."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What happens when the fixed period of an ARM expires?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Once the introductory fixed period expires, your interest rate will begin to adjust periodically. If market rates have gone up, your monthly payment will increase. If they have gone down, your payment could decrease."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Is an ARM better than a fixed-rate mortgage?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An ARM is often better if you plan to sell the home or refinance before the fixed introductory period ends, as ARMs typically offer lower starting rates than 30-year fixed mortgages. If you plan to stay in the home for decades, a fixed-rate mortgage offers safer, more predictable payments."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is an interest rate cap on an ARM?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ARMs include caps to protect you from wild market swings. Common caps include the initial adjustment cap (how much it can change the first time), the periodic cap (how much it can change in subsequent periods), and a lifetime cap (the absolute maximum rate the loan can ever reach)."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="arm calculator, arm calculator calculator, arm calculator rates, how to calculate arm calculator"
+  keywords="arm mortgage calculator, adjustable rate mortgage calculator, 5/1 arm rates, arm payment calculator, arm vs fixed"
   canonicalUrl="/arm-calculator/"
   title="ARM Calculator — Adjustable Rate Mortgage"
   description="Calculate and compare your monthly payments before and after your ARM adjusts. See the full payment schedule for 5/1, 7/1, and 10/1 ARMs."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -120,6 +177,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Mortgage Calculator</a></li>
+            <li><a href="/refinance-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Refinance Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/ohio/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Ohio Mortgage Calculator</a></li>
+            <li><a href="/states/georgia/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Georgia Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

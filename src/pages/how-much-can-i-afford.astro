@@ -2,6 +2,61 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Home Affordability Calculator",
+      "description": "Find out how much house you can afford based on your income, debts, and down payment.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "What is the 28/36 rule?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 28/36 rule is a trusted guideline used by mortgage lenders. It suggests that you should spend no more than 28% of your gross monthly income on housing expenses, and no more than 36% on total debt (including housing, student loans, and credit cards)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "How does debt-to-income (DTI) ratio affect affordability?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your DTI is the percentage of your gross income that goes toward paying debts. If your DTI is high because of car loans or credit card debt, a lender will strictly limit how much they will let you borrow for a mortgage to ensure you don't overextend yourself."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Does my down payment size matter for affordability?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. A larger down payment not only increases the maximum purchase price you can afford (by requiring a smaller loan), but it also lowers your monthly payment and often helps you secure a better interest rate and avoid costly mortgage insurance."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What 'hidden' costs should I include when budgeting?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When determining affordability, you must look beyond the basic principal and interest. Always factor in property taxes, homeowners insurance, HOA fees, private mortgage insurance (PMI), and regular home maintenance costs."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -9,6 +64,8 @@ import AdSlot from '../components/AdSlot.astro';
   title="Home Affordability Calculator"
   description="Find out how much house you can afford based on your income, debts, and down payment."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -130,6 +187,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Mortgage Calculator</a></li>
+            <li><a href="/loan-payment-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Loan Payment Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/new-jersey/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ New Jersey Mortgage Calculator</a></li>
+            <li><a href="/states/virginia/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Virginia Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

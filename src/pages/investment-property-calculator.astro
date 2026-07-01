@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Investment Property Mortgage Calculator",
+      "description": "Calculate your monthly mortgage payment, estimated rental yield, cash flow, and return on investment for an investment property or rental home.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "What is a good cap rate for an investment property?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capitalization rate (cap rate) is a measure of annual return on an investment property. While it varies by market and risk tolerance, many investors look for a cap rate between 5% and 10%. A higher cap rate indicates a higher potential return but often comes with higher risk."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "How much down payment is required for an investment property?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unlike primary residences that allow 3% or 5% down, lenders typically require a strict minimum of 15% to 20% down for an investment property. To get the best interest rates, many investors put down 25%."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is cash-on-cash return?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cash-on-cash return measures the annual pre-tax cash flow of a property relative to the amount of actual cash you invested upfront (down payment plus closing and rehab costs). It is one of the most critical metrics for real estate investors."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Are investment property rates higher than primary residence rates?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Because rental properties statistically carry a higher risk of default, lenders usually charge interest rates that are 0.5% to 0.85% higher than rates for a primary residence."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="investment property calculator, investment property calculator calculator, investment property calculator rates, how to calculate investment property calculator"
+  keywords="investment property calculator, rental property roi, cap rate calculator, cash on cash return calculator, rental yield"
   canonicalUrl="/investment-property-calculator/"
   title="Investment Property Mortgage Calculator"
   description="Calculate your monthly mortgage payment, estimated rental yield, cash flow, and return on investment for an investment property or rental home."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -131,6 +188,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/commercial-mortgage-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Commercial Mortgage Calculator</a></li>
+            <li><a href="/how-much-can-i-afford/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Affordability Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/florida/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Florida Mortgage Calculator</a></li>
+            <li><a href="/states/nevada/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Nevada Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

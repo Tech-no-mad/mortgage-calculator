@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Mortgage Recast Calculator",
+      "description": "Calculate how much your monthly mortgage payment will drop if you make a lump-sum payment and recast your loan.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "What is a mortgage recast?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A mortgage recast (or reamortization) is when you make a large lump-sum payment toward your principal balance, and your lender recalculates your monthly payments based on the new, lower balance without changing the loan's interest rate or term length."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "How does recasting differ from refinancing?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Refinancing replaces your old mortgage with a completely new one, resetting the interest rate and term, and involves significant closing costs. Recasting keeps your original loan terms and interest rate, simply recalculating the payment amount based on the smaller balance, and usually only costs a small administrative fee."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Does recasting lower my interest rate?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, a mortgage recast does not change your interest rate. It only lowers your monthly principal and interest payment because you are financing a smaller total balance over the remaining term."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Is there a fee to recast a mortgage?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, most lenders charge a small administrative fee to process a recast, typically ranging from $150 to $500. This is significantly cheaper than the thousands of dollars required in closing costs to refinance."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="recast calculator, recast calculator calculator, recast calculator rates, how to calculate recast calculator"
+  keywords="mortgage recast calculator, lower monthly payment without refinancing, loan recast vs refinance, recast fee, reamortize mortgage"
   canonicalUrl="/recast-calculator/"
   title="Mortgage Recast Calculator"
   description="Calculate how much your monthly mortgage payment will drop if you make a lump-sum payment and recast your loan."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -139,6 +196,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/extra-payment-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Extra Payment Calculator</a></li>
+            <li><a href="/amortization-schedule/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Amortization Schedule</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/illinois/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Illinois Mortgage Calculator</a></li>
+            <li><a href="/states/pennsylvania/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Pennsylvania Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

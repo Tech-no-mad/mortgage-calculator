@@ -34,6 +34,61 @@ const lightBg = `hsla(${hue}, 75%, 45%, 0.1)`;
 
 const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${stateData.name} mortgage calculator, ${stateData.name} mortgage, mortgage calculator ${stateData.name}, ${stateData.abbr} mortgage calculator, states mortgage calculator, ${stateData.name} property tax`;
 import ratesData from '../../data/rates.json';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": `${stateData.name} Mortgage Calculator`,
+      "description": `Calculate your monthly mortgage payment in ${stateData.name}. Includes accurate ${stateData.taxRate}% property tax rates and home insurance estimates.`,
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": `What is the average property tax rate in ${stateData.name}?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `The average effective property tax rate in ${stateData.name} is ${stateData.taxRate}%. Property taxes can vary widely depending on the county and municipality.`
+          }
+        },
+        {
+          "@type": "Question",
+          "name": `How much is a typical home in ${stateData.name}?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `As of recent data, the median home price in ${stateData.name} is $${stateData.medianPrice.toLocaleString('en-US')}.`
+          }
+        },
+        {
+          "@type": "Question",
+          "name": `What is the average homeowners insurance cost in ${stateData.name}?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Homeowners in ${stateData.name} typically pay around $${stateData.insurance.toLocaleString('en-US')} annually for insurance, though this depends heavily on exact location and coverage limits.`
+          }
+        },
+        {
+          "@type": "Question",
+          "name": `What are the current mortgage rates in ${stateData.name}?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Current average mortgage rates in ${stateData.name} are approximately ${stateData.avgRate30}% for a 30-year fixed loan and ${stateData.avgRate15}% for a 15-year fixed loan.`
+          }
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <style define:vars={{ primary: primaryColor, secondary: secondaryColor, lightBg: lightBg }}>
@@ -53,6 +108,7 @@ import ratesData from '../../data/rates.json';
   description={`Calculate your monthly mortgage payment in ${stateData.name}. Includes accurate ${stateData.taxRate}% property tax rates and home insurance estimates.`}
   keywords={stateKeywords}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <!-- Hero Section -->
   <div class="relative w-full pb-16 pt-12 md:pt-20" style="min-height: 800px;">
     <!-- Parallax Background -->
@@ -329,6 +385,12 @@ import ratesData from '../../data/rates.json';
         </p>
         <p>
           Concurrently, property safeguarding variables must be mapped cleanly into your underwriting calculations. Annual homeowner insurance protections throughout the state of {stateData.name} reflect an average layout baseline of <strong style="color: var(--text-primary);">${stateData.insurance.toLocaleString('en-US')}</strong> per year. This estimate shifts depending on regional geological data, proximity to fire resources, and your selected personal coverage limits. Utilizing this localized matrix ensures that your calculated Principal, Interest, Taxes, and Insurance (PITI) configurations reflect highly realistic market expectations rather than generic national averages. With current 30-year fixed mortgage rates averaging <strong style="color: var(--text-primary);">{stateData.avgRate30}%</strong> in {stateData.name}, you can use the calculator above to see exactly what your monthly costs will look like.
+        </p>
+        <p class="pt-2 border-t border-gray-200 dark:border-gray-800 mt-6">
+          <strong>Local Insight:</strong> {stateData.localNote}
+        </p>
+        <p>
+          <strong>Market Snapshot:</strong> {stateData.marketNote}
         </p>
       </div>
     </div>

@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Reverse Mortgage Calculator",
+      "description": "Estimate your Home Equity Conversion Mortgage (HECM) payout based on your age, home value, and existing mortgage balance. Free reverse mortgage estimator.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How old do you have to be for a reverse mortgage?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To qualify for a Home Equity Conversion Mortgage (HECM), which is the most common type of reverse mortgage backed by the FHA, the primary borrower must be at least 62 years old."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Do I still have to pay property taxes with a reverse mortgage?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Even though you are not making monthly mortgage payments to a lender, you remain the owner of the home. You are strictly required to continue paying property taxes, homeowners insurance, and HOA fees. Failure to do so can result in foreclosure."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What happens to the house when I pass away?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When the last surviving borrower passes away or moves out permanently, the loan becomes due. Heirs can choose to sell the home to pay off the reverse mortgage balance (keeping any remaining equity) or refinance the home into a traditional mortgage to keep it."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "How is the loan amount determined?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The amount you can borrow (the Principal Limit) depends heavily on the age of the youngest borrower, current interest rates, and the appraised value of your home. Older borrowers with more expensive homes and lower interest rates generally receive higher payouts."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="reverse mortgage calculator, reverse mortgage calculator calculator, reverse mortgage calculator rates, how to calculate reverse mortgage calculator"
+  keywords="reverse mortgage calculator, hecm calculator, reverse mortgage payout, reverse mortgage age requirement, how much reverse mortgage"
   canonicalUrl="/reverse-mortgage-calculator/"
   title="Reverse Mortgage Calculator"
   description="Estimate your Home Equity Conversion Mortgage (HECM) payout based on your age, home value, and existing mortgage balance. Free reverse mortgage estimator."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -102,6 +159,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/refinance-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Refinance Calculator</a></li>
+            <li><a href="/heloc-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ HELOC Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/florida/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Florida Mortgage Calculator</a></li>
+            <li><a href="/states/arizona/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Arizona Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

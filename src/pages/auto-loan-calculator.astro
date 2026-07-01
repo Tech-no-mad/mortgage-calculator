@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Auto Loan Calculator",
+      "description": "Calculate your monthly car payment, total interest paid, and true cost of financing. Supports trade-in value and down payment inputs.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "Should I finance a car for 60 or 72 months?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A shorter 60-month term will have a higher monthly payment but a lower interest rate, saving you money overall. A 72-month term lowers the monthly burden but significantly increases total interest paid and puts you at a higher risk of being 'underwater' (owing more than the car is worth)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Does my credit score affect my auto loan rate?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Significantly. Auto loan rates are highly tiered based on FICO scores. Borrowers with excellent credit (720+) secure the lowest advertised rates, while those with subprime credit can see rates well into double digits."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is gap insurance?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cars depreciate rapidly. If your car is totaled, standard insurance only pays its current market value. If you owe more on the loan than the car is worth, GAP (Guaranteed Asset Protection) insurance covers the difference so you aren't stuck paying for a car you no longer have."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Is it better to put more money down on a car?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. A larger down payment reduces your loan amount, lowers your monthly payment, decreases the total interest you'll pay, and protects you against rapid vehicle depreciation early in the loan term."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="auto loan calculator, auto loan calculator calculator, auto loan calculator rates, how to calculate auto loan calculator"
+  keywords="auto loan calculator, car payment calculator, vehicle financing, monthly car payment, auto loan payoff"
   canonicalUrl="/auto-loan-calculator/"
   title="Auto Loan Calculator"
   description="Calculate your monthly car payment, total interest paid, and true cost of financing. Supports trade-in value and down payment inputs."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -125,6 +182,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/loan-payment-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Loan Payment Calculator</a></li>
+            <li><a href="/how-much-can-i-afford/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Affordability Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/california/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ California Mortgage Calculator</a></li>
+            <li><a href="/states/washington/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Washington Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

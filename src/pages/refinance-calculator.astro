@@ -2,14 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Refinance Calculator",
+      "description": "Calculate if it makes sense to refinance your mortgage. Find your break-even point and total savings.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "What is a break-even point in refinancing?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The break-even point is the time it takes for your monthly savings from a lower interest rate to equal the closing costs you paid to refinance. For example, if you save $100 a month and paid $3,000 in closing costs, your break-even point is 30 months."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "How do closing costs affect my refinance savings?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Closing costs typically range from 2% to 5% of the loan amount. If these upfront costs are too high, it may take many years to actually 'save' money, which is why refinancing usually only makes sense if you plan to stay in the home past the break-even point."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Should I refinance for a lower rate or a shorter term?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on your financial goals. Refinancing to a lower rate reduces your monthly payment. Refinancing to a shorter term (like from 30 to 15 years) usually increases your monthly payment but saves you tens of thousands of dollars in long-term interest."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Can I roll closing costs into the new loan?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, many lenders allow a 'no closing cost' refinance, where the costs are either rolled into your principal balance or offset by accepting a slightly higher interest rate. This prevents you from needing cash out of pocket."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  keywords="refinance calculator, refinance calculator calculator, refinance calculator rates, how to calculate refinance calculator"
+  keywords="refinance calculator, break even point calculator, mortgage refinance savings, refinance closing costs, should i refinance"
   canonicalUrl="/refinance-calculator/"
   title="Refinance Calculator"
   description="Calculate if it makes sense to refinance your mortgage. Find your break-even point and total savings."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -147,6 +204,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/amortization-schedule/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Amortization Schedule</a></li>
+            <li><a href="/extra-payment-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Extra Payment Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/california/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ California Mortgage Calculator</a></li>
+            <li><a href="/states/florida/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Florida Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

@@ -2,6 +2,53 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ratesData from '../data/rates.json';
 import AdSlot from '../components/AdSlot.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Amortization Schedule Calculator",
+      "description": "Generate a complete amortization schedule. See exactly how much of your monthly mortgage payment goes to principal versus interest.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "What does amortization mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Amortization is the process of spreading out a loan into a series of fixed payments over time. An amortization schedule details exactly how much of every single monthly payment goes toward the principal balance versus the interest costs."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why is most of my payment going toward interest in the beginning?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Interest is calculated based on your outstanding loan balance. In the beginning, your balance is at its highest, so the interest charge is at its highest. As you slowly pay down the principal over the years, the interest portion shrinks and the principal portion grows."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "How can I speed up my amortization?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most direct way to accelerate your amortization schedule is to make extra principal payments. Even small, consistent extra payments skip years of scheduled interest and push you further down the amortization curve."
+        }
+    }
+]
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -9,6 +56,8 @@ import AdSlot from '../components/AdSlot.astro';
   title="Amortization Schedule Calculator"
   description="Generate a complete amortization schedule. See exactly how much of your monthly mortgage payment goes to principal versus interest."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">
@@ -118,6 +167,29 @@ import AdSlot from '../components/AdSlot.astro';
   <!-- Ad Slot: Rectangle -->
   <AdSlot type="rectangle" />
 
+
+  <!-- Related Links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="card p-8">
+      <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary);">Related Tools & States</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-semibold mb-4 text-[#06b6d4]">More Calculators</h4>
+          <ul class="space-y-3">
+            <li><a href="/extra-payment-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Extra Payment Calculator</a></li>
+            <li><a href="/recast-calculator/" class="text-sm hover:text-[#10b981] transition-colors" style="color: var(--text-secondary);">→ Mortgage Recast Calculator</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-[#10b981]">State Spotlights</h4>
+          <ul class="space-y-3">
+            <li><a href="/states/texas/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Texas Mortgage Calculator</a></li>
+            <li><a href="/states/colorado/" class="text-sm hover:text-[#06b6d4] transition-colors" style="color: var(--text-secondary);">→ Colorado Mortgage Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>

@@ -24,7 +24,9 @@
       "Alabama housing market",
       "home loan calculator",
       "buying a house in Alabama"
-    ]
+    ],
+    "localNote": "Alabama boasts some of the lowest property tax rates in the nation, making homeownership more accessible compared to other southern states.",
+    "marketNote": "The Alabama housing market offers steady, affordable growth, particularly around Huntsville and Birmingham."
   },
   {
     "slug": "alaska",
@@ -49,7 +51,9 @@
       "Alaska housing market",
       "home loan calculator",
       "buying a house in Alaska"
-    ]
+    ],
+    "localNote": "Alaska does not have a state income tax or state sales tax, but local municipalities heavily rely on property taxes to fund services.",
+    "marketNote": "Real estate in Alaska is highly localized, with Anchorage acting as the primary hub for steady market activity."
   },
   {
     "slug": "arizona",
@@ -75,7 +79,9 @@
       "Arizona housing market",
       "home loan calculator",
       "buying a house in Arizona"
-    ]
+    ],
+    "localNote": "Arizona is an escrow state where title companies typically handle real estate closings rather than attorneys.",
+    "marketNote": "The Phoenix metro area is known for rapid population growth, driving strong demand and appreciation in recent years."
   },
   {
     "slug": "arkansas",
@@ -99,7 +105,9 @@
       "Arkansas housing market",
       "home loan calculator",
       "buying a house in Arkansas"
-    ]
+    ],
+    "localNote": "Arkansas law allows for a homestead tax credit that can significantly reduce the property tax burden on your primary residence.",
+    "marketNote": "Northwest Arkansas continues to be a major growth engine for the state's housing market."
   },
   {
     "slug": "california",
@@ -128,7 +136,9 @@
       "California housing market",
       "home loan calculator",
       "buying a house in California"
-    ]
+    ],
+    "localNote": "Under Proposition 13, California limits property tax increases to a maximum of 2% per year as long as you own the home.",
+    "marketNote": "Despite high median prices, California real estate remains highly competitive with strong long-term equity growth potential."
   },
   {
     "slug": "colorado",
@@ -153,7 +163,9 @@
       "Colorado housing market",
       "home loan calculator",
       "buying a house in Colorado"
-    ]
+    ],
+    "localNote": "Colorado property taxes are relatively low thanks to the Gallagher Amendment's historical impact, though recent legislative changes are evolving the assessment rates.",
+    "marketNote": "The Front Range, including Denver and Colorado Springs, sees consistently high demand driven by lifestyle and tech industry growth."
   },
   {
     "slug": "connecticut",
@@ -178,7 +190,9 @@
       "Connecticut housing market",
       "home loan calculator",
       "buying a house in Connecticut"
-    ]
+    ],
+    "localNote": "Connecticut relies heavily on local property taxes, resulting in some of the highest effective property tax rates in the Northeast.",
+    "marketNote": "Suburban areas in Connecticut have seen a resurgence as buyers look for more space outside of major metropolitan hubs."
   },
   {
     "slug": "delaware",
@@ -202,7 +216,9 @@
       "Delaware housing market",
       "home loan calculator",
       "buying a house in Delaware"
-    ]
+    ],
+    "localNote": "Delaware is known for having no sales tax and relatively low property taxes, making it a popular retirement destination.",
+    "marketNote": "Coastal areas in Delaware see strong demand for both primary residences and vacation homes."
   },
   {
     "slug": "florida",
@@ -228,7 +244,9 @@
       "Florida housing market",
       "home loan calculator",
       "buying a house in Florida"
-    ]
+    ],
+    "localNote": "Florida's 'Save Our Homes' amendment caps the annual increase in the assessed value of homesteaded properties at 3% or the inflation rate, whichever is lower.",
+    "marketNote": "Florida's lack of state income tax continues to drive massive inward migration, keeping the housing market extremely active."
   },
   {
     "slug": "georgia",
@@ -253,7 +271,9 @@
       "Georgia housing market",
       "home loan calculator",
       "buying a house in Georgia"
-    ]
+    ],
+    "localNote": "In Georgia, real estate closings must be conducted by a licensed attorney rather than just a title company or escrow agent.",
+    "marketNote": "The Atlanta metropolitan area dominates the state's market with robust job growth fueling housing demand."
   },
   {
     "slug": "hawaii",
@@ -279,7 +299,9 @@
       "Hawaii housing market",
       "home loan calculator",
       "buying a house in Hawaii"
-    ]
+    ],
+    "localNote": "Hawaii has the lowest effective property tax rate in the country, which helps offset the high median home prices.",
+    "marketNote": "Limited land availability and high demand keep Hawaii real estate among the most expensive and competitive in the nation."
   },
   {
     "slug": "idaho",
@@ -304,7 +326,9 @@
       "Idaho housing market",
       "home loan calculator",
       "buying a house in Idaho"
-    ]
+    ],
+    "localNote": "Idaho offers a homeowner's exemption that can exempt up to 50% of the value of your primary residence and land from property taxes, up to a capped amount.",
+    "marketNote": "Boise has been one of the fastest-growing housing markets in the country, attracting buyers seeking affordability and outdoor lifestyles."
   },
   {
     "slug": "illinois",
@@ -330,7 +354,9 @@
       "Illinois housing market",
       "home loan calculator",
       "buying a house in Illinois"
-    ]
+    ],
+    "localNote": "Illinois residents face some of the highest property tax rates in the nation, which is a major factor in calculating monthly affordability.",
+    "marketNote": "The Chicago area offers a dense, diverse housing market, while downstate Illinois provides much more affordable rural options."
   },
   {
     "slug": "indiana",
@@ -354,7 +380,9 @@
       "Indiana housing market",
       "home loan calculator",
       "buying a house in Indiana"
-    ]
+    ],
+    "localNote": "Indiana caps property taxes at 1% of the property's gross assessed value for owner-occupied primary residences.",
+    "marketNote": "The state's housing market is known for steady, predictable growth and strong affordability."
   },
   {
     "slug": "iowa",
@@ -378,7 +406,9 @@
       "Iowa housing market",
       "home loan calculator",
       "buying a house in Iowa"
-    ]
+    ],
+    "localNote": "Iowa offers a Homestead Tax Credit that reduces the taxable value of an owner-occupied home, lowering the annual tax bill.",
+    "marketNote": "Iowa's housing market is stable, characterized by affordable midwestern pricing and steady demand."
   },
   {
     "slug": "kansas",
@@ -403,7 +433,9 @@
       "Kansas housing market",
       "home loan calculator",
       "buying a house in Kansas"
-    ]
+    ],
+    "localNote": "Kansas assesses residential property at 11.5% of its appraised value for tax purposes.",
+    "marketNote": "The Kansas City metro area straddling the border drives much of the state's active real estate transactions."
   },
   {
     "slug": "kentucky",
@@ -427,7 +459,9 @@
       "Kentucky housing market",
       "home loan calculator",
       "buying a house in Kentucky"
-    ]
+    ],
+    "localNote": "Kentucky's Homestead Exemption allows homeowners over 65, or those totally disabled, to exempt a portion of their home's value from property taxes.",
+    "marketNote": "Louisville and Lexington continue to see steady housing demand driven by a mix of manufacturing and education sectors."
   },
   {
     "slug": "louisiana",
@@ -452,7 +486,9 @@
       "Louisiana housing market",
       "home loan calculator",
       "buying a house in Louisiana"
-    ]
+    ],
+    "localNote": "Louisiana offers a substantial Homestead Exemption that exempts the first $75,000 of a primary residence's value from most local property taxes.",
+    "marketNote": "The state's market is heavily influenced by the energy sector and historic properties in the New Orleans area."
   },
   {
     "slug": "maine",
@@ -476,7 +512,9 @@
       "Maine housing market",
       "home loan calculator",
       "buying a house in Maine"
-    ]
+    ],
+    "localNote": "Maine's Homestead Exemption provides a reduction of up to $25,000 in the assessed value of a primary residence.",
+    "marketNote": "Maine has seen an influx of out-of-state buyers seeking coastal living and rural space."
   },
   {
     "slug": "maryland",
@@ -501,7 +539,9 @@
       "Maryland housing market",
       "home loan calculator",
       "buying a house in Maryland"
-    ]
+    ],
+    "localNote": "Maryland is an attorney-closing state, and buyers must budget for state and local transfer taxes during closing.",
+    "marketNote": "Proximity to Washington D.C. keeps the central Maryland housing market highly competitive and robust."
   },
   {
     "slug": "massachusetts",
@@ -526,7 +566,9 @@
       "Massachusetts housing market",
       "home loan calculator",
       "buying a house in Massachusetts"
-    ]
+    ],
+    "localNote": "Massachusetts requires an attorney to conduct real estate closings, and buyers often encounter a two-step offer and Purchase & Sale agreement process.",
+    "marketNote": "The Greater Boston area remains one of the most expensive and highly sought-after markets in the country."
   },
   {
     "slug": "michigan",
@@ -552,7 +594,9 @@
       "Michigan housing market",
       "home loan calculator",
       "buying a house in Michigan"
-    ]
+    ],
+    "localNote": "Under Michigan's Proposal A, the taxable value of a property cannot increase by more than 5% or the rate of inflation, whichever is less, until the property is sold.",
+    "marketNote": "Michigan offers strong affordability, particularly in revitalizing areas of Detroit and growing suburbs."
   },
   {
     "slug": "minnesota",
@@ -577,7 +621,9 @@
       "Minnesota housing market",
       "home loan calculator",
       "buying a house in Minnesota"
-    ]
+    ],
+    "localNote": "Minnesota has a unique property tax refund program that can provide relief to homeowners if their property taxes are high relative to their income.",
+    "marketNote": "The Twin Cities market is known for resilience and a strong baseline of corporate headquarters driving local housing demand."
   },
   {
     "slug": "mississippi",
@@ -601,7 +647,9 @@
       "Mississippi housing market",
       "home loan calculator",
       "buying a house in Mississippi"
-    ]
+    ],
+    "localNote": "Mississippi applies property taxes to only 10% of the true value of an owner-occupied primary residence, keeping taxes relatively low.",
+    "marketNote": "The state offers some of the most affordable real estate in the US, particularly in rural and coastal areas."
   },
   {
     "slug": "missouri",
@@ -626,7 +674,9 @@
       "Missouri housing market",
       "home loan calculator",
       "buying a house in Missouri"
-    ]
+    ],
+    "localNote": "Residential property in Missouri is assessed at 19% of its true value in money for property tax purposes.",
+    "marketNote": "Markets in St. Louis and Kansas City provide affordable entry points for first-time buyers."
   },
   {
     "slug": "montana",
@@ -651,7 +701,9 @@
       "Montana housing market",
       "home loan calculator",
       "buying a house in Montana"
-    ]
+    ],
+    "localNote": "Montana does not levy a general sales tax, which makes property taxes the primary revenue source for local governments.",
+    "marketNote": "The state has seen explosive real estate growth as remote workers flock to its mountain towns."
   },
   {
     "slug": "nebraska",
@@ -676,7 +728,9 @@
       "Nebraska housing market",
       "home loan calculator",
       "buying a house in Nebraska"
-    ]
+    ],
+    "localNote": "Nebraska has relatively high property taxes but offers a property tax credit based on a portion of the taxes paid to local schools.",
+    "marketNote": "The Omaha and Lincoln markets offer steady, reliable appreciation and strong local economies."
   },
   {
     "slug": "nevada",
@@ -701,7 +755,9 @@
       "Nevada housing market",
       "home loan calculator",
       "buying a house in Nevada"
-    ]
+    ],
+    "localNote": "Nevada law caps property tax bill increases at a maximum of 3% per year for owner-occupied primary residences.",
+    "marketNote": "Las Vegas remains a boom-and-bust indicator market, but current demand is heavily driven by out-of-state migration."
   },
   {
     "slug": "new-hampshire",
@@ -725,7 +781,9 @@
       "New Hampshire housing market",
       "home loan calculator",
       "buying a house in New Hampshire"
-    ]
+    ],
+    "localNote": "With no state income tax or broad sales tax, New Hampshire relies heavily on property taxes, resulting in high effective local rates.",
+    "marketNote": "The state's southern tier remains a popular, fast-moving market for commuters into the Boston area."
   },
   {
     "slug": "new-jersey",
@@ -750,7 +808,9 @@
       "New Jersey housing market",
       "home loan calculator",
       "buying a house in New Jersey"
-    ]
+    ],
+    "localNote": "New Jersey consistently ranks as having the highest average effective property tax rates in the United States.",
+    "marketNote": "Despite high taxes, proximity to NYC and Philadelphia keeps New Jersey real estate highly desirable and competitive."
   },
   {
     "slug": "new-mexico",
@@ -775,7 +835,9 @@
       "New Mexico housing market",
       "home loan calculator",
       "buying a house in New Mexico"
-    ]
+    ],
+    "localNote": "New Mexico law caps the increase in taxable value of residential properties at 3% per year.",
+    "marketNote": "Santa Fe and Albuquerque offer distinct, localized markets with strong cultural appeal and steady demand."
   },
   {
     "slug": "new-york",
@@ -803,7 +865,9 @@
       "New York housing market",
       "home loan calculator",
       "buying a house in New York"
-    ]
+    ],
+    "localNote": "New York is an attorney-closing state, and buyers in NYC must also budget for unique expenses like the Mansion Tax on properties over $1 million.",
+    "marketNote": "The market is heavily bifurcated between the dense, expensive NYC metro and the more affordable Upstate regions."
   },
   {
     "slug": "north-carolina",
@@ -828,7 +892,9 @@
       "North Carolina housing market",
       "home loan calculator",
       "buying a house in North Carolina"
-    ]
+    ],
+    "localNote": "North Carolina closings are typically handled by attorneys, and buyers must pay a due diligence fee directly to the seller when signing a contract.",
+    "marketNote": "The Research Triangle and Charlotte areas are booming, driven by strong tech and finance job growth."
   },
   {
     "slug": "north-dakota",
@@ -852,7 +918,9 @@
       "North Dakota housing market",
       "home loan calculator",
       "buying a house in North Dakota"
-    ]
+    ],
+    "localNote": "North Dakota offers a primary residence credit that can reduce the taxable value of your home, lowering your property tax bill.",
+    "marketNote": "The market is strongly tied to the energy and agriculture sectors, providing steady if localized demand."
   },
   {
     "slug": "ohio",
@@ -878,7 +946,9 @@
       "Ohio housing market",
       "home loan calculator",
       "buying a house in Ohio"
-    ]
+    ],
+    "localNote": "Ohio law includes a 2.5% tax rollback on owner-occupied residential properties to help offset property tax burdens.",
+    "marketNote": "Cities like Columbus and Cincinnati are seeing strong revitalization, attracting younger buyers with affordable housing."
   },
   {
     "slug": "oklahoma",
@@ -903,7 +973,9 @@
       "Oklahoma housing market",
       "home loan calculator",
       "buying a house in Oklahoma"
-    ]
+    ],
+    "localNote": "Oklahoma caps the annual increase in the fair cash value of homesteaded property at 3%.",
+    "marketNote": "The state offers highly affordable housing, particularly in the Oklahoma City and Tulsa metros."
   },
   {
     "slug": "oregon",
@@ -928,7 +1000,9 @@
       "Oregon housing market",
       "home loan calculator",
       "buying a house in Oregon"
-    ]
+    ],
+    "localNote": "Under Measure 50, Oregon limits the growth of a property's assessed value to a maximum of 3% per year.",
+    "marketNote": "Portland and its suburbs continue to dominate the state's housing market, though central Oregon is seeing rapid growth."
   },
   {
     "slug": "pennsylvania",
@@ -953,7 +1027,9 @@
       "Pennsylvania housing market",
       "home loan calculator",
       "buying a house in Pennsylvania"
-    ]
+    ],
+    "localNote": "Pennsylvania charges a real estate transfer tax that is typically split 50/50 between the buyer and the seller.",
+    "marketNote": "The state offers a diverse market, from the highly competitive Philadelphia suburbs to affordable rural properties."
   },
   {
     "slug": "rhode-island",
@@ -977,7 +1053,9 @@
       "Rhode Island housing market",
       "home loan calculator",
       "buying a house in Rhode Island"
-    ]
+    ],
+    "localNote": "Rhode Island is an attorney-closing state where local municipal taxes can vary significantly from town to town.",
+    "marketNote": "The small state sees tight inventory and strong demand, particularly for coastal properties."
   },
   {
     "slug": "south-carolina",
@@ -1001,7 +1079,9 @@
       "South Carolina housing market",
       "home loan calculator",
       "buying a house in South Carolina"
-    ]
+    ],
+    "localNote": "South Carolina offers a lower property tax assessment ratio (4%) for legal primary residences compared to non-primary homes (6%).",
+    "marketNote": "Coastal areas and cities like Charleston and Greenville are experiencing massive inbound migration and housing demand."
   },
   {
     "slug": "south-dakota",
@@ -1025,7 +1105,9 @@
       "South Dakota housing market",
       "home loan calculator",
       "buying a house in South Dakota"
-    ]
+    ],
+    "localNote": "South Dakota does not have a state income tax, making local property taxes a key funding source for municipalities.",
+    "marketNote": "Sioux Falls drives much of the state's steady, affordable real estate market."
   },
   {
     "slug": "tennessee",
@@ -1050,7 +1132,9 @@
       "Tennessee housing market",
       "home loan calculator",
       "buying a house in Tennessee"
-    ]
+    ],
+    "localNote": "Tennessee does not levy a state income tax on wages, and its property taxes are generally below the national average.",
+    "marketNote": "Nashville continues to be a major national hotspot for real estate, driving up median prices rapidly."
   },
   {
     "slug": "texas",
@@ -1077,7 +1161,9 @@
       "Texas housing market",
       "home loan calculator",
       "buying a house in Texas"
-    ]
+    ],
+    "localNote": "Texas has no state income tax but relies heavily on property taxes; however, the state offers a homestead exemption that lowers the taxable value of your primary home.",
+    "marketNote": "The massive markets of Dallas, Houston, and Austin offer immense housing inventory but fast-paced competition."
   },
   {
     "slug": "utah",
@@ -1102,7 +1188,9 @@
       "Utah housing market",
       "home loan calculator",
       "buying a house in Utah"
-    ]
+    ],
+    "localNote": "Utah offers a primary residential exemption that exempts 45% of the fair market value of your primary residence from property taxes.",
+    "marketNote": "The Salt Lake City metro area has seen dramatic price appreciation driven by tech growth and quality of life."
   },
   {
     "slug": "vermont",
@@ -1126,7 +1214,9 @@
       "Vermont housing market",
       "home loan calculator",
       "buying a house in Vermont"
-    ]
+    ],
+    "localNote": "Vermont property taxes fund a statewide education system, leading to relatively high and uniform tax rates compared to other rural states.",
+    "marketNote": "The market is heavily influenced by second-home buyers and those seeking rural, outdoor-focused lifestyles."
   },
   {
     "slug": "virginia",
@@ -1152,7 +1242,9 @@
       "Virginia housing market",
       "home loan calculator",
       "buying a house in Virginia"
-    ]
+    ],
+    "localNote": "Virginia is a 'wet funding' state, meaning all loan funds must be disbursed at the closing table before the transaction is finalized.",
+    "marketNote": "Northern Virginia remains a highly competitive, high-priced market fueled by proximity to the capital."
   },
   {
     "slug": "washington",
@@ -1178,7 +1270,9 @@
       "Washington housing market",
       "home loan calculator",
       "buying a house in Washington"
-    ]
+    ],
+    "localNote": "Washington State does not have a personal income tax, and property taxes are constitutionally capped at 1% of the property's true and fair value.",
+    "marketNote": "The Seattle metro area commands high prices driven by the dominant regional tech industry."
   },
   {
     "slug": "west-virginia",
@@ -1202,7 +1296,9 @@
       "West Virginia housing market",
       "home loan calculator",
       "buying a house in West Virginia"
-    ]
+    ],
+    "localNote": "West Virginia offers a Homestead Exemption for seniors and disabled homeowners that exempts the first $20,000 of assessed value from taxes.",
+    "marketNote": "The state boasts some of the most affordable median home prices in the entire country."
   },
   {
     "slug": "wisconsin",
@@ -1227,7 +1323,9 @@
       "Wisconsin housing market",
       "home loan calculator",
       "buying a house in Wisconsin"
-    ]
+    ],
+    "localNote": "Wisconsin has relatively high property taxes, but offers a Lottery and Gaming Credit that helps lower the tax bill for primary residences.",
+    "marketNote": "Madison and Milwaukee provide stable, slowly appreciating markets with strong midwestern affordability."
   },
   {
     "slug": "wyoming",
@@ -1252,6 +1350,8 @@
       "Wyoming housing market",
       "home loan calculator",
       "buying a house in Wyoming"
-    ]
+    ],
+    "localNote": "Wyoming has some of the lowest property taxes in the nation and no state income tax, making it very tax-friendly for homeowners.",
+    "marketNote": "Jackson Hole represents a hyper-expensive luxury market, while the rest of the state remains very affordable."
   }
 ]
