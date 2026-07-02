@@ -11,7 +11,18 @@ export async function getLiveRates(AstroContext: any) {
   }
 
   // Retrieve the API key from Cloudflare locals (production), import.meta.env, or process.env
-  const API_KEY = AstroContext?.locals?.runtime?.env?.FRED_API_KEY || import.meta.env.FRED_API_KEY || process.env.FRED_API_KEY;
+  let API_KEY: string | undefined;
+  
+  try {
+    // Try to get from Cloudflare Workers runtime (Astro v6 standard)
+    const { env } = await import('cloudflare:workers');
+    API_KEY = (env as any).FRED_API_KEY;
+  } catch (e) {
+    // Fallback to Node.js environments
+    API_KEY = 
+      (typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env.FRED_API_KEY : undefined) || 
+      (typeof process !== 'undefined' ? process.env.FRED_API_KEY : undefined);
+  }
 
   if (!API_KEY) {
     return fallbackRates;
