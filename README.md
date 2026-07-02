@@ -52,10 +52,11 @@ MortgageDash implements an advanced, multi-channel revenue strategy designed for
 
 ## 📈 Live Financial Data Automation
 
-MortgageDash uses a build-time automation script to fetch live economic data directly from the Federal Reserve Economic Data (FRED) API.
-- **Automated Accuracy:** A Node.js script (`fetch-rates.js`) executes automatically prior to every `npm run build`.
+MortgageDash uses a dynamic Server-Side Rendering (SSR) approach to fetch live economic data directly from the Federal Reserve Economic Data (FRED) API at request time.
+- **Automated Live Accuracy:** Instead of relying on static build-time fetching, the platform uses an intelligent `getLiveRates()` utility to fetch the absolute latest rates directly from the FRED API when a user visits the site.
+- **Cloudflare Edge Caching:** To prevent exhausting the FRED API limits (120 requests/minute), the outbound requests use Cloudflare's native `cf: { cacheTtl: 3600 }` edge cache and an isolate memory cache. This ensures instant performance while providing up-to-date daily data without requiring manual redeployments.
 - **Comprehensive Rates:** Dynamically fetches current values for 30-Year Mortgages, 15-Year Mortgages, 5/1 ARMs, the US Prime Rate, and 60-Month Auto Loans.
-- **Self-Sustaining Architecture:** Integrated with Cloudflare Pages environment variables, the site statically pre-renders with 100% accurate, live rates every week without any manual intervention.
+- **Robust Fallbacks:** In the event of a FRED API outage or missing API keys, the system gracefully falls back to a locally cached `rates.json` baseline.
 
 ---
 

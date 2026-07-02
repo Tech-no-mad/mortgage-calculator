@@ -35,7 +35,7 @@ export class OnboardingTour {
 
   createTooltip() {
     this.tooltipEl = document.createElement('div');
-    this.tooltipEl.className = 'fixed z-[100] bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white text-xs font-bold px-3 py-2 rounded-lg shadow-xl pointer-events-none transition-all duration-300 opacity-0 translate-y-2';
+    this.tooltipEl.className = 'absolute z-[100] bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] text-white text-xs font-bold px-3 py-2 rounded-lg shadow-xl pointer-events-none transition-all duration-300 opacity-0 translate-y-2';
     document.body.appendChild(this.tooltipEl);
   }
 
@@ -67,13 +67,13 @@ export class OnboardingTour {
       
       const rect = target.getBoundingClientRect();
       
-      // Calculate position (above the element)
-      let top = rect.top - 40;
-      let left = rect.left + (rect.width / 2);
+      // Calculate position (above the element), accounting for scroll position since we use absolute positioning
+      let top = rect.top + window.scrollY - 40;
+      let left = rect.left + window.scrollX + (rect.width / 2);
       
-      // If top is offscreen, put it below
-      if (top < 0) {
-        top = rect.bottom + 10;
+      // If top is offscreen or underneath header, put it below
+      if (rect.top < 60) {
+        top = rect.bottom + window.scrollY + 10;
       }
       
       this.tooltipEl.style.top = `${top}px`;

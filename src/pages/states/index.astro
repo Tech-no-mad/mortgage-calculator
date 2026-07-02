@@ -6,7 +6,8 @@ import statesData from '../../data/states.json';
 const sortedByTax = [...statesData].sort((a, b) => b.taxRate - a.taxRate);
 const highestTaxStates = sortedByTax.slice(0, 3);
 const lowestTaxStates = sortedByTax.slice(-3).reverse();
-import ratesData from '../../data/rates.json';
+import { getLiveRates } from '../../utils/rates';
+const ratesData = await getLiveRates(Astro);
 ---
 
 <BaseLayout
@@ -155,6 +156,9 @@ import ratesData from '../../data/rates.json';
 </BaseLayout>
 
 <script>
+  import { OnboardingTour } from '../../scripts/onboarding.ts';
+  new OnboardingTour().init();
+
   document.getElementById('state-search')?.addEventListener('input', (e) => {
     const q = (e.target as HTMLInputElement).value.toLowerCase();
     document.querySelectorAll('.state-card').forEach(card => {

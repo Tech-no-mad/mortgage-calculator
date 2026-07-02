@@ -33,7 +33,8 @@ const secondaryColor = `hsl(${(hue + 25) % 360}, 75%, 55%)`;
 const lightBg = `hsla(${hue}, 75%, 45%, 0.1)`;
 
 const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${stateData.name} mortgage calculator, ${stateData.name} mortgage, mortgage calculator ${stateData.name}, ${stateData.abbr} mortgage calculator, states mortgage calculator, ${stateData.name} property tax`;
-import ratesData from '../../data/rates.json';
+import { getLiveRates } from '../../utils/rates';
+const ratesData = await getLiveRates(Astro);
 
 const schema = {
   "@context": "https://schema.org",

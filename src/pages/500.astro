@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ratesData from '../data/rates.json';
+import { getLiveRates } from '../utils/rates';
+const ratesData = await getLiveRates(Astro);
 ---
 
 <BaseLayout title="Server Error" description="Something went wrong. Please try again.">

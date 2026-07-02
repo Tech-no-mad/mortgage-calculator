@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ratesData from '../data/rates.json';
+import { getLiveRates } from '../utils/rates';
+const ratesData = await getLiveRates(Astro);
 import AdSlot from '../components/AdSlot.astro';
 
 const schema = {
@@ -222,6 +223,9 @@ const schema = {
 </BaseLayout>
 
 <script>
+  import { OnboardingTour } from '../scripts/onboarding.ts';
+  new OnboardingTour().init();
+
   function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
   function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
   function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
