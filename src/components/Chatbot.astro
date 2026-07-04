@@ -14,7 +14,7 @@ const regions = [
 ---
 
 <!-- Puter.js integration for FREE Gemini AI -->
-<script src="https://js.puter.com/v2/"></script>
+<script is:inline src="https://js.puter.com/v2/"></script>
 
 <!-- Pass data to client -->
 <script is:inline define:vars={{ searchDict, regions }}>
@@ -75,7 +75,7 @@ const regions = [
 </div>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
+  (function initChatbot() {
     const container = document.getElementById('chatbot-container');
     const toggleBtn = document.getElementById('chat-toggle');
     const closeBtn = document.getElementById('chat-close');
@@ -265,5 +265,5 @@ const regions = [
         input.focus();
       }
     }
-  });
+  })();
 </script>
