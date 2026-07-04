@@ -4,7 +4,6 @@ import statesData from '../data/states.json';
 import { getLiveRates } from '../utils/rates';
 const ratesData = await getLiveRates(Astro);
 import AdSlot from '../components/AdSlot.astro';
-import AdvancedSettings from '../components/AdvancedSettings.astro';
 
 const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-US', { month: 'long', year: 'numeric', day: 'numeric' });
 ---

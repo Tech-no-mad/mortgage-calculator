@@ -76,9 +76,6 @@ const absoluteOgImage = ogImage.startsWith('http')
 
     <!-- Google Consent Mode & Dynamic Script Loading -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      
       const hasConsent = localStorage.getItem('mortgagedash_cookie_consent') === 'granted';
       
       gtag('consent', 'default', {
