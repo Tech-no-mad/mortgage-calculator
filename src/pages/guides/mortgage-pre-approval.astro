@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "How to Get Pre-Approved for a Mortgage in 2025";
+const description = "Getting pre-approved for a mortgage is the most important first step you can take before shopping for a home. A pre-approval letter shows sellers that...";
+const keywords = "mortgage pre approval, pre approved for mortgage, how to get pre approved, pre approval letter, pre approval vs pre qualification, mortgage application, what do I need for mortgage pre approval, does pre approval affect credit score, pre approval process, mortgage lender pre approval";
+const canonicalUrl = "/guides/mortgage-pre-approval/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">The Complete Guide to Mortgage Pre-Approval</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">The Complete Guide to Mortgage Pre-Approval</h1>
+    
+    <p class="mb-6">Getting pre-approved for a mortgage is the most important first step you can take before shopping for a home. A pre-approval letter shows sellers that you are a serious, financially qualified buyer, giving you a crucial edge in a competitive market.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Pre-Qualification vs. Pre-Approval</h2>
+<p class="mb-6">It's important to understand the difference:
+- **Pre-Qualification:** A quick, informal estimate of how much you *might* be able to borrow based on self-reported financial information. It usually involves a "soft" credit pull.
+- **Pre-Approval:** A rigorous process where the lender verifies your income, assets, and debt, and performs a "hard" credit pull. You receive a formal letter stating the exact loan amount you are approved for.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What You Need for Pre-Approval</h2>
+<p class="mb-6">To get pre-approved, lenders will thoroughly examine your financial health. Be prepared to provide:
+1. **Proof of Income:** W-2 statements for the last two years, recent pay stubs, and tax returns. (Self-employed individuals will need more extensive documentation, like profit and loss statements).
+2. **Proof of Assets:** Bank statements (checking and savings) and investment account statements to prove you have the funds for the down payment and closing costs.
+3. **Good Credit:** The lender will pull your credit report to check your score and payment history.
+4. **Employment Verification:** Lenders want to see a stable employment history, typically at least two years in the same job or field.
+5. **Identification:** A valid driver's license, passport, or state ID, and your Social Security number.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Does Pre-Approval Hurt Your Credit?</h2>
+<p class="mb-6">Yes, a mortgage pre-approval requires a "hard inquiry" on your credit report, which can temporarily lower your score by a few points. However, credit scoring models typically group multiple mortgage inquiries made within a short window (usually 14 to 45 days) into a single inquiry, so you can shop around for the best rate without tanking your score.</p>
+<p class="mb-6">A pre-approval letter is usually valid for 60 to 90 days. If you haven't found a home in that time, you'll need to ask the lender to renew the pre-approval, which may require updated documents.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

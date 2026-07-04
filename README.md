@@ -53,7 +53,13 @@ MortgageDash implements an advanced, multi-channel revenue strategy designed for
 ## 📈 Live Financial Data Automation
 
 MortgageDash uses a dynamic Server-Side Rendering (SSR) approach to fetch live economic data directly from the Federal Reserve Economic Data (FRED) API at request time.
-- **Automated Live Accuracy:** Instead of relying on static build-time fetching, the platform uses an intelligent `getLiveRates()` utility to fetch the absolute latest rates directly from the FRED API when a user visits the site.
+- **~3,100 Auto-Generated County Pages:** One dedicated landing page for every US county using US Census data. This gives ~93,000 hyper-local keywords like `Autauga County mortgage calculator`.
+- **15 Long-form Mortgage Guides:** High-quality, SEO-optimized guides covering high-volume queries (first-time buyer, down payment, PMI, etc.).
+- **Live Interest Rates:** Fetches the actual current 30-year fixed, 15-year fixed, and 5/1 ARM rates directly from the Federal Reserve Economic Data (FRED) API at build time. No more "assuming 6.5%" – real numbers based on today's market.
+- **Accurate Property Taxes by State & County:** Integrates live data from the US Census Bureau API to pull the true median home value and effective property tax rate for all 50 states and over 3,100 counties. If a user selects "Texas", the tax rate automatically adjusts to 1.63% (vs Hawaii at 0.27%).
+- **Advanced Amortization Engine:** A robust TypeScript calculation engine that handles Principal & Interest (P&I), Property Taxes, Homeowners Insurance, HOA fees, and Private Mortgage Insurance (PMI) based on down payment percentage.
+- **Dynamic 100K+ Keyword Footprint:** Every page, including the calculators, blog posts, and dynamic county pages, is heavily optimized with an expansive set of long-tail intent keywords.
+- **Interactive Visualizations:** Uses Highcharts to render beautiful, responsive breakdown charts and amortization curve graphs that update in real-time as the user moves sliders.
 - **Cloudflare Edge Caching:** To prevent exhausting the FRED API limits (120 requests/minute), the outbound requests use Cloudflare's native `cf: { cacheTtl: 3600 }` edge cache and an isolate memory cache. This ensures instant performance while providing up-to-date daily data without requiring manual redeployments.
 - **Comprehensive Rates:** Dynamically fetches current values for 30-Year Mortgages, 15-Year Mortgages, 5/1 ARMs, the US Prime Rate, and 60-Month Auto Loans.
 - **Robust Fallbacks:** In the event of a FRED API outage or missing API keys, the system gracefully falls back to a locally cached `rates.json` baseline.

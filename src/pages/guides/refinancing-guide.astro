@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Complete Refinancing Guide — When, Why & How to Refinance";
+const description = "Refinancing your mortgage means paying off your existing loan and replacing it with a completely new one. Homeowners refinance for a variety of reason...";
+const keywords = "refinancing, refinance mortgage, when to refinance, refinance calculator, cash out refinance, rate and term refinance, should I refinance, cost to refinance, how to refinance, refinance rules";
+const canonicalUrl = "/guides/refinancing-guide/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">The Complete Guide to Mortgage Refinancing</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">The Complete Guide to Mortgage Refinancing</h1>
+    
+    <p class="mb-6">Refinancing your mortgage means paying off your existing loan and replacing it with a completely new one. Homeowners refinance for a variety of reasons, but the ultimate goal is usually to improve their financial situation.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Types of Refinancing</h2>
+<ul class="list-disc pl-6 mb-6"><li>**Rate-and-Term Refinance:** The most common type. You change your interest rate, your loan term (e.g., from 30 years to 15 years), or both. You do not withdraw any cash.</li><li>**Cash-Out Refinance:** You take out a new mortgage for more than you currently owe and pocket the difference in cash. This is a way to tap into your home equity to pay for renovations or consolidate debt.</li><li>**Cash-In Refinance:** You bring a lump sum of cash to closing to pay down your loan balance, resulting in a smaller new loan and lower monthly payments.</li></ul>
+<h2 class="text-2xl font-bold mt-10 mb-4">When Does it Make Sense to Refinance?</h2>
+<p class="mb-6">1. **To Lower Your Interest Rate:** The classic rule of thumb is that refinancing is worth it if you can lower your rate by at least 1% to 2%. However, even a 0.5% drop can save you thousands over time.
+2. **To Lower Your Monthly Payment:** Lowering your rate will lower your payment. You can also lower your payment by extending your term (e.g., you are 5 years into a 30-year loan and refinance into a *new* 30-year loan), though you will pay more interest in the long run.
+3. **To Get Rid of PMI:** If your home value has increased enough that you now have 20% equity, you can refinance to drop Private Mortgage Insurance.
+4. **To Switch from an ARM to a Fixed-Rate:** If you have an Adjustable-Rate Mortgage and fear rates will rise, refinancing to a fixed rate provides stability.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">The Costs of Refinancing</h2>
+<p class="mb-6">Refinancing isn't free. Because you are taking out a new loan, you have to pay closing costs again, which typically run 2% to 5% of the loan amount. </p>
+<p class="mb-6">Before you refinance, calculate your **break-even point**. Divide your total closing costs by your monthly savings. If closing costs are $4,000 and you save $100 a month, it will take you 40 months to break even. If you plan to sell the house before 40 months pass, refinancing is a bad idea.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

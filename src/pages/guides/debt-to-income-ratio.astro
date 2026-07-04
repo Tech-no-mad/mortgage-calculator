@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Debt-to-Income Ratio (DTI) — What Lenders Look For";
+const description = "Your Debt-to-Income (DTI) ratio is one of the most important metrics lenders use to determine your ability to manage monthly payments and repay the mo...";
+const keywords = "debt to income ratio, DTI ratio, what is DTI, DTI for mortgage, how to calculate DTI, ideal DTI ratio, maximum DTI for mortgage, front end DTI, back end DTI, lower DTI";
+const canonicalUrl = "/guides/debt-to-income-ratio/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">Understanding Your Debt-to-Income Ratio (DTI)</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">Understanding Your Debt-to-Income Ratio (DTI)</h1>
+    
+    <p class="mb-6">Your Debt-to-Income (DTI) ratio is one of the most important metrics lenders use to determine your ability to manage monthly payments and repay the money you plan to borrow. It is just as crucial as your credit score when applying for a mortgage.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What is DTI?</h2>
+<p class="mb-6">Your DTI is a percentage that compares your total gross monthly income (before taxes) to your total monthly debt payments. </p>
+<p class="mb-6">*DTI = (Total Monthly Debt Payments ÷ Gross Monthly Income) × 100*</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Front-End vs. Back-End DTI</h2>
+<p class="mb-6">Lenders actually look at two different DTI ratios:</p>
+<p class="mb-6">1. **Front-End Ratio (Housing Ratio):** This calculates what percentage of your income would go toward your *new housing expenses* (the proposed mortgage payment, including principal, interest, taxes, insurance, and HOA fees).
+2. **Back-End Ratio (Total Debt Ratio):** This is the more critical number. It includes your proposed housing expense PLUS all other recurring monthly debts (credit card minimums, car loans, student loans, child support, etc.). It *does not* include living expenses like groceries, utilities, or cell phone bills.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What DTI Do Lenders Want?</h2>
+<p class="mb-6">Generally, the lower your DTI, the better your chances of approval and scoring a low interest rate.
+- **Conventional Loans:** Most lenders prefer a back-end DTI of 36% or less, though many will go up to 43%, and sometimes up to 50% if you have excellent credit and large cash reserves.
+- **FHA Loans:** Allow for higher DTI ratios, often up to 43%, and sometimes up to 50% or more with compensating factors.
+- **VA Loans:** Typically prefer a DTI of 41% or lower, though they have flexible guidelines.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How to Lower Your DTI</h2>
+<p class="mb-6">If your DTI is too high to qualify for the home you want, you have two options: decrease your debt or increase your income.
+- Pay off high-balance credit cards or loans.
+- Avoid taking on new debt (do not buy a new car or open new credit cards before buying a house!).
+- Ask for a raise or take on a side job (though lenders require a track record of this income to count it).
+- Consider a co-signer with strong income and low debt.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

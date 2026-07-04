@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "First-Time Home Buyer Guide 2025 — Steps, Programs & Tips";
+const description = "Buying your first home is an exciting milestone, but the process can often feel overwhelming. From saving for a down payment to securing the right mor...";
+const keywords = "first time home buyer, first time buyer guide, how to buy first home, first home buyer programs, FHA first time buyer, down payment assistance, first time buyer checklist, buy a house, buying a house for the first time, steps to buy a home, home buying process, first time homebuyer grants, first time home buyer loans, first house tips, home ownership, mortgage for first time buyer";
+const canonicalUrl = "/guides/first-time-home-buyer/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">First-Time Home Buyer Guide 2025</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">First-Time Home Buyer Guide 2025</h1>
+    
+    <p class="mb-6">Buying your first home is an exciting milestone, but the process can often feel overwhelming. From saving for a down payment to securing the right mortgage and finally closing the deal, there are many steps to navigate. This comprehensive guide will walk you through the essential steps, programs, and tips for first-time home buyers in 2025.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Step 1: Check Your Credit Score</h2>
+<p class="mb-6">Before you even start looking at houses, you need to know where your credit stands. Your credit score will significantly impact the mortgage rate you qualify for and the types of loans available to you. Generally, you need a score of at least 620 for a conventional loan, though FHA loans can accept scores as low as 580 (or even 500 with a larger down payment).</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Step 2: Save for a Down Payment and Closing Costs</h2>
+<p class="mb-6">While the traditional advice is to save 20% for a down payment to avoid Private Mortgage Insurance (PMI), many first-time buyers put down much less. Depending on the loan type, you might be able to put down as little as 3% or even 0% (with VA or USDA loans). Don't forget to budget for closing costs, which typically range from 2% to 5% of the loan amount.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Step 3: Get Pre-Approved for a Mortgage</h2>
+<p class="mb-6">A mortgage pre-approval tells you exactly how much a lender is willing to let you borrow. This gives you a clear budget for your house hunt and shows sellers that you are a serious, qualified buyer. To get pre-approved, you'll need to provide lenders with financial documents like W-2s, tax returns, and bank statements.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">First-Time Home Buyer Programs</h2>
+<p class="mb-6">Many states and local governments offer assistance programs for first-time buyers. These can include:
+- **Down Payment Assistance (DPA) Programs:** Grants or low-interest loans to help cover your down payment or closing costs.
+- **FHA Loans:** Backed by the Federal Housing Administration, these loans have lower credit score requirements and allow down payments as low as 3.5%.
+- **VA Loans:** Available to eligible military members and veterans, offering $0 down payment and no PMI.
+- **USDA Loans:** For buyers in eligible rural areas, offering $0 down payment and low interest rates.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

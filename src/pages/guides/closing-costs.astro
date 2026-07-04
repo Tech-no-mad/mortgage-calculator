@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Closing Costs Explained — What to Expect & How to Save";
+const description = "When you buy a home or refinance a mortgage, you'll have to pay \"closing costs.\" These are processing fees paid to your lender and third parties to fi...";
+const keywords = "closing costs, what are closing costs, average closing costs, closing costs calculator, who pays closing costs, how much are closing costs, closing costs estimate, reduce closing costs, no closing cost mortgage, lender fees, title insurance, appraisal fee, loan origination fee, settlement costs";
+const canonicalUrl = "/guides/closing-costs/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">Understanding Mortgage Closing Costs</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">Understanding Mortgage Closing Costs</h1>
+    
+    <p class="mb-6">When you buy a home or refinance a mortgage, you'll have to pay "closing costs." These are processing fees paid to your lender and third parties to finalize the real estate transaction. Closing costs usually amount to 2% to 5% of the total loan amount.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Common Closing Costs</h2>
+<p class="mb-6">Your closing costs will be detailed in your Loan Estimate (which you receive after applying for a mortgage) and your Closing Disclosure (which you receive before closing). Typical fees include:</p>
+<ul class="list-disc pl-6 mb-6"><li>**Origination Fee:** Charged by the lender for evaluating and processing your loan (typically 0.5% to 1% of the loan amount).</li><li>**Appraisal Fee:** Paid to a professional appraiser to determine the home's fair market value.</li><li>**Title Insurance:** Protects the lender (and you, if you buy an owner's policy) from disputes over property ownership.</li><li>**Home Inspection:** Paid to a licensed inspector to assess the condition of the home.</li><li>**Recording Fees:** Paid to the local government to officially record the change in property ownership.</li><li>**Prepaid Items:** You'll typically need to prepay a portion of your property taxes, homeowners insurance, and any accumulated mortgage interest.</li></ul>
+<h2 class="text-2xl font-bold mt-10 mb-4">Who Pays Closing Costs?</h2>
+<p class="mb-6">Usually, the buyer is responsible for the majority of the closing costs. However, sellers also have closing costs, primarily consisting of the real estate agents' commissions.</p>
+<p class="mb-6">In some cases, buyers can negotiate "seller concessions," where the seller agrees to pay a portion of the buyer's closing costs to help close the deal.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How to Save on Closing Costs</h2>
+<ul class="list-disc pl-6 mb-6"><li>**Shop Around:** You can't change taxes or government fees, but you *can* shop around for lenders, title companies, and homeowners insurance to find the best rates.</li><li>**Ask for Seller Concessions:** In a buyer's market, you might negotiate for the seller to cover some costs.</li><li>**No-Closing-Cost Mortgages:** Some lenders offer "no-closing-cost" loans. In these cases, the lender covers the fees, but they charge you a higher interest rate in return.</li></ul>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

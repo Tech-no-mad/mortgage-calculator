@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Home Equity — What It Is, How to Build & Use It";
+const description = "Home equity is one of the most powerful financial benefits of homeownership. Simply put, equity is the portion of your property that you actually \"own...";
+const keywords = "home equity, what is home equity, home equity loan, home equity line of credit, HELOC vs home equity loan, how to build equity, borrowing against home equity, equity calculator, tap into home equity";
+const canonicalUrl = "/guides/home-equity/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">A Complete Guide to Home Equity</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">A Complete Guide to Home Equity</h1>
+    
+    <p class="mb-6">Home equity is one of the most powerful financial benefits of homeownership. Simply put, equity is the portion of your property that you actually "own" outright. It is the difference between what your home is currently worth and how much you still owe on your mortgage.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How to Calculate Your Home Equity</h2>
+<p class="mb-6">*Home Equity = Current Market Value of Home - Remaining Mortgage Balance*</p>
+<p class="mb-6">For example, if your home is currently worth $400,000 and you owe $250,000 on your mortgage, your home equity is $150,000.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How to Build Home Equity</h2>
+<p class="mb-6">You build equity in two main ways:
+1. **Paying Down Your Mortgage:** Every time you make a mortgage payment, a portion goes toward the principal balance. As the balance decreases, your equity increases. (Note: in the early years of a mortgage, payments go mostly toward interest).
+2. **Home Price Appreciation:** If the real estate market in your area goes up, the value of your home increases. This "passive" appreciation builds your equity without you doing anything. You can also force appreciation by making smart home improvements.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How to Use Your Home Equity</h2>
+<p class="mb-6">Once you have built up significant equity (usually you need to retain at least 15% to 20% equity in the home), you can borrow against it to fund major expenses, consolidate high-interest debt, or make home improvements. The three main ways to access your equity are:</p>
+<ul class="list-disc pl-6 mb-6"><li>**Home Equity Loan:** A second mortgage that gives you a lump sum of cash upfront, which you repay with a fixed interest rate over a set term (e.g., 10 or 15 years).</li><li>**Home Equity Line of Credit (HELOC):** A revolving line of credit, similar to a credit card, backed by your home. You can draw from it as needed during a "draw period" and only pay interest on what you use. HELOCs usually have variable interest rates.</li><li>**Cash-Out Refinance:** You replace your current mortgage with a new, larger mortgage. The new loan pays off the old one, and you pocket the difference in cash. This changes your primary mortgage rate and terms.</li></ul>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

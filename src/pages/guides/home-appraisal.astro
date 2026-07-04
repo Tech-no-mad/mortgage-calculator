@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Home Appraisal Guide — Process, Cost & What Affects Value";
+const description = "A home appraisal is an unbiased professional opinion of a home's fair market value. If you are using a mortgage to buy a home or refinance your curren...";
+const keywords = "home appraisal, how appraisal works, appraisal cost, low appraisal, appraisal vs inspection, what is a home appraisal, who pays for appraisal, appraisal gap, challenge home appraisal";
+const canonicalUrl = "/guides/home-appraisal/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">The Home Appraisal Process Explained</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">The Home Appraisal Process Explained</h1>
+    
+    <p class="mb-6">A home appraisal is an unbiased professional opinion of a home's fair market value. If you are using a mortgage to buy a home or refinance your current one, the lender will require an appraisal. </p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Why Lenders Require Appraisals</h2>
+<p class="mb-6">Lenders require appraisals because the home serves as collateral for the loan. The lender wants to ensure they aren't lending you more money than the home is actually worth. If you default on the loan and the lender has to foreclose, they need to be able to sell the property to recoup their money.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">The Appraisal Process</h2>
+<p class="mb-6">1. **Ordering the Appraisal:** Once you are under contract, the lender orders the appraisal through a third-party Appraisal Management Company (AMC) to ensure the appraiser is completely impartial.
+2. **The Inspection:** The appraiser visits the property, measures the square footage, evaluates the condition (inside and out), and notes upgrades or deficiencies. 
+3. **The Comps:** The appraiser compares the home to recently sold properties ("comps") in the same neighborhood that have similar characteristics (size, age, bed/bath count).
+4. **The Report:** The appraiser issues a detailed report with the final appraised value.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What Happens if the Appraisal is Low?</h2>
+<p class="mb-6">If the home appraises for the purchase price or higher, the transaction proceeds smoothly. However, if the home appraises for *less* than the agreed-upon purchase price, you have an "appraisal gap." Lenders will only finance based on the appraised value. You have a few options:</p>
+<ul class="list-disc pl-6 mb-6"><li>**Renegotiate with the Seller:** Ask the seller to lower the purchase price to match the appraised value.</li><li>**Pay the Difference:** You bring extra cash to closing to cover the gap between the loan amount and the purchase price.</li><li>**Challenge the Appraisal:** If you and your agent find errors in the report or better comps, you can request a Reconsideration of Value (ROV).</li><li>**Cancel the Contract:** If you have an appraisal contingency in your contract, you can walk away and keep your earnest money.</li></ul>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

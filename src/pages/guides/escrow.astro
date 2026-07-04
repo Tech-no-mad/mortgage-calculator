@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Escrow Accounts — How They Work for Mortgages";
+const description = "If you have a mortgage, you have likely heard the term \"escrow.\" An escrow account is essentially a savings account managed by your lender to pay your...";
+const keywords = "escrow, escrow account, what is escrow, mortgage escrow, escrow payment, escrow shortage, how does escrow work, escrow analysis, escrow refund, remove escrow account";
+const canonicalUrl = "/guides/escrow/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">How Mortgage Escrow Accounts Work</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">How Mortgage Escrow Accounts Work</h1>
+    
+    <p class="mb-6">If you have a mortgage, you have likely heard the term "escrow." An escrow account is essentially a savings account managed by your lender to pay your property taxes and homeowners insurance on your behalf.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Why Do Lenders Require Escrow?</h2>
+<p class="mb-6">Lenders require escrow accounts to protect their investment (your home). If you fail to pay your property taxes, the government could put a lien on the house. If your house burns down and you let your insurance lapse, the lender's collateral is destroyed. By collecting these funds monthly and paying the bills themselves, lenders ensure these critical expenses are never missed.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How Escrow Payments Are Calculated</h2>
+<p class="mb-6">When your lender calculates your monthly mortgage payment, they add up your estimated annual property taxes and homeowners insurance, divide that number by 12, and add it to your monthly principal and interest payment. </p>
+<p class="mb-6">*Monthly Payment = Principal + Interest + (Annual Taxes ÷ 12) + (Annual Insurance ÷ 12)*</p>
+<p class="mb-6">When your tax and insurance bills are due, your lender pays them directly out of the escrow account.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Escrow Shortages and Overage</h2>
+<p class="mb-6">Property taxes and insurance premiums fluctuate over time. Because of this, lenders perform an annual **escrow analysis** to ensure they are collecting the right amount.
+- **Escrow Shortage:** If your taxes or insurance went up, your escrow account won't have enough money to cover the bills. The lender will pay the difference, but you will have to pay them back. Your monthly payment will increase for the next year to make up the shortage and prepare for the higher future bills.
+- **Escrow Overage:** If your taxes or insurance went down, your lender collected too much money. They will send you an escrow refund check and lower your monthly payment for the upcoming year.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Can You Opt Out of Escrow?</h2>
+<p class="mb-6">Sometimes. If you put down 20% or more on a conventional loan, many lenders will let you waive the escrow requirement and pay your taxes and insurance yourself. However, some lenders may charge a small fee or a slightly higher interest rate for this privilege.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

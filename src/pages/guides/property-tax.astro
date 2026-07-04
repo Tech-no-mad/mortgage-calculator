@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Property Tax Guide — How It Works, Rates by State & Appeals";
+const description = "Property taxes are a significant ongoing expense for homeowners, often adding hundreds of dollars to a monthly mortgage payment. Understanding how the...";
+const keywords = "property tax, how property tax works, property tax by state, property tax rate, property tax appeal, property tax assessment, how to lower property taxes, property tax calculator, county property tax, real estate tax";
+const canonicalUrl = "/guides/property-tax/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">Everything You Need to Know About Property Taxes</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">Everything You Need to Know About Property Taxes</h1>
+    
+    <p class="mb-6">Property taxes are a significant ongoing expense for homeowners, often adding hundreds of dollars to a monthly mortgage payment. Understanding how they are calculated, how they differ by location, and how you might lower them is crucial for budgeting.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How Property Taxes Are Calculated</h2>
+<p class="mb-6">Your annual property tax bill is generally determined by two factors:
+1. **The Assessed Value of Your Home:** This is determined by a local tax assessor. It is often lower than the fair market value (what the home would sell for), though the exact ratio varies by municipality.
+2. **The Local Tax Rate (Millage Rate):** This rate is set by your local government (county, city, school district) to fund public services like schools, police, fire departments, and road maintenance.</p>
+<p class="mb-6">*Tax Bill = Assessed Value × Property Tax Rate*</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Property Taxes by State</h2>
+<p class="mb-6">Property tax rates vary wildly across the United States. For example:
+- **High-Tax States:** States like New Jersey, Illinois, and New Hampshire have some of the highest effective property tax rates in the country, often exceeding 2%.
+- **Low-Tax States:** States like Hawaii, Alabama, and Colorado boast some of the lowest effective rates, often below 0.6%.</p>
+<p class="mb-6">Keep in mind that states with low property taxes may have higher sales or income taxes to compensate.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How to Pay Your Property Taxes</h2>
+<p class="mb-6">Most homeowners pay their property taxes through an **escrow account** managed by their mortgage lender. The lender divides your annual tax bill by 12 and adds that amount to your monthly mortgage payment. When the taxes are due, the lender pays the local government on your behalf.</p>
+<p class="mb-6">If you don't have an escrow account (e.g., your house is paid off), you will receive a bill directly from your local tax authority and must pay it yourself, usually once or twice a year.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Can You Lower Your Property Taxes?</h2>
+<p class="mb-6">Yes! If you believe your home's assessed value is too high, you can **appeal your property tax assessment**. This involves reviewing the assessor's data for errors (like incorrect square footage) or finding "comps" (similar homes in your area) that have lower assessed values. You can also apply for **exemptions**, such as homestead exemptions, senior citizen exemptions, or veterans exemptions, which lower the taxable value of your property.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

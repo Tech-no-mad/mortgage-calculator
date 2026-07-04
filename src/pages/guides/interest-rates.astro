@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Mortgage Interest Rates — How They Work & What Affects Yours";
+const description = "Your mortgage interest rate is the percentage you pay your lender to borrow money. Even a fraction of a percent difference in your rate can change you...";
+const keywords = "mortgage interest rates, how interest rates work, what affects mortgage rate, federal reserve rates, rate lock, mortgage rate vs APR, why are rates high, average mortgage rate, best mortgage rate, how to get lower rate";
+const canonicalUrl = "/guides/interest-rates/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">Understanding Mortgage Interest Rates</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">Understanding Mortgage Interest Rates</h1>
+    
+    <p class="mb-6">Your mortgage interest rate is the percentage you pay your lender to borrow money. Even a fraction of a percent difference in your rate can change your monthly payment and cost you (or save you) tens of thousands of dollars over the life of a 30-year loan.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What Determines Daily Mortgage Rates?</h2>
+<p class="mb-6">National mortgage rates change daily, sometimes multiple times a day. They are driven by complex economic factors:
+- **The Bond Market:** Fixed-rate mortgages are closely tied to the yield on the 10-year Treasury note. When bond yields go up, mortgage rates go up.
+- **Inflation:** High inflation diminishes the purchasing power of the fixed returns investors get on mortgage bonds, so investors demand higher rates. Thus, inflation drives mortgage rates up.
+- **The Federal Reserve:** The Fed does *not* set mortgage rates directly. However, the Fed sets the "federal funds rate" (the rate banks charge each other). When the Fed raises rates to fight inflation, mortgage rates usually follow suit.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What Determines YOUR Personal Rate?</h2>
+<p class="mb-6">While national economic factors set the baseline, your specific interest rate is determined by your personal financial profile:
+- **Credit Score:** The higher your score, the lower your rate.
+- **Down Payment:** A larger down payment reduces the lender's risk, which can lead to a lower rate.
+- **Loan Type:** Conventional, FHA, VA, and Jumbo loans all have different rate structures.
+- **Loan Term:** 15-year mortgages almost always have lower interest rates than 30-year mortgages.
+- **Property Type:** Primary residences get the best rates. Second homes and investment properties are considered riskier and carry higher rates.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What is a Rate Lock?</h2>
+<p class="mb-6">Because rates fluctuate daily, lenders offer a "rate lock" once your loan is approved. This guarantees your interest rate for a specific period (usually 30, 45, or 60 days) while you finalize the closing process. If rates go up before you close, your locked rate is protected. If rates drop significantly, some lenders offer a "float down" option to capture the lower rate.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

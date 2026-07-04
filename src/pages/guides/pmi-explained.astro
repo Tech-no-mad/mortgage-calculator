@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "PMI (Private Mortgage Insurance) — Cost, Removal & Alternatives";
+const description = "If you buy a home with a conventional loan and put down less than 20%, your lender will require you to pay for Private Mortgage Insurance (PMI). While...";
+const keywords = "PMI, private mortgage insurance, PMI cost, how to remove PMI, PMI vs MIP, PMI calculator, avoid PMI, cancel PMI, how much is PMI, lender paid mortgage insurance";
+const canonicalUrl = "/guides/pmi-explained/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">Private Mortgage Insurance (PMI) Explained</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">Private Mortgage Insurance (PMI) Explained</h1>
+    
+    <p class="mb-6">If you buy a home with a conventional loan and put down less than 20%, your lender will require you to pay for Private Mortgage Insurance (PMI). While nobody loves paying it, PMI is the tool that makes it possible to buy a home without saving a massive 20% down payment.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What is PMI and Who Does it Protect?</h2>
+<p class="mb-6">Despite the name, PMI does not protect *you*, the buyer. It protects the *lender* in the event that you stop making payments and default on the loan. Because you put down a small amount of cash, the lender considers you a higher risk. PMI mitigates that risk.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How Much Does PMI Cost?</h2>
+<p class="mb-6">PMI costs vary based on your credit score, your down payment percentage, and your loan type, but it typically ranges from **0.5% to 1.5% of your original loan amount per year**. </p>
+<p class="mb-6">For a $300,000 loan, a 1% PMI premium equals $3,000 a year, or $250 added to your monthly mortgage payment. You pay this as part of your normal monthly payment to the lender.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How to Get Rid of PMI</h2>
+<p class="mb-6">The best thing about PMI on a conventional loan is that it isn't permanent. You can get rid of it once you have built up enough equity in your home:
+1. **Automatic Cancellation:** By law, lenders must automatically cancel your PMI when your loan balance reaches 78% of the home's *original* appraised value (usually takes about 11 years on a 30-year loan making standard payments).
+2. **Request Cancellation:** You can request in writing that your lender cancel PMI when your balance hits 80% of the original value.
+3. **New Appraisal:** If property values in your area have surged, or you've made major renovations, you might have reached 20% equity much faster. You can pay for a new appraisal; if it shows you have 20% equity, the lender may drop the PMI.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">PMI vs. FHA Mortgage Insurance Premium (MIP)</h2>
+<p class="mb-6">If you have an FHA loan instead of a conventional loan, you don't pay PMI; you pay a Mortgage Insurance Premium (MIP). MIP includes both an upfront fee at closing and an annual premium paid monthly. Crucially, if you put down less than 10% on an FHA loan, **MIP is permanent for the life of the loan**. The only way to get rid of it is to refinance into a conventional loan once you have 20% equity.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

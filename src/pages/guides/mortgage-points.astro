@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Mortgage Points Explained — Should You Buy Down Your Rate?";
+const description = "When you're finalizing your mortgage, your lender might offer you the option to pay \"points\" (also known as discount points) to lower your interest ra...";
+const keywords = "mortgage points, discount points, buying down rate, mortgage points calculator, are mortgage points worth it, how much is a point on a mortgage, discount points tax deductible, mortgage origination points";
+const canonicalUrl = "/guides/mortgage-points/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">Mortgage Points (Discount Points) Explained</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">Mortgage Points (Discount Points) Explained</h1>
+    
+    <p class="mb-6">When you're finalizing your mortgage, your lender might offer you the option to pay "points" (also known as discount points) to lower your interest rate. This strategy, often called "buying down the rate," can save you money over the long haul, but requires more cash upfront at closing.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What is a Mortgage Point?</h2>
+<p class="mb-6">One discount point costs **1% of your total loan amount**.
+For example, if you are borrowing $300,000, one point will cost you $3,000.</p>
+<p class="mb-6">In exchange for paying this fee upfront at closing, the lender reduces your interest rate. Typically, one point lowers your interest rate by **0.25%**, though this can vary by lender and market conditions.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Calculating the Break-Even Point</h2>
+<p class="mb-6">To decide if buying points is worth it, you must calculate your "break-even point"—the number of months it takes for your monthly interest savings to exceed the upfront cost of the points.</p>
+<p class="mb-6">**Example Scenario:**
+- Loan Amount: $300,000
+- Base Rate: 6.5% (Monthly P&I: $1,896)
+- Buying 1 Point Cost: $3,000
+- New Rate: 6.25% (New Monthly P&I: $1,847)
+- Monthly Savings: $49</p>
+<p class="mb-6">*Break-Even Calculation:*
+$3,000 (upfront cost) ÷ $49 (monthly savings) = **61 months (just over 5 years)**</p>
+<p class="mb-6">If you plan to live in the house and keep the mortgage for longer than 61 months, buying the point saves you money. If you sell or refinance before month 61, you lose money on the deal.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Should You Buy Points?</h2>
+<p class="mb-6">**Buy points if:**
+- You plan to stay in the home for a long time (7-10+ years).
+- You have extra cash on hand for closing costs and an emergency fund.
+- You want the lowest possible monthly payment.</p>
+<p class="mb-6">**Skip points if:**
+- You plan to move or refinance in the next few years.
+- Cash is tight and you need it for the down payment, moving expenses, or furnishings.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

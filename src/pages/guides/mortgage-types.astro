@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Types of Mortgages — Fixed, ARM, FHA, VA, Jumbo & More";
+const description = "Choosing the right type of mortgage is a critical step in the home-buying process. The right loan can save you thousands of dollars and fit your speci...";
+const keywords = "types of mortgages, mortgage types, fixed rate mortgage, adjustable rate mortgage, FHA loan, VA loan, jumbo loan, conventional loan, USDA loan, interest only mortgage, balloon mortgage, 30 year fixed, 15 year fixed, best mortgage type, choose a mortgage";
+const canonicalUrl = "/guides/mortgage-types/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">Exploring the Different Types of Mortgages</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">Exploring the Different Types of Mortgages</h1>
+    
+    <p class="mb-6">Choosing the right type of mortgage is a critical step in the home-buying process. The right loan can save you thousands of dollars and fit your specific financial situation. Here is a breakdown of the most common types of mortgages.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Conventional Loans</h2>
+<p class="mb-6">Conventional loans are not backed by the federal government. They are the most common type of mortgage and usually require a minimum credit score of 620.
+- **Conforming Loans:** Meet the loan limits set by the Federal Housing Finance Agency (FHFA).
+- **Non-Conforming (Jumbo) Loans:** Exceed the FHFA limits and are meant for expensive properties. They usually require higher credit scores and larger down payments.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Government-Backed Loans</h2>
+<p class="mb-6">These loans are insured by federal agencies, making them less risky for lenders and often easier to qualify for.
+- **FHA Loans:** Backed by the Federal Housing Administration. Ideal for buyers with lower credit scores (minimum 500-580) and smaller down payments (as low as 3.5%).
+- **VA Loans:** Backed by the Department of Veterans Affairs. Exclusively for eligible military service members, veterans, and surviving spouses. Offers 0% down and no PMI.
+- **USDA Loans:** Backed by the U.S. Department of Agriculture. Designed for low-to-moderate-income buyers in eligible rural and suburban areas. Offers 0% down.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Fixed-Rate vs. Adjustable-Rate Mortgages</h2>
+<ul class="list-disc pl-6 mb-6"><li>**Fixed-Rate Mortgage (FRM):** The interest rate remains the same for the entire life of the loan (usually 15 or 30 years). Your monthly principal and interest payment will never change, providing stability.</li><li>**Adjustable-Rate Mortgage (ARM):** The interest rate is fixed for an initial period (e.g., 5, 7, or 10 years) and then adjusts periodically based on market conditions. ARMs usually start with lower rates than fixed-rate mortgages but carry the risk of higher payments later.</li></ul>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

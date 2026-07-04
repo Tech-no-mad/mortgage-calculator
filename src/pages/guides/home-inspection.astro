@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Home Inspection Checklist — What Buyers Need to Know";
+const description = "A home inspection is a non-invasive, visual examination of a property's physical structure and essential systems. Even if a home looks perfect on the ...";
+const keywords = "home inspection, home inspection checklist, what does home inspection cover, home inspection cost, home inspection tips, do I need a home inspection, what happens after home inspection, failing a home inspection, home inspector";
+const canonicalUrl = "/guides/home-inspection/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">The Buyer’s Guide to Home Inspections</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">The Buyer’s Guide to Home Inspections</h1>
+    
+    <p class="mb-6">A home inspection is a non-invasive, visual examination of a property's physical structure and essential systems. Even if a home looks perfect on the outside, there could be hidden issues that cost thousands of dollars to fix. Never skip the home inspection!</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What Does a Home Inspection Cover?</h2>
+<p class="mb-6">A standard home inspection covers the home's major systems and structural components, including:
+- **Roof and Exterior:** Shingles, flashing, gutters, siding, windows, doors, and the foundation.
+- **Plumbing System:** Pipes, drains, water heater, water pressure, and fixtures.
+- **Electrical System:** Service panels, breakers, wiring, outlets, and light switches.
+- **HVAC:** Heating and cooling systems, ductwork, and thermostats.
+- **Interior:** Walls, ceilings, floors, stairs, and visible insulation.
+- **Attic and Basement:** Checking for leaks, structural issues, and proper ventilation.</p>
+<p class="mb-6">*Note: Standard inspections usually do not cover pests (termites), mold, radon, asbestos, or septic systems. You may need to hire specialized inspectors for these.*</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">How Much Does a Home Inspection Cost?</h2>
+<p class="mb-6">The cost of a home inspection varies by location and the size of the home, but you can typically expect to pay between $300 and $500. This is paid out-of-pocket by the buyer at the time of the inspection, not rolled into closing costs.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">What to Do After the Inspection</h2>
+<p class="mb-6">After the inspection, you will receive a detailed report outlining any issues found. If significant problems are discovered, you have a few options (provided you have an inspection contingency in your contract):
+1. **Ask the Seller to Fix It:** You can request that the seller complete repairs before closing.
+2. **Ask for a Credit:** You can ask for a seller concession (a credit at closing) so you can fix the issue yourself later.
+3. **Walk Away:** If the issues are too severe (e.g., major foundational problems), you can cancel the contract and get your earnest money deposit back.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "How Much Down Payment Do You Need? Complete Guide";
+const description = "One of the most persistent myths in real estate is that you need a 20% down payment to buy a house. While putting down 20% has its benefits, it is by ...";
+const keywords = "down payment, how much down payment, 20 percent down, down payment assistance, minimum down payment, down payment calculator, what is a down payment, average down payment on a house, 0 down mortgage, zero down payment home loan, save for down payment, down payment rules, down payment gifts, low down payment mortgage";
+const canonicalUrl = "/guides/down-payment/";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  },
+  "datePublished": "2025-07-04"
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert prose-a:text-[var(--color-usa-blue)]">
+    <nav class="flex text-sm text-[var(--text-muted)] mb-8 not-prose" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2">
+        <li><a href="/" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li><a href="/guides/" class="hover:text-[var(--text-primary)] transition-colors">Guides</a></li>
+        <li><span class="mx-2">/</span></li>
+        <li class="text-[var(--text-primary)] font-medium" aria-current="page">How Much Down Payment Do You Really Need?</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-primary)] mb-8">How Much Down Payment Do You Really Need?</h1>
+    
+    <p class="mb-6">One of the most persistent myths in real estate is that you need a 20% down payment to buy a house. While putting down 20% has its benefits, it is by no means a requirement. In fact, the median down payment for first-time home buyers is typically around 6% to 7%.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Minimum Down Payment Requirements by Loan Type</h2>
+<p class="mb-6">The amount you need to put down largely depends on the type of mortgage you get:</p>
+<ul class="list-disc pl-6 mb-6"><li>**Conventional Loans:** Can require as little as 3% down for first-time buyers.</li><li>**FHA Loans:** Require a minimum of 3.5% down (if your credit score is 580 or higher).</li><li>**VA Loans:** Offer 0% down for eligible veterans and active-duty military.</li><li>**USDA Loans:** Offer 0% down for eligible properties in rural areas.</li></ul>
+<h2 class="text-2xl font-bold mt-10 mb-4">The 20% Rule and PMI</h2>
+<p class="mb-6">If you put down less than 20% on a conventional loan, your lender will typically require you to pay Private Mortgage Insurance (PMI). PMI protects the lender in case you default on the loan. The cost of PMI varies but generally ranges from 0.5% to 1.5% of the original loan amount per year.</p>
+<p class="mb-6">While paying PMI adds to your monthly cost, it allows you to buy a home sooner rather than waiting years to save a full 20%.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Down Payment Assistance Programs</h2>
+<p class="mb-6">If you're struggling to save for a down payment, look into Down Payment Assistance (DPA) programs in your area. These programs are often run by state or local housing finance agencies and can provide grants or low-interest, forgivable loans to help cover your upfront costs.</p>
+<h2 class="text-2xl font-bold mt-10 mb-4">Using Gift Funds</h2>
+<p class="mb-6">Many lenders allow you to use "gift funds" from a family member for part or all of your down payment. You'll need a formal "gift letter" stating that the money is not a loan and does not need to be repaid.</p>
+
+    <div class="mt-12 p-8 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl not-prose text-center">
+      <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2">Ready to see the numbers?</h3>
+      <p class="text-[var(--text-muted)] mb-6">Use our free, accurate calculators to estimate your costs.</p>
+      <a href="/" class="inline-block bg-[var(--color-usa-blue)] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1e4b87] transition-colors">Go to Mortgage Calculator</a>
+    </div>
+  </div>
+</BaseLayout>
