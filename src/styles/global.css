@@ -137,7 +137,7 @@
   }
 
   /* Calculator text input — shadcn style */
-  .calc-input {
+  .calc-input, select {
     width: 100%;
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
@@ -149,6 +149,11 @@
     color: var(--text-primary);
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
     outline: none;
+  }
+  
+  option {
+    background: var(--bg-surface);
+    color: var(--text-primary);
   }
 
   .calc-input:hover {
