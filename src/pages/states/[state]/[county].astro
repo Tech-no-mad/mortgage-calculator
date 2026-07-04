@@ -109,48 +109,43 @@ const schema = {
 
     <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)] relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-usa-blue)] to-[#1e4b87]"></div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">Median Home Value</h3>
+      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-sm">
+        <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Median Home Value</h3>
         <p class="text-3xl font-bold text-[var(--text-primary)]">${countyData.medianHomeValue.toLocaleString()}</p>
       </div>
-      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)] relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-amber-600"></div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">Effective Tax Rate</h3>
+      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-sm">
+        <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Effective Tax Rate</h3>
         <p class="text-3xl font-bold text-[var(--text-primary)]">{countyData.effectiveTaxRate.toFixed(2)}%</p>
       </div>
-      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)] relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-usa-red)] to-rose-600"></div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">Annual Property Tax</h3>
+      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-sm">
+        <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Annual Property Tax</h3>
         <p class="text-3xl font-bold text-[var(--text-primary)]">${countyData.medianPropertyTax.toLocaleString()}</p>
       </div>
-      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)] relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">Monthly Tax Est.</h3>
+      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-sm">
+        <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Monthly Tax Est.</h3>
         <p class="text-3xl font-bold text-[var(--text-primary)]">${(countyData.medianPropertyTax / 12).toFixed(0)}</p>
       </div>
     </div>
 
     <!-- Simple Embedded Calculator -->
-    <div class="bg-[var(--bg-surface)] p-8 rounded-3xl border border-[var(--border-default)] shadow-[var(--shadow-card)] max-w-3xl mx-auto mb-16 relative overflow-hidden">
-      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-usa-blue)] via-cyan-400 to-[var(--color-usa-red)]"></div>
+    <div class="bg-[var(--bg-surface)] p-8 rounded-3xl border border-[var(--border-default)] shadow-lg max-w-3xl mx-auto mb-16">
       <h2 class="text-2xl font-bold mb-6 text-[var(--text-primary)]">Calculate Your Payment</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
-          <label class="block text-sm font-semibold text-[var(--text-secondary)] mb-2">Home Price ($)</label>
-          <input type="number" id="calc-home-price" value={countyData.medianHomeValue} class="w-full bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] focus:border-[var(--color-usa-blue)] outline-none transition-all" />
+          <label class="block text-sm font-medium text-[var(--text-muted)] mb-2">Home Price ($)</label>
+          <input type="number" id="calc-home-price" value={countyData.medianHomeValue} class="w-full bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] outline-none transition-all" />
         </div>
         <div>
-          <label class="block text-sm font-semibold text-[var(--text-secondary)] mb-2">Down Payment (%)</label>
-          <input type="number" id="calc-down-payment" value="20" class="w-full bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] focus:border-[var(--color-usa-blue)] outline-none transition-all" />
+          <label class="block text-sm font-medium text-[var(--text-muted)] mb-2">Down Payment (%)</label>
+          <input type="number" id="calc-down-payment" value="20" class="w-full bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] outline-none transition-all" />
         </div>
         <div>
-          <label class="block text-sm font-semibold text-[var(--text-secondary)] mb-2">Interest Rate (%)</label>
-          <input type="number" id="calc-rate" step="0.1" value="6.5" class="w-full bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] focus:border-[var(--color-usa-blue)] outline-none transition-all" />
+          <label class="block text-sm font-medium text-[var(--text-muted)] mb-2">Interest Rate (%)</label>
+          <input type="number" id="calc-rate" step="0.1" value="6.5" class="w-full bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] outline-none transition-all" />
         </div>
         <div>
-          <label class="block text-sm font-semibold text-[var(--text-secondary)] mb-2">Loan Term (Years)</label>
-          <select id="calc-term" class="w-full bg-[var(--bg-input)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] focus:border-[var(--color-usa-blue)] outline-none transition-all">
+          <label class="block text-sm font-medium text-[var(--text-muted)] mb-2">Loan Term (Years)</label>
+          <select id="calc-term" class="w-full bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--color-usa-blue)] outline-none transition-all">
             <option value="30">30 Years</option>
             <option value="15">15 Years</option>
           </select>
@@ -179,39 +174,32 @@ const schema = {
     </div>
 
     <!-- SEO Content -->
-    <div class="max-w-4xl mx-auto mb-16 space-y-8">
-      <div class="bg-[var(--bg-surface)] p-8 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)]">
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] mb-4">Buying a Home in {countyData.name}, {stateData.name}</h2>
-        <p class="text-[var(--text-secondary)] leading-relaxed">
-          The housing market in <strong class="text-[var(--text-primary)]">{countyData.name}</strong> offers a median home value of <strong class="text-[var(--text-primary)]">${countyData.medianHomeValue.toLocaleString()}</strong>. When budgeting for your home purchase, it's crucial to factor in local costs. A 20% down payment on a median-priced home here would be <strong class="text-[var(--text-primary)]">${(countyData.medianHomeValue * 0.2).toLocaleString()}</strong>, leaving a loan amount of <strong class="text-[var(--text-primary)]">${(countyData.medianHomeValue * 0.8).toLocaleString()}</strong>.
-        </p>
-      </div>
+    <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto mb-16">
+      <h2 class="text-3xl font-bold text-[var(--text-primary)] mb-6">Buying a Home in {countyData.name}, {stateData.name}</h2>
+      <p class="text-[var(--text-muted)] leading-relaxed mb-6">
+        The housing market in <strong>{countyData.name}</strong> offers a median home value of <strong>${countyData.medianHomeValue.toLocaleString()}</strong>. When budgeting for your home purchase, it's crucial to factor in local costs. A 20% down payment on a median-priced home here would be <strong>${(countyData.medianHomeValue * 0.2).toLocaleString()}</strong>, leaving a loan amount of <strong>${(countyData.medianHomeValue * 0.8).toLocaleString()}</strong>.
+      </p>
 
-      <div class="bg-[var(--bg-surface)] p-8 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)]">
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] mb-4">Property Taxes in {countyData.name}</h2>
-        <p class="text-[var(--text-secondary)] leading-relaxed">
-          Property taxes can significantly impact your monthly mortgage payment. In {countyData.name}, the effective property tax rate is <strong class="text-[var(--text-primary)]">{countyData.effectiveTaxRate.toFixed(2)}%</strong>. This translates to an estimated annual tax bill of <strong class="text-[var(--text-primary)]">${countyData.medianPropertyTax.toLocaleString()}</strong> for a median-priced home, or about <strong class="text-[var(--text-primary)]">${(countyData.medianPropertyTax / 12).toFixed(0)} per month</strong>. This rate is specific to {countyData.name} and may vary from the overall {stateData.name} state average of {stateData.taxRate}%.
-        </p>
-      </div>
+      <h2 class="text-3xl font-bold text-[var(--text-primary)] mb-6 mt-12">Property Taxes in {countyData.name}</h2>
+      <p class="text-[var(--text-muted)] leading-relaxed mb-6">
+        Property taxes can significantly impact your monthly mortgage payment. In {countyData.name}, the effective property tax rate is <strong>{countyData.effectiveTaxRate.toFixed(2)}%</strong>. This translates to an estimated annual tax bill of <strong>${countyData.medianPropertyTax.toLocaleString()}</strong> for a median-priced home, or about <strong>${(countyData.medianPropertyTax / 12).toFixed(0)} per month</strong>. This rate is specific to {countyData.name} and may vary from the overall {stateData.name} state average of {stateData.taxRate}%.
+      </p>
 
-      <div class="bg-[var(--bg-surface)] p-8 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)]">
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] mb-4">How to Calculate Your Mortgage in {countyData.name}</h2>
-        <p class="text-[var(--text-secondary)] leading-relaxed">
-          To get an accurate estimate of your monthly housing costs in {countyData.name}, you need to calculate both your Principal and Interest (P&I) and your monthly property tax obligation. Use the calculator above, which comes pre-loaded with {countyData.name}'s exact median home value and tax rate, to see your personalized breakdown.
-        </p>
-      </div>
+      <h2 class="text-3xl font-bold text-[var(--text-primary)] mb-6 mt-12">How to Calculate Your Mortgage in {countyData.name}</h2>
+      <p class="text-[var(--text-muted)] leading-relaxed mb-6">
+        To get an accurate estimate of your monthly housing costs in {countyData.name}, you need to calculate both your Principal and Interest (P&I) and your monthly property tax obligation. Use the calculator above, which comes pre-loaded with {countyData.name}'s exact median home value and tax rate, to see your personalized breakdown.
+      </p>
     </div>
 
     <!-- Nearby Counties -->
     {nearbyCounties.length > 0 && (
-      <div class="max-w-4xl mx-auto bg-[var(--bg-surface)] p-8 rounded-2xl border border-[var(--border-default)] shadow-[var(--shadow-card)]">
+      <div class="max-w-4xl mx-auto border-t border-[var(--border-default)] pt-12">
         <h2 class="text-2xl font-bold text-[var(--text-primary)] mb-6">Compare Nearby Counties in {stateData.abbr}</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {nearbyCounties.map((nc: any) => {
             const ncSlug = nc.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             return (
-              <a href={`/states/${stateData.slug}/${ncSlug}/`} class="flex items-center gap-2 px-4 py-3 rounded-xl bg-[var(--bg-surface-2)] border border-[var(--border-default)] text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--color-usa-blue)] hover:border-[var(--color-usa-blue)] transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <a href={`/states/${stateData.slug}/${ncSlug}/`} class="text-[var(--color-usa-blue)] hover:underline text-sm font-medium">
                 {nc.name}
               </a>
             );
