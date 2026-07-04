@@ -417,9 +417,17 @@ const schema = {
 
     {stateCounties.length > 0 && (
       <div class="card p-6 sm:p-8 mt-10">
-        <h2 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">
-          County-Level Data for {stateData.name}
-        </h2>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+          <h2 class="text-2xl font-bold" style="color: var(--text-primary);">
+            County-Level Data for {stateData.name}
+          </h2>
+          <div class="mt-4 sm:mt-0 relative w-full sm:w-64">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/></svg>
+            </div>
+            <input type="text" id="county-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[var(--primary)] focus:border-[var(--primary)] block w-full pl-10 p-2.5 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[var(--primary)] dark:focus:border-[var(--primary)] transition-colors" placeholder="Search counties...">
+          </div>
+        </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm text-[var(--text-secondary)]">
             <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-800/50 text-[var(--text-muted)]">
@@ -432,8 +440,13 @@ const schema = {
             </thead>
             <tbody>
               {stateCounties.map(county => (
-                <tr class="border-b border-gray-100 dark:border-gray-800/60 last:border-0 hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors">
-                  <td class="px-4 py-3 font-medium text-[var(--text-primary)]">{county.name}</td>
+                <tr class="county-row border-b border-gray-100 dark:border-gray-800/60 last:border-0 hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors" data-name={county.name}>
+                  <td class="px-4 py-3 font-medium">
+                    <a href={`/states/${stateData.slug}/${county.slug}/`} class="text-[var(--primary)] hover:underline flex items-center gap-1">
+                      {county.name}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                  </td>
                   <td class="px-4 py-3 font-mono">${county.medianHomeValue.toLocaleString('en-US')}</td>
                   <td class="px-4 py-3 font-mono">${county.medianPropertyTax.toLocaleString('en-US')}</td>
                   <td class="px-4 py-3 font-mono">
@@ -457,6 +470,22 @@ const schema = {
 
 <script>
   import { animateValue } from '../../scripts/utils.ts';
+
+  const searchInput = document.getElementById('county-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const term = (e.target as HTMLInputElement).value.toLowerCase();
+      const rows = document.querySelectorAll('.county-row');
+      rows.forEach(row => {
+        const name = row.getAttribute('data-name')?.toLowerCase() || '';
+        if (name.includes(term)) {
+          (row as HTMLElement).style.display = '';
+        } else {
+          (row as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  }
 
   function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
   function parse(s) { return parseFloat(String(s).replace(/[^0-9.-]/g, '')) || 0; }
