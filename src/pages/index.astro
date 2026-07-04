@@ -497,7 +497,17 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
     // Email CTA opens modal
     document.getElementById('email-cta')?.addEventListener('click', () => {
       if (typeof (window as any).__openEmailModal === 'function') {
-        (window as any).__openEmailModal();
+        (window as any).__openEmailModal({
+          title: "Your Mortgage Breakdown",
+          fields: [
+            { label: "Monthly Payment", value: document.getElementById('monthly-payment')?.textContent?.trim() || '$0', highlight: true },
+            { label: "Principal & Interest", value: document.getElementById('pi-amount')?.textContent?.trim() || '$0' },
+            { label: "Property Tax", value: document.getElementById('tax-amount')?.textContent?.trim() || '$0' },
+            { label: "Home Insurance", value: document.getElementById('insurance-amount')?.textContent?.trim() || '$0' },
+            { label: "Total Interest", value: document.getElementById('total-interest')?.textContent?.trim() || '$0' },
+            { label: "Total Cost", value: document.getElementById('total-cost')?.textContent?.trim() || '$0' }
+          ]
+        });
       }
     });
 

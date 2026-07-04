@@ -40,21 +40,16 @@
         </div>
       </div>
 
-      <h3 class="text-xl font-bold text-center mb-2" style="color: var(--text-primary);">
-        Get Your Personalized Mortgage Report
+      <h3 id="email-modal-title" class="text-xl font-bold text-center mb-2" style="color: var(--text-primary);">
+        Get Your Personalized Report
       </h3>
       <p class="text-sm text-center mb-6" style="color: var(--text-muted);">
-        We'll email your full breakdown including monthly payment, amortization highlights, and current rates.
+        We'll email your full breakdown directly to your inbox.
       </p>
 
-      <!-- Hidden fields populated by JS -->
+      <!-- Dynamic fields populated by JS -->
       <div id="email-modal-summary" class="rounded-xl p-4 mb-6 space-y-2 text-sm font-mono" style="background: var(--bg-surface-2); color: var(--text-secondary);">
-        <div class="flex justify-between"><span>Monthly Payment</span><span id="modal-monthly" class="font-semibold" style="color: var(--text-primary);">—</span></div>
-        <div class="flex justify-between"><span>P&I</span><span id="modal-pi">—</span></div>
-        <div class="flex justify-between"><span>Tax</span><span id="modal-tax">—</span></div>
-        <div class="flex justify-between"><span>Insurance</span><span id="modal-ins">—</span></div>
-        <div class="flex justify-between"><span>Total Interest</span><span id="modal-total-interest">—</span></div>
-        <div class="flex justify-between"><span>Total Cost</span><span id="modal-total-cost">—</span></div>
+        <!-- Populated dynamically -->
       </div>
 
       <form id="email-capture-form" class="space-y-4">
@@ -111,6 +106,8 @@
 </div>
 
 <script>
+  let currentEmailPayload: any = null;
+
   document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('email-modal-overlay');
     const modal = document.getElementById('email-modal');
@@ -119,16 +116,52 @@
     const formState = document.getElementById('email-form-state');
     const successState = document.getElementById('email-success-state');
     const successClose = document.getElementById('email-success-close');
+    const emailInput = document.getElementById('email-capture-input') as HTMLInputElement;
 
-    function openModal() {
+    // Expose open function globally
+    (window as any).__openEmailModal = function(options: any) {
       if (!overlay || !modal) return;
+      
+      currentEmailPayload = options || {};
+      
+      // Update Title
+      const titleEl = document.getElementById('email-modal-title');
+      if (titleEl && options.title) {
+        titleEl.textContent = options.title;
+      }
+
+      // Update Summary Fields
+      const summaryContainer = document.getElementById('email-modal-summary');
+      if (summaryContainer) {
+        summaryContainer.innerHTML = '';
+        if (options.fields && Array.isArray(options.fields)) {
+          options.fields.forEach((f: any) => {
+            const row = document.createElement('div');
+            row.className = 'flex justify-between';
+            const labelSpan = document.createElement('span');
+            labelSpan.textContent = f.label;
+            const valueSpan = document.createElement('span');
+            valueSpan.textContent = f.value;
+            if (f.highlight) {
+              valueSpan.className = 'font-semibold';
+              valueSpan.style.color = 'var(--text-primary)';
+            }
+            row.appendChild(labelSpan);
+            row.appendChild(valueSpan);
+            summaryContainer.appendChild(row);
+          });
+        }
+      }
+
       overlay.classList.remove('hidden');
       overlay.classList.add('flex');
+      
       requestAnimationFrame(() => {
         modal.classList.remove('scale-95', 'opacity-0');
         modal.classList.add('scale-100', 'opacity-100');
+        emailInput?.focus();
       });
-    }
+    };
 
     function closeModal() {
       if (!overlay || !modal) return;
@@ -177,28 +210,18 @@
       if (errorMessage) errorMessage.classList.add('hidden');
 
       try {
-        // Collect data from the DOM
-        const monthly = document.getElementById('modal-monthly')?.textContent || '';
-        const pi = document.getElementById('modal-pi')?.textContent || '';
-        const tax = document.getElementById('modal-tax')?.textContent || '';
-        const ins = document.getElementById('modal-ins')?.textContent || '';
-        const totalInterest = document.getElementById('modal-total-interest')?.textContent || '';
-        const totalCost = document.getElementById('modal-total-cost')?.textContent || '';
+        const payload = {
+          email,
+          title: currentEmailPayload?.title || "Your Breakdown",
+          fields: currentEmailPayload?.fields || []
+        };
 
         const res = await fetch('/api/send-breakdown', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            email,
-            monthly,
-            pi,
-            tax,
-            ins,
-            totalInterest,
-            totalCost
-          })
+          body: JSON.stringify(payload)
         });
 
         const data = await res.json();
