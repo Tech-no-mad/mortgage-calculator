@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
 import { SITE_EMAIL } from '../../config';
+// @ts-ignore
+import { env as cfEnv } from 'cloudflare:workers';
 
 export const POST: APIRoute = async (context) => {
   try {
@@ -14,8 +16,8 @@ export const POST: APIRoute = async (context) => {
     }
 
     // Astro provides secrets via import.meta.env in dev.
-    // In a Cloudflare Worker, this can also be bound to process.env or context depending on config.
-    const env = (context.locals as any)?.runtime?.env || import.meta.env || (globalThis as any).process?.env || {};
+    // In Astro v6 for Cloudflare, we must use cloudflare:workers for runtime env.
+    const env = cfEnv || import.meta.env || (globalThis as any).process?.env || {};
     const resendApiKey = env.RESEND_API_KEY;
 
     if (!resendApiKey) {
