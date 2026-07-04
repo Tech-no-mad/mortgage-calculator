@@ -4,7 +4,7 @@ import statesData from '../data/states.json';
 import { getLiveRates } from '../utils/rates';
 const ratesData = await getLiveRates(Astro);
 import AdSlot from '../components/AdSlot.astro';
-import AffiliateCTA from '../components/AffiliateCTA.astro';
+import AdvancedSettings from '../components/AdvancedSettings.astro';
 
 const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-US', { month: 'long', year: 'numeric', day: 'numeric' });
 ---
@@ -210,9 +210,6 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
               <p class="text-lg font-bold font-mono text-[#10b981] dark:text-emerald-400" id="total-cost">$661,562</p>
             </div>
           </div>
-
-          <!-- Affiliate CTA -->
-          <AffiliateCTA />
         </div>
       </div>
   </section>
