@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import statesData from '../../data/states.json';
+import countiesData from '../../data/counties.json';
 
 export const prerender = true;
 
@@ -36,6 +37,11 @@ const stateKeywords = stateData.keywords ? stateData.keywords.join(', ') : `${st
 import { getLiveRates } from '../../utils/rates';
 const ratesData = await getLiveRates(Astro);
 
+const stateCounties = countiesData[stateData.slug] || [];
+const avgCountyTaxRate = stateCounties.length > 0 
+  ? +(stateCounties.reduce((acc, c) => acc + c.effectiveTaxRate, 0) / stateCounties.length).toFixed(2)
+  : stateData.taxRate;
+
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -60,6 +66,14 @@ const schema = {
           "acceptedAnswer": {
             "@type": "Answer",
             "text": `The average effective property tax rate in ${stateData.name} is ${stateData.taxRate}%. Property taxes can vary widely depending on the county and municipality.`
+          }
+        },
+        {
+          "@type": "Question",
+          "name": `What is the average property tax rate in ${stateData.name} counties?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Based on Census data across counties in ${stateData.name}, the average effective property tax rate is ${avgCountyTaxRate}%.`
           }
         },
         {
@@ -395,6 +409,40 @@ const schema = {
         </p>
       </div>
     </div>
+
+    {stateCounties.length > 0 && (
+      <div class="card p-6 sm:p-8 mt-10">
+        <h2 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">
+          County-Level Data for {stateData.name}
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-[var(--text-secondary)]">
+            <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-800/50 text-[var(--text-muted)]">
+              <tr>
+                <th scope="col" class="px-4 py-3 rounded-l-lg">County Name</th>
+                <th scope="col" class="px-4 py-3">Median Home Value</th>
+                <th scope="col" class="px-4 py-3">Median Property Tax</th>
+                <th scope="col" class="px-4 py-3 rounded-r-lg">Effective Tax Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stateCounties.map(county => (
+                <tr class="border-b border-gray-100 dark:border-gray-800/60 last:border-0 hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors">
+                  <td class="px-4 py-3 font-medium text-[var(--text-primary)]">{county.name}</td>
+                  <td class="px-4 py-3 font-mono">${county.medianHomeValue.toLocaleString('en-US')}</td>
+                  <td class="px-4 py-3 font-mono">${county.medianPropertyTax.toLocaleString('en-US')}</td>
+                  <td class="px-4 py-3 font-mono">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300">
+                      {county.effectiveTaxRate.toFixed(2)}%
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )}
     
     <div class="max-w-4xl mx-auto mt-10">
       <ins class="adsbygoogle" style="display:none"></ins>

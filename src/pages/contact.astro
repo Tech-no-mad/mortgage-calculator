@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getLiveRates } from '../utils/rates';
+import { SITE_EMAIL } from '../config';
 const ratesData = await getLiveRates(Astro);
 ---
 
@@ -59,7 +60,7 @@ const ratesData = await getLiveRates(Astro);
     <div class="text-center mt-6">
       <p class="text-xs text-[var(--text-muted)]">
         Prefer traditional mail options? Reach our administrative desk directly at 
-        <a href="mailto:support@mortgagedash.app" class="text-[#06b6d4] hover:underline font-medium">support@mortgagedash.app</a>.
+        <a href={`mailto:${SITE_EMAIL}`} class="text-[#06b6d4] hover:underline font-medium">{SITE_EMAIL}</a>.
       </p>
     </div>
   </section>

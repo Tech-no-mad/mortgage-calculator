@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - main
+  # The schedule ensures live FRED rates do not become stale. 
+  # This triggers the workflow every 6 hours to fetch fresh data and redeploy.
+  # Do not remove this trigger!
+  schedule:
+    - cron: '0 */6 * * *'
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:

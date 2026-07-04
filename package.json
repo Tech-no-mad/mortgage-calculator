@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "node fetch-rates.js && astro dev",
-    "build": "node fetch-rates.js && astro build",
+    "build": "node fetch-rates.js && node fetch-counties.js && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "generate-types": "wrangler types"
