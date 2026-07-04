@@ -72,13 +72,19 @@
           </svg>
         </div>
         <button
+          id="email-submit-btn"
           type="submit"
-          class="w-full py-3 rounded-xl text-white font-bold text-sm shadow-lg hover:opacity-90 transition-opacity"
+          class="w-full py-3 rounded-xl text-white font-bold text-sm shadow-lg hover:opacity-90 transition-opacity flex justify-center items-center"
           style="background: linear-gradient(135deg, var(--color-usa-blue), var(--color-usa-red));"
         >
-          Send My Report →
+          <span id="email-submit-text">Send My Report →</span>
+          <svg id="email-submit-spinner" class="hidden animate-spin ml-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
         </button>
         <p class="text-xs text-center" style="color: var(--text-muted);">No spam. Unsubscribe anytime.</p>
+        <p id="email-error-message" class="hidden text-xs text-center text-red-500 font-medium"></p>
       </form>
     </div>
 
@@ -153,23 +159,77 @@
       }
     });
 
-    form?.addEventListener('submit', (e) => {
+    form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const emailInput = document.getElementById('email-capture-input') as HTMLInputElement;
       const email = emailInput?.value?.trim();
       if (!email) return;
 
-      // Store in localStorage
-      const stored = JSON.parse(localStorage.getItem('mortgagedash_emails') || '[]');
-      stored.push({ email, timestamp: new Date().toISOString() });
-      localStorage.setItem('mortgagedash_emails', JSON.stringify(stored));
+      const submitBtn = document.getElementById('email-submit-btn') as HTMLButtonElement;
+      const submitText = document.getElementById('email-submit-text');
+      const submitSpinner = document.getElementById('email-submit-spinner');
+      const errorMessage = document.getElementById('email-error-message');
 
-      // Show success state
-      if (formState) formState.classList.add('hidden');
-      if (successState) successState.classList.remove('hidden');
+      // Set loading state
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitText) submitText.textContent = "Sending...";
+      if (submitSpinner) submitSpinner.classList.remove('hidden');
+      if (errorMessage) errorMessage.classList.add('hidden');
 
-      // Clear the input
-      emailInput.value = '';
+      try {
+        // Collect data from the DOM
+        const monthly = document.getElementById('modal-monthly')?.textContent || '';
+        const pi = document.getElementById('modal-pi')?.textContent || '';
+        const tax = document.getElementById('modal-tax')?.textContent || '';
+        const ins = document.getElementById('modal-ins')?.textContent || '';
+        const totalInterest = document.getElementById('modal-total-interest')?.textContent || '';
+        const totalCost = document.getElementById('modal-total-cost')?.textContent || '';
+
+        const res = await fetch('/api/send-breakdown', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email,
+            monthly,
+            pi,
+            tax,
+            ins,
+            totalInterest,
+            totalCost
+          })
+        });
+
+        const data = await res.json();
+        
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to send email");
+        }
+
+        // Store in localStorage as backup
+        const stored = JSON.parse(localStorage.getItem('mortgagedash_emails') || '[]');
+        stored.push({ email, timestamp: new Date().toISOString() });
+        localStorage.setItem('mortgagedash_emails', JSON.stringify(stored));
+
+        // Show success state
+        if (formState) formState.classList.add('hidden');
+        if (successState) successState.classList.remove('hidden');
+
+        // Clear the input
+        emailInput.value = '';
+
+      } catch (err: any) {
+        if (errorMessage) {
+          errorMessage.textContent = err.message || "An error occurred while sending the email.";
+          errorMessage.classList.remove('hidden');
+        }
+      } finally {
+        // Reset loading state
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitText) submitText.textContent = "Send My Report →";
+        if (submitSpinner) submitSpinner.classList.add('hidden');
+      }
     });
   });
 </script>
