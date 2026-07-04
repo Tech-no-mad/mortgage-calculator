@@ -439,10 +439,12 @@ const schema = {
               </tr>
             </thead>
             <tbody>
-              {stateCounties.map(county => (
+              {stateCounties.map(county => {
+                const cSlug = county.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                return (
                 <tr class="county-row border-b border-gray-100 dark:border-gray-800/60 last:border-0 hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors" data-name={county.name}>
                   <td class="px-4 py-3 font-medium">
-                    <a href={`/states/${stateData.slug}/${county.slug}/`} class="text-[var(--primary)] hover:underline flex items-center gap-1">
+                    <a href={`/states/${stateData.slug}/${cSlug}/`} class="text-[var(--primary)] hover:underline flex items-center gap-1">
                       {county.name}
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
@@ -455,7 +457,8 @@ const schema = {
                     </span>
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>
