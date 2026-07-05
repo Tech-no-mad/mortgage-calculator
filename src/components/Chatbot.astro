@@ -13,8 +13,7 @@ const regions = [
 ];
 ---
 
-<!-- Puter.js integration for FREE Gemini AI -->
-<script is:inline src="https://js.puter.com/v2/"></script>
+<!-- Chatbot is strictly for navigation now, no Puter.js -->
 
 <!-- Pass data to client -->
 <script is:inline define:vars={{ searchDict, regions }}>
@@ -226,44 +225,13 @@ const regions = [
       const submitBtn = form.querySelector('button');
       submitBtn.disabled = true;
 
-      try {
-        if (typeof puter === 'undefined') {
-          throw new Error("Puter.js not loaded.");
-        }
-
-        let fullResponse = "";
-        bubble.innerHTML = "";
-        
-        // Ensure prompt history string is passed to chat for context (Puter API might only take strings in some simple wrappers, but we'll try passing the array or a combined string)
-        const combinedPrompt = messageHistory.map(m => `${m.role === 'system' ? 'Instructions' : m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`).join('\n\n') + "\n\nAssistant:";
-        
-        const stream = await puter.ai.chat(combinedPrompt, {
-          model: 'gemini-3.5-flash',
-          stream: true
-        });
-
-        for await (const part of stream) {
-          if (part?.text) {
-            fullResponse += part.text;
-            
-            // Re-render formatting for streaming
-            let parsedText = fullResponse.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-blue-600 dark:text-blue-400 hover:underline">$1</a>');
-            parsedText = parsedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            parsedText = parsedText.replace(/\n/g, '<br/>');
-            
-            bubble.innerHTML = parsedText;
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-          }
-        }
-        
-        messageHistory.push({ role: 'assistant', content: fullResponse });
-
-      } catch (err) {
-        bubble.innerHTML = `<span class="text-red-500">Error connecting to AI: ${err.message}</span>`;
-      } finally {
+      // Simulate a small delay for natural feel
+      setTimeout(() => {
+        bubble.innerHTML = "I am a simple navigation assistant! Please start typing the name of a state (like 'Texas') or a region (like 'Western') and select an option from the dropdown menu above to navigate there.";
+        messagesEl.scrollTop = messagesEl.scrollHeight;
         submitBtn.disabled = false;
         input.focus();
-      }
+      }, 500);
     }
   })();
 </script>
