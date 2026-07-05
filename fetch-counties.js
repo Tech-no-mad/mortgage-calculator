@@ -141,6 +141,19 @@ async function main() {
         });
       }
 
+      if (state.slug === 'hawaii') {
+        // Kalawao County is historically skipped by Census API queries due to a population under 80
+        // and no open/taxable real estate transactions. We inject it manually to complete the 5 Hawaii counties.
+        validCounties.push({
+          name: "Kalawao County",
+          fipsCode: "15005",
+          medianHomeValue: 835000, // State average fallback
+          medianPropertyTax: 0,    // $0 property tax rate in Kalawao County
+          effectiveTaxRate: 0.0
+        });
+      }
+
+
       if (validCounties.length > 0) {
         // Sort alphabetically by county name
         validCounties.sort((a, b) => a.name.localeCompare(b.name));

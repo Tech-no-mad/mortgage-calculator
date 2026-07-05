@@ -3843,6 +3843,13 @@
       "effectiveTaxRate": 0.2845469838981014
     },
     {
+      "name": "Kalawao County",
+      "fipsCode": "15005",
+      "medianHomeValue": 835000,
+      "medianPropertyTax": 0,
+      "effectiveTaxRate": 0
+    },
+    {
       "name": "Kauai County",
       "fipsCode": "15007",
       "medianHomeValue": 742900,
