@@ -176,8 +176,7 @@
       }, 200);
     }
 
-    // Expose openModal globally so index.astro can call it
-    (window as any).__openEmailModal = openModal;
+
 
     closeBtn?.addEventListener('click', closeModal);
     successClose?.addEventListener('click', closeModal);
