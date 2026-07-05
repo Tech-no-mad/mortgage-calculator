@@ -29,6 +29,7 @@ const {
 } = Astro.props;
 
 const fullTitle = `${title} | MortgageDash`;
+const isRealAdEnabled = false; // Disabled until AdSense account is approved and configured
 
 // Ensure canonicalUrl is absolute
 const absoluteCanonicalUrl = canonicalUrl.startsWith('http') 
@@ -77,6 +78,7 @@ const absoluteOgImage = ogImage.startsWith('http')
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Google Consent Mode & Dynamic Script Loading -->
+    <script is:inline set:html={`window.isRealAdEnabled = ${isRealAdEnabled};`} />
     <script is:inline>
       const hasConsent = localStorage.getItem('mortgagedash_cookie_consent') === 'granted';
       
@@ -85,7 +87,7 @@ const absoluteOgImage = ogImage.startsWith('http')
         'analytics_storage': hasConsent ? 'granted' : 'denied'
       });
       
-      if (hasConsent) {
+      if (hasConsent && window.isRealAdEnabled) {
         const adsenseScript = document.createElement('script');
         adsenseScript.async = true;
         adsenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX";
@@ -212,7 +214,7 @@ const absoluteOgImage = ogImage.startsWith('http')
             });
           }
           
-          if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
+          if (window.isRealAdEnabled && !document.querySelector('script[src*="adsbygoogle.js"]')) {
              const adsenseScript = document.createElement('script');
              adsenseScript.async = true;
              adsenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX";

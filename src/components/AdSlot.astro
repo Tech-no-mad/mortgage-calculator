@@ -7,7 +7,7 @@ interface Props {
 const { type, class: className = '' } = Astro.props;
 
 const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-XXXXXXXXXXXXXXXX';
-const isRealAdEnabled = adsenseClient && adsenseClient !== 'ca-pub-XXXXXXXXXXXXXXXX';
+const isRealAdEnabled = false; // Disabled until AdSense account is approved and configured
 
 const typeConfig = {
   leaderboard: {
