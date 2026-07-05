@@ -106,7 +106,19 @@ const schema = {
 };
 ---
 
-<style define:vars={{ primary: primaryColor, secondary: secondaryColor, lightBg: lightBg }}>
+<style define:vars={{ hue, hueSec: (hue + 25) % 360 }}>
+  :root {
+    --primary: hsl(var(--hue), 75%, 42%);
+    --secondary: hsl(var(--hueSec), 75%, 52%);
+    --lightBg: hsla(var(--hue), 75%, 42%, 0.1);
+  }
+  
+  :global(.dark) {
+    --primary: hsl(var(--hue), 85%, 68%);
+    --secondary: hsl(var(--hueSec), 85%, 72%);
+    --lightBg: hsla(var(--hue), 85%, 68%, 0.15);
+  }
+
   .state-gradient {
     background-image: linear-gradient(to right, var(--primary), var(--secondary));
   }

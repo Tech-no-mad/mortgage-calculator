@@ -55,7 +55,7 @@ export const POST: APIRoute = async (context) => {
         'Authorization': `Bearer ${resendApiKey}`
       },
       body: JSON.stringify({
-        from: `MortgageDash <notifications@mortgagedash.app>`,
+        from: `MortgageDash <no-reply@mortgagedash.app>`,
         reply_to: 'no-reply@mortgagedash.app',
         to: email,
         subject: reportTitle,
