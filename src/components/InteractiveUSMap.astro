@@ -376,16 +376,22 @@ import counties from '../data/counties.json';
       const bbox = pathEl.getBBox();
       
       // Calculate padding based on state size
-      const pX = Math.max(50, bbox.width * 0.4);
-      const pY = Math.max(50, bbox.height * 0.4);
+      const pX = Math.max(40, bbox.width * 0.25);
+      const pY = Math.max(45, bbox.height * 0.3);
       
-      // Shift viewBox center leftwards since the panel takes up the right side
-      // The panel is max-w-lg (512px) on a 959px canvas roughly. 
-      // We want the state centered in the left 50% of the screen.
-      const shiftX = bbox.width * 0.5;
+      const w = bbox.width + pX * 2;
+      const h = bbox.height + pY * 2;
+      
+      // We want the state (padded width w) to occupy the left 52% of the viewport,
+      // leaving the right 48% clear for the sliding overlay panel.
+      const viewBoxW = w / 0.52;
+      // Start the viewBox slightly to the left of the state's padded boundary (4% padding)
+      const viewBoxX = bbox.x - pX - (viewBoxW * 0.04);
+      
+      const viewBoxY = bbox.y - pY;
+      const viewBoxH = h;
 
-      const newViewBox = `${bbox.x - pX - shiftX} ${bbox.y - pY} ${bbox.width + pX * 2 + shiftX*1.5} ${bbox.height + pY * 2}`;
-      svg.setAttribute('viewBox', newViewBox);
+      svg.setAttribute('viewBox', `${viewBoxX} ${viewBoxY} ${viewBoxW} ${viewBoxH}`);
 
       // Fade other states
       document.querySelectorAll('.state-path').forEach(p => {
