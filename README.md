@@ -78,8 +78,9 @@ We take user experience and accessibility seriously, having recently implemented
 
 ## 🚀 Technical Infrastructure
 
-- **Edge Deployment:** Configured with `@astrojs/cloudflare` to deploy seamlessly to Cloudflare Pages for instant, edge-network performance.
-- **Technical SEO:** Includes dynamic `sitemap-index.xml` generation, `robots.txt` configuration, extensive JSON-LD structured data, and semantic HTML markup.
+- **Edge Deployment:** Configured with `@astrojs/cloudflare` to deploy seamlessly to Cloudflare Workers/Pages on the custom domain [mortgagedash.app](https://mortgagedash.app).
+- **Verified Email Infrastructure:** Integrated with Resend API using custom domain authentication to send mortgage breakdown reports from `notifications@mortgagedash.app`.
+- **Technical SEO:** Includes dynamic `sitemap-index.xml` generation, `robots.txt` configuration pointing to the custom domain, extensive JSON-LD structured data, and semantic HTML markup.
 - **TypeScript Hydration:** Strict TypeScript compilation ensures that our interactive DOM logic runs flawlessly during static site generation.
 
 ---

@@ -55,7 +55,7 @@ export const POST: APIRoute = async (context) => {
         'Authorization': `Bearer ${resendApiKey}`
       },
       body: JSON.stringify({
-        from: `MortgageDash <onboarding@resend.dev>`, // Resend requires a verified domain or onboarding@resend.dev for testing to the registered email address.
+        from: `MortgageDash <notifications@mortgagedash.app>`,
         reply_to: SITE_EMAIL,
         to: email,
         subject: reportTitle,
