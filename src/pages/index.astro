@@ -149,10 +149,16 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
             </div>
             <p class="label-faint text-sm mb-6">per month</p>
             
-            <button type="button" id="email-cta" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[var(--color-usa-blue)] text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition shadow-sm mb-6 cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              Email me this breakdown
-            </button>
+            <div class="flex flex-col sm:flex-row gap-2 mb-6 w-full px-4 justify-center">
+              <button type="button" id="email-cta" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[var(--color-usa-blue)] text-white text-xs font-semibold rounded-lg hover:bg-opacity-90 transition shadow-sm cursor-pointer flex-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                Email Breakdown
+              </button>
+              <button type="button" id="share-cta" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[var(--bg-surface-2)] border border-[var(--border-default)] text-[var(--text-primary)] text-xs font-semibold rounded-lg hover:bg-[var(--border-default)] transition shadow-sm cursor-pointer flex-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 10.742l-2.777 1.388M8.684 10.742l3.417-1.708m0 0a2.997 2.997 0 104.243-4.243A2.997 2.997 0 0012.1 9.034zm0 0l-3.417 1.708m3.417-1.708a2.997 2.997 0 011.83 2.545m-6.077 0l2.777-1.388m0 0a2.996 2.996 0 002.545-1.83m-6.077 3.218a3 3 0 11-4.243-4.242 3 3 0 014.243 4.242z" /></svg>
+                <span id="share-cta-text">Share Results</span>
+              </button>
+            </div>
 
             <div class="relative w-40 h-40">
               <svg width="100%" height="100%" viewBox="0 0 42 42" class="transform -rotate-90">
@@ -426,10 +432,39 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
   document.addEventListener('DOMContentLoaded', async () => {
     const $ = (id) => document.getElementById(id);
     
-    // Parse URL params for specific loan types
+    // Parse URL params for specific loan types or shared configurations
     const params = new URLSearchParams(window.location.search);
     const type = params.get('type');
+    const sharePrice = params.get('price');
+    const shareDown = params.get('down');
+    const shareRate = params.get('rate');
+    const shareState = params.get('state');
     
+    if (sharePrice) {
+      $('home-price').value = sharePrice;
+      $('home-price-input').value = parseInt(sharePrice).toLocaleString();
+    }
+    if (shareDown) {
+      $('down-payment').value = shareDown;
+      $('down-payment-input').value = shareDown;
+      const hp = parseFloat(sharePrice || $('home-price').value);
+      if ($('down-payment-dollar-input')) {
+        $('down-payment-dollar-input').value = Math.round(hp * (parseFloat(shareDown) / 100)).toLocaleString();
+      }
+    }
+    if (shareRate) {
+      $('interest-rate').value = shareRate;
+      $('interest-rate-input').value = shareRate;
+    }
+    if (shareState) {
+      $('state-selector').value = shareState;
+      const option = $('state-selector').querySelector(`option[value="${shareState}"]`);
+      if (option) {
+        $('property-tax').value = option.getAttribute('data-tax') || '1.1';
+        $('home-insurance').value = option.getAttribute('data-ins') || '1200';
+      }
+    }
+
     if (type === 'fha') {
       $('calc-title').innerHTML = `FHA Mortgage <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>`;
       $('down-payment').value = "3.5";
@@ -444,8 +479,10 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
       $('down-payment-dollar-input')?.removeAttribute('data-step'); // Fixed value, skip onboarding step
     } else if (type === 'jumbo') {
       $('calc-title').innerHTML = `Jumbo Mortgage <span class="bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">Calculator</span>`;
-      $('home-price').value = "850000";
-      $('home-price-input').value = "850,000";
+      if (!sharePrice) {
+        $('home-price').value = "850000";
+        $('home-price-input').value = "850,000";
+      }
       document.title = "Jumbo Mortgage Calculator | MortgageDash";
     }
 
@@ -504,6 +541,36 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
           ]
         });
       }
+    });
+
+    // Share CTA copies custom URL to clipboard
+    document.getElementById('share-cta')?.addEventListener('click', () => {
+      const btn = document.getElementById('share-cta');
+      const txt = document.getElementById('share-cta-text');
+      
+      const price = $('home-price').value;
+      const down = $('down-payment').value;
+      const rate = $('interest-rate-input').value;
+      const state = $('state-selector').value;
+
+      const url = new URL(window.location.origin + window.location.pathname);
+      url.searchParams.set('price', price);
+      url.searchParams.set('down', down);
+      url.searchParams.set('rate', rate);
+      if (state) url.searchParams.set('state', state);
+
+      navigator.clipboard.writeText(url.toString()).then(() => {
+        if (txt && btn) {
+          txt.textContent = 'Copied! ✓';
+          btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+          btn.classList.remove('bg-[var(--bg-surface-2)]', 'text-[var(--text-primary)]');
+          setTimeout(() => {
+            txt.textContent = 'Share Results';
+            btn.classList.remove('bg-emerald-500', 'text-white', 'border-emerald-600');
+            btn.classList.add('bg-[var(--bg-surface-2)]', 'text-[var(--text-primary)]');
+          }, 2000);
+        }
+      });
     });
 
     // Mobile sticky payment bar - show when scrolled past results

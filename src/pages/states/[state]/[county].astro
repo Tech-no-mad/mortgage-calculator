@@ -113,9 +113,18 @@ const schema = {
         <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Median Home Value</h3>
         <p class="text-3xl font-bold text-[var(--text-primary)]">${countyData.medianHomeValue.toLocaleString()}</p>
       </div>
-      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-sm">
-        <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Effective Tax Rate</h3>
-        <p class="text-3xl font-bold text-[var(--text-primary)]">{countyData.effectiveTaxRate.toFixed(2)}%</p>
+      <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-sm flex flex-col justify-between">
+        <div>
+          <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Effective Tax Rate</h3>
+          <p class="text-3xl font-bold text-[var(--text-primary)]">{countyData.effectiveTaxRate.toFixed(2)}%</p>
+        </div>
+        <div id="tax-vote-container" class="mt-4 pt-3 border-t border-[var(--border-default)]/60 text-xs flex items-center justify-between gap-1">
+          <span class="text-[var(--text-muted)] font-medium">Is this accurate?</span>
+          <div class="flex gap-1.5">
+            <button id="btn-tax-vote-yes" class="px-2 py-1 rounded bg-[var(--bg-primary)] hover:bg-emerald-500 hover:text-white transition-colors border border-[var(--border-default)] font-bold cursor-pointer">👍 Yes</button>
+            <button id="btn-tax-vote-no" class="px-2 py-1 rounded bg-[var(--bg-primary)] hover:bg-rose-500 hover:text-white transition-colors border border-[var(--border-default)] font-bold cursor-pointer">👎 No</button>
+          </div>
+        </div>
       </div>
       <div class="bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border-default)] shadow-sm">
         <h3 class="text-sm font-medium text-[var(--text-muted)] mb-2">Annual Property Tax</h3>
@@ -153,9 +162,15 @@ const schema = {
           </select>
         </div>
       </div>
-      <button id="calc-btn" class="w-full bg-gradient-to-r from-[var(--color-usa-blue)] to-[#1e4b87] hover:from-[#1e4b87] hover:to-[var(--color-usa-blue)] text-white font-semibold py-4 px-8 rounded-xl shadow-md transition-all active:scale-[0.98]">
-        Calculate Payment
-      </button>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="calc-btn" class="flex-[2] bg-gradient-to-r from-[var(--color-usa-blue)] to-[#1e4b87] hover:from-[#1e4b87] hover:to-[var(--color-usa-blue)] text-white font-semibold py-4 px-8 rounded-xl shadow-md transition-all active:scale-[0.98] cursor-pointer">
+          Calculate Payment
+        </button>
+        <button id="share-btn" class="flex-1 bg-[var(--bg-surface-2)] border border-[var(--border-default)] text-[var(--text-primary)] font-semibold py-4 px-6 rounded-xl hover:bg-[var(--border-default)] transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 10.742l-2.777 1.388M8.684 10.742l3.417-1.708m0 0a2.997 2.997 0 104.243-4.243A2.997 2.997 0 0012.1 9.034zm0 0l-3.417 1.708m3.417-1.708a2.997 2.997 0 011.83 2.545m-6.077 0l2.777-1.388m0 0a2.996 2.996 0 002.545-1.83m-6.077 3.218a3 3 0 11-4.243-4.242 3 3 0 014.243 4.242z" /></svg>
+          <span id="share-btn-text">Share Results</span>
+        </button>
+      </div>
 
       <div id="calc-results" class="mt-8 pt-8 border-t border-[var(--border-default)] hidden">
         <div class="text-center">
@@ -216,6 +231,23 @@ const schema = {
       const btn = document.getElementById('calc-btn');
       if(!btn) return;
       
+      // Auto-fill shared parameters
+      const params = new URLSearchParams(window.location.search);
+      const sharePrice = params.get('price');
+      const shareDown = params.get('down');
+      const shareRate = params.get('rate');
+      const shareTerm = params.get('term');
+
+      if (sharePrice) document.getElementById('calc-home-price').value = sharePrice;
+      if (shareDown) document.getElementById('calc-down-payment').value = shareDown;
+      if (shareRate) document.getElementById('calc-rate').value = shareRate;
+      if (shareTerm) document.getElementById('calc-term').value = shareTerm;
+
+      // Automatically trigger calculation if shared link parameters are present
+      if (sharePrice || shareDown || shareRate || shareTerm) {
+        setTimeout(() => btn.click(), 100);
+      }
+
       btn.addEventListener('click', () => {
         const price = parseFloat(document.getElementById('calc-home-price').value) || 0;
         const downPct = parseFloat(document.getElementById('calc-down-payment').value) || 0;
@@ -248,6 +280,61 @@ const schema = {
         
         document.getElementById('calc-results').classList.remove('hidden');
       });
+
+      // Share button click handler
+      const shareBtn = document.getElementById('share-btn');
+      const shareTxt = document.getElementById('share-btn-text');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+          const price = document.getElementById('calc-home-price').value;
+          const down = document.getElementById('calc-down-payment').value;
+          const rate = document.getElementById('calc-rate').value;
+          const term = document.getElementById('calc-term').value;
+
+          const url = new URL(window.location.origin + window.location.pathname);
+          url.searchParams.set('price', price);
+          url.searchParams.set('down', down);
+          url.searchParams.set('rate', rate);
+          url.searchParams.set('term', term);
+
+          navigator.clipboard.writeText(url.toString()).then(() => {
+            if (shareTxt && shareBtn) {
+              shareTxt.textContent = 'Copied! ✓';
+              shareBtn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+              shareBtn.classList.remove('bg-[var(--bg-surface-2)]', 'text-[var(--text-primary)]');
+              setTimeout(() => {
+                shareTxt.textContent = 'Share Results';
+                shareBtn.classList.remove('bg-emerald-500', 'text-white', 'border-emerald-600');
+                shareBtn.classList.add('bg-[var(--bg-surface-2)]', 'text-[var(--text-primary)]');
+              }, 2000);
+            }
+          });
+        });
+      }
+
+      // Tax accuracy vote handler
+      const voteContainer = document.getElementById('tax-vote-container');
+      const btnYes = document.getElementById('btn-tax-vote-yes');
+      const btnNo = document.getElementById('btn-tax-vote-no');
+      
+      const countyKey = `voted-tax-${window.location.pathname}`;
+      if (localStorage.getItem(countyKey)) {
+        if (voteContainer) {
+          const val = localStorage.getItem(countyKey);
+          voteContainer.innerHTML = val === 'yes' 
+            ? '<span class="text-emerald-500 font-bold flex items-center gap-1">✓ Verified rate</span>' 
+            : '<span class="text-amber-500 font-bold flex items-center gap-1">✓ Feedback registered</span>';
+        }
+      } else {
+        btnYes?.addEventListener('click', () => {
+          localStorage.setItem(countyKey, 'yes');
+          if (voteContainer) voteContainer.innerHTML = '<span class="text-emerald-500 font-bold animate-pulse">✓ Verified! Thank you.</span>';
+        });
+        btnNo?.addEventListener('click', () => {
+          localStorage.setItem(countyKey, 'no');
+          if (voteContainer) voteContainer.innerHTML = '<span class="text-amber-500 font-bold animate-pulse">✓ Logged for audit. Thanks!</span>';
+        });
+      }
     });
   </script>
 </BaseLayout>
