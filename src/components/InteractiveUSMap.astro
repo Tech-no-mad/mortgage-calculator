@@ -156,8 +156,14 @@ import counties from '../data/counties.json';
       <button id="btn-back-map" class="text-sm font-semibold mb-3 px-3 py-1.5 rounded-lg bg-[var(--bg-input)] hover:bg-[var(--border-default)] transition-colors flex items-center gap-2" style="color: var(--text-secondary);">
         &larr; Back to Full Map
       </button>
-      <div class="flex items-center justify-between gap-2">
+      <div class="flex items-center justify-between gap-4">
         <h2 id="panel-state-name" class="text-3xl font-extrabold" style="color: var(--text-primary);">State</h2>
+        <div class="flex items-center gap-2.5 bg-[var(--bg-surface-2)] border border-[var(--border-default)] px-3 py-1.5 rounded-2xl shadow-sm shrink-0">
+          <span id="panel-state-abbr" class="text-xs font-extrabold px-2.5 py-1 rounded-lg bg-gradient-to-tr from-[var(--color-usa-blue)] to-[#1d4ed8] text-white shadow-sm">US</span>
+          <svg id="panel-state-shape" class="w-8 h-8 filter drop-shadow-sm transition-all duration-300" viewBox="0 0 100 100" fill="currentColor">
+            <!-- Path dynamically injected via JS -->
+          </svg>
+        </div>
       </div>
       <a id="btn-state-calc" href="#" class="mt-4 w-full py-3 rounded-xl bg-gradient-to-r from-[var(--color-usa-blue)] to-[#1e4b87] text-white font-bold shadow-md hover:shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
         Go to State Calculator &rarr;
@@ -387,6 +393,29 @@ import counties from '../data/counties.json';
 
       // Populate Panel
       document.getElementById('panel-state-name').textContent = state.name;
+      const abbrBadge = document.getElementById('panel-state-abbr');
+      if (abbrBadge) abbrBadge.textContent = state.abbr;
+
+      // Inject state shape SVG
+      const miniSvg = document.getElementById('panel-state-shape');
+      if (miniSvg && pathEl) {
+        try {
+          const pathBbox = pathEl.getBBox();
+          const pad = Math.max(pathBbox.width, pathBbox.height) * 0.1;
+          const x = pathBbox.x - pad;
+          const y = pathBbox.y - pad;
+          const w = pathBbox.width + pad * 2;
+          const h = pathBbox.height + pad * 2;
+          
+          miniSvg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+          
+          const fillCol = pathEl.style.fill || getHeatmapColor(state.taxRate);
+          miniSvg.innerHTML = `<path d="${pathEl.getAttribute('d')}" fill="${fillCol}" stroke="var(--border-default)" stroke-width="${Math.max(0.5, Math.min(2, Math.max(w,h)/30))}" stroke-linejoin="round" />`;
+        } catch(err) {
+          miniSvg.innerHTML = '';
+        }
+      }
+
       document.getElementById('panel-state-note').textContent = state.localNote || `Find county-specific property tax rates and home values across ${state.name}.`;
       btnStateCalc.href = `/states/${slug}/`;
 
