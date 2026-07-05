@@ -56,7 +56,7 @@ export const POST: APIRoute = async (context) => {
       },
       body: JSON.stringify({
         from: `MortgageDash <notifications@mortgagedash.app>`,
-        reply_to: SITE_EMAIL,
+        reply_to: 'no-reply@mortgagedash.app',
         to: email,
         subject: reportTitle,
         html: htmlContent
