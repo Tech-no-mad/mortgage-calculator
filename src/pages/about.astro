@@ -10,6 +10,15 @@ const ratesData = await getLiveRates(Astro);
   title="About Us"
   description="Learn more about MortgageDash and our mission to provide accurate, easy-to-use mortgage tools."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MortgageDash",
+    "url": "https://mortgagedash.app/",
+    "logo": "https://mortgagedash.app/og-default.png",
+    "description": "MortgageDash provides free, accurate mortgage calculators pre-loaded with real county tax data from all 50 US states and live Federal Reserve interest rates.",
+    "sameAs": []
+  })} />
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
     <div class="text-center mb-12">
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">

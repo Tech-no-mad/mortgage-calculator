@@ -16,6 +16,35 @@ const lastUpdatedDate = new Date(ratesData.lastUpdated).toLocaleDateString('en-U
   title="Free Mortgage Calculator"
   description="Calculate your monthly mortgage payment, see amortization schedules, and compare rates across all 50 US states. Free, fast, and accurate."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "MortgageDash",
+        "url": "https://mortgagedash.app/",
+        "description": "Free mortgage calculator suite with real-time rates, 50-state tax data, and county-level precision.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mortgagedash.app/states/{search_term_string}/",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "name": "MortgageDash Mortgage Calculator",
+        "url": "https://mortgagedash.app/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Calculate your monthly mortgage payment, see amortization schedules, and compare rates across all 50 US states. Free, fast, and accurate."
+      }
+    ]
+  })} />
   <!-- Hero -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
     <div class="text-center mb-10">

@@ -81,7 +81,7 @@ We take user experience and accessibility seriously, having recently implemented
 
 - **Edge Deployment:** Configured with `@astrojs/cloudflare` to deploy seamlessly to Cloudflare Workers/Pages on the custom domain [mortgagedash.app](https://mortgagedash.app).
 - **Verified Email Infrastructure:** Integrated with Resend API using custom domain authentication to send mortgage breakdown reports from `notifications@mortgagedash.app`.
-- **Technical SEO:** Includes dynamic `sitemap-index.xml` generation, `robots.txt` configuration pointing to the custom domain, extensive JSON-LD structured data, and semantic HTML markup.
+- **Technical SEO:** Includes dynamic `sitemap-index.xml` generation, `robots.txt` configuration pointing to the custom domain, extensive JSON-LD structured data (`WebSite` + `WebApplication` schema on the homepage with `SearchAction`, `Organization` schema on About, `BlogPosting` on all blog posts, `FAQPage` on FAQ and state pages), explicit canonical URLs on every page including all blog posts, `apple-touch-icon` support for iOS, and semantic HTML markup throughout.
 - **TypeScript Hydration:** Strict TypeScript compilation ensures that our interactive DOM logic runs flawlessly during static site generation.
 
 ---
