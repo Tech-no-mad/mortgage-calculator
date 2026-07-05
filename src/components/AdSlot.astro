@@ -74,13 +74,5 @@ const config = typeConfig[type];
     </div>
   )
 ) : (
-  type !== 'sticky' && (
-    <div class={`${config.wrapper} ${className} flex items-center justify-center border border-dashed border-[var(--border-default)] bg-[var(--bg-surface-2)]/50 rounded-2xl p-6 text-xs text-[var(--text-muted)] transition-all`} style={config.style}>
-      <div class="text-center">
-        <p class="font-bold uppercase tracking-wider opacity-60">Sponsored Advertisement</p>
-        <p class="mt-1 text-[var(--text-faint)]">{config.label}</p>
-        <p class="mt-0.5 text-[var(--text-faint)] text-[10px]">Placeholder will activate once PUBLIC_ADSENSE_CLIENT_ID is set</p>
-      </div>
-    </div>
-  )
+  null
 )}
