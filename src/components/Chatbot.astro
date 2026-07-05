@@ -73,6 +73,15 @@ const regions = [
       <!-- Options injected via JS -->
     </div>
 
+    <!-- Keyboard Navigation Tooltip -->
+    <div id="chat-keyboard-tooltip" class="hidden absolute bottom-20 left-3 right-3 bg-gradient-to-r from-[var(--color-usa-blue)] to-[#1d4ed8] text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center justify-between z-20 animate-bounce">
+      <span class="flex items-center gap-2">
+        <span class="text-sm">💡</span>
+        <span>Keyboard shortcut: Use <strong>&uarr;/&darr;</strong> and <strong>Enter</strong> to browse!</span>
+      </span>
+      <button id="btn-close-kb-tooltip" class="ml-2 font-bold text-white/80 hover:text-white text-base leading-none focus:outline-none">&times;</button>
+    </div>
+
     <!-- Input Area -->
     <div class="p-3 bg-[var(--bg-surface)]/90 border-t border-[var(--border-default)] shrink-0 relative">
       <form id="chat-form" class="flex items-center gap-2">
@@ -133,7 +142,10 @@ const regions = [
     const form = document.getElementById('chat-form');
     const input = document.getElementById('chat-input');
     const autocomplete = document.getElementById('chat-autocomplete');
+    const kbTooltip = document.getElementById('chat-keyboard-tooltip');
+    const closeKbTooltipBtn = document.getElementById('btn-close-kb-tooltip');
     
+    let activeIndex = -1;
     let isOpen = false;
     let messageHistory = [
       { role: "system", content: "You are the MortgageDash AI expert. Answer mortgage questions clearly and concisely. If a user asks about local rates or areas, tell them they can navigate to our state and county pages for exact data. Use markdown for bolding and lists, but do NOT use html. If you mention a state, provide a markdown link to it like [California](/states/california/). Be extremely helpful." }
@@ -149,15 +161,29 @@ const regions = [
         windowEl.classList.add('scale-100', 'opacity-100', 'flex');
         toggleBtn.classList.add('hidden');
         input.focus();
+
+        // Show one-time keyboard navigation tooltip
+        if (kbTooltip && !localStorage.getItem('hasSeenChatKbTooltip')) {
+          kbTooltip.classList.remove('hidden');
+        }
       } else {
         windowEl.classList.remove('scale-100', 'opacity-100');
         windowEl.classList.add('scale-95', 'opacity-0');
+        if (kbTooltip) kbTooltip.classList.add('hidden');
         setTimeout(() => {
           windowEl.classList.add('hidden');
           windowEl.classList.remove('flex');
           toggleBtn.classList.remove('hidden');
         }, 300);
       }
+    }
+
+    if (closeKbTooltipBtn) {
+      closeKbTooltipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (kbTooltip) kbTooltip.classList.add('hidden');
+        localStorage.setItem('hasSeenChatKbTooltip', 'true');
+      });
     }
 
     toggleBtn.addEventListener('click', toggleChat);
@@ -197,6 +223,7 @@ const regions = [
     input.addEventListener('input', (e) => {
       const val = e.target.value.toLowerCase().trim();
       autocomplete.innerHTML = '';
+      activeIndex = -1; // Reset active suggestion index
       if (val.length < 2) {
         autocomplete.classList.add('hidden');
         return;
@@ -235,7 +262,7 @@ const regions = [
         autocomplete.classList.remove('hidden');
         matches.forEach(m => {
           const item = document.createElement('div');
-          item.className = 'p-2 hover:bg-[var(--bg-input)] cursor-pointer rounded-lg text-sm text-[var(--text-primary)] mb-1 transition-colors';
+          item.className = 'autocomplete-item p-2 hover:bg-[var(--bg-input)] cursor-pointer rounded-lg text-sm text-[var(--text-primary)] mb-1 transition-colors';
           
           if (m.type === 'region') {
             item.innerHTML = `<strong>${m.label}</strong><br/><span class="text-xs text-[var(--text-muted)]">Includes: ${m.links.slice(0,3).join(', ')}...</span>`;
@@ -264,6 +291,46 @@ const regions = [
         autocomplete.classList.add('hidden');
       }
     });
+
+    // Keyboard Arrow Navigation
+    input.addEventListener('keydown', (e) => {
+      const items = autocomplete.querySelectorAll('.autocomplete-item');
+      if (autocomplete.classList.contains('hidden') || items.length === 0) return;
+
+      // Close the one-time keyboard navigation tooltip if they start using keys
+      if (kbTooltip && !kbTooltip.classList.contains('hidden')) {
+        kbTooltip.classList.add('hidden');
+        localStorage.setItem('hasSeenChatKbTooltip', 'true');
+      }
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIndex = (activeIndex + 1) % items.length;
+        updateActiveSuggestion(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIndex = (activeIndex - 1 + items.length) % items.length;
+        updateActiveSuggestion(items);
+      } else if (e.key === 'Enter') {
+        if (activeIndex >= 0 && activeIndex < items.length) {
+          e.preventDefault();
+          items[activeIndex].click();
+        }
+      } else if (e.key === 'Escape') {
+        autocomplete.classList.add('hidden');
+      }
+    });
+
+    function updateActiveSuggestion(items) {
+      items.forEach((item, idx) => {
+        if (idx === activeIndex) {
+          item.classList.add('bg-[var(--bg-input)]', 'ring-2', 'ring-[var(--color-usa-blue)]/50');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('bg-[var(--bg-input)]', 'ring-2', 'ring-[var(--color-usa-blue)]/50');
+        }
+      });
+    }
 
     // Close autocomplete on click outside
     document.addEventListener('click', (e) => {
