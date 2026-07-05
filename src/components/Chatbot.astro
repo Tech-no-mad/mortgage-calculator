@@ -1,8 +1,26 @@
 ---
 import states from '../data/states.json';
+import counties from '../data/counties.json';
 
 // Build a slim dictionary of states for the client side autocomplete
 const searchDict = states.map(s => ({ name: s.name, slug: s.slug }));
+
+// Build a slim dictionary of counties
+const countiesDict = [];
+const stateAbbrMap = {};
+states.forEach(s => { stateAbbrMap[s.slug] = s.abbr; });
+
+Object.keys(counties).forEach(stateSlug => {
+  const stateCounties = counties[stateSlug];
+  const abbr = stateAbbrMap[stateSlug] || stateSlug;
+  stateCounties.forEach(c => {
+    const countySlug = c.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    countiesDict.push({
+      name: `${c.name}, ${abbr}`,
+      url: `/states/${stateSlug}/${countySlug}/`
+    });
+  });
+});
 
 // Region mapping for the specific user request ("western could mean connecticut etc thes=se are examples search for more")
 const regions = [
@@ -16,8 +34,8 @@ const regions = [
 <!-- Chatbot is strictly for navigation now, no Puter.js -->
 
 <!-- Pass data to client -->
-<script is:inline define:vars={{ searchDict, regions }}>
-  window.chatbotData = { searchDict, regions };
+<script is:inline define:vars={{ searchDict, countiesDict, regions }}>
+  window.chatbotData = { searchDict, countiesDict, regions };
 </script>
 
 <!-- Chatbot UI -->
@@ -153,7 +171,7 @@ const regions = [
       }
 
       let matches = [];
-      const { searchDict, regions } = window.chatbotData;
+      const { searchDict, countiesDict, regions } = window.chatbotData;
 
       // Check regions
       regions.forEach(r => {
@@ -169,6 +187,18 @@ const regions = [
         }
       });
 
+      // Check counties (limit to 10 to avoid DOM bloat)
+      if (countiesDict) {
+        let count = 0;
+        for (let i = 0; i < countiesDict.length; i++) {
+          if (countiesDict[i].name.toLowerCase().includes(val)) {
+            matches.push({ type: 'county', label: countiesDict[i].name, url: countiesDict[i].url });
+            count++;
+            if (count >= 10) break;
+          }
+        }
+      }
+
       if (matches.length > 0) {
         autocomplete.classList.remove('hidden');
         matches.forEach(m => {
@@ -178,13 +208,17 @@ const regions = [
           if (m.type === 'region') {
             item.innerHTML = `<strong>${m.label}</strong><br/><span class="text-xs text-[var(--text-muted)]">Includes: ${m.links.slice(0,3).join(', ')}...</span>`;
             item.addEventListener('click', () => {
-              // Automatically send a message to AI asking about this region
               autocomplete.classList.add('hidden');
               input.value = '';
               const prompt = `Can you list the states in the ${m.label} and provide links to them?`;
               addMessage(prompt, true);
               messageHistory.push({ role: 'user', content: prompt });
               fetchAIResponse();
+            });
+          } else if (m.type === 'county') {
+            item.innerHTML = `<a href="${m.url}" class="block w-full">Go to <strong>${m.label}</strong> Calculator</a>`;
+            item.addEventListener('click', () => {
+              window.location.href = m.url;
             });
           } else {
             item.innerHTML = `<a href="/states/${m.slug}/" class="block w-full">Go to <strong>${m.label}</strong> Calculator</a>`;
