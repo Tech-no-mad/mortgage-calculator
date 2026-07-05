@@ -15,7 +15,7 @@
 		"FRED_API_KEY": "5bf6fd09086dc0702d2f9f40ddfc6c0a"
 	},
 	"routes": [
-		{ "pattern": "mortgagedash.app/*", "custom_domain": true },
-		{ "pattern": "www.mortgagedash.app/*", "custom_domain": true }
+		{ "pattern": "mortgagedash.app", "custom_domain": true },
+		{ "pattern": "www.mortgagedash.app", "custom_domain": true }
 	]
 }
