@@ -113,6 +113,8 @@ import counties from '../data/counties.json';
         </g>
         <!-- Labels injected via JS -->
         <g id="map-labels-group" class="pointer-events-none transition-opacity duration-300"></g>
+        <!-- Active Zoomed State Label -->
+        <g id="map-active-label" class="pointer-events-none transition-opacity duration-300 opacity-0"></g>
       </svg>
     </div>
 
@@ -206,6 +208,7 @@ import counties from '../data/counties.json';
     // DOM Elements
     const svg = document.getElementById('us-map-svg');
     const labelsGroup = document.getElementById('map-labels-group');
+    const activeLabel = document.getElementById('map-active-label');
     const tooltip = document.getElementById('map-tooltip');
     const statePanel = document.getElementById('state-panel');
     const btnBackMap = document.getElementById('btn-back-map');
@@ -426,6 +429,42 @@ import counties from '../data/counties.json';
       document.getElementById('panel-state-note').textContent = state.localNote || `Find county-specific property tax rates and home values across ${state.name}.`;
       btnStateCalc.href = `/states/${slug}/`;
 
+      // Populate active zoomed state label in center of zoomed state
+      if (activeLabel) {
+        activeLabel.innerHTML = '';
+        const cx = bbox.x + bbox.width / 2;
+        const cy = bbox.y + bbox.height / 2;
+        let adjCx = cx;
+        let adjCy = cy;
+        
+        // Exact coordinate adjustments for visual offset mapping
+        if (slug === 'california') adjCx -= 15;
+        if (slug === 'florida') adjCx += 15;
+        if (slug === 'michigan') { adjCx += 15; adjCy += 20; }
+        if (slug === 'louisiana') adjCx -= 10;
+        if (slug === 'idaho') adjCy += 20;
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', adjCx);
+        text.setAttribute('y', adjCy);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('dominant-baseline', 'central');
+        text.setAttribute('fill', '#ffffff');
+        text.setAttribute('stroke', '#0f172a');
+        text.setAttribute('stroke-width', `${Math.max(2.5, Math.min(5, bbox.width * 0.025))}px`);
+        text.setAttribute('paint-order', 'stroke fill');
+        
+        const fontSize = Math.max(16, Math.min(38, bbox.width * 0.16));
+        text.setAttribute('font-size', `${fontSize}px`);
+        text.setAttribute('font-weight', '900');
+        text.setAttribute('font-family', 'ui-sans-serif, system-ui, sans-serif');
+        text.style.pointerEvents = 'none';
+        
+        text.textContent = state.abbr;
+        activeLabel.appendChild(text);
+        activeLabel.classList.remove('opacity-0');
+      }
+
       // Load counties
       currentCounties = counties[slug] || [];
       currentCounties.sort((a,b) => a.name.localeCompare(b.name));
@@ -445,6 +484,11 @@ import counties from '../data/counties.json';
       statePanel.classList.add('translate-x-[120%]');
       legend.classList.remove('opacity-0');
       labelsGroup.classList.remove('opacity-0');
+      
+      if (activeLabel) {
+        activeLabel.classList.add('opacity-0');
+        activeLabel.innerHTML = '';
+      }
       
       // Reset zoom
       svg.setAttribute('viewBox', '0 0 959 593');
