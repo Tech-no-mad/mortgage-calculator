@@ -110,17 +110,5 @@ Run the following commands from your terminal at the root of the project to dive
 - **`public/`** - Static assets including favicons, robots.txt, ads.txt, and `_headers`.
 
 ---
-
-## 📊 Presentation Correction Utilities
-
-In addition to the core mortgage tools, this repository contains automated presentation correction utilities used to polish client-facing slide decks:
-- **`fix_downloads_pptx.py`**: A python script that automatically cleans ServiceNow x Accenture Virtual Agent presentation slides:
-  - Splitting overloaded slides (e.g. Slide 2 into Slide 2a/2b) and applying a renumbering cascade.
-  - Stripping stray subtitle underlines and AI-telltale footer bars.
-  - Converting 2-letter placeholders (e.g. `VA`, `KB`, `INC`) to native Webdings/Wingdings vector icons.
-  - Applying Accenture Purple branding colors, dark theme styles (Slide 1 and 11), and text sizing limits to prevent layout truncation.
-  - Fixing table row colors and layering text contrast to white for maximum readability.
-
----
 *Built with ❤️ for US homebuyers. Make confident decisions with MortgageDash.*
 
