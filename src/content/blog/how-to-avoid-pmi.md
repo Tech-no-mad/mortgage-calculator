@@ -1,36 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const title = "How to Avoid PMI (Private Mortgage Insurance) on Your Home Loan";
-const description = "Learn what PMI is, how much it costs, and four proven strategies to avoid paying Private Mortgage Insurance when you buy your next home.";
-const keywords = "how to avoid PMI, private mortgage insurance, remove PMI, 20 percent down payment, 80/10/10 loan, lender paid mortgage insurance";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "datePublished": "2026-07-01",
-  "author": {
-    "@type": "Organization",
-    "name": "MortgageDash Team"
-  }
-};
+title: "How to Avoid PMI (Private Mortgage Insurance) on Your Home Loan"
+description: "Learn what PMI is, how much it costs, and four proven strategies to avoid paying Private Mortgage Insurance when you buy your next home."
+date: "2026-07-01"
+canonicalUrl: "/blog/how-to-avoid-pmi/"
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} canonicalUrl="/blog/how-to-avoid-pmi/">
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-
-  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
-    <header class="mb-10 text-center">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
-        {title}
-      </h1>
-      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
-    </header>
-
-    <div class="prose prose-lg dark:prose-invert max-w-none">
-      <p class="lead font-medium text-xl mb-8">
+<p class="lead font-medium text-xl mb-8">
         The most straightforward way to avoid Private Mortgage Insurance (PMI) is to make a 20% down payment on your home, but if you don't have that much cash saved, you can also avoid it by using piggyback loans, lender-paid insurance, or specific government programs like VA loans.
       </p>
 
@@ -118,7 +93,3 @@ const schema = {
           Use the PITI Mortgage Calculator
         </a>
       </div>
-      
-    </div>
-  </article>
-</BaseLayout>

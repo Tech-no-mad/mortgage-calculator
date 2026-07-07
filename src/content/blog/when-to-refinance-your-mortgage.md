@@ -1,36 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const title = "When Does It Make Sense to Refinance Your Mortgage?";
-const description = "Wondering if you should refinance? Learn the break-even formula, discover the hidden costs, and find out exactly when refinancing makes financial sense.";
-const keywords = "when to refinance mortgage, mortgage refinance calculator, break-even point mortgage, refinance closing costs, lower mortgage rate";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "datePublished": "2026-07-01",
-  "author": {
-    "@type": "Organization",
-    "name": "MortgageDash Team"
-  }
-};
+title: "When Does It Make Sense to Refinance Your Mortgage?"
+description: "Wondering if you should refinance? Learn the break-even formula, discover the hidden costs, and find out exactly when refinancing makes financial sense."
+date: "2026-07-01"
+canonicalUrl: "/blog/when-to-refinance-your-mortgage/"
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} canonicalUrl="/blog/when-to-refinance-your-mortgage/">
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-
-  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
-    <header class="mb-10 text-center">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
-        {title}
-      </h1>
-      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
-    </header>
-
-    <div class="prose prose-lg dark:prose-invert max-w-none">
-      <p class="lead font-medium text-xl mb-8">
+<p class="lead font-medium text-xl mb-8">
         Refinancing your mortgage makes sense if the monthly savings from a lower interest rate outweigh the closing costs before you plan to sell the home, or if you need to switch from a risky adjustable-rate mortgage to a stable fixed-rate loan.
       </p>
 
@@ -127,7 +102,3 @@ const schema = {
           Open the Refinance Calculator
         </a>
       </div>
-      
-    </div>
-  </article>
-</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { title, description, date, canonicalUrl, state, county, loanType, relatedCalculator } = entry.data;
+
+// Fetch related posts (same state or loanType, excluding current post)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts.filter(p => 
+  p.slug !== entry.slug && 
+  (
+    (state && p.data.state === state) || 
+    (loanType && p.data.loanType === loanType)
+  )
+).slice(0, 3);
+
+// Build FAQ schema if content contains FAQs (simple heuristic, can be expanded)
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": date,
+  "author": {
+    "@type": "Organization",
+    "name": "MortgageDash Team"
+  }
+};
+---
+
+<BaseLayout title={title} description={description} canonicalUrl={canonicalUrl}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
+    <header class="mb-10 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
+        {title}
+      </h1>
+      <p class="text-lg text-[var(--text-secondary)]">Published on {date} • By MortgageDash Team</p>
+    </header>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <Content />
+    </div>
+
+    {relatedCalculator && (
+      <div class="bg-[var(--bg-card)] p-8 rounded-2xl border border-[var(--border-default)] text-center shadow-lg my-10 not-prose">
+        <p class="text-xl font-bold mb-6" style="color: var(--text-primary);">
+          Run your exact numbers and build a smarter home buying budget today.
+        </p>
+        <a href={relatedCalculator} class="inline-block px-8 py-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[#0ea5e9] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          Use the Calculator
+        </a>
+      </div>
+    )}
+
+    {relatedPosts.length > 0 && (
+      <div class="mt-16 pt-10 border-t border-[var(--border-default)] not-prose">
+        <h3 class="text-2xl font-bold mb-6">Related Articles</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {relatedPosts.map(post => (
+            <a href={`/blog/${post.slug}/`} class="card p-6 hover:shadow-md transition-shadow">
+              <h4 class="font-bold text-lg mb-2 text-[var(--color-usa-blue)] dark:text-blue-400">{post.data.title}</h4>
+              <p class="text-sm text-[var(--text-secondary)] line-clamp-3">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </article>
+</BaseLayout>

@@ -1,36 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const title = "30-Year vs. 15-Year Mortgage: Which Should You Choose?";
-const description = "Deciding between a 30-year and 15-year mortgage? Compare monthly payments, interest savings, and find out which loan term fits your financial goals.";
-const keywords = "30-year vs 15-year mortgage, mortgage term comparison, 15 year mortgage calculator, 30 year fixed mortgage rates, pay off mortgage early";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "datePublished": "2026-07-01",
-  "author": {
-    "@type": "Organization",
-    "name": "MortgageDash Team"
-  }
-};
+title: "30-Year vs. 15-Year Mortgage: Which Should You Choose?"
+description: "Deciding between a 30-year and 15-year mortgage? Compare monthly payments, interest savings, and find out which loan term fits your financial goals."
+date: "2026-07-01"
+canonicalUrl: "/blog/30-year-vs-15-year-mortgage/"
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} canonicalUrl="/blog/30-year-vs-15-year-mortgage/">
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-
-  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
-    <header class="mb-10 text-center">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
-        {title}
-      </h1>
-      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
-    </header>
-
-    <div class="prose prose-lg dark:prose-invert max-w-none">
-      <p class="lead font-medium text-xl mb-8">
+<p class="lead font-medium text-xl mb-8">
         The simplest answer to the 30-year vs. 15-year mortgage debate is this: a 30-year mortgage offers lower, more manageable monthly payments, while a 15-year mortgage saves you tens of thousands of dollars in interest and builds equity twice as fast. 
       </p>
 
@@ -145,7 +120,3 @@ const schema = {
           Try the Loan Payment Calculator
         </a>
       </div>
-      
-    </div>
-  </article>
-</BaseLayout>

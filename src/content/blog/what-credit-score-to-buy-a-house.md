@@ -1,36 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const title = "What Credit Score Do You Need to Buy a House?";
-const description = "Find out the minimum credit score needed to buy a house in 2026. Compare requirements for Conventional, FHA, VA, and Jumbo loans, and learn how to improve your score.";
-const keywords = "credit score to buy a house, minimum credit score for mortgage, FHA loan credit score, conventional loan requirements, mortgage interest rates by credit score";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "datePublished": "2026-07-01",
-  "author": {
-    "@type": "Organization",
-    "name": "MortgageDash Team"
-  }
-};
+title: "What Credit Score Do You Need to Buy a House?"
+description: "Find out the minimum credit score needed to buy a house in 2026. Compare requirements for Conventional, FHA, VA, and Jumbo loans, and learn how to improve your score."
+date: "2026-07-01"
+canonicalUrl: "/blog/what-credit-score-to-buy-a-house/"
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} canonicalUrl="/blog/what-credit-score-to-buy-a-house/">
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-
-  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
-    <header class="mb-10 text-center">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
-        {title}
-      </h1>
-      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
-    </header>
-
-    <div class="prose prose-lg dark:prose-invert max-w-none">
-      <p class="lead font-medium text-xl mb-8">
+<p class="lead font-medium text-xl mb-8">
         You can technically buy a house with a credit score as low as 500 using certain government-backed loans, but to qualify for a standard conventional mortgage and secure competitive interest rates, you will generally need a credit score of at least 620.
       </p>
 
@@ -127,7 +102,3 @@ const schema = {
           Explore the FHA Loan Calculator
         </a>
       </div>
-      
-    </div>
-  </article>
-</BaseLayout>

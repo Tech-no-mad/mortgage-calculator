@@ -1,36 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const title = "How Much House Can I Afford? A Simple Formula for 2026";
-const description = "Learn exactly how much house you can afford in 2026 using the 28/36 rule. Discover how your salary, debt, and down payment affect your home buying budget.";
-const keywords = "how much house can I afford, how much house can I afford on my salary, home buying budget, 28/36 rule mortgage, mortgage affordability calculator";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "datePublished": "2026-07-01",
-  "author": {
-    "@type": "Organization",
-    "name": "MortgageDash Team"
-  }
-};
+title: "How Much House Can I Afford? A Simple Formula for 2026"
+description: "Learn exactly how much house you can afford in 2026 using the 28/36 rule. Discover how your salary, debt, and down payment affect your home buying budget."
+date: "2026-07-01"
+canonicalUrl: "/blog/how-much-house-can-i-afford/"
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} canonicalUrl="/blog/how-much-house-can-i-afford/">
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-
-  <article class="max-w-4xl mx-auto px-4 py-12 text-[var(--text-primary)]">
-    <header class="mb-10 text-center">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[var(--color-usa-blue)] to-[var(--color-usa-red)] bg-clip-text text-transparent">
-        {title}
-      </h1>
-      <p class="text-lg text-[var(--text-secondary)]">Published on July 1, 2026 • By MortgageDash Team</p>
-    </header>
-
-    <div class="prose prose-lg dark:prose-invert max-w-none">
-      <p class="lead font-medium text-xl mb-8">
+<p class="lead font-medium text-xl mb-8">
         If you are wondering "how much house can I afford," the quick answer lies in the 28/36 rule: spend no more than 28% of your gross monthly income on housing costs, and no more than 36% on all your debts combined. This simple benchmark helps ensure you don't end up "house poor" while paying your mortgage.
       </p>
 
@@ -127,7 +102,3 @@ const schema = {
           Use the Affordability Calculator Now
         </a>
       </div>
-      
-    </div>
-  </article>
-</BaseLayout>

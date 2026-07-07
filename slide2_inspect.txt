@@ -1,0 +1,115 @@
+Slide 2 shapes:
+Shape name: Rectangle 1, Type: AUTO_SHAPE (1), Left: 0.00, Top: 0.00, Width: 3.40, Height: 7.50
+  Text: ''
+Shape name: TextBox 2, Type: TEXT_BOX (17), Left: 0.45, Top: 0.50, Width: 2.50, Height: 1.40
+  Text: 'Problem Statement'
+Shape name: TextBox 3, Type: TEXT_BOX (17), Left: 0.48, Top: 2.00, Width: 2.60, Height: 0.80
+  Text: 'The Cost of Manual IT Support'
+Shape name: Oval 4, Type: AUTO_SHAPE (1), Left: 2.55, Top: 0.38, Width: 0.48, Height: 0.48
+  Text: ''
+Shape name: TextBox 5, Type: TEXT_BOX (17), Left: 2.61, Top: 0.43, Width: 0.36, Height: 0.22
+  Text: '02'
+Shape name: TextBox 6, Type: TEXT_BOX (17), Left: 0.45, Top: 3.00, Width: 2.40, Height: 0.25
+  Text: 'KEY DRIVERS'
+Shape name: Oval 7, Type: AUTO_SHAPE (1), Left: 0.45, Top: 3.45, Width: 0.36, Height: 0.36
+  Text: ''
+Shape name: TextBox 8, Type: TEXT_BOX (17), Left: 0.45, Top: 3.48, Width: 0.36, Height: 0.30
+  Text: '•'
+Shape name: TextBox 9, Type: TEXT_BOX (17), Left: 0.90, Top: 3.48, Width: 2.20, Height: 0.24
+  Text: 'Average cost per IT help desk ticket resolved manually: $22'
+Shape name: Oval 10, Type: AUTO_SHAPE (1), Left: 0.45, Top: 4.17, Width: 0.36, Height: 0.36
+  Text: ''
+Shape name: TextBox 11, Type: TEXT_BOX (17), Left: 0.45, Top: 4.20, Width: 0.36, Height: 0.30
+  Text: '•'
+Shape name: TextBox 12, Type: TEXT_BOX (17), Left: 0.90, Top: 4.20, Width: 2.20, Height: 0.24
+  Text: 'Rise in ticket volumes since 2020: +16%'
+Shape name: Oval 13, Type: AUTO_SHAPE (1), Left: 0.45, Top: 4.89, Width: 0.36, Height: 0.36
+  Text: ''
+Shape name: TextBox 14, Type: TEXT_BOX (17), Left: 0.45, Top: 4.92, Width: 0.36, Height: 0.30
+  Text: '•'
+Shape name: TextBox 15, Type: TEXT_BOX (17), Left: 0.90, Top: 4.92, Width: 2.20, Height: 0.24
+  Text: 'Employees attempt to self-serve first: 81%'
+Shape name: Oval 16, Type: AUTO_SHAPE (1), Left: 0.45, Top: 5.61, Width: 0.36, Height: 0.36
+  Text: ''
+Shape name: TextBox 17, Type: TEXT_BOX (17), Left: 0.45, Top: 5.64, Width: 0.36, Height: 0.30
+  Text: '•'
+Shape name: TextBox 18, Type: TEXT_BOX (17), Left: 0.90, Top: 5.64, Width: 2.20, Height: 0.24
+  Text: 'Support teams are stretched thin and overwhelmed'
+Shape name: TextBox 19, Type: TEXT_BOX (17), Left: 3.85, Top: 0.55, Width: 5.00, Height: 0.35
+  Text: 'Current Employee Challenges'
+Shape name: Rounded Rectangle 20, Type: AUTO_SHAPE (1), Left: 3.75, Top: 1.10, Width: 4.35, Height: 2.00
+  Text: ''
+Shape name: Oval 21, Type: AUTO_SHAPE (1), Left: 3.93, Top: 1.28, Width: 0.50, Height: 0.50
+  Text: ''
+Shape name: TextBox 22, Type: TEXT_BOX (17), Left: 3.93, Top: 1.31, Width: 0.50, Height: 0.44
+  Text: '!'
+Shape name: TextBox 23, Type: TEXT_BOX (17), Left: 4.57, Top: 1.26, Width: 3.35, Height: 0.30
+  Text: 'Pain Points Observed'
+Shape name: TextBox 24, Type: TEXT_BOX (17), Left: 4.59, Top: 1.71, Width: 3.52, Height: 2.27
+  Text: 'Without self-service, every IT issue — no matter how routine — lands on a human agent, driving up cost and wait times.'
+Shape name: Rounded Rectangle 25, Type: AUTO_SHAPE (1), Left: 8.30, Top: 1.10, Width: 4.00, Height: 2.00
+  Text: ''
+Shape name: Oval 26, Type: AUTO_SHAPE (1), Left: 8.48, Top: 1.28, Width: 0.50, Height: 0.50
+  Text: ''
+Shape name: TextBox 27, Type: TEXT_BOX (17), Left: 8.48, Top: 1.31, Width: 0.50, Height: 0.44
+  Text: '$'
+Shape name: TextBox 28, Type: TEXT_BOX (17), Left: 9.12, Top: 1.26, Width: 3.00, Height: 0.30
+  Text: 'Business Need'
+Shape name: TextBox 29, Type: TEXT_BOX (17), Left: 9.12, Top: 1.68, Width: 3.00, Height: 1.26
+  Text: 'Result: long queues, frustrated employees, agent burnout, and untracked incidents.'
+Shape name: Rounded Rectangle 30, Type: AUTO_SHAPE (1), Left: 3.82, Top: 3.65, Width: 8.55, Height: 2.85
+  Text: ''
+Shape name: TextBox 31, Type: TEXT_BOX (17), Left: 4.02, Top: 3.58, Width: 3.50, Height: 0.28
+  Text: 'Proposed Solution'
+Shape name: TextBox 32, Type: TEXT_BOX (17), Left: 4.02, Top: 3.92, Width: 7.90, Height: 0.38
+  Text: 'AI-powered Virtual Agent (Now Assist) on ServiceNow Zurich enforcing standardized incident creation path.'
+Shape name: Oval 33, Type: AUTO_SHAPE (1), Left: 4.02, Top: 4.65, Width: 0.50, Height: 0.50
+  Text: ''
+Shape name: TextBox 34, Type: TEXT_BOX (17), Left: 4.02, Top: 4.68, Width: 0.50, Height: 0.44
+  Text: '1'
+Shape name: TextBox 35, Type: TEXT_BOX (17), Left: 3.92, Top: 5.18, Width: 1.05, Height: 0.30
+  Text: 'Understand issue'
+Shape name: TextBox 36, Type: TEXT_BOX (17), Left: 3.87, Top: 5.48, Width: 1.15, Height: 0.52
+  Text: 'Now Assist conversational interface for natural-language IT support queries.'
+Shape name: Connector 37, Type: LINE (9), Left: 4.62, Top: 4.90, Width: 0.80, Height: 0.00
+Shape name: Oval 38, Type: AUTO_SHAPE (1), Left: 5.64, Top: 4.65, Width: 0.50, Height: 0.50
+  Text: ''
+Shape name: TextBox 39, Type: TEXT_BOX (17), Left: 5.64, Top: 4.68, Width: 0.50, Height: 0.44
+  Text: '2'
+Shape name: TextBox 40, Type: TEXT_BOX (17), Left: 5.54, Top: 5.18, Width: 1.05, Height: 0.30
+  Text: 'Recommend KB'
+Shape name: TextBox 41, Type: TEXT_BOX (17), Left: 5.49, Top: 5.48, Width: 1.15, Height: 0.52
+  Text: 'Instant KB article recommendations before incident creation.'
+Shape name: Connector 42, Type: LINE (9), Left: 6.24, Top: 4.90, Width: 0.80, Height: 0.00
+Shape name: Oval 43, Type: AUTO_SHAPE (1), Left: 7.26, Top: 4.65, Width: 0.50, Height: 0.50
+  Text: ''
+Shape name: TextBox 44, Type: TEXT_BOX (17), Left: 7.26, Top: 4.68, Width: 0.50, Height: 0.44
+  Text: '3'
+Shape name: TextBox 45, Type: TEXT_BOX (17), Left: 7.16, Top: 5.18, Width: 1.05, Height: 0.30
+  Text: 'Check resolution'
+Shape name: TextBox 46, Type: TEXT_BOX (17), Left: 7.11, Top: 5.48, Width: 1.15, Height: 0.52
+  Text: "Enforces use of 'Create Incident - Accenture Support' record producer."
+Shape name: Connector 47, Type: LINE (9), Left: 7.86, Top: 4.90, Width: 0.80, Height: 0.00
+Shape name: Oval 48, Type: AUTO_SHAPE (1), Left: 8.88, Top: 4.65, Width: 0.50, Height: 0.50
+  Text: ''
+Shape name: TextBox 49, Type: TEXT_BOX (17), Left: 8.88, Top: 4.68, Width: 0.50, Height: 0.44
+  Text: '4'
+Shape name: TextBox 50, Type: TEXT_BOX (17), Left: 8.78, Top: 5.18, Width: 1.05, Height: 0.30
+  Text: 'Raise incident'
+Shape name: TextBox 51, Type: TEXT_BOX (17), Left: 8.73, Top: 5.48, Width: 1.15, Height: 0.52
+  Text: "Routes all incidents to 'ACCENTURE IT SUPPORT' group automatically."
+Shape name: Connector 52, Type: LINE (9), Left: 9.48, Top: 4.90, Width: 0.80, Height: 0.00
+Shape name: Oval 53, Type: AUTO_SHAPE (1), Left: 10.50, Top: 4.65, Width: 0.50, Height: 0.50
+  Text: ''
+Shape name: TextBox 54, Type: TEXT_BOX (17), Left: 10.50, Top: 4.68, Width: 0.50, Height: 0.44
+  Text: '5'
+Shape name: TextBox 55, Type: TEXT_BOX (17), Left: 10.40, Top: 5.18, Width: 1.05, Height: 0.30
+  Text: 'Notify stakeholders'
+Shape name: TextBox 56, Type: TEXT_BOX (17), Left: 10.35, Top: 5.48, Width: 1.15, Height: 0.52
+  Text: 'Real-time alerts to the support group and employee closure notification.'
+Shape name: Rectangle 57, Type: AUTO_SHAPE (1), Left: 0.00, Top: 7.12, Width: 13.33, Height: 0.38
+  Text: ''
+Shape name: TextBox 58, Type: TEXT_BOX (17), Left: 0.25, Top: 7.17, Width: 12.85, Height: 0.18
+  Text: 'Self-service for repeatable issues  |  Fewer portal hops  |  Standardized escalation'
+Shape name: TextBox 59, Type: TEXT_BOX (17), Left: 8.00, Top: 7.10, Width: 2.00, Height: 0.40
+  Text: 'Karteek Tadimalla'
