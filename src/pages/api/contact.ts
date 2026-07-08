@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { Resend } from 'resend';
 
 export const prerender = false;
 
@@ -7,17 +8,41 @@ export const POST: APIRoute = async ({ request }) => {
     const data = await request.json();
     const { firstName, lastName, email, message } = data;
     
-    if (!firstName || !lastName || !email) {
+    if (!firstName || !lastName || !email || !message) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
     }
 
-    // On Cloudflare Pages, we cannot write to a local "leads.csv" file
-    // because serverless edge networks do not have a local filesystem.
-    // Leads should be forwarded to a database (like Cloudflare D1) or email API.
-    // TODO: Implement Resend/SendGrid or Cloudflare D1 integration here.
-    console.log("Lead captured (Cloudflare env / DEMO MODE - no email sent):", { firstName, lastName, email });
+    const resendApiKey = import.meta.env.RESEND_API_KEY;
+    
+    if (!resendApiKey) {
+      console.error("RESEND_API_KEY is not defined in environment variables.");
+      return new Response(JSON.stringify({ error: 'Server configuration error' }), { status: 500 });
+    }
 
-    return new Response(JSON.stringify({ success: true, demo: true }), { 
+    const resend = new Resend(resendApiKey);
+
+    const { data: resendData, error } = await resend.emails.send({
+      from: 'MortgageDash <hello@mortgagedash.app>',
+      to: ['palerectangle@gmail.com'],
+      replyTo: email,
+      subject: `New Contact Form Submission from ${firstName} ${lastName}`,
+      html: `
+        <h2>New Message from MortgageDash.app</h2>
+        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <blockquote style="border-left: 4px solid #ccc; padding-left: 10px;">
+          ${message.replace(/\n/g, '<br>')}
+        </blockquote>
+      `
+    });
+
+    if (error) {
+      console.error("Resend Error:", error);
+      return new Response(JSON.stringify({ error: 'Failed to send email' }), { status: 500 });
+    }
+
+    return new Response(JSON.stringify({ success: true, id: resendData?.id }), { 
       status: 200,
       headers: {
         'Content-Type': 'application/json'
