@@ -13,8 +13,10 @@ export const POST: APIRoute = async (context) => {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
     }
 
-    // Access runtime environment variable on Cloudflare, fallback to import.meta.env for local dev
-    const resendApiKey = (locals as any)?.runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+    // Cloudflare Workers runtime environment variable (Astro v6)
+    // @ts-ignore
+    const cfEnv = await import("cloudflare:workers").then(m => m.env).catch(() => ({}));
+    const resendApiKey = cfEnv.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
     
     if (!resendApiKey) {
       console.error("RESEND_API_KEY is not defined in environment variables.");
