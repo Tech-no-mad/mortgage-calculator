@@ -41,7 +41,7 @@ export const POST: APIRoute = async (context) => {
 
     if (error) {
       console.error("Resend Error:", error);
-      return new Response(JSON.stringify({ error: 'Failed to send email' }), { status: 500 });
+      return new Response(JSON.stringify({ error: error.message || 'Failed to send email' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
     }
 
     return new Response(JSON.stringify({ success: true, id: resendData?.id }), { 
@@ -50,9 +50,9 @@ export const POST: APIRoute = async (context) => {
         'Content-Type': 'application/json'
       }
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), { 
+    return new Response(JSON.stringify({ error: error.message || 'Internal Server Error' }), { 
       status: 500,
       headers: {
         'Content-Type': 'application/json'
@@ -60,3 +60,4 @@ export const POST: APIRoute = async (context) => {
     });
   }
 }
+

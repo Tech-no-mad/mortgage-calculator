@@ -96,14 +96,16 @@ const ratesData = await getLiveRates(Astro);
               body: JSON.stringify({ firstName, lastName, email, message })
             });
 
+            const result = await response.json();
+
             if (response.ok) {
               successMsg?.classList.remove('hidden');
               form.reset();
             } else {
-              alert('Something went wrong. Please try again.');
+              alert(`Error: ${result.error || 'Something went wrong. Please try again.'}`);
             }
-          } catch (err) {
-            alert('Failed to submit the form.');
+          } catch (err: any) {
+            alert(`Failed to submit the form: ${err.message || err}`);
           }
         });
       }
