@@ -1,1 +1,1 @@
-export const SITE_EMAIL = "info@mortgagedash.app";
+export const SITE_EMAIL = "hello@mortgagedash.app";
