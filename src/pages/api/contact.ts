@@ -3,7 +3,8 @@ import { Resend } from 'resend';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async (context) => {
+  const { request, locals } = context;
   try {
     const data = await request.json();
     const { firstName, lastName, email, message } = data;
@@ -12,7 +13,8 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
     }
 
-    const resendApiKey = import.meta.env.RESEND_API_KEY;
+    // Access runtime environment variable on Cloudflare, fallback to import.meta.env for local dev
+    const resendApiKey = (locals as any)?.runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
     
     if (!resendApiKey) {
       console.error("RESEND_API_KEY is not defined in environment variables.");
