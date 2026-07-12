@@ -234,6 +234,15 @@
         stored.push({ email, timestamp: new Date().toISOString() });
         localStorage.setItem('mortgagedash_emails', JSON.stringify(stored));
 
+        // GA4 Lead Generation Event Tracking
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'generate_lead', {
+            'currency': 'USD',
+            'value': 1.00,
+            'lead_type': 'mortgage_breakdown_report'
+          });
+        }
+
         // Show success state
         if (formState) formState.classList.add('hidden');
         if (successState) successState.classList.remove('hidden');
