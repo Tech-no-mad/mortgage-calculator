@@ -16,6 +16,7 @@ import EmailModal from '../components/EmailModal.astro';
 
 // Fallback to workers.dev if PUBLIC_SITE_URL is not yet set for the custom domain
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://mortgagedash.app';
+const isProd = import.meta.env.PROD;
 
 // Default keywords (ideally overridden by every page)
 const defaultKeywords = "mortgage calculator, home loan calculator, current mortgage rates, monthly mortgage payment";
@@ -46,13 +47,23 @@ const absoluteOgImage = ogImage.startsWith('http')
 <html lang="en" class="dark">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSJYM185F5"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-RSJYM185F5');
-    </script>
+    {isProd && (
+      <>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSJYM185F5"></script>
+        <script is:inline>
+          if (typeof window !== 'undefined') {
+            const ua = window.navigator?.userAgent || '';
+            const isBot = ua.includes('Cloudflare-Worker') || ua.includes('Headless') || /bot|crawler|spider|crawling/i.test(ua);
+            if (!isBot) {
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-RSJYM185F5');
+            }
+          }
+        </script>
+      </>
+    )}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
